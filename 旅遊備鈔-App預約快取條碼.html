@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App 預約快取條碼｜互動原型</title>
+<style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* 底部面板與驗證 */
+  .sheet-wrap { position: absolute; inset: 0; background: rgba(2,6,23,.55); display: flex; flex-direction: column; justify-content: flex-end; z-index: 5; }
+  .sheet { background: #fff; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: up .25s cubic-bezier(.2,.8,.2,1); }
+  .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line-strong); align-self: center; }
+  .sheet h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .verify { align-items: center; text-align: center; padding: 44px 20px 64px; }
+  .verify .face { color: var(--accent); animation: pulse 1s ease-in-out infinite; }
+  @keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.94); } }
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+  /* ---------- 共用元件 ---------- */
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); }
+  .row strong { color: var(--ink); text-align: right; }
+  .fine { font-size: 12px; color: var(--faint); line-height: 1.6; margin: 0; }
+  .sec-title { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .sec-title h3 { margin: 0; font-size: 16px; font-weight: 900; }
+  .sec-title span { font-size: 12px; color: var(--faint); }
+  .link-btn { border: none; background: none; padding: 0; min-height: 32px; color: var(--accent); font-size: 13px; font-weight: 700; cursor: pointer; }
+
+  .mini-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .mini { background: #f8fafc; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .mini span { font-size: 11px; color: var(--muted); }
+  .mini strong { font-size: 15px; font-weight: 900; }
+
+  .opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .opts.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .opt { min-height: 48px; padding: 6px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 14px; font-weight: 700; }
+  .opt small { font-size: 11px; font-weight: 500; color: var(--faint); }
+  .opt:hover { border-color: var(--ink); }
+  .opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .opt[aria-pressed="true"] small { color: var(--accent); }
+  .switch-row { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
+  .switch-row .ic { width: 40px; height: 40px; flex: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+  .switch-row .t { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .switch-row .t strong { font-size: 15px; }
+  .switch-row .t span { font-size: 12px; color: var(--muted); }
+  .switch { width: 52px; height: 32px; flex: none; border: none; border-radius: 999px; background: #94a3b8; position: relative; cursor: pointer; transition: background .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .switch[aria-checked="true"] { background: var(--accent); }
+  .switch[aria-checked="true"]::after { left: 23px; }
+  .field-title { font-size: 15px; font-weight: 700; }
+
+  .demo { border: 1.5px dashed var(--line-strong); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .demo-label { font-size: 12px; font-weight: 700; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .demo-btn { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .demo-btn:hover { border-color: var(--ink); }
+
+  .summary { background: #f8fafc; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .done-ic { width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; align-self: center; animation: pop .28s cubic-bezier(.2,.9,.3,1.3) both; }
+  @keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .center { text-align: center; align-self: center; }
+
+  .push { position: absolute; left: 10px; right: 10px; top: 10px; z-index: 7; background: rgba(255,255,255,.97); border: none; border-radius: 20px; box-shadow: 0 12px 30px rgba(15,23,42,.25); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; text-align: left; cursor: pointer; animation: drop .3s cubic-bezier(.2,.8,.2,1); }
+  .push .app-ic { width: 36px; height: 36px; flex: none; border-radius: 10px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .push .p-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .push .p-txt strong { font-size: 14px; }
+  .push .p-txt span { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .push .p-time { font-size: 11px; color: var(--faint); }
+  @keyframes drop { from { transform: translateY(-30px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* ---------- 預約快取條碼原型專用 ---------- */
+  .content > * { flex-shrink: 0; }
+  .denoms { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .denom { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #f1f5f9; }
+  .denom:last-child { border-bottom: none; }
+  .denom .bill { width: 56px; height: 30px; flex: none; border-radius: 6px; background: var(--gold-bg); border: 1px solid var(--gold-line); color: var(--gold-strong); font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .denom .lbl { flex: 1; font-size: 14px; color: var(--text); }
+  .stepper { display: flex; align-items: center; gap: 6px; }
+  .stepper button { width: 40px; height: 40px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--ink); font-size: 20px; font-weight: 700; cursor: pointer; }
+  .stepper button:hover:not(:disabled) { border-color: var(--ink); }
+  .stepper button:disabled { opacity: .35; cursor: not-allowed; }
+  .stepper output { min-width: 28px; text-align: center; font-size: 16px; font-weight: 900; }
+  .total-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .total-card .big { display: flex; justify-content: space-between; align-items: baseline; }
+  .total-card .big span { font-size: 13px; color: var(--muted); }
+  .total-card .big b { font-size: 26px; font-weight: 900; }
+  .warn { font-size: 13px; color: var(--accent); font-weight: 700; }
+
+  .map { position: relative; height: 150px; border-radius: 16px; overflow: hidden; background: #eef0f3; border: 1px solid var(--line); }
+  .map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .pin { position: absolute; transform: translate(-50%, -100%); width: 30px; height: 30px; border-radius: 50% 50% 50% 0; rotate: -45deg; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(15,23,42,.25); }
+  .pin span { rotate: 45deg; font-size: 12px; font-weight: 900; color: #fff; }
+  .pin.ok { background: var(--accent); } .pin.low { background: var(--gold-strong); } .pin.none { background: #94a3b8; }
+  .pin.sel { width: 38px; height: 38px; box-shadow: 0 0 0 4px rgba(154,0,54,.25); }
+  .me { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: #2563eb; border: 3px solid #fff; box-shadow: 0 0 0 6px rgba(37,99,235,.18); transform: translate(-50%, -50%); }
+  .atm-list { display: flex; flex-direction: column; gap: 8px; }
+  .atm { width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer; color: var(--ink); }
+  .atm:hover:not(:disabled) { border-color: var(--ink); }
+  .atm[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .atm:disabled { opacity: .55; cursor: not-allowed; }
+  .atm .no { width: 30px; height: 30px; flex: none; border-radius: 50%; color: #fff; font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .atm .no.ok { background: var(--accent); } .atm .no.low { background: var(--gold-strong); } .atm .no.none { background: #94a3b8; }
+  .atm .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .atm .t strong { font-size: 15px; }
+  .atm .t span { font-size: 12px; color: var(--muted); }
+  .stock { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .stock.ok { color: var(--ok); background: var(--ok-bg); }
+  .stock.low { color: var(--gold-strong); background: var(--gold-bg); }
+  .stock.none { color: var(--muted); background: #f1f5f9; }
+
+  .ticket { background: #fff; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; }
+  .ticket-head { background: var(--accent); color: #fff; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .ticket-head strong { font-size: 16px; }
+  .ticket-head span { font-size: 12px; color: #f6d7e1; }
+  .ticket-body { padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .qr { width: 200px; height: 200px; background: #fff; border-radius: 12px; padding: 8px; border: 1px solid var(--line); }
+  .qr.expired { opacity: .2; filter: grayscale(1); }
+  .countdown { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .countdown small { font-size: 12px; color: var(--muted); }
+  .countdown b { font-size: 26px; font-weight: 900; letter-spacing: .04em; }
+  .countdown.urgent b { color: var(--accent); }
+  .ticket-tear { height: 0; border-top: 2px dashed var(--line-strong); margin: 0 16px; }
+  .ticket-foot { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .howto { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .howto li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--text); line-height: 1.5; }
+  .howto li b { width: 24px; height: 24px; flex: none; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .two-btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .two-btns button { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .two-btns button:hover { border-color: var(--ink); }
+  .result { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+  .result h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .result.expired .done-ic { background: #94a3b8; }
+  .breakdown { align-self: stretch; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .breakdown span { font-size: 13px; font-weight: 700; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); padding: 4px 10px; border-radius: 8px; }
+  .atm-scan { align-items: center; text-align: center; padding: 28px 20px 40px; }
+  .atm-scan .scan-box { width: 160px; height: 160px; border-radius: 16px; border: 3px solid var(--accent); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+  .atm-scan .scan-box::after { content: ""; position: absolute; left: 8px; right: 8px; height: 3px; background: var(--accent); top: 10%; animation: scanline 1.2s ease-in-out infinite alternate; box-shadow: 0 0 12px rgba(154,0,54,.6); }
+  @keyframes scanline { to { top: 88%; } }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-row">
+    <a class="back" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+    </a>
+    <span class="crumb">功能原型｜<strong>App 預約快取條碼</strong></span>
+    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="phone" aria-label="手機原型畫面">
+    <div class="screen" id="screen"></div>
+  </div>
+
+  <aside class="info" aria-label="功能說明">
+    <div class="info-card">
+      <div class="tags"><span class="tag-cat">旅遊備鈔</span><span class="platform">APP</span><span class="platform">ATM</span></div>
+      <h1>App 預約快取條碼</h1>
+      <div class="rating" aria-label="開發難易度 4 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★★</span><span class="off">★</span></span></div>
+      <p>在路上先選好幣別與面額，產生限時 QR Code，抵達機台直接掃碼。</p>
+      <div>
+        <div class="label">功能特色</div>
+        <ul class="features">
+          <li>預先選幣別、金額與面額組合</li>
+          <li>查看各外幣 ATM 即時庫存，選定取鈔地點</li>
+          <li>產生 2 小時限時條碼，到 ATM 掃碼即取鈔</li>
+        </ul>
+      </div>
+      <div class="benefit"><strong>效益｜</strong>機台前只剩掃碼與核身，縮短排隊與操作時間；預先確認庫存，也避免到場撲空。</div>
+    </div>
+
+    <div class="info-card flow">
+      <h2>操作流程</h2>
+      <ol class="flow-list" id="flow-list"></ol>
+      <button class="reset" type="button" id="reset">重設原型</button>
+      <p class="note">預約時即以現鈔賣出匯率扣款並保留鈔券，逾時未取自動取消並退回。原型內匯率、ATM 地點與庫存皆為示意，單筆上限與手續費依[本行規定]。</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+  /* ================== 資料（示意） ================== */
+  const CCY = {
+    JPY: { name: '日圓', sym: '¥', rate: 0.2148, dec: 4, denoms: [10000, 5000, 1000], presets: [30000, 50000, 100000], max: 200000 },
+    USD: { name: '美元', sym: 'US$', rate: 32.62, dec: 2, denoms: [100, 50, 20], presets: [300, 500, 1000], max: 3000 },
+    EUR: { name: '歐元', sym: '€', rate: 35.55, dec: 2, denoms: [100, 50, 20], presets: [300, 500, 1000], max: 3000 },
+    HKD: { name: '港幣', sym: 'HK$', rate: 4.21, dec: 2, denoms: [1000, 500, 100], presets: [2000, 3000, 5000], max: 20000 }
+  };
+  const ATMS = [
+    { id: 1, name: '桃園機場 第二航廈 B1', sub: '機場・24 小時', dist: '距你 38 km', x: 18, y: 30, stock: { JPY: 'ok', USD: 'ok', EUR: 'ok', HKD: 'low' } },
+    { id: 2, name: '館前分行 外幣 ATM', sub: '分行・06:00–24:00', dist: '距你 0.6 km', x: 55, y: 62, stock: { JPY: 'ok', USD: 'ok', EUR: 'low', HKD: 'ok' } },
+    { id: 3, name: '台北車站 地下街', sub: '交通站點・06:00–23:00', dist: '距你 0.9 km', x: 40, y: 48, stock: { JPY: 'low', USD: 'ok', EUR: 'none', HKD: 'none' } },
+    { id: 4, name: '信義分行 外幣 ATM', sub: '分行・06:00–24:00', dist: '距你 3.4 km', x: 82, y: 40, stock: { JPY: 'none', USD: 'ok', EUR: 'ok', HKD: 'low' } }
+  ];
+  const STOCK = { ok: '庫存充足', low: '庫存較少', none: '暫無此幣' };
+  const VALID_SEC = 2 * 60 * 60;
+  const STEPS = [
+    { id: 'amount', title: '選幣別與面額', desc: '金額、面額組合一次選好' },
+    { id: 'atm', title: '選取鈔 ATM', desc: '依即時庫存挑選地點' },
+    { id: 'confirm', title: '確認預約', desc: '鎖定匯率扣款，保留鈔券' },
+    { id: 'ticket', title: '限時取鈔條碼', desc: '2 小時內到 ATM 掃碼' },
+    { id: 'done', title: '掃碼取鈔', desc: '模擬在 ATM 掃碼完成取鈔' }
+  ];
+  const ICON = {
+    back: '<path d="m15 18-6-6 6-6"/>',
+    face: '<path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.6 1.2 4.4 1.2 6 0"/>',
+    flask: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    scan: '<path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M7 12h10"/>'
+  };
+  const svg = (n, size = 20, sw = 2) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
+  const fmt = (n, d = 0) => Number(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+  /* ================== 狀態 ================== */
+  function suggest(k, amt) {
+    const ds = CCY[k].denoms, out = {}; let r = amt;
+    // 保留一部分小面額，方便當地小額消費
+    const smallShare = Math.min(r, ds[2] * 5);
+    out[ds[2]] = Math.floor(smallShare / ds[2]); r -= out[ds[2]] * ds[2];
+    out[ds[0]] = Math.floor(r / ds[0]); r -= out[ds[0]] * ds[0];
+    out[ds[1]] = Math.floor(r / ds[1]); r -= out[ds[1]] * ds[1];
+    out[ds[2]] += Math.round(r / ds[2]);
+    return out;
+  }
+  const fresh = () => ({ screen: 'amount', ccy: 'JPY', preset: 50000, counts: suggest('JPY', 50000), atm: 2, sheet: null, ticket: null, result: null });
+  let S = fresh();
+  const C = () => CCY[S.ccy];
+  const total = () => C().denoms.reduce((s, d) => s + d * (S.counts[d] || 0), 0);
+  const atm = () => ATMS.find(a => a.id === S.atm);
+  const twd = () => Math.round(total() * C().rate);
+
+  /* ================== 小元件 ================== */
+  function appBar(title, back) {
+    return `<div class="app-bar">${back ? `<button class="icon-btn" type="button" data-go="${back}" aria-label="上一步">${svg('back', 22, 2.4)}</button>` : '<span class="ghost"></span>'}<h2>${title}</h2><span class="ghost"></span></div>`;
+  }
+  function qrSVG(seed, cls = 'qr') {
+    const N = 25, c = 8; let r = seed * 7919 + 104729; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+    const f = (x, y) => `<rect x="${x * c}" y="${y * c}" width="${7 * c}" height="${7 * c}" fill="#0f172a"/><rect x="${(x + 1) * c}" y="${(y + 1) * c}" width="${5 * c}" height="${5 * c}" fill="#fff"/><rect x="${(x + 2) * c}" y="${(y + 2) * c}" width="${3 * c}" height="${3 * c}" fill="#0f172a"/>`;
+    let cells = '';
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+      if ((x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16)) continue;
+      if (rnd() > 0.5) cells += `<rect x="${x * c}" y="${y * c}" width="${c}" height="${c}" fill="#0f172a"/>`;
+    }
+    return `<svg class="${cls}" viewBox="0 0 ${N * c} ${N * c}" role="img" aria-label="取鈔條碼（示意）">${cells}${f(0, 0)}${f(18, 0)}${f(0, 18)}</svg>`;
+  }
+  const hms = s => [Math.floor(s / 3600), Math.floor(s % 3600 / 60), s % 60].map(v => String(v).padStart(2, '0')).join(':');
+  const breakdown = () => C().denoms.filter(d => S.counts[d]).map(d => `<span>${C().sym}${fmt(d)} × ${S.counts[d]}</span>`).join('');
+
+  /* ================== 畫面 ================== */
+  function viewAmount() {
+    const c = C(), t = total(), over = t > c.max;
+    return appBar('預約外幣取鈔') + `
+      <div class="content">
+        <span class="field-title">要領哪一種外幣現鈔？</span>
+        <div class="opts" style="grid-template-columns:repeat(4,minmax(0,1fr))" role="group" aria-label="幣別">${Object.keys(CCY).map(k => `<button class="opt" type="button" data-ccy="${k}" aria-pressed="${S.ccy === k}">${k}<small>${CCY[k].name}</small></button>`).join('')}</div>
+        <span class="field-title">取鈔金額</span>
+        <div class="opts three" role="group" aria-label="取鈔金額">${c.presets.map(p => `<button class="opt" type="button" data-preset="${p}" aria-pressed="${S.preset === p && t === p}">${c.sym}${fmt(p)}</button>`).join('')}</div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="field-title">面額組合</span><span class="fine">已依金額建議，可自行調整</span></div>
+        <div class="denoms">${c.denoms.map(d => `
+          <div class="denom"><span class="bill">${c.sym}${fmt(d)}</span><span class="lbl">${fmt(d)} 面額</span>
+            <span class="stepper"><button type="button" data-dec="${d}" aria-label="減少 ${fmt(d)} 面額" ${(S.counts[d] || 0) ? '' : 'disabled'}>−</button><output aria-live="polite">${S.counts[d] || 0}</output><button type="button" data-inc="${d}" aria-label="增加 ${fmt(d)} 面額">＋</button></span></div>`).join('')}
+        </div>
+        <div class="total-card">
+          <div class="big"><span>合計取鈔</span><b>${c.sym}${fmt(t)}</b></div>
+          <div class="row"><span>現鈔賣出匯率</span><strong>${fmt(c.rate, c.dec)}</strong></div>
+          <div class="row"><span>預估扣款</span><strong>NT$${fmt(twd())}</strong></div>
+          ${over ? `<span class="warn">單筆預約上限 ${c.sym}${fmt(c.max)}，請減少金額。</span>` : ''}
+        </div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-go="atm" ${t > 0 && !over ? '' : 'disabled'}>下一步：選取鈔 ATM</button></div>`;
+  }
+
+  function viewATM() {
+    const k = S.ccy, sel = atm();
+    const valid = sel && sel.stock[k] !== 'none';
+    return appBar('選取鈔 ATM', 'amount') + `
+      <div class="content">
+        <div class="map" aria-label="外幣 ATM 位置示意圖">
+          <svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C20 35 30 50 50 42 S80 30 100 36" stroke="#fff" stroke-width="4" fill="none"/><path d="M30 0 L38 60M70 0 L64 60" stroke="#fff" stroke-width="3" fill="none"/><path d="M0 18 L100 22" stroke="#fff" stroke-width="2" fill="none"/></svg>
+          <span class="me" style="left:52%;top:70%"></span>
+          ${ATMS.map(a => `<span class="pin ${a.stock[k]} ${a.id === S.atm ? 'sel' : ''}" style="left:${a.x}%;top:${a.y}%"><span>${a.id}</span></span>`).join('')}
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="field-title">${C().name}現鈔庫存</span><span class="fine">庫存每 5 分鐘更新</span></div>
+        <div class="atm-list">${ATMS.map(a => { const st = a.stock[k]; return `
+          <button class="atm" type="button" data-atm="${a.id}" aria-pressed="${a.id === S.atm}" ${st === 'none' ? 'disabled' : ''}>
+            <span class="no ${st}">${a.id}</span>
+            <span class="t"><strong>${a.name}</strong><span>${a.sub}・${a.dist}</span></span>
+            <span class="stock ${st}">${STOCK[st]}</span>
+          </button>`; }).join('')}</div>
+        <p class="fine">預約成功後會保留鈔券 2 小時；庫存較少的機台可能無法保留全部面額，系統會提醒。</p>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-go="confirm" ${valid ? '' : 'disabled'}>下一步：確認預約</button></div>`;
+  }
+
+  function viewConfirm() {
+    const c = C(), a = atm();
+    return appBar('確認預約', 'atm') + `
+      <div class="content">
+        <div class="total-card">
+          <div class="big"><span>取鈔金額</span><b>${c.sym}${fmt(total())}</b></div>
+          <div class="breakdown">${breakdown()}</div>
+        </div>
+        <div class="card">
+          <div class="row"><span>取鈔地點</span><strong>${a.name}</strong></div>
+          <div class="row"><span>營業時間</span><strong>${a.sub.split('・')[1]}</strong></div>
+          <div class="row"><span>現鈔賣出匯率</span><strong>${fmt(c.rate, c.dec)}（預約時鎖定）</strong></div>
+          <div class="row"><span>扣款金額</span><strong>NT$${fmt(twd())}</strong></div>
+          <div class="row"><span>扣款帳戶</span><strong>台幣活存 •• [末四碼]</strong></div>
+          <div class="row"><span>條碼有效時間</span><strong>2 小時</strong></div>
+        </div>
+        <div style="background:var(--gold-bg);border:1px solid var(--gold-line);border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.65;color:var(--gold-text)"><strong style="color:var(--gold-strong)">預約須知｜</strong>確認後立即扣款並保留鈔券；2 小時內未取鈔將自動取消，款項原路退回。可隨時於條碼頁取消預約。</div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-action="book">${svg('face', 22)}以 Face ID 確認預約</button></div>`;
+  }
+
+  function viewTicket() {
+    const c = C(), a = atm(), left = S.ticket.left, urgent = left < 600;
+    return appBar('取鈔條碼') + `
+      <div class="content">
+        <div class="ticket">
+          <div class="ticket-head"><strong>${c.name} ${c.sym}${fmt(total())}</strong><span>預約編號 ${S.ticket.no}</span></div>
+          <div class="ticket-body">
+            ${qrSVG(S.ticket.seed)}
+            <div class="countdown ${urgent ? 'urgent' : ''}" role="timer" aria-label="條碼剩餘有效時間"><small>條碼剩餘有效時間</small><b id="cd">${hms(left)}</b></div>
+          </div>
+          <div class="ticket-tear"></div>
+          <div class="ticket-foot">
+            <div class="row"><span>取鈔地點</span><strong>${a.name}</strong></div>
+            <div class="breakdown" style="justify-content:flex-start">${breakdown()}</div>
+          </div>
+        </div>
+        <div class="card"><strong style="font-size:15px">到 ATM 這樣領</strong>
+          <ol class="howto"><li><b>1</b>在外幣 ATM 首頁點選「掃碼取鈔」</li><li><b>2</b>將此條碼對準機台掃描器</li><li><b>3</b>依畫面指示完成核身，即可取鈔</li></ol></div>
+        <div class="two-btns"><button type="button" data-action="nav">導航到 ATM</button><button type="button" data-action="cancel">取消預約</button></div>
+        <div class="demo"><span class="demo-label">${svg('flask', 14)}原型示範（實際上線不會出現）</span>
+          <div class="two-btns"><button type="button" data-action="scan">模擬在 ATM 掃碼</button><button type="button" data-action="expire">模擬條碼到期</button></div></div>
+      </div>`;
+  }
+
+  function viewDone() {
+    const c = C(), a = atm(), r = S.result;
+    if (r === 'expired' || r === 'cancelled') return appBar(r === 'expired' ? '預約已到期' : '預約已取消') + `
+      <div class="content">
+        <div class="result expired"><span class="done-ic">${svg('clock', 34, 2.6)}</span>
+          <h3>${r === 'expired' ? '條碼已到期，預約自動取消' : '已取消預約'}</h3>
+          <span class="fine" style="font-size:14px">扣款 NT$${fmt(twd())} 將於 1 個營業日內退回台幣活存 •• [末四碼]。</span></div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-action="again">重新預約</button></div>`;
+    return appBar('取鈔完成') + `
+      <div class="content">
+        <div class="result"><span class="done-ic">${svg('check', 34, 3)}</span>
+          <h3>已領取 ${c.sym}${fmt(total())}</h3>
+          <span class="fine" style="font-size:14px">${a.name}・今天 ${S.ticket ? S.ticket.time : ''}</span>
+          <div class="breakdown">${breakdown()}</div></div>
+        <div class="card">
+          <div class="row"><span>成交匯率</span><strong>${fmt(c.rate, c.dec)}</strong></div>
+          <div class="row"><span>扣款金額</span><strong>NT$${fmt(twd())}</strong></div>
+          <div class="row"><span>機台操作時間</span><strong>約 20 秒</strong></div>
+        </div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-action="again">完成</button></div>`;
+  }
+
+  function sheetHTML() {
+    if (S.sheet === 'verify') return `<div class="sheet-wrap"><div class="sheet verify" role="status" aria-live="polite"><span class="face">${svg('face', 72, 1.6)}</span><h3>Face ID 驗證中…</h3><span class="fine">驗證後立即扣款並保留鈔券</span></div></div>`;
+    if (S.sheet === 'scan') return `<div class="sheet-wrap"><div class="sheet atm-scan" role="status" aria-live="polite"><span class="scan-box">${svg('scan', 56, 1.6)}</span><h3>ATM 掃描條碼中…</h3><span class="fine">請依機台畫面完成核身</span></div></div>`;
+    if (S.sheet === 'cancel') return `<div class="sheet-wrap"><div class="sheet" role="dialog" aria-modal="true" aria-label="取消預約"><span class="grab"></span>
+      <h3>確定取消這筆預約？</h3><p class="fine" style="font-size:14px">取消後鈔券不再保留，扣款 NT$${fmt(twd())} 將退回台幣活存。</p>
+      <button class="btn btn-primary" type="button" data-action="cancel-confirm">確認取消</button>
+      <button class="btn btn-ghost" type="button" data-action="close">保留預約</button></div></div>`;
+    return '';
+  }
+
+  /* ================== 繪製 ================== */
+  const VIEWS = { amount: viewAmount, atm: viewATM, confirm: viewConfirm, ticket: viewTicket, done: viewDone };
+  const screenEl = document.getElementById('screen');
+  function render(keep) {
+    const ct = screenEl.querySelector('.content'), top = keep && ct ? ct.scrollTop : 0;
+    screenEl.innerHTML = VIEWS[S.screen]() + sheetHTML() + '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
+    const nc = screenEl.querySelector('.content'); if (nc) nc.scrollTop = top;
+    document.getElementById('flow-list').innerHTML = STEPS.map((s, i) => `<li><button class="flow-btn" type="button" data-jump="${s.id}" ${S.screen === s.id ? 'aria-current="step"' : ''}><span class="no">${i + 1}</span><span><strong>${s.title}</strong>${s.desc}</span></button></li>`).join('');
+  }
+  function toast(m) { const t = document.getElementById('toast'); if (!t) return; t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2200); }
+
+  let tick = null, timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  function startTicket() {
+    S.ticket = { left: VALID_SEC, seed: Math.floor(Math.random() * 1000) + 1, no: 'RB' + String(Math.floor(Math.random() * 900000) + 100000), time: '' };
+    clearInterval(tick);
+    tick = setInterval(() => {
+      if (!S.ticket || S.screen !== 'ticket') return;
+      S.ticket.left = Math.max(0, S.ticket.left - 1);
+      const el = document.getElementById('cd'); if (el) el.textContent = hms(S.ticket.left);
+      if (S.ticket.left === 0) { clearInterval(tick); S.result = 'expired'; S.screen = 'done'; render(); }
+    }, 1000);
+  }
+  function stopAll() { clearInterval(tick); timers.forEach(clearTimeout); timers = []; }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const d = b.dataset;
+    if (d.go) { S.screen = d.go; S.sheet = null; render(); return; }
+    if (d.ccy) { S.ccy = d.ccy; S.preset = C().presets[1]; S.counts = suggest(S.ccy, S.preset); if (atm().stock[S.ccy] === 'none') S.atm = ATMS.find(a => a.stock[S.ccy] === 'ok').id; render(true); return; }
+    if (d.preset) { S.preset = Number(d.preset); S.counts = suggest(S.ccy, S.preset); render(true); return; }
+    if (d.inc) { S.counts[d.inc] = (S.counts[d.inc] || 0) + 1; render(true); return; }
+    if (d.dec) { S.counts[d.dec] = Math.max(0, (S.counts[d.dec] || 0) - 1); render(true); return; }
+    if (d.atm) { S.atm = Number(d.atm); render(true); const a = atm(); if (a.stock[S.ccy] === 'low') toast('此機台庫存較少，建議盡早取鈔'); return; }
+    if (d.jump) {
+      stopAll(); S.sheet = null;
+      if (d.jump === 'ticket' || d.jump === 'done') { startTicket(); S.result = null; }
+      if (d.jump === 'done') { S.ticket.time = '10:42'; S.result = 'ok'; }
+      S.screen = d.jump; render(); return;
+    }
+    switch (d.action) {
+      case 'book': S.sheet = 'verify'; render(true); later(() => { S.sheet = null; startTicket(); S.screen = 'ticket'; S.result = null; render(); toast('預約成功，鈔券已為你保留'); }, 1200); break;
+      case 'scan': S.sheet = 'scan'; render(true); later(() => { clearInterval(tick); S.sheet = null; S.ticket.time = '10:42'; S.result = 'ok'; S.screen = 'done'; render(); }, 1800); break;
+      case 'expire': S.ticket.left = 5; render(true); toast('條碼將在 5 秒後到期'); break;
+      case 'cancel': S.sheet = 'cancel'; render(true); break;
+      case 'cancel-confirm': clearInterval(tick); S.sheet = null; S.result = 'cancelled'; S.screen = 'done'; render(); break;
+      case 'close': S.sheet = null; render(true); break;
+      case 'nav': toast(`開啟地圖導航至 ${atm().name}（示意）`); break;
+      case 'again': stopAll(); const keep = S.ccy; S = fresh(); if (keep !== 'JPY') { S.ccy = keep; S.preset = C().presets[1]; S.counts = suggest(keep, S.preset); } render(); break;
+    }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && S.sheet === 'cancel') { S.sheet = null; render(true); } });
+  document.getElementById('reset').addEventListener('click', () => { stopAll(); S = fresh(); render(); });
+  render();
+</script>
+
+</body>
+</html>

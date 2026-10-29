@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外幣餘裕管理旅程｜互動原型</title>
+<style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+    --warning: #d32f2f;
+    --warning-bg: #fff8e8;
+    --warning-border: #ebdeba;
+    --hint-color: #d8a032;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* ---------- 點子提示標籤設計 ---------- */
+  .ideation-tag {
+      display: inline-flex;
+      align-items: center;
+      background: var(--hint-color);
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-bottom: 6px;
+      box-shadow: 0 0 0 rgba(216, 160, 50, 0.7);
+      animation: pulse-hint 2s infinite;
+  }
+  @keyframes pulse-hint {
+      0% { box-shadow: 0 0 0 0 rgba(216, 160, 50, 0.7); }
+      70% { box-shadow: 0 0 0 5px rgba(216, 160, 50, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(216, 160, 50, 0); }
+  }
+
+  /* ---------- 表單與卡片 ---------- */
+  .form-group { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 13px; color: var(--muted); font-weight: 700; }
+  .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--line-strong); border-radius: 12px; font-size: 15px; background: white; outline: none; }
+  .form-group input:focus, .form-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  
+  .balance-card { background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--line); margin-bottom: 16px; box-shadow: 0 4px 12px rgba(155,36,81,0.05); }
+  .goal-card { background: white; border-radius: 16px; padding: 16px; border: 1px solid var(--line); }
+
+  /* ---------- 其他共用 ---------- */
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-row">
+    <a class="back" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+    </a>
+    <span class="crumb">功能原型｜<strong>外幣餘裕管理旅程</strong></span>
+    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="phone" aria-label="手機原型畫面">
+    <div class="screen" id="screen"></div>
+  </div>
+
+  <aside class="info" aria-label="功能說明">
+    <div class="info-card">
+      <div class="tags"><span class="tag-cat">外幣餘裕</span><span class="platform">APP</span><span class="platform">網銀</span></div>
+      <h1>外幣餘裕管理旅程</h1>
+      <div class="rating" aria-label="開發難易度 4 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★★</span><span class="off">★</span></span></div>
+      <p>體驗餘裕試算、目標進度顯示與一鍵換匯補足功能，讓使用者快速掌握資金缺口。</p>
+      <div>
+        <div class="label">功能特色</div>
+        <ul class="features">
+          <li>缺口試算：可用餘額與預扣金額並列顯示。</li>
+          <li>視覺化進度：特定重大扣款目標進度條。</li>
+          <li>一鍵補足：自動帶入缺口參數至換匯表單，無縫接軌。</li>
+        </ul>
+      </div>
+      <div class="benefit"><strong>效益｜</strong>降低餘額不足造成的焦慮感，提供一站式、無需切換功能的資金補足通道。</div>
+    </div>
+
+    <div class="info-card flow">
+      <h2>操作流程</h2>
+      <ol class="flow-list" id="flow-list"></ol>
+      <button class="reset" type="button" id="reset">重設原型</button>
+      <p class="note">原型內的帳戶金額與保單預扣數字皆為示意用。</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+  const STEPS = [
+    { id: 'overview', title: '餘裕與缺口試算', desc: '查看外幣餘額與近期預扣款，掌握缺口' },
+    { id: 'exchange', title: '一鍵補足缺口', desc: '點擊補足，自動帶入所需換匯參數' }
+  ];
+
+  const ICON = {
+    back: '<path d="m15 18-6-6 6-6"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>'
+  };
+  const svg = (name, size = 20, sw = 2) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[name]}</svg>`;
+
+  /* ================== 狀態 ================== */
+  const fresh = () => ({
+    screen: 'overview',
+    gapFilled: false
+  });
+  let S = fresh();
+
+  /* ================== 畫面 ================== */
+  function appBar(title, back) {
+    return `<div class="app-bar">
+      ${back ? `<button class="icon-btn" type="button" data-go="${back}" aria-label="上一步">${svg('back', 22, 2.4)}</button>` : '<span class="ghost"></span>'}
+      <h2>${title}</h2><span class="ghost"></span></div>`;
+  }
+
+  function viewOverview() {
+    return appBar('美金 (USD) 帳戶', null) + `
+      <div class="content">
+        <div class="ideation-tag">✨ H1-1 可用餘額與預扣金額並列</div>
+        <div class="balance-card">
+            <div style="font-size:13px; color:var(--muted);">帳戶實際餘額</div>
+            <div style="font-size: 28px; font-weight: 900; color: var(--accent); margin: 8px 0;">
+                ${S.gapFilled ? 'USD 2,000.00' : 'USD 1,500.00'}
+            </div>
+            <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; font-size: 13px;">
+                <div style="display: flex; flex-direction: column;">
+                    <span>近期預定扣款</span>
+                    <span style="font-weight:bold; margin-top:4px;">- USD 2,000.00</span>
+                </div>
+                <div style="display: flex; flex-direction: column; ${S.gapFilled ? 'color: var(--ok);' : 'color: var(--warning);'} font-weight: bold; text-align: right;">
+                    <span>${S.gapFilled ? '扣款後剩餘可用' : '扣款後餘裕缺口'}</span>
+                    <span style="margin-top:4px;">${S.gapFilled ? 'USD 0.00' : '- USD 500.00'}</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="font-size: 15px; font-weight: bold; margin: 16px 0 12px; color: var(--ink);">近期重大支付 (3個月內)</div>
+        
+        <div class="ideation-tag">✨ H1-3 特定扣款進度條 / H3-1 缺口一鍵補足</div>
+        <div class="goal-card">
+            <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: bold;">
+                <span>南山人壽美元保單 (11/15)</span>
+                <span>USD 2,000</span>
+            </div>
+            <div style="background: var(--line); height: 8px; border-radius: 4px; overflow: hidden; margin: 12px 0;">
+                <div style="background: ${S.gapFilled ? 'var(--ok)' : 'var(--warning)'}; height: 100%; width: ${S.gapFilled ? '100' : '75'}%; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px; align-items: center;">
+                <span style="color: ${S.gapFilled ? 'var(--ok)' : 'var(--muted)'}; font-weight: ${S.gapFilled ? 'bold' : 'normal'};">
+                    ${S.gapFilled ? '✓ 已備妥 USD 2,000 (100%)' : '已備妥 USD 1,500 (75%)'}
+                </span>
+                ${!S.gapFilled ? `<button style="background: var(--warning); color: white; border: none; padding: 6px 12px; border-radius: 16px; font-size: 12px; font-weight: bold; cursor: pointer;" type="button" data-go="exchange">補足缺口 $500</button>` : ''}
+            </div>
+        </div>
+      </div>`;
+  }
+
+  function viewExchange() {
+    return appBar('買入外幣補足缺口', 'overview') + `
+      <div class="content">
+        <div class="ideation-tag">✨ H3-6 缺口換匯快速通道 (參數自動帶入)</div>
+        <div style="background:var(--accent-soft); color:var(--accent-dark); padding:12px 14px; border-radius:12px; font-size:13px; margin-bottom:20px; line-height:1.5;">
+            💡 系統已為您自動帶入保單所需補足之 <strong style="color:var(--accent);">USD 500.00</strong> 缺口金額。
+        </div>
+        
+        <div class="form-group">
+            <label>扣款帳號 (新台幣)</label>
+            <select><option>004-xxxx-xxxx-1234 (活期存款)</option></select>
+        </div>
+        <div class="form-group">
+            <label>存入帳號 (美金)</label>
+            <input type="text" value="004-xxxx-xxxx-5678 (外匯綜合)" readonly style="background:var(--ground); color:var(--muted);">
+        </div>
+        <div class="form-group">
+            <label>買入金額 (自動帶入缺口)</label>
+            <input type="text" value="500.00" readonly style="border: 2px solid var(--warning); background: var(--warning-bg); color: var(--warning); font-weight: 900;">
+        </div>
+      </div>
+      <div class="cta-bar">
+        <button class="btn btn-primary" type="button" data-action="submit">確認換匯，一次補齊保費</button>
+      </div>`;
+  }
+
+  const VIEWS = { overview: viewOverview, exchange: viewExchange };
+  const screenEl = document.getElementById('screen');
+
+  function render(keepScroll) {
+    const content = screenEl.querySelector('.content');
+    const top = keepScroll && content ? content.scrollTop : 0;
+    screenEl.innerHTML = VIEWS[S.screen]() + '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
+    const nc = screenEl.querySelector('.content'); if (nc) nc.scrollTop = top;
+    renderFlow();
+  }
+
+  function renderFlow() {
+    document.getElementById('flow-list').innerHTML = STEPS.map((s, i) => {
+      // 若已完成補足，且目前是首頁，將兩個步驟都顯示為走過或讓第一個維持 highlight
+      const isCurrent = S.screen === s.id;
+      return `<li><button class="flow-btn" type="button" data-jump="${s.id}" ${isCurrent ? 'aria-current="step"' : ''}>
+        <span class="no">${i + 1}</span><span><strong>${s.title}</strong>${s.desc}</span></button></li>`;
+    }).join('');
+  }
+
+  function toast(msg) {
+    const t = document.getElementById('toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast.timer); toast.timer = setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  /* ================== 互動 ================== */
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const d = b.dataset;
+    if (d.go) { S.screen = d.go; render(); return; }
+    if (d.jump) {
+       S.screen = d.jump; render(); return; 
+    }
+    
+    switch (d.action) {
+      case 'submit':
+        toast('換匯成功！您的保費缺口已完全補足。');
+        S.gapFilled = true;
+        setTimeout(() => {
+            S.screen = 'overview';
+            render();
+        }, 1500);
+        break;
+    }
+  });
+
+  document.getElementById('reset').addEventListener('click', () => { S = fresh(); render(); });
+
+  render();
+</script>
+</body>
+</html>

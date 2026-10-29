@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>主題式虛擬行李箱帳戶｜互動原型</title>
+<style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* 底部面板與驗證 */
+  .sheet-wrap { position: absolute; inset: 0; background: rgba(2,6,23,.55); display: flex; flex-direction: column; justify-content: flex-end; z-index: 5; }
+  .sheet { background: #fff; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: up .25s cubic-bezier(.2,.8,.2,1); }
+  .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line-strong); align-self: center; }
+  .sheet h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .verify { align-items: center; text-align: center; padding: 44px 20px 64px; }
+  .verify .face { color: var(--accent); animation: pulse 1s ease-in-out infinite; }
+  @keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.94); } }
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+  /* ---------- 共用元件 ---------- */
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); }
+  .row strong { color: var(--ink); text-align: right; }
+  .fine { font-size: 12px; color: var(--faint); line-height: 1.6; margin: 0; }
+  .sec-title { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .sec-title h3 { margin: 0; font-size: 16px; font-weight: 900; }
+  .sec-title span { font-size: 12px; color: var(--faint); }
+  .link-btn { border: none; background: none; padding: 0; min-height: 32px; color: var(--accent); font-size: 13px; font-weight: 700; cursor: pointer; }
+
+  .mini-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .mini { background: #f8fafc; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .mini span { font-size: 11px; color: var(--muted); }
+  .mini strong { font-size: 15px; font-weight: 900; }
+
+  .opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .opts.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .opt { min-height: 48px; padding: 6px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 14px; font-weight: 700; }
+  .opt small { font-size: 11px; font-weight: 500; color: var(--faint); }
+  .opt:hover { border-color: var(--ink); }
+  .opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .opt[aria-pressed="true"] small { color: var(--accent); }
+  .switch-row { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
+  .switch-row .ic { width: 40px; height: 40px; flex: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+  .switch-row .t { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .switch-row .t strong { font-size: 15px; }
+  .switch-row .t span { font-size: 12px; color: var(--muted); }
+  .switch { width: 52px; height: 32px; flex: none; border: none; border-radius: 999px; background: #94a3b8; position: relative; cursor: pointer; transition: background .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .switch[aria-checked="true"] { background: var(--accent); }
+  .switch[aria-checked="true"]::after { left: 23px; }
+  .field-title { font-size: 15px; font-weight: 700; }
+
+  .demo { border: 1.5px dashed var(--line-strong); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .demo-label { font-size: 12px; font-weight: 700; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .demo-btn { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .demo-btn:hover { border-color: var(--ink); }
+
+  .summary { background: #f8fafc; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .done-ic { width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; align-self: center; animation: pop .28s cubic-bezier(.2,.9,.3,1.3) both; }
+  @keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .center { text-align: center; align-self: center; }
+
+  .push { position: absolute; left: 10px; right: 10px; top: 10px; z-index: 7; background: rgba(255,255,255,.97); border: none; border-radius: 20px; box-shadow: 0 12px 30px rgba(15,23,42,.25); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; text-align: left; cursor: pointer; animation: drop .3s cubic-bezier(.2,.8,.2,1); }
+  .push .app-ic { width: 36px; height: 36px; flex: none; border-radius: 10px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .push .p-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .push .p-txt strong { font-size: 14px; }
+  .push .p-txt span { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .push .p-time { font-size: 11px; color: var(--faint); }
+  @keyframes drop { from { transform: translateY(-30px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* ---------- 虛擬行李箱原型專用 ---------- */
+  .content > * { flex-shrink: 0; }
+  .bag-list { display: flex; flex-direction: column; gap: 10px; }
+  .bag-card { width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; gap: 14px; align-items: center; text-align: left; cursor: pointer; color: var(--ink); }
+  .bag-card:hover { border-color: var(--ink); }
+  .bag-card .mini-bag { width: 64px; height: 64px; flex: none; }
+  .bag-card .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .bag-card .t strong { font-size: 16px; }
+  .bag-card .t span { font-size: 12px; color: var(--muted); }
+  .pbar { height: 8px; border-radius: 999px; background: #f1f5f9; overflow: hidden; }
+  .pbar span { display: block; height: 100%; border-radius: 999px; transition: width .6s cubic-bezier(.2,.8,.2,1); }
+  .bag-card .pct { font-size: 15px; font-weight: 900; white-space: nowrap; }
+  .new-bag { min-height: 56px; border: 1.5px dashed var(--accent); border-radius: 16px; background: #fff; color: var(--accent); font-size: 15px; font-weight: 700; cursor: pointer; }
+  .new-bag:hover { background: var(--accent-soft); }
+  .intro { font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0; }
+
+  .text-input { height: 52px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 14px; font-size: 17px; font-weight: 700; color: var(--ink); background: #fff; outline: none; width: 100%; }
+  .text-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .suggest { display: flex; flex-wrap: wrap; gap: 6px; }
+  .suggest button { min-height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: #f8fafc; color: var(--text); font-size: 13px; cursor: pointer; }
+  .suggest button:hover { border-color: var(--ink); }
+  .theme-opt { min-height: 72px; }
+  .theme-opt .ti { width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; }
+  .opts.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .amount { display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 14px; background: #fff; }
+  .amount:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .amount .sym { font-size: 18px; font-weight: 900; color: var(--muted); }
+  .amount input { flex: 1; min-width: 0; border: none; outline: none; font-size: 20px; font-weight: 900; color: var(--ink); background: transparent; }
+
+  .stage-bag { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 18px 16px 14px; display: flex; flex-direction: column; align-items: center; gap: 10px; overflow: hidden; }
+  .stage-bag .trip { align-self: stretch; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .stage-bag .trip strong { font-size: 18px; font-weight: 900; }
+  .stage-bag .trip span { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+  .big-bag { width: 200px; height: 190px; overflow: visible; }
+  .big-bag .fill { transform-box: fill-box; transform-origin: bottom; transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+  .bal { text-align: center; display: flex; flex-direction: column; gap: 2px; }
+  .bal b { font-size: 30px; font-weight: 900; line-height: 1.1; }
+  .bal span { font-size: 13px; color: var(--muted); }
+  .drop-coin { position: absolute; left: 50%; top: -40px; width: 40px; height: 40px; margin-left: -20px; border-radius: 50%; background: var(--gold-bg); border: 2px solid var(--gold-line); color: var(--gold-strong); font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; z-index: 2; animation: coin-in 1s cubic-bezier(.55,0,.75,.6) forwards; }
+  .drop-coin.c2 { animation-delay: .18s; margin-left: -46px; opacity: 0; }
+  .drop-coin.c3 { animation-delay: .32s; margin-left: 8px; opacity: 0; }
+  @keyframes coin-in { 0% { transform: translateY(0) rotate(-20deg); opacity: 0; } 15% { opacity: 1; } 70% { transform: translateY(150px) rotate(0); opacity: 1; } 100% { transform: translateY(160px) scale(.4); opacity: 0; } }
+  .bag-bounce { animation: bounce .45s .75s ease; }
+  @keyframes bounce { 0%,100% { transform: none; } 40% { transform: scale(1.05, .95); } 70% { transform: scale(.98, 1.02); } }
+
+  .stickers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .sticker { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; border-radius: 14px; background: #f8fafc; border: 1px dashed var(--line-strong); font-size: 11px; color: var(--faint); text-align: center; }
+  .sticker .si { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #eef0f3; color: #94a3b8; }
+  .sticker.got { background: #fff; border: 1px solid var(--line); color: var(--ink); font-weight: 700; }
+  .sticker.got .si { background: var(--gold-bg); color: var(--gold-strong); border: 1px solid var(--gold-line); }
+  .sticker.new { animation: pop .4s cubic-bezier(.2,.9,.3,1.3) both; }
+  .ready { background: var(--ok-bg); border: 1px solid #bbf7d0; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; color: var(--ok); }
+  .ready strong { font-size: 16px; }
+  .ready span { font-size: 13px; line-height: 1.6; color: #14532d; }
+  .ready-btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .ready-btns button { min-height: 44px; border: 1px solid #86efac; border-radius: 12px; background: #fff; color: var(--ok); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .hist { margin: 0; padding: 0; list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .hist li { padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; font-size: 13px; color: var(--muted); }
+  .hist li:last-child { border-bottom: none; }
+  .hist li strong { font-size: 14px; color: var(--ink); }
+  .hist li b { font-size: 14px; color: var(--ink); white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-row">
+    <a class="back" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+    </a>
+    <span class="crumb">功能原型｜<strong>主題式虛擬行李箱帳戶</strong></span>
+    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="phone" aria-label="手機原型畫面">
+    <div class="screen" id="screen"></div>
+  </div>
+
+  <aside class="info" aria-label="功能說明">
+    <div class="info-card">
+      <div class="tags"><span class="tag-cat">旅遊備鈔</span><span class="platform">APP</span></div>
+      <h1>主題式虛擬行李箱帳戶</h1>
+      <div class="rating" aria-label="開發難易度 2 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★</span><span class="off">★★★</span></span></div>
+      <p>包裝成「特定旅程行李箱」，買進時呈現投入動畫，增添專屬感與行前儀式感。</p>
+      <div>
+        <div class="label">功能特色</div>
+        <ul class="features">
+          <li>依旅程建立專屬外幣子帳戶，可選主題與出發月份</li>
+          <li>每次買入都有「放進行李箱」動畫，裝滿程度一目了然</li>
+          <li>達到 25%、50%、75%、100% 解鎖旅程貼紙</li>
+        </ul>
+      </div>
+      <div class="benefit"><strong>效益｜</strong>把冷冰冰的外幣存款變成「為旅程打包」，增加行前儀式感，提高持續存外幣的意願。</div>
+    </div>
+
+    <div class="info-card flow">
+      <h2>操作流程</h2>
+      <ol class="flow-list" id="flow-list"></ol>
+      <button class="reset" type="button" id="reset">重設原型</button>
+      <p class="note">行李箱為外幣活存下的子帳戶（示意），餘額可隨時轉出使用。原型內匯率、餘額與紀錄皆為示意數字，帳戶規範依[本行規定]。</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+  /* ================== 資料 ================== */
+  const CCY = {
+    JPY: { name: '日圓', sym: '¥', rate: 0.2091, dec: 4, presets: [5000, 10000, 30000], targets: [100000, 150000, 200000] },
+    KRW: { name: '韓元', sym: '₩', rate: 0.0233, dec: 4, presets: [50000, 100000, 300000], targets: [1000000, 1500000, 2000000] },
+    USD: { name: '美元', sym: 'US$', rate: 32.15, dec: 2, presets: [50, 100, 300], targets: [1000, 2000, 3000] },
+    EUR: { name: '歐元', sym: '€', rate: 34.80, dec: 2, presets: [50, 100, 300], targets: [1000, 2000, 3000] }
+  };
+  const THEMES = {
+    maple: { name: '賞楓', color: '#9a0036', soft: '#f7e9ee', mid: '#efc7d4', icon: '<path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14zM5 19l7-7"/>' },
+    ski: { name: '滑雪', color: '#334155', soft: '#eef2f7', mid: '#cbd5e1', icon: '<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/>' },
+    island: { name: '海島', color: '#1d625f', soft: '#e2efee', mid: '#b5d8d5', icon: '<path d="M3 16c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 3 2M8 10a4 4 0 0 1 8 0"/>' },
+    city: { name: '城市', color: '#7a5300', soft: '#fdf6e3', mid: '#f1dfae', icon: '<path d="M4 21V9l5-3v15M9 21V4l6 3v14M15 21v-9l5 2v7M3 21h18"/>' }
+  };
+  const SUGGEST = [
+    { name: '東京賞楓之旅', ccy: 'JPY', theme: 'maple' }, { name: '首爾滑雪之旅', ccy: 'KRW', theme: 'ski' },
+    { name: '關島海島假期', ccy: 'USD', theme: 'island' }, { name: '巴黎城市漫遊', ccy: 'EUR', theme: 'city' }
+  ];
+  const MONTHS = ['2026/12', '2027/01', '2027/02', '2027/03', '2027/04', '2027/05'];
+  const STICKERS = [
+    { at: 25, name: '開始打包', icon: '<path d="M12 5v14M5 12h14"/>' },
+    { at: 50, name: '行李半滿', icon: '<path d="M6 7h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zM9 7V5h6v2"/>' },
+    { at: 75, name: '快裝滿了', icon: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>' },
+    { at: 100, name: '準備出發', icon: '<path d="M2 16l20-6-3-3-7 2-5-4-2 1 3 5-4 1-2-2-1 1z"/>' }
+  ];
+  const STEPS = [
+    { id: 'home', title: '我的行李箱', desc: '每段旅程一個專屬外幣帳戶' },
+    { id: 'create', title: '打包新行李箱', desc: '取名、選主題、幣別與目標' },
+    { id: 'detail', title: '行李箱詳情', desc: '裝滿程度、貼紙與紀錄' },
+    { id: 'buy', title: '放入外幣', desc: '買入時的放進行李箱動畫' },
+    { id: 'full', title: '集滿出發', desc: '100% 解鎖，準備取鈔或刷卡' }
+  ];
+  const ICON = {
+    back: '<path d="m15 18-6-6 6-6"/>',
+    face: '<path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.6 1.2 4.4 1.2 6 0"/>',
+    flask: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/>',
+    lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'
+  };
+  const svg = (n, size = 20, sw = 2) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n] || n}</svg>`;
+  const fmt = (n, d = 0) => Number(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+  /* ================== 狀態 ================== */
+  const fresh = () => ({
+    screen: 'home', cur: 1, nextId: 2, sheet: null, amount: 10000, anim: null, newSticker: null,
+    bags: [{ id: 1, name: '東京賞楓之旅', ccy: 'JPY', theme: 'maple', target: 150000, bal: 62000, month: '2026/12',
+      hist: [{ date: '10/03', amt: 30000, rate: 0.2112 }, { date: '10/15', amt: 20000, rate: 0.2098 }, { date: '10/22', amt: 12000, rate: 0.2093 }] }],
+    draft: null
+  });
+  let S = fresh();
+  const bag = () => S.bags.find(b => b.id === S.cur);
+  const pct = b => Math.min(100, Math.round(b.bal / b.target * 100));
+  const money = (b, v) => CCY[b.ccy].sym + fmt(v);
+
+  /* ================== 行李箱圖 ================== */
+  function bagSVG(b, p, cls = 'big-bag', label = true) {
+    const t = THEMES[b.theme], uid = 'c' + b.id + cls.length;
+    return `<svg class="${cls}" viewBox="0 0 200 190" role="img" aria-label="${b.name}行李箱，已裝 ${p}%">
+      <defs><clipPath id="${uid}"><rect x="20" y="32" width="160" height="146" rx="22"/></clipPath></defs>
+      <rect x="70" y="8" width="60" height="30" rx="12" fill="none" stroke="${t.color}" stroke-width="7"/>
+      <rect x="20" y="32" width="160" height="146" rx="22" fill="#fff"/>
+      <g clip-path="url(#${uid})"><rect class="fill" x="20" y="32" width="160" height="146" fill="${t.mid}" style="transform: scaleY(${p / 100})"/></g>
+      <rect x="20" y="32" width="160" height="146" rx="22" fill="none" stroke="${t.color}" stroke-width="6"/>
+      <path d="M66 34v142M134 34v142" stroke="${t.color}" stroke-opacity=".28" stroke-width="8"/>
+      <circle cx="56" cy="183" r="6" fill="${t.color}"/><circle cx="144" cy="183" r="6" fill="${t.color}"/>
+      <circle cx="100" cy="104" r="24" fill="#fff" stroke="${t.color}" stroke-width="3"/>
+      <g transform="translate(86 90) scale(1.17)" fill="none" stroke="${t.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${t.icon}</g>
+      ${label ? `<text x="100" y="152" text-anchor="middle" font-size="18" font-weight="900" fill="${t.color}">${p}%</text>` : ''}
+    </svg>`;
+  }
+
+  /* ================== 畫面 ================== */
+  function appBar(title, back) {
+    return `<div class="app-bar">${back ? `<button class="icon-btn" type="button" data-go="${back}" aria-label="上一頁">${svg('back', 22, 2.4)}</button>` : '<span class="ghost"></span>'}<h2>${title}</h2><span class="ghost"></span></div>`;
+  }
+
+  function viewHome() {
+    return appBar('我的行李箱') + `
+      <div class="content">
+        <p class="intro">為每段旅程打包一個專屬外幣行李箱，每次換匯就像把外幣放進行李。</p>
+        <div class="bag-list">${S.bags.map(b => { const t = THEMES[b.theme], p = pct(b); return `
+          <button class="bag-card" type="button" data-open="${b.id}">
+            ${bagSVG(b, p, 'mini-bag', false)}
+            <span class="t"><strong>${b.name}</strong><span>${CCY[b.ccy].name}・${b.month} 出發・${money(b, b.bal)} / ${money(b, b.target)}</span>
+              <span class="pbar"><span style="width:${p}%;background:${t.color}"></span></span></span>
+            <span class="pct" style="color:${t.color}">${p}%</span>
+          </button>`; }).join('')}
+        </div>
+        <button class="new-bag" type="button" data-action="new">＋ 打包新行李箱</button>
+      </div>`;
+  }
+
+  function viewCreate() {
+    const d = S.draft, c = CCY[d.ccy];
+    return appBar('打包新行李箱', 'home') + `
+      <div class="content">
+        <div class="stage-bag" style="padding:12px">${bagSVG({ id: 0, name: d.name || '新行李箱', theme: d.theme }, 0, 'big-bag', false).replace('class="big-bag"', 'class="big-bag" style="width:120px;height:114px"')}</div>
+        <span class="field-title">幫這趟旅程取個名字</span>
+        <input class="text-input" id="bag-name" type="text" maxlength="12" value="${d.name}" aria-label="行李箱名稱" placeholder="例如：東京賞楓之旅">
+        <div class="suggest" role="group" aria-label="名稱建議">${SUGGEST.map((s, i) => `<button type="button" data-suggest="${i}">${s.name}</button>`).join('')}</div>
+        <span class="field-title">主題</span>
+        <div class="opts four" role="group" aria-label="主題">${Object.entries(THEMES).map(([k, t]) => `<button class="opt theme-opt" type="button" data-theme="${k}" aria-pressed="${d.theme === k}"><span class="ti" style="background:${t.soft};color:${t.color}">${svg(t.icon, 18)}</span>${t.name}</button>`).join('')}</div>
+        <span class="field-title">要存的外幣</span>
+        <div class="opts four" role="group" aria-label="幣別">${Object.keys(CCY).map(k => `<button class="opt" type="button" data-ccy="${k}" aria-pressed="${d.ccy === k}">${k}<small>${CCY[k].name}</small></button>`).join('')}</div>
+        <span class="field-title">出發月份</span>
+        <div class="opts three" role="group" aria-label="出發月份">${MONTHS.map(m => `<button class="opt" type="button" data-month="${m}" aria-pressed="${d.month === m}">${m.slice(2)}</button>`).join('')}</div>
+        <span class="field-title">目標金額</span>
+        <div class="opts three" role="group" aria-label="目標金額">${c.targets.map(v => `<button class="opt" type="button" data-target="${v}" aria-pressed="${d.target === v}">${c.sym}${fmt(v)}</button>`).join('')}</div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" id="create-btn" data-action="create" ${d.name.trim() ? '' : 'disabled'}>打包完成，建立行李箱</button></div>`;
+  }
+
+  function viewDetail() {
+    const b = bag(), t = THEMES[b.theme], c = CCY[b.ccy];
+    const p = S.anim ? S.anim.from : pct(b), full = pct(b) >= 100 && !S.anim;
+    return appBar(b.name, 'home') + `
+      <div class="content">
+        <div class="stage-bag">
+          <div class="trip"><strong>${c.name}行李箱</strong><span style="background:${t.soft};color:${t.color}">${t.name}・${b.month} 出發</span></div>
+          ${S.anim ? `<span class="drop-coin">${c.sym.slice(-1)}</span><span class="drop-coin c2">${c.sym.slice(-1)}</span><span class="drop-coin c3">${c.sym.slice(-1)}</span>` : ''}
+          <div id="bag-wrap" class="${S.anim ? 'bag-bounce' : ''}">${bagSVG(b, p)}</div>
+          <div class="bal"><b>${money(b, S.anim ? S.anim.fromBal : b.bal)}</b><span>目標 ${money(b, b.target)}・還差 ${money(b, Math.max(0, b.target - (S.anim ? S.anim.fromBal : b.bal)))}</span></div>
+        </div>
+        ${full ? `<div class="ready"><strong>行李箱裝滿了，準備出發！</strong><span>${b.name}的 ${money(b, b.bal)} 已備妥，可以預約臨櫃取鈔，或綁定外幣卡出國直接刷。</span>
+          <div class="ready-btns"><button type="button" data-action="pickup">預約取鈔</button><button type="button" data-action="card">綁定外幣卡</button></div></div>` : ''}
+        <div class="sec-title"><h3>旅程貼紙</h3><span>裝滿到指定程度解鎖</span></div>
+        <div class="stickers">${STICKERS.map(s => { const got = pct(b) >= s.at && !(S.anim && S.anim.from < s.at); return `
+          <div class="sticker ${got ? 'got' : ''} ${S.newSticker === s.at ? 'new' : ''}"><span class="si">${got ? svg(s.icon, 18) : svg('lock', 16)}</span>${got ? s.name : s.at + '%'}</div>`; }).join('')}</div>
+        <div class="sec-title"><h3>放入紀錄</h3><span>共 ${b.hist.length} 筆</span></div>
+        <ul class="hist">${b.hist.length ? b.hist.slice().reverse().map(h => `<li><span><strong>放入 ${money(b, h.amt)}</strong><br>${h.date}・匯率 ${fmt(h.rate, c.dec)}</span><b>NT$${fmt(h.amt * h.rate)}</b></li>`).join('') : '<li>行李箱還是空的，放入第一筆外幣吧！</li>'}</ul>
+        <div class="demo"><span class="demo-label">${svg('flask', 14)}原型示範（實際上線不會出現）</span>
+          <button class="demo-btn" type="button" data-action="almost">把行李箱裝到 95%</button></div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-action="open-buy" ${full ? 'disabled' : ''}>${full ? '已達目標' : '放入外幣'}</button></div>`;
+  }
+
+  function sheetHTML() {
+    if (!S.sheet) return '';
+    const b = bag(), c = CCY[b.ccy];
+    if (S.sheet === 'buy') return `<div class="sheet-wrap"><div class="sheet" role="dialog" aria-modal="true" aria-label="放入外幣">
+      <span class="grab"></span><h3>放入${c.name}到「${b.name}」</h3>
+      <div class="opts three" role="group" aria-label="買入金額">${c.presets.map(a => `<button class="opt" type="button" data-amt="${a}" aria-pressed="${S.amount === a}">${c.sym}${fmt(a)}</button>`).join('')}</div>
+      <div class="summary">
+        <div class="row"><span>參考匯率</span><strong>${fmt(c.rate, c.dec)}</strong></div>
+        <div class="row"><span>預估扣款</span><strong>NT$${fmt(S.amount * c.rate)}</strong></div>
+        <div class="row"><span>放入後裝滿</span><strong>${Math.min(100, Math.round((b.bal + S.amount) / b.target * 100))}%</strong></div>
+        <div class="row"><span>扣款帳戶</span><strong>台幣活存 •• [末四碼]</strong></div>
+      </div>
+      <button class="btn btn-primary" type="button" data-action="buy">${svg('face', 22)}以 Face ID 驗證並放入</button>
+      <button class="btn btn-ghost" type="button" data-action="close">取消</button></div></div>`;
+    if (S.sheet === 'verify') return `<div class="sheet-wrap"><div class="sheet verify" role="status" aria-live="polite"><span class="face">${svg('face', 72, 1.6)}</span><h3>Face ID 驗證中…</h3></div></div>`;
+    return '';
+  }
+
+  /* ================== 繪製 ================== */
+  const VIEWS = { home: viewHome, create: viewCreate, detail: viewDetail };
+  const screenEl = document.getElementById('screen');
+  const current = () => S.sheet ? 'buy' : S.screen === 'detail' && pct(bag()) >= 100 ? 'full' : S.screen;
+  function render(keep) {
+    const ct = screenEl.querySelector('.content'), top = keep && ct ? ct.scrollTop : 0;
+    screenEl.innerHTML = VIEWS[S.screen]() + sheetHTML() + '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
+    const nc = screenEl.querySelector('.content'); if (nc) nc.scrollTop = top;
+    const cur = current();
+    document.getElementById('flow-list').innerHTML = STEPS.map((s, i) => `<li><button class="flow-btn" type="button" data-jump="${s.id}" ${cur === s.id ? 'aria-current="step"' : ''}><span class="no">${i + 1}</span><span><strong>${s.title}</strong>${s.desc}</span></button></li>`).join('');
+    const nm = document.getElementById('bag-name');
+    if (nm) nm.addEventListener('input', () => { S.draft.name = nm.value; document.getElementById('create-btn').disabled = !nm.value.trim(); });
+  }
+  function toast(m) { const t = document.getElementById('toast'); if (!t) return; t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2400); }
+
+  /* ================== 放入動畫 ================== */
+  let timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  function addMoney(amt, animate = true) {
+    const b = bag(), c = CCY[b.ccy], from = pct(b), fromBal = b.bal;
+    b.bal += amt; b.hist.push({ date: '10/27', amt, rate: c.rate });
+    const to = pct(b);
+    const unlocked = STICKERS.filter(s => from < s.at && to >= s.at).pop();
+    if (!animate) { S.newSticker = unlocked ? unlocked.at : null; render(); return unlocked; }
+    S.anim = { from, fromBal }; S.newSticker = null; render();
+    later(() => { const f = screenEl.querySelector('.big-bag .fill'); if (f) f.style.transform = `scaleY(${to / 100})`; }, 650);
+    later(() => { S.anim = null; S.newSticker = unlocked ? unlocked.at : null; render(true);
+      toast(unlocked ? `解鎖貼紙「${unlocked.name}」！` : `已放入 ${c.sym}${fmt(amt)}，裝滿 ${to}%`); }, 1650);
+    return unlocked;
+  }
+
+  /* ================== 事件 ================== */
+  document.addEventListener('click', e => {
+    const bt = e.target.closest('button'); if (!bt) return;
+    const d = bt.dataset;
+    if (d.go) { S.screen = d.go; S.sheet = null; render(); return; }
+    if (d.open) { S.cur = Number(d.open); S.screen = 'detail'; S.newSticker = null; render(); return; }
+    if (d.suggest) { const s = SUGGEST[d.suggest]; Object.assign(S.draft, { name: s.name, ccy: s.ccy, theme: s.theme, target: CCY[s.ccy].targets[1] }); render(true); return; }
+    if (d.theme) { S.draft.theme = d.theme; render(true); return; }
+    if (d.ccy) { S.draft.ccy = d.ccy; S.draft.target = CCY[d.ccy].targets[1]; render(true); return; }
+    if (d.month) { S.draft.month = d.month; render(true); return; }
+    if (d.target) { S.draft.target = Number(d.target); render(true); return; }
+    if (d.amt) { S.amount = Number(d.amt); render(true); return; }
+    if (d.jump) {
+      timers.forEach(clearTimeout); timers = []; S.anim = null; S.sheet = null;
+      if (d.jump === 'create') { S.draft = { name: '首爾滑雪之旅', ccy: 'KRW', theme: 'ski', month: '2027/01', target: 1500000 }; S.screen = 'create'; }
+      else if (d.jump === 'buy') { S.screen = 'detail'; if (pct(bag()) >= 100) S.cur = 1, bag().bal = 62000; S.amount = CCY[bag().ccy].presets[1]; S.sheet = 'buy'; }
+      else if (d.jump === 'full') { S.screen = 'detail'; const b = bag(); if (pct(b) < 100) addMoney(b.target - b.bal, false); }
+      else S.screen = d.jump;
+      render(); return;
+    }
+    switch (d.action) {
+      case 'new': S.draft = { name: '', ccy: 'KRW', theme: 'ski', month: '2027/01', target: CCY.KRW.targets[1] }; S.screen = 'create'; render(); break;
+      case 'create': {
+        const dr = S.draft, id = S.nextId++;
+        S.bags.push({ id, name: dr.name.trim(), ccy: dr.ccy, theme: dr.theme, target: dr.target, bal: 0, month: dr.month, hist: [] });
+        S.cur = id; S.draft = null; S.screen = 'detail'; render(); toast('行李箱打包好了，開始放入外幣吧！'); break;
+      }
+      case 'open-buy': S.amount = CCY[bag().ccy].presets[1]; S.sheet = 'buy'; render(true); break;
+      case 'buy': { const amt = S.amount; S.sheet = 'verify'; render(true); later(() => { S.sheet = null; addMoney(amt); }, 1100); break; }
+      case 'close': S.sheet = null; render(true); break;
+      case 'almost': { const b = bag(); const to95 = Math.max(0, Math.round(b.target * 0.95 - b.bal)); if (to95 > 0) addMoney(to95, false); toast('已裝到 95%，再放一筆就滿了'); break; }
+      case 'pickup': toast('前往預約臨櫃取鈔（示意）'); break;
+      case 'card': toast('前往綁定外幣卡（示意）'); break;
+    }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && S.sheet === 'buy') { S.sheet = null; render(true); } });
+  document.getElementById('reset').addEventListener('click', () => { timers.forEach(clearTimeout); timers = []; S = fresh(); render(); });
+  render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rich Push 生物辨識一鍵買｜互動原型</title>
+<style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* 底部面板與驗證 */
+  .sheet-wrap { position: absolute; inset: 0; background: rgba(2,6,23,.55); display: flex; flex-direction: column; justify-content: flex-end; z-index: 5; }
+  .sheet { background: #fff; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: up .25s cubic-bezier(.2,.8,.2,1); }
+  .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line-strong); align-self: center; }
+  .sheet h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .verify { align-items: center; text-align: center; padding: 44px 20px 64px; }
+  .verify .face { color: var(--accent); animation: pulse 1s ease-in-out infinite; }
+  @keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.94); } }
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+  /* ---------- 共用元件 ---------- */
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); }
+  .row strong { color: var(--ink); text-align: right; }
+  .fine { font-size: 12px; color: var(--faint); line-height: 1.6; margin: 0; }
+  .sec-title { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .sec-title h3 { margin: 0; font-size: 16px; font-weight: 900; }
+  .sec-title span { font-size: 12px; color: var(--faint); }
+  .link-btn { border: none; background: none; padding: 0; min-height: 32px; color: var(--accent); font-size: 13px; font-weight: 700; cursor: pointer; }
+
+  .mini-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .mini { background: #f8fafc; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .mini span { font-size: 11px; color: var(--muted); }
+  .mini strong { font-size: 15px; font-weight: 900; }
+
+  .opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .opts.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .opt { min-height: 48px; padding: 6px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 14px; font-weight: 700; }
+  .opt small { font-size: 11px; font-weight: 500; color: var(--faint); }
+  .opt:hover { border-color: var(--ink); }
+  .opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .opt[aria-pressed="true"] small { color: var(--accent); }
+  .switch-row { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
+  .switch-row .ic { width: 40px; height: 40px; flex: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+  .switch-row .t { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .switch-row .t strong { font-size: 15px; }
+  .switch-row .t span { font-size: 12px; color: var(--muted); }
+  .switch { width: 52px; height: 32px; flex: none; border: none; border-radius: 999px; background: #94a3b8; position: relative; cursor: pointer; transition: background .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .switch[aria-checked="true"] { background: var(--accent); }
+  .switch[aria-checked="true"]::after { left: 23px; }
+  .field-title { font-size: 15px; font-weight: 700; }
+
+  .demo { border: 1.5px dashed var(--line-strong); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .demo-label { font-size: 12px; font-weight: 700; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .demo-btn { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .demo-btn:hover { border-color: var(--ink); }
+
+  .summary { background: #f8fafc; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .done-ic { width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; align-self: center; animation: pop .28s cubic-bezier(.2,.9,.3,1.3) both; }
+  @keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .center { text-align: center; align-self: center; }
+
+  .push { position: absolute; left: 10px; right: 10px; top: 10px; z-index: 7; background: rgba(255,255,255,.97); border: none; border-radius: 20px; box-shadow: 0 12px 30px rgba(15,23,42,.25); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; text-align: left; cursor: pointer; animation: drop .3s cubic-bezier(.2,.8,.2,1); }
+  .push .app-ic { width: 36px; height: 36px; flex: none; border-radius: 10px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .push .p-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .push .p-txt strong { font-size: 14px; }
+  .push .p-txt span { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .push .p-time { font-size: 11px; color: var(--faint); }
+  @keyframes drop { from { transform: translateY(-30px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* ---------- Rich Push 原型專用 ---------- */
+  .screen.dark { background: #0f172a; }
+  .master { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 16px; display: flex; align-items: center; gap: 14px; }
+  .master .ic { width: 48px; height: 48px; flex: none; border-radius: 14px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .master .t { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .master .t strong { font-size: 16px; }
+  .master .t span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .preview-note { background: #f8fafc; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .preview-note b { color: var(--ink); }
+  .fieldset { display: flex; flex-direction: column; gap: 10px; }
+  .fieldset.off { opacity: .45; pointer-events: none; }
+
+  /* 鎖定畫面 */
+  .lock { position: relative; flex: 1; padding: 64px 14px 24px; display: flex; flex-direction: column; align-items: center; gap: 14px; color: #fff; overflow: hidden; }
+  .lock-date { font-size: 16px; color: #e2e8f0; }
+  .lock-time { font-size: 84px; font-weight: 300; line-height: 1; letter-spacing: -.02em; margin-bottom: 14px; }
+  .lock-foot { margin-top: auto; text-align: center; font-size: 12px; color: #94a3b8; line-height: 1.6; }
+  .notif { width: 100%; border: none; border-radius: 22px; background: rgba(255,255,255,.92); color: var(--ink); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; text-align: left; cursor: pointer; position: relative; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; animation: drop .35s cubic-bezier(.2,.8,.2,1); }
+  .notif .app-ic { width: 38px; height: 38px; flex: none; border-radius: 10px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .notif .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .notif .txt strong { font-size: 14px; }
+  .notif .txt span { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .notif .time { font-size: 11px; color: var(--faint); }
+  .notif .hold { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--accent); }
+  .notif.holding { transform: scale(.98); transition: transform .2s; }
+  .notif.holding .hold { width: 100%; transition: width .55s linear; }
+  .hint-pill { font-size: 12px; color: #e2e8f0; background: rgba(255,255,255,.14); padding: 6px 12px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
+  .old-notif { width: 100%; border-radius: 20px; background: rgba(255,255,255,.14); padding: 10px 14px; display: flex; gap: 10px; align-items: center; font-size: 13px; color: #e2e8f0; }
+  .old-notif .app-ic { width: 30px; height: 30px; flex: none; border-radius: 8px; background: #475569; }
+
+  .scrim-blur { position: absolute; inset: 0; background: rgba(2,6,23,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 4; display: flex; flex-direction: column; padding: 70px 14px 24px; gap: 12px; }
+  .rich { background: #fff; color: var(--ink); border-radius: 26px; padding: 16px; display: flex; flex-direction: column; gap: 12px; animation: grow .28s cubic-bezier(.2,.8,.2,1); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+  @keyframes grow { from { transform: scale(.92); opacity: 0; } to { transform: none; opacity: 1; } }
+  .rich-head { display: flex; align-items: center; gap: 10px; }
+  .rich-head .app-ic { flex: none; width: 30px; height: 30px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .rich-head .src { font-size: 12px; color: var(--muted); flex: 1; }
+  .rich-head .when { font-size: 11px; color: var(--faint); }
+  .rich-rate { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
+  .rich-rate b { font-size: 36px; font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+  .rich-rate small { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .drop-tag { font-size: 13px; font-weight: 700; color: #166534; background: #ecfdf3; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .rich .opts.three .opt { min-height: 44px; }
+  .rich-actions { display: flex; flex-direction: column; gap: 6px; }
+  .rich-verify { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px 0 8px; text-align: center; }
+  .rich-verify .face { color: var(--accent); animation: pulse 1s ease-in-out infinite; }
+  .rich-done { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0 4px; text-align: center; }
+  .rich-done h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .speed { font-size: 13px; font-weight: 700; color: var(--gold-strong); background: var(--gold-bg); border: 1px solid var(--gold-line); padding: 4px 12px; border-radius: 999px; }
+  .rich-foot { text-align: center; font-size: 12px; color: #cbd5e1; }
+
+  /* 紀錄 */
+  .stats3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .rec { margin: 0; padding: 0; list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .rec li { padding: 12px 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f1f5f9; }
+  .rec li:last-child { border-bottom: none; }
+  .rec .dot { width: 32px; height: 32px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .rec .buy .dot { background: var(--accent-soft); color: var(--accent); }
+  .rec .skip .dot { background: #f1f5f9; color: var(--faint); }
+  .rec .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .rec .t strong { font-size: 14px; }
+  .rec .t span { font-size: 12px; color: var(--muted); }
+  .rec .amt { font-size: 14px; font-weight: 900; white-space: nowrap; }
+  .rec .skip .amt { color: var(--faint); font-weight: 500; }
+  .rec-empty { padding: 20px 14px; text-align: center; font-size: 13px; color: var(--muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-row">
+    <a class="back" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+    </a>
+    <span class="crumb">功能原型｜<strong>Rich Push 生物辨識一鍵買</strong></span>
+    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="phone" aria-label="手機原型畫面">
+    <div class="screen" id="screen"></div>
+  </div>
+
+  <aside class="info" aria-label="功能說明">
+    <div class="info-card">
+      <div class="tags"><span class="tag-cat">旅遊備鈔</span><span class="platform">APP</span></div>
+      <h1>Rich Push 生物辨識一鍵買</h1>
+      <div class="rating" aria-label="開發難易度 4 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★★</span><span class="off">★</span></span></div>
+      <p>匯率大跌發送推播時，長按通知並透過 Face ID 確認，3 秒內完成定額買入。</p>
+      <div>
+        <div class="label">功能特色</div>
+        <ul class="features">
+          <li>自訂「大跌」條件與定額買入金額</li>
+          <li>長按通知展開，免開 App 直接確認</li>
+          <li>Face ID 驗證即成交，並設每日上限防誤買</li>
+        </ul>
+      </div>
+      <div class="benefit"><strong>效益｜</strong>在通知裡完成交易，縮短從「看到好匯率」到「成交」的距離，不再因為開 App、登入而錯過時機。</div>
+    </div>
+
+    <div class="info-card flow">
+      <h2>操作流程</h2>
+      <ol class="flow-list" id="flow-list"></ol>
+      <button class="reset" type="button" id="reset">重設原型</button>
+      <p class="note">在鎖定畫面<strong>按住通知約半秒</strong>即可展開（鍵盤可按 Enter）。原型內匯率、跌幅與成交紀錄皆為示意，每日上限與交易限額依[本行規定]。</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+  /* ================== 資料 ================== */
+  const CCY = {
+    JPY: { name: '日圓', sym: '¥', prev: 0.2102, low: 0.2072, dec: 4, presets: [10000, 30000, 50000] },
+    USD: { name: '美元', sym: 'US$', prev: 32.60, low: 31.98, dec: 2, presets: [100, 300, 500] },
+    EUR: { name: '歐元', sym: '€', prev: 35.30, low: 34.55, dec: 2, presets: [100, 300, 500] },
+    KRW: { name: '韓元', sym: '₩', prev: 0.0236, low: 0.0230, dec: 4, presets: [100000, 300000, 500000] }
+  };
+  const CONDS = [
+    { id: 'd05', label: '單日跌幅 ≥ 0.5%', short: '跌幅 ≥ 0.5%', drop: 0.0081 },
+    { id: 'd1', label: '單日跌幅 ≥ 1%', short: '跌幅 ≥ 1%', drop: 0.0124 },
+    { id: 'low30', label: '跌破 30 日低點', short: '跌破 30 日低點', drop: null }
+  ];
+  const STEPS = [
+    { id: 'setup', title: '開啟大跌一鍵買', desc: '設定條件、定額與每日上限' },
+    { id: 'lock', title: '收到大跌推播', desc: '鎖定畫面跳出 Rich Push' },
+    { id: 'expand', title: '長按展開', desc: '通知內看匯率、選金額' },
+    { id: 'done', title: 'Face ID 成交', desc: '免開 App，3 秒內完成' },
+    { id: 'records', title: '推播買入紀錄', desc: '查看成交與略過的推播' }
+  ];
+  const ICON = {
+    back: '<path d="m15 18-6-6 6-6"/>',
+    bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/>',
+    face: '<path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.6 1.2 4.4 1.2 6 0"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    minus: '<path d="M5 12h14"/>',
+    flask: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/>',
+    hand: '<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11.5v-2a1.5 1.5 0 0 1 3 0V12M14 10.5a1.5 1.5 0 0 1 3 0V12M17 11.5a1.5 1.5 0 0 1 3 0V16a6 6 0 0 1-6 6h-1.5a6 6 0 0 1-5-2.7L4.6 15a1.6 1.6 0 0 1 2.6-1.8L8 14"/>',
+    down: '<path d="M12 5v14M5 12l7 7 7-7"/>',
+    list: '<path d="M9 5h11M9 12h11M9 19h11M4 5h.01M4 12h.01M4 19h.01"/>'
+  };
+  const svg = (n, size = 20, sw = 2) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
+  const fmt = (n, d = 0) => Number(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+  /* ================== 狀態 ================== */
+  const fresh = () => ({ screen: 'setup', on: true, ccy: 'JPY', cond: 'd05', amount: 30000, daily: 1,
+    push: null, expanded: false, phase: 'choose', pushAmount: 30000, t0: 0, elapsed: 0, records: [], todayCount: 0, clock: 600 });
+  let S = fresh();
+  const C = () => CCY[S.ccy];
+  const fr = v => fmt(v, C().dec);
+  const condOf = id => CONDS.find(c => c.id === id);
+  const timeLabel = () => { const h = Math.floor(S.clock / 60), m = S.clock % 60; return `${h}:${String(m).padStart(2, '0')}`; };
+
+  function makeEvent() {
+    const c = C(), cond = condOf(S.cond);
+    const rate = cond.drop ? c.prev * (1 - cond.drop) : c.low * 0.998;
+    const chg = (rate - c.prev) / c.prev * 100;
+    return { ccy: S.ccy, rate, chg, cond: cond.id, capped: S.todayCount >= S.daily };
+  }
+
+  function sparkline(chg) {
+    const pts = [0.2, 0.35, 0.15, 0.3, 0.25, 0.4, 0.3, 0.45, 0.55, 0.7, 0.85, 1];
+    const W = 300, H = 56, X = i => 4 + i * (W - 8) / (pts.length - 1), Y = v => 6 + v * (H - 12);
+    return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" role="img" aria-label="今日匯率走勢，下跌 ${fmt(Math.abs(chg), 2)}%"><path d="${pts.map((v, i) => `${i ? 'L' : 'M'}${X(i).toFixed(1)} ${Y(v).toFixed(1)}`).join(' ')}" fill="none" stroke="#166534" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${X(pts.length - 1)}" cy="${Y(1)}" r="4" fill="#166534"/></svg>`;
+  }
+
+  /* ================== 畫面 ================== */
+  function appBar(title, back) {
+    return `<div class="app-bar">${back ? `<button class="icon-btn" type="button" data-go="${back}" aria-label="上一頁">${svg('back', 22, 2.4)}</button>` : '<span class="ghost"></span>'}<h2>${title}</h2><span class="ghost"></span></div>`;
+  }
+
+  function viewSetup() {
+    const c = C();
+    return appBar('大跌一鍵買') + `
+      <div class="content">
+        <div class="master"><span class="ic">${svg('bell', 24)}</span>
+          <span class="t"><strong>匯率大跌一鍵買</strong><span>符合條件時推播，長按通知即可 Face ID 買入</span></span>
+          <button class="switch" type="button" role="switch" data-action="toggle-on" aria-checked="${S.on}" aria-label="匯率大跌一鍵買"></button></div>
+        <div class="fieldset ${S.on ? '' : 'off'}">
+          <span class="field-title">關注幣別</span>
+          <div class="opts" style="grid-template-columns:repeat(4,minmax(0,1fr))" role="group" aria-label="幣別">${Object.keys(CCY).map(k => `<button class="opt" type="button" data-ccy="${k}" aria-pressed="${S.ccy === k}">${k}<small>${CCY[k].name}</small></button>`).join('')}</div>
+          <span class="field-title">什麼叫「大跌」？</span>
+          <div class="opts three" role="group" aria-label="大跌條件">${CONDS.map(x => `<button class="opt" type="button" data-cond="${x.id}" aria-pressed="${S.cond === x.id}">${x.short.replace('單日', '')}</button>`).join('')}</div>
+          <span class="field-title">一鍵買入金額</span>
+          <div class="opts three" role="group" aria-label="一鍵買入金額">${c.presets.map(p => `<button class="opt" type="button" data-amt="${p}" aria-pressed="${S.amount === p}">${c.sym}${fmt(p)}</button>`).join('')}</div>
+          <span class="field-title">每日最多一鍵買</span>
+          <div class="opts three" role="group" aria-label="每日上限">${[1, 2, 3].map(n => `<button class="opt" type="button" data-daily="${n}" aria-pressed="${S.daily === n}">${n} 次</button>`).join('')}</div>
+          <div class="preview-note">推播範例：<b>${c.name}大跌 ${fmt(Math.abs(makeEvent().chg), 2)}%！</b>現在 ${fr(makeEvent().rate)}，長按可直接買入 ${c.sym}${fmt(S.amount)}。<br>推播時段：營業時間 09:00–15:30；扣款帳戶：台幣活存 •• [末四碼]</div>
+        </div>
+        <div class="demo">
+          <span class="demo-label">${svg('flask', 14)}原型示範（實際上線不會出現）</span>
+          <button class="demo-btn" type="button" data-action="simulate" ${S.on ? '' : 'disabled'}>模擬${c.name}大跌，跳到鎖定畫面</button>
+        </div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-outline" type="button" data-go="records">${svg('list', 18)}查看推播買入紀錄</button></div>`;
+  }
+
+  function viewLock() {
+    const p = S.push;
+    let body = '';
+    if (p) {
+      const c = CCY[p.ccy];
+      body = `<button class="notif" type="button" id="notif" aria-label="推播通知，按住可展開直接買入">
+        <span class="app-ic">${svg('bell', 20)}</span>
+        <span class="txt"><strong>${c.name}大跌 ${fmt(Math.abs(p.chg), 2)}%！</strong><span>${p.capped ? `現在 ${fmt(p.rate, c.dec)}。今日一鍵買已達上限，點開 App 查看。` : `現在 ${fmt(p.rate, c.dec)}，長按可直接買入 ${c.sym}${fmt(S.amount)}`}</span></span>
+        <span class="time">現在</span><span class="hold"></span></button>
+        ${p.capped ? '' : `<span class="hint-pill">${svg('hand', 16)}按住通知約半秒即可展開</span>`}`;
+    }
+    const last = S.records[S.records.length - 1];
+    const older = last && !p ? `<div class="old-notif"><span class="app-ic"></span><span>${last.type === 'buy' ? `已透過推播買入 ${CCY[last.ccy].sym}${fmt(last.amount)}・${last.time}` : `已略過${CCY[last.ccy].name}大跌推播・${last.time}`}</span></div>` : '';
+    return `<div class="lock">
+      <span class="lock-date">10月27日 星期二</span>
+      <span class="lock-time">${timeLabel()}</span>
+      ${body}${older}
+      ${!p && !older ? '<span class="hint-pill">等待大跌推播中…可在設定頁模擬</span>' : ''}
+      <span class="lock-foot">${!p ? `<button class="btn btn-ghost" type="button" data-go="records" style="color:#e2e8f0">打開 App 查看紀錄</button>` : ''}</span>
+      ${S.expanded ? expandedHTML() : ''}
+    </div>`;
+  }
+
+  function expandedHTML() {
+    const p = S.push, c = CCY[p.ccy];
+    let inner;
+    if (S.phase === 'choose') inner = `
+      <div class="rich-rate"><div><b>${fmt(p.rate, c.dec)}</b><small>${c.name} ${p.ccy}・即期賣出・前日收盤 ${fmt(c.prev, c.dec)}</small></div><span class="drop-tag">▼ ${fmt(Math.abs(p.chg), 2)}%</span></div>
+      ${sparkline(p.chg)}
+      <div class="opts three" role="group" aria-label="買入金額">${c.presets.map(a => `<button class="opt" type="button" data-pamt="${a}" aria-pressed="${S.pushAmount === a}">${c.sym}${fmt(a)}</button>`).join('')}</div>
+      <div class="row"><span>預估扣款</span><strong>NT$${fmt(S.pushAmount * p.rate)}</strong></div>
+      <div class="rich-actions">
+        <button class="btn btn-primary" type="button" data-action="buy">${svg('face', 22)}Face ID 買入 ${c.sym}${fmt(S.pushAmount)}</button>
+        <button class="btn btn-ghost" type="button" data-action="skip">這次不用了</button>
+      </div>`;
+    else if (S.phase === 'verify') inner = `<div class="rich-verify" role="status" aria-live="polite"><span class="face">${svg('face', 64, 1.6)}</span><strong>Face ID 驗證中…</strong><span class="fine">驗證通過即以當下匯率成交</span></div>`;
+    else inner = `<div class="rich-done" role="status" aria-live="polite">
+        <span class="done-ic">${svg('check', 34, 3)}</span>
+        <h3>已買入 ${c.sym}${fmt(S.pushAmount)}</h3>
+        <span class="fine" style="font-size:14px">成交匯率 ${fmt(p.rate, c.dec)}・扣款 NT$${fmt(S.pushAmount * p.rate)}</span>
+        <span class="speed">從收到通知到成交：${fmt(S.elapsed, 1)} 秒</span>
+      </div>
+      <button class="btn btn-primary" type="button" data-action="close">完成</button>`;
+    return `<div class="scrim-blur" role="dialog" aria-modal="true" aria-label="推播快速買入">
+      <div class="rich"><div class="rich-head"><span class="app-ic">${svg('bell', 16)}</span><span class="src">臺灣銀行・大跌一鍵買</span><span class="when">現在</span></div>${inner}</div>
+      ${S.phase === 'choose' ? '<span class="rich-foot">免開 App・每筆皆需 Face ID 驗證</span>' : ''}
+    </div>`;
+  }
+
+  function viewRecords() {
+    const buys = S.records.filter(r => r.type === 'buy');
+    const avg = buys.length ? buys.reduce((s, r) => s + r.secs, 0) / buys.length : 0;
+    return appBar('推播買入紀錄', 'setup') + `
+      <div class="content">
+        <div class="stats3">
+          <div class="mini"><span>收到推播</span><strong>${S.records.length} 次</strong></div>
+          <div class="mini"><span>一鍵買入</span><strong>${buys.length} 次</strong></div>
+          <div class="mini"><span>平均用時</span><strong>${buys.length ? fmt(avg, 1) + ' 秒' : '—'}</strong></div>
+        </div>
+        <ul class="rec">${S.records.length ? S.records.slice().reverse().map(r => { const c = CCY[r.ccy]; return r.type === 'buy'
+          ? `<li class="buy"><span class="dot">${svg('check', 16, 2.6)}</span><span class="t"><strong>推播一鍵買入</strong><span>今天 ${r.time}・${r.ccy} ${fmt(r.rate, c.dec)}・用時 ${fmt(r.secs, 1)} 秒</span></span><span class="amt">+${c.sym}${fmt(r.amount)}</span></li>`
+          : `<li class="skip"><span class="dot">${svg('minus', 16, 2.6)}</span><span class="t"><strong>${r.capped ? '已達每日上限' : '略過推播'}</strong><span>今天 ${r.time}・${r.ccy} 跌 ${fmt(Math.abs(r.chg), 2)}%</span></span><span class="amt">—</span></li>`; }).join('')
+          : '<li class="rec-empty">還沒有紀錄。<br>到設定頁模擬一次大跌推播看看。</li>'}</ul>
+        <p class="fine">每日上限：${S.daily} 次（已用 ${S.todayCount} 次）。達上限後仍會通知，但不提供一鍵買入，避免連續誤買。</p>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-go="setup">回到設定</button></div>`;
+  }
+
+  /* ================== 繪製 ================== */
+  const screenEl = document.getElementById('screen');
+  const current = () => S.screen !== 'lock' ? S.screen : !S.expanded ? 'lock' : S.phase === 'choose' ? 'expand' : 'done';
+  function render(keep) {
+    const ct = screenEl.querySelector('.content'), top = keep && ct ? ct.scrollTop : 0;
+    screenEl.classList.toggle('dark', S.screen === 'lock');
+    screenEl.innerHTML = (S.screen === 'setup' ? viewSetup() : S.screen === 'records' ? viewRecords() : viewLock()) + '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
+    const nc = screenEl.querySelector('.content'); if (nc) nc.scrollTop = top;
+    const cur = current();
+    document.getElementById('flow-list').innerHTML = STEPS.map((s, i) => `<li><button class="flow-btn" type="button" data-jump="${s.id}" ${cur === s.id ? 'aria-current="step"' : ''}><span class="no">${i + 1}</span><span><strong>${s.title}</strong>${s.desc}</span></button></li>`).join('');
+    bindNotif();
+  }
+  function toast(m) { const t = document.getElementById('toast'); if (!t) return; t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2000); }
+
+  /* ================== 長按通知 ================== */
+  function bindNotif() {
+    const n = document.getElementById('notif'); if (!n) return;
+    let timer = null, fired = false;
+    const start = e => { if (e.button > 0) return; fired = false; n.classList.add('holding'); timer = setTimeout(() => { fired = true; n.classList.remove('holding'); expand(); }, 550); };
+    const stop = () => { clearTimeout(timer); n.classList.remove('holding'); };
+    n.addEventListener('pointerdown', start);
+    n.addEventListener('pointerup', stop);
+    n.addEventListener('pointerleave', stop);
+    n.addEventListener('pointercancel', stop);
+    n.addEventListener('contextmenu', e => e.preventDefault());
+    n.addEventListener('click', e => {
+      if (fired) return;
+      if (S.push.capped) { S.records.push({ type: 'skip', ccy: S.push.ccy, chg: S.push.chg, time: timeLabel(), capped: true }); S.push = null; S.screen = 'records'; render(); return; }
+      if (e.detail === 0) { expand(); return; } // 鍵盤操作
+      toast('長按（按住）通知即可直接買入');
+    });
+  }
+  function expand() { if (!S.push || S.push.capped) return; S.expanded = true; S.phase = 'choose'; S.pushAmount = S.amount; render(); }
+
+  function simulate() {
+    S.clock += 17 + Math.floor(Math.random() * 25);
+    S.push = makeEvent(); S.expanded = false; S.phase = 'choose'; S.t0 = performance.now();
+    S.screen = 'lock'; render();
+  }
+
+  /* ================== 事件 ================== */
+  let verifyTimer = null;
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || b.id === 'notif') return;
+    const d = b.dataset;
+    if (d.go) { if (d.go !== 'lock') { S.expanded = false; } S.screen = d.go; render(); return; }
+    if (d.ccy) { S.ccy = d.ccy; S.amount = C().presets[1]; render(true); return; }
+    if (d.cond) { S.cond = d.cond; render(true); return; }
+    if (d.amt) { S.amount = Number(d.amt); render(true); return; }
+    if (d.daily) { S.daily = Number(d.daily); render(true); return; }
+    if (d.pamt) { S.pushAmount = Number(d.pamt); render(); return; }
+    if (d.jump) {
+      clearTimeout(verifyTimer);
+      if (d.jump === 'setup' || d.jump === 'records') { S.expanded = false; S.screen = d.jump; render(); return; }
+      if (S.todayCount >= S.daily) S.todayCount = 0;
+      if (!S.on) S.on = true;
+      simulate();
+      if (d.jump === 'expand' || d.jump === 'done') expand();
+      if (d.jump === 'done') { S.t0 = performance.now() - 1600; buy(); }
+      return;
+    }
+    switch (d.action) {
+      case 'toggle-on': S.on = !S.on; render(true); toast(S.on ? '已開啟大跌一鍵買' : '已關閉大跌一鍵買'); break;
+      case 'simulate': simulate(); break;
+      case 'buy': buy(); break;
+      case 'skip': S.records.push({ type: 'skip', ccy: S.push.ccy, chg: S.push.chg, time: timeLabel() }); S.push = null; S.expanded = false; render(); break;
+      case 'close': S.push = null; S.expanded = false; render(); break;
+    }
+  });
+  function buy() {
+    S.phase = 'verify'; render();
+    clearTimeout(verifyTimer);
+    verifyTimer = setTimeout(() => {
+      S.elapsed = (performance.now() - S.t0) / 1000; S.phase = 'done'; S.todayCount++;
+      S.records.push({ type: 'buy', ccy: S.push.ccy, amount: S.pushAmount, rate: S.push.rate, time: timeLabel(), secs: S.elapsed });
+      render();
+    }, 1000);
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && S.expanded && S.phase === 'choose') { S.expanded = false; render(); } });
+  document.getElementById('reset').addEventListener('click', () => { clearTimeout(verifyTimer); S = fresh(); render(); });
+  render();
+</script>
+
+</body>
+</html>

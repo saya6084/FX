@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>外匯匯出匯款-進度與剩餘步驟提示｜互動原型</title>
+<style>
+:root{--wine:#8e1c48;--blue:#8e1c48;--blue2:#f7eaf0;--bg:#f4f7fc;--ink:#24344c;--muted:#697b96;--line:#d7e1ef;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:"Microsoft JhengHei","微軟正黑體","PingFang TC","Heiti TC",system-ui,sans-serif;color:var(--ink)}
+header.topbar{margin:22px auto 0;max-width:1240px;width:calc(100% - 40px);height:72px;background:#fff;border:1px solid var(--line);border-radius:20px;display:flex;align-items:center;padding:0 20px;gap:16px}.logo{background:var(--wine);color:#fff;border-radius:13px;width:42px;height:42px;display:grid;place-items:center;font-size:20px;font-weight:800}.brand{font-size:22px;font-weight:700;line-height:1.25}.subtitle{font-size:14px;color:var(--muted);font-weight:500}
+h1{font-size:clamp(24px,3vw,32px);color:var(--wine);margin:0 0 6px;font-weight:850}.sub{color:var(--muted);font-size:16px;margin:0}
+main{max-width:1180px;margin:18px auto 35px;padding:0 22px}
+.layout{display:block}.phone-area{max-width:560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:12px}
+.design{display:none}
+.design h2{display:none}.design p{display:none}
+.phone{width:min(100%,420px);background:#19304b;border-radius:40px;padding:12px;box-shadow:0 15px 35px #1a304b1a}.portal{background:#fff;border:1px solid var(--line);border-radius:29px;min-height:640px;overflow:hidden;box-shadow:none;display:flex;flex-direction:column}
+.portal-head{background:var(--wine);color:#fff;padding:18px 24px 13px;font-weight:800;font-size:21px;line-height:1.2}
+.portal-head small{display:block;font-weight:500;font-size:14px;opacity:.9}
+.portal-body{padding:20px 22px 22px;flex:1;display:flex;flex-direction:column}.notch{width:130px;height:18px;border-radius:99px;background:#19304b;margin:-10px auto 12px}.status{display:flex;justify-content:space-between;font-size:12px;color:var(--wine);padding:0 4px 14px}
+.portal-body h2{font-size:25px;margin:0 0 4px}.intro{font-size:14px;color:var(--muted);margin:0 0 20px}
+.progress{display:grid;grid-template-columns:repeat(4,1fr);position:relative;margin:0 0 28px}
+.progress:before{content:"";position:absolute;left:12.5%;right:12.5%;height:4px;top:16px;background:#d5deea}
+.step{z-index:1;text-align:center;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer}
+.dot{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#cdd7e5;color:#fff;margin:0 auto 7px;font-size:15px;border:3px solid #fff}
+.step.active{color:var(--blue)}.step.active .dot,.step.done .dot{background:var(--blue)}
+.progress-label{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;color:var(--blue);font-size:16px;font-weight:800}
+.status-card{border:1px solid var(--line);background:#fff8fb;border-radius:16px;padding:18px 22px;line-height:1.8;margin-bottom:18px}
+.status-card h3{font-size:18px;color:var(--blue);margin:0 0 3px}.status-card p{margin:0;font-size:15px}
+.checklist{margin:0 0 18px;padding-left:22px;line-height:1.9;color:#40536d;font-size:14px}
+.action-row{display:flex;gap:10px;margin-top:auto;padding-top:16px}
+button{font:inherit;cursor:pointer}.btn{border:0;border-radius:12px;padding:12px 18px;font-size:15px;font-weight:800}.btn.primary{background:var(--blue);color:#fff;flex:1}.btn.secondary{background:#f7eaf0;color:var(--wine)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.note{font-size:12px;color:var(--muted);text-align:center;margin-top:15px}
+.source{display:none;margin:24px auto 0;max-width:640px}.source summary{cursor:pointer;color:var(--blue);font-weight:750}.source img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;margin-top:12px}
+.toast{background:#eaf8ef;color:#1d6a3a;border:1px solid #bde4ca;border-radius:10px;padding:10px 12px;font-size:13px;margin-top:12px}
+@media(max-width:850px){.layout{display:block}.phone-area{max-width:560px;margin:0 auto}.phone{width:min(100%,440px)}.portal-body{padding:20px 20px}.portal-head{padding:16px 22px}header.topbar{width:calc(100% - 24px);margin-top:12px}.brand{font-size:18px}}
+@media print{header{padding-top:10px}.layout{grid-template-columns:1fr}.design,.action-row,.source{display:none}.portal{box-shadow:none}}
+
+/* ---------- 體驗點子商城版面：左側交易畫面、右側說明 ---------- */
+:root{--accent:#9a0036;--accent-dark:#7f002d;--accent-soft:#f7e9ee;--ink:#0f172a;--text:#334155;--muted:#475569;--faint:#64748b;--line:#e2e8f0;--line-strong:#cbd5e1;--ground:#f6f6f7;--star:#b45309;--star-off:#d6d3d1;--gold-bg:#fdf6e3;--gold-line:#f3e3b8;--gold-text:#5c4205;--gold-strong:#7a5300}
+body{background:var(--ground);color:var(--ink);font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif}
+.topbar{background:#fff;border:0;border-bottom:1px solid var(--line);border-radius:0;margin:0;width:100%;max-width:none;height:auto;position:sticky;top:0;z-index:10;padding:0}
+.topbar-row{max-width:1440px;margin:0 auto;padding:12px 40px;display:flex;align-items:center;gap:14px;min-height:64px}
+.brand-mark{width:32px;height:32px;flex:none;border-radius:8px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:16px;font-weight:900}
+.crumb{font-size:14px;color:var(--muted)}.crumb strong{color:var(--ink)}.brand{margin-left:auto;font-size:14px;font-weight:900;color:var(--ink)}
+main{max-width:1440px;margin:0 auto;padding:28px 40px 48px}
+.layout{display:grid;grid-template-columns:minmax(390px, 0.95fr) minmax(420px, 1.05fr);gap:36px;align-items:start}
+.phone-area{max-width:none;width:100%;margin:0;position:sticky;top:88px;gap:10px}
+.phone{width:min(100%,420px);margin:0 auto;background:#111827;border-radius:38px;padding:10px;box-shadow:0 20px 48px rgba(15,23,42,.18)}
+.portal{min-height:690px;border-radius:29px}
+.info{min-width:0;display:flex;flex-direction:column;gap:18px}
+.info-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 3px 10px rgba(15,23,42,.025)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.tag-cat{font-size:12px;font-weight:700;color:var(--ink);background:#eef0f3;padding:4px 10px;border-radius:999px}.platform{font-size:12px;font-weight:700;color:var(--accent);background:#fff;border:1px solid var(--accent);padding:2px 8px;border-radius:6px}
+.info h1{font-size:clamp(23px,2.3vw,30px);font-weight:900;line-height:1.38;color:var(--ink);margin:0}.info p{font-size:14px;line-height:1.75;color:var(--muted);margin:0}
+.rating{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}.stars{font-size:18px;letter-spacing:1px}.stars .on{color:var(--star)}.stars .off{color:var(--star-off)}
+.label{font-size:13px;font-weight:700;color:var(--faint);margin-bottom:7px}.features{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}.features li{font-size:14px;line-height:1.65;color:var(--text);display:flex;gap:8px}.features li:before{content:'✓';color:var(--faint);font-weight:900;flex:none}
+.benefit{font-size:14px;line-height:1.7;color:var(--gold-text);background:var(--gold-bg);border:1px solid var(--gold-line);border-radius:12px;padding:11px 13px}.benefit strong{color:var(--gold-strong)}
+.flow h2{margin:0;font-size:18px;font-weight:900;color:var(--ink)}.flow-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.flow-list li{list-style:none}
+.flow-btn{width:100%;min-height:62px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;display:flex;align-items:flex-start;gap:12px;text-align:left;color:var(--text);font-size:14px;cursor:pointer}.flow-btn:hover{border-color:var(--ink)}.flow-btn .no{width:28px;height:28px;flex:none;border-radius:50%;background:#f1f5f9;color:var(--muted);font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center}.flow-btn strong{display:block;color:var(--ink);font-size:15px;margin:1px 0 3px}.flow-desc{display:block;font-size:12px;line-height:1.6;color:var(--muted)}.flow-btn[aria-current=step]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:#fffdfd}.flow-btn[aria-current=step] .no{background:var(--accent);color:#fff}.flow-btn.is-done .no{background:#dcfce7;color:#166534}
+.reset{align-self:flex-start;min-height:42px;padding:0 15px;border:1px solid var(--line-strong);border-radius:10px;background:#fff;color:var(--text);font-size:14px;font-weight:700;cursor:pointer}.reset:hover{border-color:var(--ink)}.note{font-size:12px;line-height:1.6;color:var(--faint);text-align:center;margin:0;max-width:440px}
+@media(max-width:980px){.topbar-row{padding:10px 20px}.brand{display:none}main{padding:20px}.layout{grid-template-columns:minmax(320px,.9fr) minmax(350px,1.1fr);gap:20px}.phone-area{position:static}.info-card{padding:18px}}
+@media(max-width:760px){main{padding:16px}.layout{display:flex;flex-direction:column;gap:20px}.phone-area{width:100%;order:1}.info{width:100%;order:2}.phone{width:min(100%,420px)}.portal{min-height:620px}.info-card{padding:18px}.topbar-row{padding:10px 14px}.crumb{font-size:12px}}
+@media print{.topbar{position:static}.layout{display:grid;grid-template-columns:1fr 1fr}.phone-area{position:static}.reset{display:none}}
+
+
+/* 桌機雙欄同步：左側維持手機 APP 直式比例，整體高度配合右側說明 */
+@media (min-width: 761px){
+  .layout{grid-template-columns:minmax(390px,.95fr) minmax(420px,1.05fr);align-items:stretch;gap:36px}
+  .phone-area{align-self:stretch;min-width:0;position:relative;top:auto;display:flex;flex-direction:column;align-items:center}
+  .phone-area .phone{flex:none;transform:scale(var(--phone-scale,1));transform-origin:top center;will-change:transform}
+  .phone-area .note{flex:none;margin-top:10px}
+}
+@media (max-width:760px){
+  .phone-area .phone{transform:none!important}
+  .phone-area{height:auto!important}
+}
+
+</style>
+<style id="bot-topbar-style">
+.bot-topbar{background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:50;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,-apple-system,'Segoe UI',sans-serif}
+.bot-topbar-row{max-width:1440px;margin:0 auto;padding:12px 64px;display:flex;align-items:center;gap:16px;box-sizing:border-box}
+.bot-back{min-height:44px;padding:0 14px 0 10px;border:1px solid #cbd5e1;border-radius:999px;color:#0f172a;text-decoration:none;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:4px;box-sizing:border-box;background:#fff;line-height:1.5}
+.bot-back:hover{border-color:#0f172a}
+.bot-back:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+.bot-crumb{font-size:14px;color:#475569;line-height:1.5}
+.bot-crumb strong{color:#0f172a}
+.bot-brand{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:900;color:#0f172a;line-height:1.5}
+.bot-brand-mark{width:32px;height:32px;border-radius:8px;background:#9a0036;color:#fff;display:flex;align-items:center;justify-content:center}
+@media (max-width:960px){.bot-topbar-row{padding-left:24px;padding-right:24px}.bot-brand{display:none}}
+@media (max-width:440px){.bot-crumb{display:none}}
+</style>
+</head>
+<body>
+<div class="bot-topbar"><div class="bot-topbar-row"><a class="bot-back" href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表</a><span class="bot-crumb">功能原型｜<strong>外匯匯出匯款-進度與剩餘步驟提示</strong></span><span class="bot-brand"><span class="bot-brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span></div></div>
+<main>
+<section class="layout"><div class="phone-area"><div class="phone"><article class="portal"><div class="notch"></div><div class="status"><span>9:41</span><span>● ▣</span></div>
+<div class="portal-head">臺灣銀行<small>匯出匯款</small></div>
+<div class="portal-body">
+<h2>您的匯款進度</h2><p class="intro">每完成一步，就會更新目前狀態與待辦事項。</p>
+<div class="progress" id="progress"></div>
+<div class="progress-label"><span id="currentTitle">目前進度：確認受款人</span><span id="counter">1 / 4</span></div>
+<div class="status-card"><h3 id="cardTitle">目前進度：確認受款人</h3><p id="cardText">請核對受款人名稱及帳戶識別資訊。</p></div>
+<ul class="checklist" id="checklist"></ul>
+<div class="action-row"><button class="btn secondary" id="prevBtn">上一步</button><button class="btn primary" id="nextBtn">繼續填寫匯款資料</button></div>
+<div id="toast" class="toast" style="display:none"></div>
+</div>
+</article></div><div class="note">互動交易畫面｜請依序操作左側手機畫面，右側步驟說明會同步標示目前階段。</div></div>
+<aside class="info" aria-label="交易說明與操作流程">
+  <section class="info-card">
+    <div class="tags"><span class="tag-cat">外匯匯出匯款</span><span class="platform">網銀</span><span class="platform">APP</span></div>
+    <h1>外匯匯出匯款-進度與剩餘步驟提示</h1>
+    <div class="rating" aria-label="開發難易度 3 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★</span><span class="off">★★</span></span><span>中等</span></div>
+    <div><div class="label">交易說明</div><p>在外匯匯出匯款流程中，清楚呈現目前所在階段、已完成項目及下一步待辦，讓使用者隨時掌握交易進度，降低不確定感與漏做程序的風險。</p></div>
+    <div><div class="label">功能特色</div><ul class="features">
+      <li>以進度列呈現四個交易階段，明確標示目前進度與步驟總數。</li>
+      <li>每個階段同步顯示操作說明及待辦事項，協助使用者理解現在要做什麼。</li>
+      <li>已選取的受款人資料自動帶入後續步驟，減少重複輸入。</li>
+      <li>交易確認頁以唯讀方式呈現受款人及匯款金額，方便送出前核對。</li>
+    </ul></div>
+    <div class="benefit"><strong>效益｜</strong>降低使用者對流程進度的不確定感，減少遺漏步驟及重複確認，提升網銀與 APP 匯款操作的清晰度。</div>
+  </section>
+  <section class="info-card flow">
+    <h2>步驟說明</h2>
+    <ol class="flow-list" id="flow-list">
+      <li><button type="button" class="flow-btn" data-flow-step="0" aria-current="step"><span class="no">1</span><span><strong>選取受款人</strong><span class="flow-desc">選取已建立的受款人，系統自動帶入相關資料。</span></span></button></li>
+      <li><button type="button" class="flow-btn" data-flow-step="1"><span class="no">2</span><span><strong>輸入匯款金額</strong><span class="flow-desc">確認受款人資訊並輸入本次匯款金額。</span></span></button></li>
+      <li><button type="button" class="flow-btn" data-flow-step="2"><span class="no">3</span><span><strong>交易前確認</strong><span class="flow-desc">核對受款人、匯款金額及交易資料，確認頁資訊不可修改。</span></span></button></li>
+      <li><button type="button" class="flow-btn" data-flow-step="3"><span class="no">4</span><span><strong>完成資料確認</strong><span class="flow-desc">顯示資料確認完成狀態，可返回確認頁檢視內容。</span></span></button></li>
+    </ol>
+    <button class="reset" type="button" id="resetPrototype">重設原型</button>
+    <p class="note">本頁為互動情境示意；匯款費用、交易規則及實際可用功能，仍應依本行正式規定與系統設計為準。</p>
+  </section>
+</aside>
+</section>
+
+</main>
+
+<script>
+const steps = [
+  {label:'選取受款人', title:'選取受款人資料', intro:'請從已建立的受款人資料中選取一筆。'},
+  {label:'輸入匯款金額', title:'填寫匯款資料', intro:'受款人資訊已帶入，請輸入本次匯款金額。'},
+  {label:'交易前確認', title:'交易前確認', intro:'請確認以下匯款資訊；本頁僅供核對，不能修改。'},
+  {label:'完成送出', title:'完成送出', intro:'已完成交易前確認，可返回前一步檢視資料。'}
+];
+
+const beneficiaries = {
+  'b1': {name:'王小明', account:'123-456-789012', bank:'BANK OF TAIWAN', country:'美國', address:'100 Main Street, New York, NY'},
+  'b2': {name:'LIN MEI HUA', account:'987-654-321098', bank:'CHINATRUST COMMERCIAL BANK', country:'日本', address:'1-2-3 Shinjuku, Tokyo'},
+  'b3': {name:'Chen Wei', account:'456-789-123456', bank:'HSBC HONG KONG', country:'香港', address:'1 Queen’s Road Central, Hong Kong'}
+};
+
+let current = 0;
+let selectedBeneficiary = '';
+let amount = '';
+
+const progressEl = document.getElementById('progress');
+const currentTitle = document.getElementById('currentTitle');
+const counter = document.getElementById('counter');
+const cardTitle = document.getElementById('cardTitle');
+const cardText = document.getElementById('cardText');
+const checklist = document.getElementById('checklist');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const toast = document.getElementById('toast');
+
+function esc(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[ch]));
+}
+
+function beneficiaryDetails(person, readonly=false) {
+  if (!person) return '';
+  return `
+    <div class="info-list">
+      <div class="info-row"><span>受款人名稱</span><strong>${esc(person.name)}</strong></div>
+      <div class="info-row"><span>受款帳號</span><strong>${esc(person.account)}</strong></div>
+      <div class="info-row"><span>受款銀行</span><strong>${esc(person.bank)}</strong></div>
+      <div class="info-row"><span>受款國家／地區</span><strong>${esc(person.country)}</strong></div>
+      <div class="info-row"><span>受款人地址</span><strong>${esc(person.address)}</strong></div>
+      ${readonly ? `<div class="readonly-mark">🔒 資料僅供確認，無法修改</div>` : ''}
+    </div>`;
+}
+
+function renderProgress() {
+  progressEl.innerHTML = steps.map((s, i) => `
+    <div class="step ${i===current?'active':i<current?'done':''}" data-step="${i}">
+      <div class="dot">${i<current?'✓':i+1}</div><div>${s.label}</div>
+    </div>`).join('');
+  progressEl.querySelectorAll('.step').forEach(el => {
+    el.addEventListener('click', () => {
+      const idx = Number(el.dataset.step);
+      // Only allow moving to completed/current steps, never bypass required inputs.
+      if (idx <= current) { current = idx; hideToast(); render(); }
+    });
+  });
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.style.display = 'block';
+}
+function hideToast() { toast.style.display = 'none'; }
+
+function render() {
+  renderProgress();
+  const step = steps[current];
+  currentTitle.textContent = `目前進度：${step.title}`;
+  counter.textContent = `${current+1} / ${steps.length}`;
+  cardTitle.textContent = step.title;
+  cardText.textContent = step.intro;
+  checklist.innerHTML = '';
+  const person = beneficiaries[selectedBeneficiary];
+
+  if (current === 0) {
+    checklist.innerHTML = `
+      <li class="field-label">受款人資料</li>
+      <li class="field-control">
+        <select id="beneficiarySelect" aria-label="選取受款人資料">
+          <option value="">請選取受款人資料</option>
+          ${Object.entries(beneficiaries).map(([id,p]) => `<option value="${id}" ${id===selectedBeneficiary?'selected':''}>${esc(p.name)}｜${esc(p.bank)}</option>`).join('')}
+        </select>
+      </li>
+      <li class="helper">選取後將自動帶入受款人名稱、帳號及受款銀行等資訊。</li>`;
+    const select = document.getElementById('beneficiarySelect');
+    select.addEventListener('change', e => { selectedBeneficiary = e.target.value; hideToast(); render(); });
+    if (person) checklist.innerHTML += `<li class="details-holder">${beneficiaryDetails(person)}</li>`;
+    nextBtn.textContent = '下一步：輸入匯款金額';
+    nextBtn.disabled = false;
+  } else if (current === 1) {
+    checklist.innerHTML = `
+      <li class="field-label">受款人資訊</li>
+      <li class="details-holder">${beneficiaryDetails(person)}</li>
+      <li class="field-label amount-label">匯款金額</li>
+      <li class="field-control"><div class="amount-input"><span>USD</span><input id="amountInput" inputmode="decimal" type="number" min="0.01" step="0.01" placeholder="請輸入金額" value="${esc(amount)}" aria-label="匯款金額"></div></li>
+      <li class="helper">此步驟僅需輸入匯款金額，受款人資料由已選取的資料自動帶入。</li>`;
+    const input = document.getElementById('amountInput');
+    input.addEventListener('input', e => { amount = e.target.value; hideToast(); });
+    nextBtn.textContent = '下一步：交易前確認';
+    nextBtn.disabled = false;
+  } else if (current === 2) {
+    checklist.innerHTML = `
+      <li class="field-label">匯款資訊</li>
+      <li class="details-holder">${beneficiaryDetails(person, true)}</li>
+      <li class="info-list">
+        <div class="info-row"><span>匯款金額</span><strong>USD ${Number(amount).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div>
+        <div class="readonly-mark">🔒 本頁為唯讀確認畫面，無法修改資料。如需調整，請返回上一步。</div>
+      </li>`;
+    nextBtn.textContent = '確認並完成';
+    nextBtn.disabled = false;
+  } else {
+    checklist.innerHTML = `
+      <li class="success-mark">✓</li>
+      <li class="success-title">匯款資料確認完成</li>
+      <li class="helper">本互動情境已完成資料確認示意。</li>
+      <li class="details-holder">${beneficiaryDetails(person, true)}</li>
+      <li class="info-list"><div class="info-row"><span>匯款金額</span><strong>USD ${Number(amount).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div></li>`;
+    nextBtn.textContent = '重新檢視匯款資料';
+    nextBtn.disabled = false;
+  }
+
+  nextBtn.disabled = false;
+  prevBtn.disabled = current === 0;
+  prevBtn.textContent = current === 3 ? '回到確認頁' : '上一步';
+  syncFlowSteps();
+}
+
+function syncFlowSteps() {
+  document.querySelectorAll('[data-flow-step]').forEach((btn) => {
+    const idx = Number(btn.dataset.flowStep);
+    if (idx === current) btn.setAttribute('aria-current', 'step');
+    else btn.removeAttribute('aria-current');
+    btn.classList.toggle('is-done', idx < current);
+  });
+}
+document.querySelectorAll('[data-flow-step]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const idx = Number(btn.dataset.flowStep);
+    // 可點選目前或已完成步驟返回檢視，不允許跳過必要輸入。
+    if (idx <= current) { current = idx; hideToast(); render(); }
+    else { showToast('請依序完成前面的步驟，再繼續後續流程。'); }
+  });
+});
+document.getElementById('resetPrototype').addEventListener('click', () => {
+  current = 0; selectedBeneficiary = ''; amount = ''; hideToast(); render();
+});
+
+prevBtn.addEventListener('click', () => {
+  if (current > 0) { current--; hideToast(); render(); }
+});
+nextBtn.addEventListener('click', () => {
+  hideToast();
+  if (current === 0 && !selectedBeneficiary) { showToast('請先選取受款人資料，再按下一步。'); toast.scrollIntoView({behavior:'smooth',block:'nearest'}); return; }
+  if (current === 1 && !(Number(amount)>0)) { showToast('請輸入大於 0 的匯款金額，再按下一步。'); toast.scrollIntoView({behavior:'smooth',block:'nearest'}); return; }
+  if (current === 2) current = 3;
+  else if (current === 3) current = 2;
+  else current++;
+  render();
+});
+
+const extraStyle = document.createElement('style');
+extraStyle.textContent = `
+#checklist{list-style:none;padding:0;margin:0 0 18px}
+#checklist .field-label{font-size:14px;font-weight:800;color:#344965;margin:4px 0 8px}
+#checklist .field-control{padding:0;margin:0 0 12px}
+#checklist select,#checklist input{width:100%;border:1px solid #cbd7e7;border-radius:10px;background:#fff;padding:12px;font:inherit;color:#24344c}
+#checklist .helper{font-size:12px;line-height:1.7;color:#697b96;margin:4px 0 12px}
+#checklist .info-list{border:1px solid #d7e1ef;border-radius:12px;padding:10px 12px;margin:0 0 12px;background:#fff}
+#checklist .info-row{display:flex;flex-direction:column;gap:2px;padding:7px 0;border-bottom:1px solid #edf1f7;font-size:13px}
+#checklist .info-row:last-child{border-bottom:0}
+#checklist .info-row span{color:#697b96;font-size:12px}
+#checklist .info-row strong{overflow-wrap:anywhere;font-size:14px}
+#checklist .readonly-mark{font-size:12px;color:#245fae;background:#f7eaf0;border-radius:8px;padding:9px;margin-top:8px;line-height:1.6}
+#checklist .amount-input{display:flex;border:1px solid #cbd7e7;border-radius:10px;overflow:hidden}
+#checklist .amount-input span{padding:12px;background:#f0f4fa;color:#245fae;font-weight:800}
+#checklist .amount-input input{border:0;border-radius:0;min-width:0}
+#checklist .success-mark{font-size:38px;color:#20834c;text-align:center;margin:8px 0}
+#checklist .success-title{text-align:center;font-weight:800;font-size:18px;margin-bottom:10px}
+`;
+document.head.appendChild(extraStyle);
+render();
+
+// 依右側說明實際高度等比例縮放左側手機 APP，方便操作時同步閱讀
+(function syncPhoneToInfo(){
+  const layout = document.querySelector('.layout');
+  const phoneArea = document.querySelector('.phone-area');
+  const phone = document.querySelector('.phone');
+  const info = document.querySelector('.info');
+  if(!layout || !phoneArea || !phone || !info) return;
+  let raf = 0;
+  function update(){
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      if(window.innerWidth <= 760){
+        phone.style.setProperty('--phone-scale', 1);
+        phone.style.transform = 'none';
+        phoneArea.style.height = 'auto';
+        return;
+      }
+      phone.style.transform = '';
+      const infoHeight = info.getBoundingClientRect().height;
+      const baseHeight = phone.offsetHeight;
+      const note = phoneArea.querySelector('.note');
+      const noteHeight = note ? note.offsetHeight + 10 : 0;
+      if(!infoHeight || !baseHeight) return;
+      // 讓手機框連同下方提示接近右側說明總高度，同時維持手機直式比例
+      const available = Math.max(420, infoHeight - noteHeight);
+      const scale = Math.max(.58, Math.min(1.32, available / baseHeight));
+      phone.style.setProperty('--phone-scale', scale.toFixed(4));
+      phoneArea.style.height = `${Math.max(infoHeight, baseHeight * scale + noteHeight)}px`;
+    });
+  }
+  if('ResizeObserver' in window){
+    const ro = new ResizeObserver(update);
+    ro.observe(info);
+    ro.observe(phone);
+  }
+  window.addEventListener('resize', update);
+  document.querySelectorAll('[data-flow-step], #nextBtn, #prevBtn, #resetPrototype').forEach(el => el.addEventListener('click', () => setTimeout(update, 60)));
+  update();
+})();
+
+</script>
+
+</body></html>

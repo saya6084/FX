@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外匯匯出匯款-全額到匯｜互動原型</title>
+<style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* 介紹 */
+  .hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding-top: 8px; }
+  .hero-art { width: 148px; height: 148px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; position: relative; }
+  .hero-art .coin { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: var(--gold-bg); border: 2px solid var(--gold-line); color: var(--gold-strong); font-size: 15px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .hero h3 { margin: 0; font-size: 24px; font-weight: 900; line-height: 1.4; }
+  .hero p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .points { display: flex; flex-direction: column; gap: 10px; }
+  .point { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .point .ic { width: 40px; height: 40px; flex: none; border-radius: 12px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .point strong { display: block; font-size: 15px; }
+  .point span { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* 設定 */
+  .field { display: flex; flex-direction: column; gap: 10px; }
+  .field-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .field-title { font-size: 15px; font-weight: 700; }
+  .field-hint { font-size: 12px; color: var(--faint); }
+  .opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .opts.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .opt { min-height: 52px; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 15px; font-weight: 700; }
+  .opt small { font-size: 11px; font-weight: 500; color: var(--faint); }
+  .opt:hover { border-color: var(--ink); }
+  .opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .opt[aria-pressed="true"] small { color: var(--accent); }
+  .opt:disabled { opacity: .4; cursor: not-allowed; }
+  .opt:disabled:hover { border-color: var(--line-strong); }
+  .amount { display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 14px; background: #fff; }
+  .amount:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .amount .sym { font-size: 20px; font-weight: 900; color: var(--muted); }
+  .amount input { flex: 1; min-width: 0; border: none; outline: none; font-size: 22px; font-weight: 900; color: var(--ink); background: transparent; }
+  .amount .unit { font-size: 14px; color: var(--faint); }
+  .err { font-size: 13px; color: var(--accent); font-weight: 700; }
+  .estimate { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .estimate .big { font-size: 13px; color: var(--muted); }
+  .estimate .big strong { display: block; font-size: 26px; font-weight: 900; color: var(--ink); }
+  .row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); }
+  .row strong { color: var(--ink); text-align: right; }
+
+  /* 確認 */
+  .summary { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .rule { background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; color: var(--gold-text); font-size: 14px; line-height: 1.65; }
+  .rule strong { color: var(--gold-strong); font-size: 15px; }
+  .rule ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+  .switch-row { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .switch-row strong { display: block; font-size: 15px; }
+  .switch-row span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .switch { width: 52px; height: 32px; flex: none; border: none; border-radius: 999px; background: #94a3b8; position: relative; cursor: pointer; transition: background .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .switch[aria-checked="true"] { background: var(--accent); }
+  .switch[aria-checked="true"]::after { left: 23px; }
+  .fine { font-size: 12px; color: var(--faint); line-height: 1.6; margin: 0; }
+
+  /* 進度 */
+  .goal { background: var(--accent); color: #fff; border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .goal-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: #f6d7e1; }
+  .goal-top .pill { background: rgba(255,255,255,.18); color: #fff; padding: 3px 10px; border-radius: 999px; font-weight: 700; }
+  .goal-amt { font-size: 30px; font-weight: 900; line-height: 1.1; }
+  .goal-amt small { font-size: 15px; font-weight: 500; color: #f6d7e1; }
+  .bar { height: 10px; border-radius: 999px; background: rgba(255,255,255,.25); overflow: hidden; }
+  .bar span { display: block; height: 100%; background: #fff; border-radius: 999px; transition: width .5s cubic-bezier(.2,.8,.2,1); }
+  .goal-foot { display: flex; justify-content: space-between; font-size: 13px; color: #f6d7e1; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .stat { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 2px; }
+  .stat span { font-size: 11px; color: var(--muted); }
+  .stat strong { font-size: 16px; font-weight: 900; }
+  .next { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text); }
+  .next .ic { width: 36px; height: 36px; flex: none; border-radius: 10px; background: #f1f5f9; color: var(--muted); display: flex; align-items: center; justify-content: center; }
+  .next.paused .ic { background: var(--gold-bg); color: var(--gold-strong); }
+  .done-banner { background: var(--ok-bg); border: 1px solid #bbf7d0; color: var(--ok); border-radius: 14px; padding: 12px 14px; font-size: 14px; font-weight: 700; display: flex; gap: 8px; align-items: center; }
+  .remind { background: var(--gold-bg); border: 1px solid var(--gold-line); color: var(--gold-text); border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.6; }
+  .remind strong { color: var(--gold-strong); }
+  .actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .act { min-height: 64px; border: 1px solid var(--line); border-radius: 14px; background: #fff; color: var(--text); font-size: 13px; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; }
+  .act:hover { border-color: var(--ink); }
+  .act:disabled { opacity: .45; cursor: not-allowed; }
+  .act svg { color: var(--accent); }
+  .log-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .log-head h3 { margin: 0; font-size: 16px; font-weight: 900; }
+  .log { margin: 0; padding: 0; list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .log li { padding: 12px 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f1f5f9; }
+  .log li:last-child { border-bottom: none; }
+  .log .dot { width: 32px; height: 32px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .log .buy .dot { background: var(--accent-soft); color: var(--accent); }
+  .log .skip .dot { background: #f1f5f9; color: var(--faint); }
+  .log .top-up .dot { background: var(--gold-bg); color: var(--gold-strong); }
+  .log .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .log .txt strong { font-size: 14px; }
+  .log .txt span { font-size: 12px; color: var(--muted); }
+  .log .amt { font-size: 14px; font-weight: 900; white-space: nowrap; }
+  .log .skip .amt { color: var(--faint); font-weight: 500; }
+  .log-empty { padding: 18px 14px; text-align: center; font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .demo { border: 1.5px dashed var(--line-strong); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .demo-label { font-size: 12px; font-weight: 700; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .demo-btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .demo-btn { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .demo-btn:hover { border-color: var(--ink); }
+  .demo-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+  /* 底部面板與驗證 */
+  .sheet-wrap { position: absolute; inset: 0; background: rgba(2,6,23,.55); display: flex; flex-direction: column; justify-content: flex-end; z-index: 5; }
+  .sheet { background: #fff; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: up .25s cubic-bezier(.2,.8,.2,1); }
+  .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line-strong); align-self: center; }
+  .sheet h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .verify { align-items: center; text-align: center; padding: 44px 20px 64px; }
+  .verify .face { color: var(--accent); animation: pulse 1s ease-in-out infinite; }
+  @keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.94); } }
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+
+  .stage {max-width:1600px;gap:36px;align-items:flex-start}
+  .phone-area {flex:0 1 430px;display:flex;justify-content:center;min-width:300px}
+  .phone {width:390px;height:min(844px,calc(100vh - 130px));min-height:620px;padding:10px;border-radius:42px}
+  .screen {width:100%;height:100%;border-radius:32px;overflow:hidden;background:#f6f6f7}
+  #transactionFrame {display:block;width:100%;height:100%;border:0;background:#f4f6f9}
+  .info {flex:1 1 430px;max-width:660px}
+  .info-card {padding:22px}
+  .info h1 {font-size:28px;overflow-wrap:anywhere}
+  .flow-tags {margin:0 0 4px}
+  .flow-list {gap:8px}
+  .flow-btn {align-items:flex-start;min-height:64px}
+  .flow-btn .no {margin-top:2px}
+  .flow-btn span:last-child {line-height:1.55}
+  .brand-mark {font-size:14px;font-weight:900}
+  @media(max-width:900px) {
+    .topbar-row {padding:10px 18px;flex-wrap:wrap}
+    .stage {padding:20px 16px 36px;gap:24px}
+    .phone-area {flex-basis:100%}
+    .phone {width:min(390px,100%);height:min(844px,82vh);min-height:560px}
+    .info {max-width:none;flex-basis:100%}
+  }
+  @media(max-width:480px) {
+    .topbar .brand {display:none}
+    .topbar-row {padding:10px 14px}
+    .crumb {font-size:12px!important}
+    .stage {padding:14px 10px 24px}
+    .info-card {padding:16px}
+    .info h1 {font-size:23px}
+    .phone {height:78vh;min-height:520px;padding:6px;border-radius:30px}
+    .screen {border-radius:24px}
+  }
+
+
+
+  /* 桌機雙欄同步：手機 APP 維持直式比例，外框高度貼齊右側說明 */
+  @media (min-width: 901px) {
+    .stage { align-items: flex-start; }
+    .phone-area { align-self: flex-start; height: var(--phone-display-height, 844px); flex: 0 0 430px; }
+    .phone {
+      width: 390px;
+      height: 844px;
+      min-height: 0;
+      flex: none;
+      transform: scale(var(--phone-scale, 1));
+      transform-origin: top center;
+    }
+  }
+  @media (max-width: 900px) {
+    .phone-area { height: auto; }
+    .phone { transform: none; }
+  }
+</style>
+<style id="bot-topbar-style">
+.bot-topbar{background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:50;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,-apple-system,'Segoe UI',sans-serif}
+.bot-topbar-row{max-width:1440px;margin:0 auto;padding:12px 64px;display:flex;align-items:center;gap:16px;box-sizing:border-box}
+.bot-back{min-height:44px;padding:0 14px 0 10px;border:1px solid #cbd5e1;border-radius:999px;color:#0f172a;text-decoration:none;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:4px;box-sizing:border-box;background:#fff;line-height:1.5}
+.bot-back:hover{border-color:#0f172a}
+.bot-back:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+.bot-crumb{font-size:14px;color:#475569;line-height:1.5}
+.bot-crumb strong{color:#0f172a}
+.bot-brand{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:900;color:#0f172a;line-height:1.5}
+.bot-brand-mark{width:32px;height:32px;border-radius:8px;background:#9a0036;color:#fff;display:flex;align-items:center;justify-content:center}
+@media (max-width:960px){.bot-topbar-row{padding-left:24px;padding-right:24px}.bot-brand{display:none}}
+@media (max-width:440px){.bot-crumb{display:none}}
+</style>
+</head>
+<body>
+ <div class="bot-topbar"><div class="bot-topbar-row"><a class="bot-back" href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表</a><span class="bot-crumb">功能原型｜<strong>外匯匯出匯款-全額到匯</strong></span><span class="bot-brand"><span class="bot-brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span></div></div>
+ <main class="stage">
+  <section class="phone-area" aria-label="交易畫面">
+   <div class="phone">
+    <div class="screen" id="screen">
+     <iframe id="transactionFrame" title="外匯匯出匯款全額到匯互動交易畫面" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-TW&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover&quot;&gt;
+    &lt;title&gt;臺灣銀行 - 匯出匯款流程演示 (優化免縮放版)&lt;/title&gt;
+    &lt;style&gt;
+        /* --- 基礎重設與手機滿版鎖定 --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: &quot;Microsoft JhengHei&quot;, &quot;微軟正黑體&quot;, &quot;PingFang TC&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif;
+        }
+
+        html, body {
+            height: 100dvh; /* 鎖定手機視窗高度，避開網址列干擾 */
+            width: 100vw;
+            overflow: hidden; /* 全域禁止滾動條 */
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- 模擬手機外框 --- */
+        .phone-wrapper {
+            width: 100%;
+            max-width: 412px;
+            height: 100dvh;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* --- 模擬手機狀態列 --- */
+        .status-bar { height: 24px; flex:none; display:flex; align-items:center; justify-content:space-between; padding:0 10px; background:#fff; color:#921331; font-size:10px; }
+        .status-icons { color:#334155; font-size:10px; letter-spacing:1px; }
+        /* --- 頂部 Header 區 --- */
+        .header {
+            background-color: #921331; /* 臺銀紅 */
+            color: #ffffff;
+            padding: 12px 16px;
+            flex-shrink: 0;
+        }
+        .header h1 { font-size: 16px; font-weight: bold; }
+        .header p { font-size: 11px; opacity: 0.8; }
+
+        /* --- 主內容容器 (動態伸縮，高密度緊湊排版) --- */
+        .main-content {
+            flex: 1;
+            overflow-y: auto; /* 僅允許內部內容過多時微幅滾動，外框絕不動 */
+            padding: 7px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        /* --- 匯款進度區 --- */
+        .progress-section {
+            background-color: #fdfdfd;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 7px 9px;
+        }
+        .progress-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+        }
+        .steps-bar {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 7px 0 5px; border-bottom: 0; margin-bottom: 2px; gap: 3px;
+        }
+        .step { position:relative; flex:1; text-align:center; color:#cbd5e1; font-weight:700; font-size:10px; line-height:1.35; padding-top:27px; white-space:normal; }
+        .step::before { content:attr(data-num); position:absolute; top:0; left:50%; transform:translateX(-50%); width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#cbd5e1; color:#fff; font-size:11px; font-weight:900; }
+        .step:not(:last-child)::after { content:&quot;&quot;; position:absolute; top:9px; left:calc(50% + 12px); width:calc(100% - 24px); height:2px; background:#dbe3ed; }
+        .step.active { color:#921331; }
+        .step.active::before { background:#921331; }
+        .step.done { color:#921331; }
+        .step.done::before { background:#921331; }
+        .step.done:not(:last-child)::after { background:#921331; }
+        .current-status {
+            font-size: 11px;
+            font-weight:700;
+            color: #921331;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- 提示區塊 --- */
+        .alert-box {
+            background-color: #fef2f2;
+            border: 1px solid #fee2e2;
+            border-radius: 6px;
+            padding: 5px 8px;
+            font-size: 11px;
+            color: #921331;
+        }
+
+        /* --- 【核心優化一】下拉選單與摘要兩用列 --- */
+        .select-section {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .section-title { font-size: 13px; font-weight: bold; color: #1e293b; }
+        
+        .custom-select {
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .custom-select::after {
+            content: &quot; can-scroll&quot;; /* 模擬箭頭 */
+            content: &quot;▼&quot;;
+            font-size: 10px;
+            color: #64748b;
+        }
+        .recipient-select {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 10px 12px;
+            min-height: 42px;
+            font-size: 14px;
+            color: #1e293b;
+            background: #fff;
+            outline-color: #921331;
+        }
+        .fee-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .fee-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 5px 7px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 11px;
+        }
+        .fee-item .amount-value { font-size: 12px; }
+
+        /* --- 【核心優化二】高密度左右同行、雙欄並排卡片 --- */
+        .info-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+        .card-title {
+            background-color: #f8fafc;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #334155;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        /* 網格雙欄佈局：向左右要空間，高度直接砍半 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            background-color: #fff;
+            padding: 5px 10px;
+        }
+        
+        /* 單一資料項：改為左右同行 */
+        .detail-item {
+            background-color: #ffffff;
+            padding: 7px 0;
+            display: flex;
+            flex-direction:column;
+            align-items:flex-start;
+            justify-content:center;
+            gap:3px;
+            border-bottom:1px solid #edf2f7;
+            font-size: 12px;
+        }
+        .detail-item:last-child { border-bottom:0; }
+        /* 跨兩欄品項 (如地址) */
+        .detail-item.full-width { grid-column: span 1; }
+        .detail-label { color: #64748b; font-size: 10px; }
+        .detail-value { color: #1e293b; font-weight: 700; text-align: left; overflow-wrap:anywhere; }
+
+        /* --- 金額輸入/展示區 --- */
+        .amount-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 7px 9px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            padding: 2px 0;
+        }
+        .amount-value { font-weight: bold; color: #1e293b; }
+        .amount-total { font-size: 15px; color: #921331; font-weight: bold; }
+
+        /* --- 唯讀提示小字 --- */
+        .lock-notice {
+            background-color: #f1f5f9;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- 底部固定按鈕 --- */
+        .footer {
+            padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            flex-shrink: 0; display:flex; gap:8px;
+        }
+        .back-btn { flex:0 0 28%; height:44px; border:0; border-radius:10px; background:#faf2f5; color:#921331; font-size:13px; font-weight:700; cursor:pointer; }
+        .back-btn:disabled { opacity:.35; cursor:not-allowed; }
+        .submit-btn { flex:1;
+            width: 100%;
+            height: 44px;
+            background-color: #921331;
+            color: #ffffff;
+            border: none;
+            border-radius: 22px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .progress-section { border:0; background:transparent; padding:2px 2px 4px; }
+        .progress-title { font-size:16px; margin-bottom:4px; }
+        .main-content { padding:10px 14px; gap:9px; }
+        .alert-box { padding:8px 10px; font-size:11px; line-height:1.55; border-radius:10px; }
+        .recipient-select { border-radius:8px; font-size:12px; padding:9px 10px; }
+        .recipient-preview { border-radius:10px; }
+        /* 頁面切換控制 (Demo用) */
+        .page-node { display: none; flex-direction: column; gap: 6px; }
+        .page-node.active { display: flex; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div class=&quot;phone-wrapper&quot;&gt;
+        &lt;div class=&quot;status-bar&quot;&gt;&lt;span&gt;9:41&lt;/span&gt;&lt;span class=&quot;status-icons&quot;&gt;● ▮ ▰&lt;/span&gt;&lt;/div&gt;
+        &lt;!-- 固定頂部 --&gt;
+        &lt;div class=&quot;header&quot;&gt;
+            &lt;h1&gt;臺灣銀行&lt;/h1&gt;
+            &lt;p&gt;匯出匯款&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 動態主內容區 --&gt;
+        &lt;div class=&quot;main-content&quot;&gt;
+            
+            &lt;!-- 固定進度條 --&gt;
+            &lt;div class=&quot;progress-section&quot;&gt;
+                &lt;div class=&quot;progress-title&quot;&gt;您的匯款進度&lt;/div&gt;
+                &lt;div class=&quot;steps-bar&quot;&gt;
+                    &lt;span class=&quot;step&quot; id=&quot;step1&quot; data-num=&quot;1&quot;&gt;1 選取受款人&lt;/span&gt;
+                    &lt;span class=&quot;step&quot; id=&quot;step2&quot; data-num=&quot;2&quot;&gt;2 輸入金額&lt;/span&gt;
+                    &lt;span class=&quot;step&quot; id=&quot;step3&quot; data-num=&quot;3&quot;&gt;3 交易確認&lt;/span&gt;
+                    &lt;span class=&quot;step&quot; id=&quot;step4&quot; data-num=&quot;4&quot;&gt;4 完成送出&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;current-status&quot;&gt;
+                    &lt;span id=&quot;statusText&quot;&gt;目前進度：選取受款人資料&lt;/span&gt;
+                    &lt;span id=&quot;stepFraction&quot;&gt;1 / 4&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- ================= STEP 1 ================= --&gt;
+            &lt;div class=&quot;page-node active&quot; id=&quot;page1&quot;&gt;
+                &lt;div class=&quot;alert-box&quot;&gt;
+                    &lt;strong&gt;選取受款人資料&lt;/strong&gt;&lt;br&gt;請從已建立的受款人資料中選取一筆。
+                &lt;/div&gt;
+                &lt;div class=&quot;select-section&quot;&gt;
+                    &lt;div class=&quot;section-title&quot;&gt;受款人資料（共 3 筆）&lt;/div&gt;
+                    &lt;select id=&quot;recipientSelect&quot; class=&quot;recipient-select&quot; onchange=&quot;selectRecipient(this.value)&quot;&gt;
+                        &lt;option value=&quot;&quot;&gt;請選取受款人資料&lt;/option&gt;
+                        &lt;option value=&quot;0&quot;&gt;王小明｜BANK OF TAIWAN&lt;/option&gt;
+                        &lt;option value=&quot;1&quot;&gt;陳美玲｜CHASE BANK (全額到匯)&lt;/option&gt;
+                        &lt;option value=&quot;2&quot;&gt;林志豪｜CITIBANK N.A.&lt;/option&gt;
+                    &lt;/select&gt;
+                &lt;/div&gt;
+                &lt;p style=&quot;font-size: 10px; color: #64748b;&quot;&gt;選取後將自動帶入受款人名稱、帳號及受款銀行等資訊。&lt;/p&gt;
+                &lt;div class=&quot;info-card recipient-preview&quot; id=&quot;recipientPreview&quot; style=&quot;display:none;&quot;&gt;
+                    &lt;div class=&quot;grid-container&quot;&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;受款人名稱&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;previewRecipientName&quot;&gt;王小明&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;受款帳號&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;previewRecipientAccount&quot;&gt;123-456-789012&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;受款銀行&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;previewRecipientBank&quot;&gt;BANK OF TAIWAN&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;受款國家／地區&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;previewRecipientCountry&quot;&gt;美國&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item full-width&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;受款人地址&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;previewRecipientAddress&quot;&gt;100 Main Street, New York, NY&lt;/span&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- ================= STEP 2 ================= --&gt;
+            &lt;div class=&quot;page-node&quot; id=&quot;page2&quot;&gt;
+                &lt;div class=&quot;alert-box&quot;&gt;
+                    &lt;strong&gt;填寫匯款資料&lt;/strong&gt;&lt;br&gt;受款人資訊已帶入，請輸入本次匯款金額。
+                &lt;/div&gt;
+                
+                &lt;!-- 優化點：高密度雙欄並排卡片，文字大且不占垂直空間 --&gt;
+                &lt;div class=&quot;info-card&quot;&gt;
+                    &lt;div class=&quot;custom-select&quot; style=&quot;background-color: #f8fafc; border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; cursor: default;&quot;&gt;
+                        &lt;span id=&quot;recipientHeading&quot; style=&quot;color: #1e293b;&quot;&gt;請先選取受款人&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;grid-container&quot;&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;名稱&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;recipientName&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;帳號&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;recipientAccount&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;銀行&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;recipientBank&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;國家&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;recipientCountry&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item full-width&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;地址&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;recipientAddress&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;select-section&quot; style=&quot;margin-top: 4px;&quot;&gt;
+                    &lt;div class=&quot;section-title&quot;&gt;匯款金額&lt;/div&gt;
+                    &lt;div style=&quot;display: flex; border: 1px solid #cbd5e1; border-radius: 6px; overflow: hidden; height: 40px;&quot;&gt;
+                        &lt;div style=&quot;background-color: #f1f5f9; padding: 0 12px; display: flex; align-items: center; font-weight: bold; font-size: 13px; border-right: 1px solid #cbd5e1;&quot;&gt;USD&lt;/div&gt;
+                        &lt;input id=&quot;remitAmount&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;0.01&quot; value=&quot;&quot; placeholder=&quot;請輸入金額&quot; oninput=&quot;updateAmountPreview()&quot; style=&quot;flex: 1; min-width: 0; border: none; padding: 0 10px; font-size: 15px; outline: none;&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;lock-notice&quot;&gt;🔒 資料僅供確認，無法修改&lt;/div&gt;
+                &lt;div class=&quot;alert-box full-remit-note&quot; id=&quot;fullRemitNote2&quot; style=&quot;display:none;&quot;&gt;
+                    &lt;strong&gt;全額到匯提醒&lt;/strong&gt;&lt;br&gt;此受款人已約定全額到匯，系統依約定內容辦理。中間銀行可能收取相關費用；實際費用依交易及銀行作業情形而定。受款行仍可能另行收取匯入匯款相關費用。
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- ================= STEP 3 ================= --&gt;
+            &lt;div class=&quot;page-node&quot; id=&quot;page3&quot;&gt;
+                &lt;div class=&quot;alert-box&quot;&gt;
+                    &lt;strong&gt;交易前確認&lt;/strong&gt;&lt;br&gt;請確認以下匯款資訊；本頁僅供核對，不能修改。
+                &lt;/div&gt;
+                
+                &lt;div class=&quot;info-card&quot;&gt;
+                    &lt;div class=&quot;card-title&quot;&gt;受款人資訊&lt;/div&gt;
+                    &lt;div class=&quot;grid-container&quot;&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;名稱&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;confirmRecipientName&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;帳號&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;confirmRecipientAccount&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;銀行&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;confirmRecipientBank&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;國家&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;confirmRecipientCountry&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item full-width&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;地址&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;confirmRecipientAddress&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;amount-card&quot;&gt;
+                    &lt;div class=&quot;section-title&quot; style=&quot;border-bottom: 1px solid #edf2f7; padding-bottom: 4px;&quot;&gt;匯款資訊&lt;/div&gt;
+                    &lt;div class=&quot;amount-row&quot;&gt;&lt;span&gt;匯款金額&lt;/span&gt;&lt;span class=&quot;amount-value&quot; id=&quot;confirmAmount&quot;&gt;USD —&lt;/span&gt;&lt;/div&gt;
+                    &lt;div class=&quot;fee-grid&quot;&gt;
+                        &lt;div class=&quot;fee-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;匯費&lt;/span&gt;&lt;span class=&quot;amount-value&quot;&gt;依銀行收費標準計收&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;fee-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;郵電費&lt;/span&gt;&lt;span class=&quot;amount-value&quot;&gt;依銀行收費標準計收&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;fee-item intermediary-fee&quot; id=&quot;confirmIntermediaryFee&quot; style=&quot;display:none;&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;中間銀行費用&lt;/span&gt;&lt;span class=&quot;amount-value&quot;&gt;依實際作業情形計收&lt;/span&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;alert-box full-remit-note&quot; id=&quot;fullRemitNote3&quot; style=&quot;display:none;&quot;&gt;
+                    &lt;strong&gt;全額到匯提醒&lt;/strong&gt;&lt;br&gt;此受款人已約定全額到匯，系統依約定內容辦理。中間銀行可能收取相關費用；實際費用依交易及銀行作業情形而定。受款行仍可能另行收取匯入匯款相關費用。
+                &lt;/div&gt;
+                &lt;div class=&quot;lock-notice&quot;&gt;🔒 匯款金額、匯費、郵電費及適用之中間銀行費用均為唯讀資料，無法修改。&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- ================= STEP 4 ================= --&gt;
+            &lt;div class=&quot;page-node&quot; id=&quot;page4&quot;&gt;
+                &lt;div style=&quot;text-align: center; padding: 10px 0;&quot;&gt;
+                    &lt;span style=&quot;font-size: 32px; color: #10b981;&quot;&gt;✓&lt;/span&gt;
+                    &lt;h3 style=&quot;font-size: 16px; color: #1e293b; margin-top: 4px;&quot;&gt;匯款資料確認完成&lt;/h3&gt;
+                    &lt;p style=&quot;font-size: 12px; color: #64748b; margin-top: 2px;&quot;&gt;本互動情境已完成資料確認示意。&lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;info-card&quot;&gt;
+                    &lt;div class=&quot;card-title&quot;&gt;受款人資訊&lt;/div&gt;
+                    &lt;div class=&quot;grid-container&quot;&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;名稱&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;doneRecipientName&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;帳號&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;doneRecipientAccount&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;銀行&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;doneRecipientBank&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;國家&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;doneRecipientCountry&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;detail-item full-width&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;地址&lt;/span&gt;&lt;span class=&quot;detail-value&quot; id=&quot;doneRecipientAddress&quot;&gt;—&lt;/span&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;amount-card&quot;&gt;
+                    &lt;div class=&quot;section-title&quot;&gt;匯款費用明細&lt;/div&gt;
+                    &lt;div class=&quot;amount-row&quot;&gt;&lt;span&gt;匯款金額&lt;/span&gt;&lt;span class=&quot;amount-total&quot; id=&quot;doneAmount&quot;&gt;USD —&lt;/span&gt;&lt;/div&gt;
+                    &lt;div class=&quot;fee-grid&quot;&gt;
+                        &lt;div class=&quot;fee-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;匯費&lt;/span&gt;&lt;span class=&quot;amount-value&quot;&gt;依銀行收費標準計收&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;fee-item&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;郵電費&lt;/span&gt;&lt;span class=&quot;amount-value&quot;&gt;依銀行收費標準計收&lt;/span&gt;&lt;/div&gt;
+                        &lt;div class=&quot;fee-item intermediary-fee&quot; id=&quot;doneIntermediaryFee&quot; style=&quot;display:none;&quot;&gt;&lt;span class=&quot;detail-label&quot;&gt;中間銀行費用&lt;/span&gt;&lt;span class=&quot;amount-value&quot;&gt;依實際作業情形計收&lt;/span&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;alert-box full-remit-note&quot; id=&quot;fullRemitNote4&quot; style=&quot;display:none;&quot;&gt;
+                    &lt;strong&gt;全額到匯提醒&lt;/strong&gt;&lt;br&gt;此受款人已約定全額到匯，系統依約定內容辦理。中間銀行可能收取相關費用；實際費用依交易及銀行作業情形而定。受款行仍可能另行收取匯入匯款相關費用。
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;!-- 固定底部 --&gt;
+        &lt;div class=&quot;footer&quot;&gt;
+            &lt;button class=&quot;back-btn&quot; id=&quot;prevBtn&quot; onclick=&quot;previousStep()&quot; disabled&gt;上一步&lt;/button&gt;
+            &lt;button class=&quot;submit-btn&quot; id=&quot;nextBtn&quot; onclick=&quot;nextStep()&quot;&gt;下一步：輸入匯款金額&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 簡易切換邏輯 --&gt;
+    &lt;script&gt;
+        let currentStep = 1;
+        const btnTexts = {
+            1: &quot;下一步：輸入匯款金額&quot;,
+            2: &quot;下一步：交易前確認&quot;,
+            3: &quot;確認並完成&quot;,
+            4: &quot;流程已完成&quot;
+        };
+        const statusTexts = {
+            1: &quot;選取受款人資料&quot;,
+            2: &quot;填寫匯款資料&quot;,
+            3: &quot;交易前確認&quot;,
+            4: &quot;完成送出&quot;
+        };
+
+        function updateProgressUI() {
+            // 更新進度條狀態
+            for(let i=1; i&lt;=4; i++) {
+                const el = document.getElementById(&#x27;step&#x27; + i);
+                el.className = &#x27;step&#x27;;
+                if(i &lt; currentStep) el.classList.add(&#x27;done&#x27;);
+                if(i === currentStep) el.classList.add(&#x27;active&#x27;);
+            }
+            // 更新文字
+            document.getElementById(&#x27;statusText&#x27;).innerText = &quot;目前進度：&quot; + statusTexts[currentStep];
+            document.getElementById(&#x27;stepFraction&#x27;).innerText = currentStep + &quot; / 4&quot;;
+            document.getElementById(&#x27;nextBtn&#x27;).innerText = btnTexts[currentStep];
+            
+            if(currentStep === 4) {
+                document.getElementById(&#x27;nextBtn&#x27;).style.backgroundColor = &quot;#64748b&quot;;
+            } else {
+                document.getElementById(&#x27;nextBtn&#x27;).style.backgroundColor = &quot;#921331&quot;;
+            }
+        }
+
+        const recipients = [
+            { name: &quot;王小明&quot;, account: &quot;123-456-789012&quot;, bank: &quot;BANK OF TAIWAN&quot;, country: &quot;美國&quot;, address: &quot;100 Main Street, New York, NY&quot; },
+            { name: &quot;陳美玲&quot;, account: &quot;987-654-321000&quot;, bank: &quot;CHASE BANK&quot;, country: &quot;美國&quot;, address: &quot;270 Park Avenue, New York, NY&quot;, fullRemit: true },
+            { name: &quot;林志豪&quot;, account: &quot;456-789-123000&quot;, bank: &quot;CITIBANK N.A.&quot;, country: &quot;美國&quot;, address: &quot;388 Greenwich Street, New York, NY&quot; }
+        ];
+        let selectedRecipient = null;
+
+        function selectRecipient(value) {
+            selectedRecipient = value === &quot;&quot; ? null : recipients[Number(value)];
+            const r = selectedRecipient;
+            const previewCard = document.getElementById(&quot;recipientPreview&quot;);
+            if (previewCard) previewCard.style.display = r ? &quot;block&quot; : &quot;none&quot;;
+            if (r) {
+                const preview = {previewRecipientName:r.name, previewRecipientAccount:r.account, previewRecipientBank:r.bank, previewRecipientCountry:r.country, previewRecipientAddress:r.address};
+                Object.entries(preview).forEach(([id,val]) =&gt; { const el=document.getElementById(id); if(el) el.textContent=val; });
+            }
+        }
+        function previousStep() {
+            if (currentStep &gt; 1 &amp;&amp; currentStep &lt;= 4) goToPage(currentStep - 1);
+        }
+
+        function moneyText() {
+            const raw = document.getElementById(&#x27;remitAmount&#x27;).value.trim();
+            if (!raw || Number(raw) &lt;= 0) return &quot;USD —&quot;;
+            return &quot;USD &quot; + Number(raw).toLocaleString(&#x27;en-US&#x27;, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        function updateAmountPreview() {
+            const target = document.getElementById(&#x27;confirmAmount&#x27;);
+            if (target) target.textContent = moneyText();
+        }
+
+        function fillRecipientDetails() {
+            if (!selectedRecipient) return;
+            const r = selectedRecipient;
+            const displayName = r.name + (r.fullRemit ? &quot; (全額到匯)&quot; : &quot;&quot;);
+            const values = {
+                recipientHeading: r.name + &quot;｜&quot; + r.bank + (r.fullRemit ? &quot; (全額到匯)&quot; : &quot;&quot;),
+                recipientName: displayName, recipientAccount: r.account, recipientBank: r.bank,
+                recipientCountry: r.country, recipientAddress: r.address,
+                confirmRecipientName: displayName, confirmRecipientAccount: r.account,
+                confirmRecipientBank: r.bank, confirmRecipientCountry: r.country,
+                confirmRecipientAddress: r.address,
+                doneRecipientName: displayName, doneRecipientAccount: r.account,
+                doneRecipientBank: r.bank, doneRecipientCountry: r.country,
+                doneRecipientAddress: r.address
+            };
+            [&#x27;confirmIntermediaryFee&#x27;, &#x27;doneIntermediaryFee&#x27;].forEach(id =&gt; {
+                const el = document.getElementById(id);
+                if (el) el.style.display = r.fullRemit ? &#x27;flex&#x27; : &#x27;none&#x27;;
+            });
+            [&#x27;fullRemitNote2&#x27;, &#x27;fullRemitNote3&#x27;, &#x27;fullRemitNote4&#x27;].forEach(id =&gt; {
+                const el = document.getElementById(id);
+                if (el) el.style.display = r.fullRemit ? &#x27;block&#x27; : &#x27;none&#x27;;
+            });
+            Object.entries(values).forEach(([id, value]) =&gt; {
+                const el = document.getElementById(id);
+                if (el) el.textContent = value;
+            });
+            const amount = moneyText();
+            [&#x27;confirmAmount&#x27;, &#x27;doneAmount&#x27;].forEach(id =&gt; {
+                const el = document.getElementById(id);
+                if (el) el.textContent = amount;
+            });
+        }
+
+        function goToPage(pageNum) {
+            if (pageNum &gt; 1 &amp;&amp; !selectedRecipient) {
+                alert(&#x27;請先選取一筆受款人資料。&#x27;);
+                return;
+            }
+            if (pageNum &gt;= 3) {
+                const raw = document.getElementById(&#x27;remitAmount&#x27;).value.trim();
+                if (!raw || Number(raw) &lt;= 0) {
+                    alert(&#x27;請輸入大於 0 的匯款金額。&#x27;);
+                    return;
+                }
+            }
+            currentStep = pageNum;
+            fillRecipientDetails();
+            document.querySelectorAll(&#x27;.page-node&#x27;).forEach(node =&gt; node.classList.remove(&#x27;active&#x27;));
+            document.getElementById(&#x27;page&#x27; + pageNum).classList.add(&#x27;active&#x27;);
+            updateProgressUI();
+        }
+
+        function nextStep() {
+            if (currentStep &lt; 4) {
+                goToPage(currentStep + 1);
+            } else {
+                document.getElementById(&#x27;recipientSelect&#x27;).value = &#x27;&#x27;;
+                document.getElementById(&#x27;remitAmount&#x27;).value = &#x27;&#x27;;
+                selectedRecipient = null;
+                goToPage(1);
+            }
+        }
+
+        // 初始化
+        updateProgressUI();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+    </div>
+   </div>
+  </section>
+  <aside aria-label="交易說明" class="info">
+   <section class="info-card">
+    <div class="tags">
+     <span class="tag-cat">外匯匯出匯款</span><span class="platform">網銀</span><span class="platform">APP</span>
+    </div>
+    <h1>外匯匯出匯款-全額到匯</h1>
+    <div class="rating"><span>開發難易度</span><span aria-label="3 顆星，共 5 顆" class="stars"><span class="on">★★★</span><span class="off">★★</span></span></div>
+    <p>客戶須先於臨櫃約定匯款資訊，由行員評估是否符合全額到匯條件；符合條件者，於網銀或 APP 選取已約定的受款人後，清楚查看全額到匯標示、相關費用與注意事項，再進行交易確認。</p>
+    <div><div class="label">功能特色</div>
+     <ul class="features">
+      <li>全額到匯須事先於臨櫃約定，並由行員評估是否符合條件。</li>
+      <li>已約定適用的受款人資料會標示「全額到匯」，方便辨識。</li>
+      <li>在交易流程中提示中間銀行費用及受款行可能收取的匯入匯款費用。</li>
+      <li>交易確認頁呈現受款人資訊、匯款金額與相關費用，供送出前核對。</li>
+      <li>受款人資訊及確認頁資料為唯讀；需新增或修改受款人資料時，應依規定洽分行辦理。</li>
+     </ul>
+    </div>
+    <div class="benefit"><strong>效益｜</strong>讓使用者在匯款前理解全額到匯的適用條件與費用構成，降低對款項到帳金額及額外費用的不確定感。</div>
+   </section>
+   <section class="info-card flow">
+    <h2>步驟說明</h2>
+    <div class="tags flow-tags"><span class="tag-cat">外匯匯出匯款</span><span class="platform">網銀</span><span class="platform">APP</span></div>
+    <ol class="flow-list" id="flow-list">
+     <li><button class="flow-btn" type="button" data-step="1" aria-current="step"><span class="no">1</span><span><strong>選取受款人</strong>從已約定的受款人資料中選取；全額到匯適用者會有明確標示。</span></button></li>
+     <li><button class="flow-btn" type="button" data-step="2"><span class="no">2</span><span><strong>輸入匯款金額</strong>確認已帶入的受款人資料，輸入本次匯款金額並閱讀全額到匯提醒。</span></button></li>
+     <li><button class="flow-btn" type="button" data-step="3"><span class="no">3</span><span><strong>交易前確認</strong>核對受款人、匯款金額、匯費、郵電費及適用的中間銀行費用。</span></button></li>
+     <li><button class="flow-btn" type="button" data-step="4"><span class="no">4</span><span><strong>完成資料確認</strong>查看確認完成的示意畫面；本原型僅示範資料確認，不代表實際匯款已送出。</span></button></li>
+    </ol>
+    <button class="reset" id="reset" type="button">重設原型</button>
+    <p class="note">提醒：全額到匯須事先臨櫃約定並經行員評估。中間銀行可能收取相關費用，受款行仍可能另行收取匯入匯款相關費用；實際費用依交易及銀行作業情形而定。本頁為互動示意原型，實際辦理條件與收費依本行規定。</p>
+   </section>
+  </aside>
+ </main>
+ <script>
+ const frame = document.getElementById('transactionFrame');
+
+ // 桌機版依右側說明區實際高度等比例縮放手機 APP，讓兩欄上下長度一致。
+ const infoPanel = document.querySelector('.info');
+ const phoneArea = document.querySelector('.phone-area');
+ const phoneShell = document.querySelector('.phone');
+ function syncPhoneHeight() {
+   if (!infoPanel || !phoneArea || !phoneShell) return;
+   if (window.matchMedia('(max-width: 900px)').matches) {
+     phoneArea.style.removeProperty('--phone-display-height');
+     phoneArea.style.removeProperty('--phone-scale');
+     phoneArea.style.height = 'auto';
+     phoneShell.style.removeProperty('--phone-scale');
+     return;
+   }
+   const targetHeight = Math.ceil(infoPanel.getBoundingClientRect().height);
+   const scale = Math.max(0.62, Math.min(1.1, targetHeight / 844));
+   phoneArea.style.setProperty('--phone-display-height', targetHeight + 'px');
+   phoneArea.style.setProperty('--phone-scale', scale);
+   phoneShell.style.setProperty('--phone-scale', scale);
+ }
+ syncPhoneHeight();
+ if ('ResizeObserver' in window) {
+   new ResizeObserver(syncPhoneHeight).observe(infoPanel);
+ } else {
+   window.addEventListener('resize', syncPhoneHeight);
+ }
+ window.addEventListener('resize', syncPhoneHeight);
+
+ const flowButtons = [...document.querySelectorAll('[data-step]')];
+ function setActiveStep(n) {
+   flowButtons.forEach(b => {
+     if (Number(b.dataset.step) === n) b.setAttribute('aria-current','step');
+     else b.removeAttribute('aria-current');
+   });
+ }
+ flowButtons.forEach(b => b.addEventListener('click', () => {
+   const n = Number(b.dataset.step);
+   try {
+     frame.contentWindow.goToPage(n);
+     setTimeout(() => {
+       const status = frame.contentDocument && frame.contentDocument.getElementById('stepFraction');
+       if (status) setActiveStep(Number(status.textContent.split('/')[0].trim()));
+     }, 80);
+   } catch(e) { /* 交易畫面仍可直接操作 */ }
+ }));
+ document.getElementById('reset').addEventListener('click', () => {
+   const original = frame.getAttribute('srcdoc');
+   frame.setAttribute('srcdoc', original);
+   setActiveStep(1);
+ });
+ setInterval(() => {
+   try {
+     const status = frame.contentDocument.getElementById('stepFraction');
+     if(status) setActiveStep(Number(status.textContent.split('/')[0].trim()));
+   } catch(e) {}
+ }, 500);
+ </script>
+</body>
+</html>

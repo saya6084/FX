@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>外匯定存比較下單｜互動原型</title><style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+    --warning: #d32f2f;
+    --warning-bg: #fff8e8;
+    --warning-border: #ebdeba;
+    --hint-color: #d8a032;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* ---------- 點子提示標籤設計 ---------- */
+  .ideation-tag {
+      display: inline-flex;
+      align-items: center;
+      background: var(--hint-color);
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-bottom: 6px;
+      box-shadow: 0 0 0 rgba(216, 160, 50, 0.7);
+      animation: pulse-hint 2s infinite;
+  }
+  @keyframes pulse-hint {
+      0% { box-shadow: 0 0 0 0 rgba(216, 160, 50, 0.7); }
+      70% { box-shadow: 0 0 0 5px rgba(216, 160, 50, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(216, 160, 50, 0); }
+  }
+
+  /* ---------- P3: 跨頁拼湊樣式 (外幣定存比較) ---------- */
+  .section-title { font-size: 15px; font-weight: bold; margin: 16px 0 12px; color: var(--ink); }
+  .filter-box { background: white; padding: 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 16px; }
+  .filter-row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .filter-row select { flex:1; padding:10px; border-radius:8px; border:1px solid #ddd; background: white; font-size: 14px;}
+  .filter-row input { width:100%; padding:10px; border-radius:8px; border:1px solid #ddd; background:#f0f0f0; font-size: 14px;}
+
+  .project-card { background: white; border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .project-card.selected { border: 2px solid var(--accent); background: var(--accent-soft); }
+  .checkbox { width: 22px; height: 22px; accent-color: var(--accent); pointer-events: none; }
+  .project-title { font-weight: bold; font-size: 15px; color: var(--accent-dark); }
+  .project-rate { font-size: 20px; font-weight: bold; color: var(--warning); margin: 4px 0; }
+  .tag { background: #e0e0e0; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-right: 4px; color: var(--text);}
+  
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .compare-card { background: white; border: 1px solid var(--line); border-radius: 12px; padding: 16px; text-align: center; }
+  
+  .alert-box { background: var(--warning-bg); border: 1px solid var(--warning-border); padding: 12px 16px; border-radius: 8px; font-size: 13px; color: #705d35; display: flex; align-items: flex-start; gap: 8px; margin-bottom: 20px; }
+  
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; box-sizing: border-box; background: white; }
+
+  /* ---------- 其他共用 ---------- */
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+
+body{font-family:"Microsoft JhengHei","微軟正黑體","PingFang TC","Heiti TC",Arial,sans-serif;color:#262626}.handset{width:390px;height:844px;padding:12px;background:#0f172a;border-radius:48px;box-shadow:0 24px 60px #0f172a38;flex:none}.inner{height:100%;border-radius:38px;overflow:hidden;position:relative;background:#f2f2f2}.app{position:absolute;inset:0;display:flex;flex-direction:column;font-size:16px;line-height:1.6}.app *{box-sizing:border-box}.app button,.app input,.app select{font:inherit}.app button{cursor:pointer}.top{background:linear-gradient(110deg,#961235,#d62e51);color:white;flex:none}.status{height:40px;padding:10px 22px;display:flex;justify-content:space-between;font-size:12px;font-weight:bold}.head{display:flex;align-items:center;min-height:60px;padding:8px 10px;gap:4px}.head h2{font-size:18px;text-align:center;flex:1;margin:0}.nav{width:40px;min-height:44px;color:inherit;border:0;background:transparent;font-size:25px}.app-body{padding:20px 16px;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}.app h3{font-size:18px;margin:0 0 8px;font-weight:600}.sub{font-size:14px;color:#666;margin:0 0 18px}.box{background:white;border:1px solid #ddd;border-radius:10px;padding:16px;margin-bottom:16px}.fields{display:grid;grid-template-columns:1fr 1.25fr;gap:12px}.app label.caption{display:block;color:#555;font-weight:bold;font-size:15px;margin-bottom:8px}.app select,.app input[type=number]{width:100%;height:45px;border:1px solid #ccc;border-radius:9px;padding:8px 10px;background:#fff;color:#222;min-width:0}.result-head{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin-bottom:12px;color:#666}.result-head b{color:#a00039}.project{position:relative;display:block;cursor:pointer;padding:15px;background:#fff;border:1px solid #ddd;border-radius:10px;margin-bottom:12px}.project:has(input:checked){border-color:#c71b55;box-shadow:inset 0 0 0 1px #c71b55;background:#fff7fa}.proj-top{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px}.project input{width:22px;height:22px;accent-color:#c71b55;margin:0}.apr{color:#a00039;font-size:27px;font-weight:600;margin:6px 0 4px 32px}.apr small{font-size:12px;font-weight:400;color:#666}.meta{margin-left:32px;display:flex;gap:8px;font-size:12px;color:#666}.actions{padding:12px 18px 24px;background:#fff;border-top:1px solid #ddd;display:flex;gap:12px;flex:none}.app .action{flex:1;min-height:48px;padding:10px 8px;border:0;border-radius:9px;background:#e5e5e5;color:#222;font-weight:bold;font-size:17px}.app .primary{background:#a00039;color:#fff}.app button:disabled{background:#bbb;color:#fff;cursor:default}.app .outline{background:white;border:1px solid #a00039;color:#a00039}.hint{font-size:12px;color:#777;line-height:1.65;margin:8px 0 0}.amount-field{display:flex;align-items:center;gap:10px}.amount-field input{flex:1}.amount-field span{font-weight:600;color:#a00039}.error{color:#a00039;font-size:13px;margin:8px 0 0}.compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:18px}.compare{padding:14px 10px;margin:0;text-align:center}.compare h3{font-size:17px}.rate{font-size:13px;color:#666}.interest{display:block;font-size:21px;color:#a00039;margin:12px 0 0;font-weight:600}.compare .action{width:100%;font-size:15px;margin-top:14px;min-height:44px}.compare small{font-size:12px;color:#666}.total{font-size:12px;color:#555;border-top:1px solid #eee;padding-top:8px;margin-top:8px}.risk{padding:14px;border:1px solid #ebdeba;border-radius:10px;background:#fff8e8;color:#705d35;margin-bottom:16px}.risk h3{font-size:16px}.risk label{font-size:13px;display:block;margin:10px 0 6px}.risk p{font-size:13px;margin:10px 0}.risk-row{display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid #ebdeba;padding:7px 0;gap:8px}.risk-row:last-child{border:0}.summary{margin:0}.summary>div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee;padding:13px 0;font-size:15px}.summary>div:last-child{border:0}.summary dt{color:#666}.summary dd{margin:0;font-weight:600;text-align:right}.accent{color:#a00039}.success{text-align:center;padding:10px 0 24px}.check{width:58px;height:58px;display:grid;place-items:center;margin:0 auto 14px;border-radius:50%;background:#e8f3eb;color:#30754a;font-size:30px}.success h3{font-size:23px}.success p{font-size:14px;color:#666;margin:0}.phone-foot{text-align:center;font-size:11px;color:#777;margin:16px 0 0}.info p{line-height:1.75}.stepstrip{display:flex;justify-content:center;gap:16px;font-size:12px;color:#f9dce5;padding:0 10px 12px}.stepstrip b{color:#fff;border-bottom:2px solid white}.info .note{font-size:12px}.flow-list{gap:8px}
+@media(max-width:440px){.handset{width:100%;height:760px;padding:6px;border-radius:36px}.inner{border-radius:30px}.info{min-width:0}.topbar-row{padding-left:16px;padding-right:16px}.stage{padding:16px;gap:24px}.app{font-size:15px}.compare-grid{gap:8px}.interest{font-size:19px}.meta{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.info{font-family:'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC',system-ui,-apple-system,'Segoe UI',sans-serif;color:#0f172a}
+.info{font-family:'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink)}
+.info{ flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+.info .info-card{ background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.info .tags{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.info .tag-cat{ font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+.info .platform{ font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+.info h1{ margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+.info p{ margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+.info .rating{ display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.info .stars{ font-size: 17px; letter-spacing: 1px; }
+.info .stars .on{ color: var(--star); }
+.info .stars .off{ color: var(--star-off); }
+.info .label{ font-size: 13px; font-weight: 700; color: var(--faint); }
+.info .features{ margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.info .features li{ font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+.info .features li::before{ content: "✓"; color: var(--faint); font-weight: 900; }
+.info .benefit{ font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+.info .benefit strong{ color: var(--gold-strong); }
+.info .flow h2{ margin: 0; font-size: 17px; font-weight: 900; }
+.info .flow-list{ margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.info .flow-btn{ width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+.info .flow-btn:hover{ border-color: var(--ink); }
+.info .flow-btn .no{ width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+.info .flow-btn strong{ display: block; color: var(--ink); font-size: 15px; }
+.info .flow-btn[aria-current="step"]{ border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.info .flow-btn[aria-current="step"] .no{ background: var(--accent); color: #fff; }
+.info .note{ font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+.info .reset{ align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+.info .reset:hover{ border-color: var(--ink); }
+.info .note{font-size:12px;color:var(--faint);line-height:1.7;margin:0}
+.topbar{font-family:'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink)}
+</style></head><body>
+<div class="topbar">
+  <div class="topbar-row">
+    <a class="back" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+    </a>
+    <span class="crumb">功能原型｜<strong>外匯定存比較下單</strong></span>
+    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+  </div>
+</div>
+<main class="stage"><div class="handset" aria-label="手機操作畫面"><div class="inner"><div class="app" id="app"></div></div></div><aside class="info" aria-label="功能說明"><section class="info-card"><div class="tags"><span class="tag-cat">外匯定存</span><span class="platform">APP</span><span class="platform">網銀</span></div><h1>外匯定存比較下單</h1><div class="rating" aria-label="開發難易度 4 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★★</span><span class="off">★</span></span></div><p>依資金可運用的期間篩選專案，以相同本金比較各方案收益與匯率風險，再將選定條件帶入下單。</p><div><div class="label">功能特色</div><ul class="features"><li>依天期上限篩選，勾選多個專案一起比較</li><li>共用本金即時試算，清楚呈現各天期收益</li><li>依換匯成本提示各方案的盈虧平衡匯率</li><li>選定方案後，自動帶入金額、天期與利率</li></ul></div><div class="benefit"><strong>效益｜</strong>從篩選、比較到承作，延續每一步的選擇，減少重複填寫。</div></section><section class="info-card flow"><h2>操作流程</h2><ol class="flow-list" id="flow-list"></ol><button class="reset" id="reset" type="button">重設</button><p class="note">專案條件參考官方公告資訊，試算結果僅為示意數字，實際承作條件與收益依銀行公告及交易時資訊為準。</p></section></aside></main><script>
+const PROJECTS=[{id:'m1',months:1,name:'1 個月',rate:3.728},{id:'m3',months:3,name:'3 個月',rate:3.968},{id:'m6',months:6,name:'6 個月',rate:4.028},{id:'m12',months:12,name:'1 年',rate:4.128}];
+const STEPS=[['list','專案總覽','篩選天期，勾選欲比較的專案'],['compare','收益試算','調整本金，比較收益與匯率條件'],['order','確認下單','帶入選定參數，確認送出']];
+const fresh=()=>({page:'list',limit:'all',selected:[],principal:10000,fx:32,order:null});let S=fresh();
+const app=document.getElementById('app');const money=n=>Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const chosen=()=>PROJECTS.filter(p=>S.selected.includes(p.id));const visible=()=>PROJECTS.filter(p=>S.limit==='all'||p.months<=Number(S.limit));
+const valid=()=>Number.isFinite(S.principal)&&S.principal>=3000;
+const validFx=()=>Number.isFinite(S.fx)&&S.fx>0;
+const interest=p=>S.principal*p.rate/100*p.months/12;
+const breakEven=p=>S.fx/(1+p.rate/100*p.months/12);
+function header(title,back){return '<div class="top"><div class="head">'+(back?'<button type="button" class="nav" data-go="'+back+'" aria-label="上一步">‹</button>':'<span class="nav"></span>')+'<h2>'+title+'</h2><span class="nav"></span></div>'+(S.page==='success'?'':'<div class="stepstrip">'+STEPS.map((x,i)=>'<'+(S.page===x[0]?'b':'span')+'>'+(i+1)+' '+x[1]+'</'+(S.page===x[0]?'b':'span')+'>').join('')+'</div>')+'</div>'}
+function actions(html){return '<div class="actions">'+html+'</div>'}function btn(text,attrs,cls='primary'){return '<button type="button" class="action '+cls+'" '+attrs+'>'+text+'</button>'}
+function list(){return header('外匯定存比較下單')+'<div class="app-body"><div class="box fields"><div><label class="caption" for="currency">承作幣別</label><select id="currency"><option>美金 USD</option></select></div><div><label class="caption" for="tenor">天期篩選</label><select id="tenor">'+[['all','全部天期'],['3','3 個月內'],['6','6 個月內'],['12','1 年內']].map(x=>'<option value="'+x[0]+'" '+(S.limit===x[0]?'selected':'')+'>'+x[1]+'</option>').join('')+'</select></div></div><div class="result-head"><span>符合條件 '+visible().length+' 項專案</span><b>已選 '+S.selected.length+' 項</b></div>'+visible().map(p=>'<label class="project"><span class="proj-top"><input type="checkbox" data-project="'+p.id+'" '+(S.selected.includes(p.id)?'checked':'')+'><span>美元定存・'+p.name+'期</span></span><div class="apr">'+p.rate.toFixed(3)+'% <small>固定年利率</small></div><div class="meta"><span>門檻 USD 3,000</span></div></label>').join('')+'<p class="hint">「內」包含該天期。切換篩選時，超出範圍的已選專案會取消勾選。</p></div>'+actions(btn('開始比較已選專案（'+S.selected.length+'）','data-go="compare" '+(!S.selected.length?'disabled':'')))}
+function cards(){return chosen().map(p=>'<article class="box compare"><h3>'+p.name+'期</h3><div class="rate">固定年利率 '+p.rate.toFixed(3)+'%</div><strong class="interest">'+(valid()?'+'+money(interest(p)):'—')+'</strong><small>預估利息 USD</small><div class="total">到期本息 USD<br><b>'+(valid()?money(S.principal+interest(p)):'—')+'</b></div>'+btn('以此承作','data-order="'+p.id+'" '+(!valid()?'disabled':''),'outline')+'</article>').join('')}
+function risks(){return chosen().map(p=>'<div class="risk-row"><span>'+p.name+'期</span><b>'+(validFx()?breakEven(p).toFixed(4):'—')+'</b></div>').join('')}
+function compare(){return header('外匯定存比較下單','list')+'<div class="app-body"><div class="box"><label class="caption" for="principal">試算本金</label><div class="amount-field"><span>USD</span><input id="principal" type="number" min="3000" step="any" value="'+(Number.isFinite(S.principal)?S.principal:'')+'" aria-describedby="principal-error"></div><p id="principal-error" class="error" '+(valid()?'hidden':'')+'>請輸入至少 USD 3,000 的本金。</p><p class="hint">相同本金套用至所有已選方案</p></div><h3>預估到期收益</h3><p class="sub">各方案天期不同，以下為各自到期收益。</p><div class="compare-grid" id="cards">'+cards()+'</div><section class="risk"><h3>盈虧平衡匯率</h3><label for="fx">買入美元的換匯成本（TWD／USD）</label><input id="fx" type="number" min="0.0001" step="0.0001" value="'+(Number.isFinite(S.fx)?S.fx:'')+'" aria-describedby="fx-error"><p class="error" id="fx-error" '+(validFx()?'hidden':'')+'>請輸入大於 0 的換匯成本。</p><p>若以新臺幣換匯承作，到期銀行買入美元的匯率需達以下數值，換回新臺幣才可收回原始本金。</p><div id="risks">'+risks()+'</div><p class="hint">以換匯成本 ÷（1 ＋ 年利率 × 月數 ÷ 12）估算，未計稅費與其他成本。已有美元者可僅參考利息收益。</p></section><p class="hint">利息為稅前簡化試算；實際計息依銀行承作條件為準。</p></div>'+actions(btn('返回調整專案','data-go="list"',''))}
+function summary(p){return '<dl class="summary">'+[['承作幣別','美金 USD'],['承作金額','USD '+money(S.principal)],['承作天期',p.name],['固定年利率',p.rate.toFixed(3)+'%'],['預估利息','USD '+money(interest(p))],['到期本息','USD '+money(S.principal+interest(p))]].map(x=>'<div><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>').join('')+'</dl>'}
+function order(){const p=PROJECTS.find(p=>p.id===S.order);return header('外匯定存比較下單','compare')+'<div class="app-body"><h3>轉存外匯定存</h3><p class="sub">已帶入您選定的方案與試算本金，請確認承作條件。</p><div class="box">'+summary(p)+'</div><p class="hint">預估利息未扣稅費。</p></div>'+actions(btn('返回修改','data-go="compare"','')+btn('確認送出','data-submit'))}
+function success(){const p=PROJECTS.find(p=>p.id===S.order);return header('外匯定存比較下單')+'<div class="app-body"><div class="success" role="status"><div class="check">✓</div><h3>交易完成</h3></div><div class="box">'+summary(p)+'</div></div>'+actions(btn('重新試算','data-reset'))}
+function render(){app.innerHTML=({list,compare,order,success}[S.page])();document.getElementById('flow-list').innerHTML=STEPS.map((x,i)=>'<li><button type="button" class="flow-btn" data-jump="'+x[0]+'" '+((S.page===x[0]||(S.page==='success'&&x[0]==='order'))?'aria-current="step"':'')+'><span class="no">'+(i+1)+'</span><span><strong>'+x[1]+'</strong>'+x[2]+'</span></button></li>').join('')}
+function navigate(page){if(page==='compare'&&!S.selected.length){alert('請先勾選欲比較的專案。');return}if(page==='order'&&(!S.order||!valid())){alert('請先在比較頁選擇「以此承作」。');return}S.page=page;render()}
+document.addEventListener('change',e=>{if(e.target.id==='tenor'){S.limit=e.target.value;const ids=visible().map(p=>p.id);S.selected=S.selected.filter(id=>ids.includes(id));S.order=null;render()}if(e.target.matches('[data-project]')){const id=e.target.dataset.project;S.selected=e.target.checked?[...S.selected,id]:S.selected.filter(x=>x!==id);S.order=null;const top=app.querySelector('.app-body').scrollTop;render();app.querySelector('.app-body').scrollTop=top}});
+document.addEventListener('input',e=>{if(e.target.id==='principal'){S.principal=e.target.valueAsNumber;S.order=null;document.getElementById('cards').innerHTML=cards();document.getElementById('principal-error').hidden=valid()}if(e.target.id==='fx'){S.fx=e.target.valueAsNumber;document.getElementById('risks').innerHTML=risks();document.getElementById('fx-error').hidden=validFx()}});
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;if(b.dataset.go)navigate(b.dataset.go);if(b.dataset.jump)navigate(b.dataset.jump);if(b.dataset.order&&valid()&&S.selected.includes(b.dataset.order)){S.order=b.dataset.order;navigate('order')}if(b.hasAttribute('data-submit')&&S.order&&valid()){S.page='success';render()}if(b.id==='reset'||b.hasAttribute('data-reset')){S=fresh();render()}});
+render();
+</script></body></html>

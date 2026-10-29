@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>專屬外幣桌面 Widget｜互動原型</title>
+<style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* 底部面板與驗證 */
+  .sheet-wrap { position: absolute; inset: 0; background: rgba(2,6,23,.55); display: flex; flex-direction: column; justify-content: flex-end; z-index: 5; }
+  .sheet { background: #fff; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: up .25s cubic-bezier(.2,.8,.2,1); }
+  .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line-strong); align-self: center; }
+  .sheet h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .verify { align-items: center; text-align: center; padding: 44px 20px 64px; }
+  .verify .face { color: var(--accent); animation: pulse 1s ease-in-out infinite; }
+  @keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.94); } }
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+  /* ---------- Widget 原型專用 ---------- */
+  .screen.dark { background: #0f172a; }
+  .home { flex: 1; padding: 64px 22px 28px; display: flex; flex-direction: column; gap: 26px; overflow-y: auto; }
+  .widget { background: #fff; border-radius: 24px; padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.35); }
+  .w-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .w-pair { display: flex; align-items: center; gap: 8px; }
+  .w-pair b { font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+  .w-alert { font-size: 11px; font-weight: 700; color: var(--gold-strong); background: var(--gold-bg); border: 1px solid var(--gold-line); padding: 1px 8px; border-radius: 999px; }
+  .w-more { width: 44px; height: 44px; margin: -10px -10px -10px 0; border: none; background: transparent; border-radius: 12px; color: var(--muted); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .w-more:hover { background: var(--panel); }
+  .w-mid { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+  .w-rate { font-size: 40px; font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+  .w-sub { font-size: 12px; color: var(--muted); }
+  .w-low { font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .w-btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .w-buy { height: 48px; border: none; border-radius: 14px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; }
+  .w-buy:hover { background: var(--accent-dark); }
+  .w-done { font-size: 12px; color: var(--gold-text); background: var(--gold-bg); border-radius: 10px; padding: 8px 10px; display: flex; align-items: center; gap: 6px; }
+  .apps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 22px; column-gap: 12px; }
+  .app { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .app span:first-child { width: 60px; height: 60px; border-radius: 16px; background: #334155; }
+  .app span:last-child { font-size: 11px; color: #cbd5e1; }
+  .app.bank span:first-child { background: var(--accent); }
+  .home-hint { margin: auto 0 0; text-align: center; font-size: 12px; color: #94a3b8; }
+
+  .lock { flex: 1; padding: 72px 24px 28px; display: flex; flex-direction: column; align-items: center; gap: 18px; color: #fff; }
+  .lock-date { font-size: 16px; color: #e2e8f0; }
+  .lock-time { font-size: 84px; font-weight: 300; line-height: 1; letter-spacing: -.02em; }
+  .lock-widgets { display: flex; gap: 12px; }
+  .lock-w { width: 158px; border-radius: 20px; background: rgba(255,255,255,.14); padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+  .lock-w b { font-size: 22px; font-weight: 900; }
+  .lock-w span { font-size: 12px; color: #e2e8f0; }
+  .lock-note { margin-top: auto; text-align: center; font-size: 12px; color: #94a3b8; line-height: 1.6; }
+
+  .edit { flex: 1; background: #f8fafc; padding: 56px 20px 28px; display: flex; flex-direction: column; gap: 18px; overflow-y: auto; }
+  .edit-head { display: flex; align-items: center; justify-content: space-between; }
+  .edit-head h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .small-btn { height: 44px; padding: 0 16px; border: none; border-radius: 12px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; }
+  .box { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .box .t { display: flex; flex-direction: column; gap: 2px; }
+  .box .t strong { font-size: 15px; }
+  .box .t span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .amt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .amt-opt { height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; border: 1px solid var(--line-strong); background: #fff; color: var(--text); }
+  .amt-opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .summary { background: #f8fafc; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; color: var(--muted); }
+  .row strong { color: var(--ink); text-align: right; }
+  .fine { font-size: 12px; color: var(--faint); line-height: 1.6; margin: 0; }
+  .switch { width: 52px; height: 32px; flex: none; border: none; border-radius: 999px; background: #94a3b8; position: relative; cursor: pointer; transition: background .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .switch[aria-checked="true"] { background: var(--accent); }
+  .switch[aria-checked="true"]::after { left: 23px; }
+  .done-ic { width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; align-self: center; animation: pop .28s cubic-bezier(.2,.9,.3,1.3) both; }
+  @keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .center { text-align: center; align-self: center; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-row">
+    <a class="back" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+    </a>
+    <span class="crumb">功能原型｜<strong>專屬外幣桌面 Widget</strong></span>
+    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="phone" aria-label="手機原型畫面">
+    <div class="screen dark" id="screen"></div>
+  </div>
+
+  <aside class="info" aria-label="功能說明">
+    <div class="info-card">
+      <div class="tags"><span class="tag-cat">旅遊備鈔</span><span class="platform">APP</span></div>
+      <h1>專屬外幣桌面 Widget</h1>
+      <div class="rating" aria-label="開發難易度 3 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★</span><span class="off">★★</span></span></div>
+      <p>極簡手機桌面小工具，顯示當前匯率與自訂快捷鍵，點擊驗證即可成交。</p>
+      <div>
+        <div class="label">功能特色</div>
+        <ul class="features">
+          <li>桌面常駐匯率、走勢與「接近低點」提示</li>
+          <li>兩組自訂快捷金額，Face ID 驗證即成交</li>
+          <li>鎖定畫面只看不買，避免誤觸</li>
+        </ul>
+      </div>
+      <div class="benefit"><strong>效益｜</strong>看到好匯率當下就能買，免開 App 登入，縮短從「看到」到「成交」的距離。</div>
+    </div>
+
+    <div class="info-card flow">
+      <h2>操作流程</h2>
+      <ol class="flow-list" id="flow-list"></ol>
+      <button class="reset" type="button" id="reset">重設原型</button>
+      <p class="note">原型內的匯率、提醒門檻與帳號皆為示意，交易上限依[本行規定]。可直接點手機畫面操作，也可用上方步驟跳到指定畫面。</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+  const RATE = 0.2091, AVG = 0.2105, ALERT = 0.2080;
+  const OPTIONS = [5000, 10000, 30000, 50000];
+  const STEPS = [
+    { id: 'home', title: '桌面 Widget', desc: '常駐匯率、走勢與快捷鍵' },
+    { id: 'confirm', title: '確認買入', desc: '點快捷鍵跳出確認面板' },
+    { id: 'done', title: 'Face ID 成交', desc: '驗證後直接成交，免開 App' },
+    { id: 'edit', title: '編輯 Widget', desc: '自訂快捷金額與低點提醒' },
+    { id: 'lock', title: '鎖定畫面', desc: '只顯示匯率，不放快捷鍵' }
+  ];
+  const ICON = {
+    more: '<circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/>',
+    down: '<path d="M12 5v14M5 12l7 7 7-7"/>',
+    bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    face: '<path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.6 1.2 4.4 1.2 6 0"/>',
+    lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    yen: '<circle cx="12" cy="12" r="9"/><path d="M8.5 7.5 12 12l3.5-4.5M8.5 12.5h7M8.5 15.5h7M12 12v5"/>'
+  };
+  const svg = (n, size = 20, sw = 2) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
+  const fmt = n => Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 });
+
+  const fresh = () => ({ screen: 'home', sheet: null, amount: 10000, shortcuts: [10000, 30000], alertOn: true, lastBuy: null });
+  let S = fresh();
+  let timer = null;
+
+  function widgetHTML() {
+    return `<section class="widget" aria-label="外幣匯率小工具">
+      <div class="w-top">
+        <div class="w-pair"><b>JPY / TWD</b>${S.alertOn ? `<span class="w-alert">低於 ${ALERT.toFixed(4)} 提醒</span>` : ''}</div>
+        <button class="w-more" type="button" data-go="edit" aria-label="編輯小工具">${svg('more')}</button>
+      </div>
+      <div class="w-mid">
+        <div><div class="w-rate">${RATE.toFixed(4)}</div><div class="w-sub">即期賣出參考匯率</div></div>
+        <span class="w-low">${svg('down', 12, 3)}接近 30 日低點</span>
+      </div>
+      <svg viewBox="0 0 310 44" width="100%" height="44" aria-hidden="true" style="display: block"><path d="M2 10 L33 14 L64 8 L95 17 L126 19 L157 15 L188 25 L219 22 L250 31 L281 28 L306 36" fill="none" stroke="#9a0036" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="306" cy="36" r="4" fill="#9a0036"/></svg>
+      <div class="w-btns">${S.shortcuts.map(a => `<button class="w-buy" type="button" data-buy="${a}">${svg('bolt', 16, 2.4)}買 ¥${fmt(a)}</button>`).join('')}</div>
+      ${S.lastBuy ? `<div class="w-done">${svg('check', 14, 2.6)}今日已買入 ¥${fmt(S.lastBuy)}・成交匯率 ${RATE.toFixed(4)}</div>` : ''}
+    </section>`;
+  }
+
+  function viewHome() {
+    const apps = ['相機', '行事曆', '地圖', '天氣', '備忘錄', '相簿', '設定'];
+    return `<div class="home">${widgetHTML()}
+      <div class="apps" aria-hidden="true">${apps.map(a => `<div class="app"><span></span><span>${a}</span></div>`).join('')}<div class="app bank"><span></span><span>本行 App</span></div></div>
+      <p class="home-hint">點 Widget 上的快捷鍵即可買入；右上「⋯」可編輯 Widget</p></div>`;
+  }
+
+  function viewLock() {
+    return `<div class="lock">
+      <span class="lock-date">10月27日 星期二</span>
+      <span class="lock-time">9:41</span>
+      <div class="lock-widgets">
+        <div class="lock-w"><span>JPY 即期賣出</span><b>${RATE.toFixed(4)}</b><span>接近 30 日低點 ↓</span></div>
+        <div class="lock-w"><span>低點提醒</span><b>${S.alertOn ? '已開啟' : '已關閉'}</b><span>門檻 ${ALERT.toFixed(4)}</span></div>
+      </div>
+      <p class="lock-note">${svg('lock', 14)} 鎖定時只顯示匯率，不提供快捷買入，<br>避免誤觸或他人操作。解鎖後回到桌面即可買入。</p>
+      <button class="btn btn-primary" type="button" data-go="home" style="width: 100%">解鎖回到桌面</button>
+    </div>`;
+  }
+
+  function viewEdit() {
+    return `<div class="edit">
+      <div class="edit-head"><h3>編輯外幣 Widget</h3><button class="small-btn" type="button" data-go="home">完成</button></div>
+      <div class="box"><div class="t"><span>顯示幣別</span><strong>日圓 JPY</strong></div><span style="font-size: 14px; font-weight: 700; color: var(--muted)">更換 ›</span></div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline"><strong style="font-size: 15px">快捷買入金額</strong><span class="fine">最多選 2 個，已選 ${S.shortcuts.length}</span></div>
+        <div class="amt-grid" role="group" aria-label="快捷買入金額">${OPTIONS.map(a => `<button class="amt-opt" type="button" data-opt="${a}" aria-pressed="${S.shortcuts.includes(a)}">¥${fmt(a)}</button>`).join('')}</div>
+      </div>
+      <div class="box"><div class="t"><strong>低點提醒</strong><span>匯率低於 ${ALERT.toFixed(4)} 時，Widget 標示並推播</span></div>
+        <button class="switch" type="button" role="switch" data-action="alert" aria-checked="${S.alertOn}" aria-label="低點提醒"></button></div>
+      <div class="box"><div class="t"><strong>安全設定</strong><span>每筆皆須 Face ID 驗證；單筆與單日上限依[本行規定]。手機鎖定時 Widget 僅顯示匯率，隱藏快捷鍵。</span></div></div>
+    </div>`;
+  }
+
+  function sheetHTML() {
+    if (!S.sheet) return '';
+    const twd = fmt(S.amount * RATE);
+    if (S.sheet === 'confirm') return `<div class="sheet-wrap"><div class="sheet" role="dialog" aria-modal="true" aria-label="確認買入">
+      <span class="grab"></span>
+      <div><span class="fine" style="font-weight: 700">從桌面 Widget 快速買入</span><h3>買入 ¥${fmt(S.amount)}</h3></div>
+      <div class="summary">
+        <div class="row"><span>參考匯率</span><strong>${RATE.toFixed(4)}</strong></div>
+        <div class="row"><span>預估扣款</span><strong>TWD ${twd}</strong></div>
+        <div class="row"><span>扣款帳戶</span><strong>台幣活存 •• [末四碼]</strong></div>
+        <div class="row"><span>存入帳戶</span><strong>日圓活存 •• [末四碼]</strong></div>
+      </div>
+      <p class="fine">實際成交匯率以驗證完成當下之牌告為準。</p>
+      <button class="btn btn-primary" type="button" data-action="confirm">${svg('face', 22)}以 Face ID 驗證並買入</button>
+      <button class="btn btn-ghost" type="button" data-action="cancel">取消</button></div></div>`;
+    if (S.sheet === 'verify') return `<div class="sheet-wrap"><div class="sheet verify" role="status" aria-live="polite"><span class="face">${svg('face', 72, 1.6)}</span><h3>Face ID 驗證中…</h3><span class="fine">免開啟 App，驗證通過即送出交易</span></div></div>`;
+    if (S.sheet === 'done') return `<div class="sheet-wrap"><div class="sheet" role="dialog" aria-modal="true" aria-label="買入成功" style="padding-top: 32px">
+      <span class="done-ic">${svg('check', 36, 3)}</span>
+      <h3 class="center">已買入 ¥${fmt(S.amount)}</h3>
+      <span class="fine center" style="font-size: 14px">成交匯率 ${RATE.toFixed(4)}・扣款 TWD ${twd}</span>
+      <button class="btn btn-primary" type="button" data-action="finish">完成，回到桌面</button>
+      <button class="btn btn-ghost" type="button" data-action="finish">查看交易明細</button></div></div>`;
+    return '';
+  }
+
+  const screenEl = document.getElementById('screen');
+  function current() { return S.sheet === 'confirm' ? 'confirm' : (S.sheet === 'verify' || S.sheet === 'done') ? 'done' : S.screen; }
+  function render() {
+    const view = S.screen === 'edit' ? viewEdit() : S.screen === 'lock' ? viewLock() : viewHome();
+    screenEl.innerHTML = view + sheetHTML() + '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
+    const cur = current();
+    document.getElementById('flow-list').innerHTML = STEPS.map((s, i) => `<li><button class="flow-btn" type="button" data-jump="${s.id}" ${cur === s.id ? 'aria-current="step"' : ''}><span class="no">${i + 1}</span><span><strong>${s.title}</strong>${s.desc}</span></button></li>`).join('');
+  }
+  function toast(msg) {
+    const t = document.getElementById('toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2000);
+  }
+  function verifyThenDone() {
+    S.sheet = 'verify'; render();
+    clearTimeout(timer); timer = setTimeout(() => { S.sheet = 'done'; render(); }, 1300);
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const d = b.dataset;
+    if (d.go) { S.screen = d.go; S.sheet = null; render(); return; }
+    if (d.buy) { S.amount = Number(d.buy); S.sheet = 'confirm'; render(); return; }
+    if (d.opt) {
+      const a = Number(d.opt); let next = S.shortcuts.slice();
+      if (next.includes(a)) { if (next.length <= 1) { toast('至少保留 1 個快捷金額'); return; } next = next.filter(x => x !== a); }
+      else { if (next.length >= 2) next.shift(); next.push(a); }
+      S.shortcuts = next.sort((x, y) => x - y); render(); return;
+    }
+    if (d.jump) {
+      clearTimeout(timer);
+      if (d.jump === 'confirm') { S.screen = 'home'; S.amount = S.shortcuts[0]; S.sheet = 'confirm'; }
+      else if (d.jump === 'done') { S.screen = 'home'; S.amount = S.shortcuts[0]; verifyThenDone(); return; }
+      else { S.screen = d.jump; S.sheet = null; }
+      render(); return;
+    }
+    switch (d.action) {
+      case 'confirm': verifyThenDone(); break;
+      case 'cancel': S.sheet = null; render(); break;
+      case 'finish': S.sheet = null; S.lastBuy = S.amount; render(); toast('交易完成'); break;
+      case 'alert': S.alertOn = !S.alertOn; render(); break;
+    }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && S.sheet === 'confirm') { S.sheet = null; render(); } });
+  document.getElementById('reset').addEventListener('click', () => { clearTimeout(timer); S = fresh(); render(); });
+  render();
+</script>
+
+</body>
+</html>

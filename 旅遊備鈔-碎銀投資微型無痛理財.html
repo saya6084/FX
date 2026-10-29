@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>碎銀投資微型無痛理財｜互動原型</title>
+<style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* 底部面板與驗證 */
+  .sheet-wrap { position: absolute; inset: 0; background: rgba(2,6,23,.55); display: flex; flex-direction: column; justify-content: flex-end; z-index: 5; }
+  .sheet { background: #fff; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: up .25s cubic-bezier(.2,.8,.2,1); }
+  .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line-strong); align-self: center; }
+  .sheet h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .verify { align-items: center; text-align: center; padding: 44px 20px 64px; }
+  .verify .face { color: var(--accent); animation: pulse 1s ease-in-out infinite; }
+  @keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.94); } }
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+  /* ---------- 共用元件 ---------- */
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); }
+  .row strong { color: var(--ink); text-align: right; }
+  .fine { font-size: 12px; color: var(--faint); line-height: 1.6; margin: 0; }
+  .sec-title { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .sec-title h3 { margin: 0; font-size: 16px; font-weight: 900; }
+  .sec-title span { font-size: 12px; color: var(--faint); }
+  .link-btn { border: none; background: none; padding: 0; min-height: 32px; color: var(--accent); font-size: 13px; font-weight: 700; cursor: pointer; }
+
+  .mini-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .mini { background: #f8fafc; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .mini span { font-size: 11px; color: var(--muted); }
+  .mini strong { font-size: 15px; font-weight: 900; }
+
+  .opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .opts.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .opt { min-height: 48px; padding: 6px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 14px; font-weight: 700; }
+  .opt small { font-size: 11px; font-weight: 500; color: var(--faint); }
+  .opt:hover { border-color: var(--ink); }
+  .opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .opt[aria-pressed="true"] small { color: var(--accent); }
+  .switch-row { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
+  .switch-row .ic { width: 40px; height: 40px; flex: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+  .switch-row .t { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .switch-row .t strong { font-size: 15px; }
+  .switch-row .t span { font-size: 12px; color: var(--muted); }
+  .switch { width: 52px; height: 32px; flex: none; border: none; border-radius: 999px; background: #94a3b8; position: relative; cursor: pointer; transition: background .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .switch[aria-checked="true"] { background: var(--accent); }
+  .switch[aria-checked="true"]::after { left: 23px; }
+  .field-title { font-size: 15px; font-weight: 700; }
+
+  .demo { border: 1.5px dashed var(--line-strong); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .demo-label { font-size: 12px; font-weight: 700; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .demo-btn { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .demo-btn:hover { border-color: var(--ink); }
+
+  .summary { background: #f8fafc; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .done-ic { width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; align-self: center; animation: pop .28s cubic-bezier(.2,.9,.3,1.3) both; }
+  @keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .center { text-align: center; align-self: center; }
+
+  .push { position: absolute; left: 10px; right: 10px; top: 10px; z-index: 7; background: rgba(255,255,255,.97); border: none; border-radius: 20px; box-shadow: 0 12px 30px rgba(15,23,42,.25); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; text-align: left; cursor: pointer; animation: drop .3s cubic-bezier(.2,.8,.2,1); }
+  .push .app-ic { width: 36px; height: 36px; flex: none; border-radius: 10px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .push .p-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .push .p-txt strong { font-size: 14px; }
+  .push .p-txt span { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .push .p-time { font-size: 11px; color: var(--faint); }
+  @keyframes drop { from { transform: translateY(-30px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* ---------- 碎銀投資原型專用 ---------- */
+  .content > * { flex-shrink: 0; }
+  .hero-sum { background: var(--accent); color: #fff; border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .hero-sum small { font-size: 13px; color: #f6d7e1; }
+  .hero-sum b { font-size: 32px; font-weight: 900; line-height: 1.15; }
+  .hero-sum span { font-size: 13px; color: #f6d7e1; }
+  .coins { display: flex; flex-direction: column; gap: 8px; }
+  .coin-row { width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer; color: var(--ink); }
+  .coin-row:hover { border-color: var(--ink); }
+  .coin-row .cc { width: 42px; height: 42px; flex: none; border-radius: 50%; background: var(--gold-bg); border: 1px solid var(--gold-line); color: var(--gold-strong); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .coin-row .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .coin-row .t strong { font-size: 15px; }
+  .coin-row .t span { font-size: 12px; color: var(--muted); }
+  .coin-row .r { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .coin-row .r b { font-size: 15px; font-weight: 900; }
+  .coin-row .r span { font-size: 12px; color: var(--muted); }
+  .chk { width: 24px; height: 24px; flex: none; border-radius: 7px; border: 2px solid var(--line-strong); display: flex; align-items: center; justify-content: center; color: #fff; }
+  .coin-row[aria-pressed="true"] .chk { background: var(--accent); border-color: var(--accent); }
+  .coin-row[aria-pressed="false"] { opacity: .6; }
+
+  .basket { width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 8px; text-align: left; cursor: pointer; color: var(--ink); }
+  .basket:hover { border-color: var(--ink); }
+  .basket[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .basket:disabled { opacity: .5; cursor: not-allowed; }
+  .basket .b-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .basket .b-top strong { font-size: 16px; }
+  .rr { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--line-strong); color: var(--text); white-space: nowrap; }
+  .basket p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .basket .b-foot { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .basket .b-foot b { color: var(--ink); }
+  .kyc { background: #f8fafc; border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .kyc strong { color: var(--ink); }
+  .risk { background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 14px; padding: 12px 14px; font-size: 13px; color: var(--gold-text); line-height: 1.7; }
+  .risk strong { color: var(--gold-strong); }
+  .check-row { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--text); line-height: 1.6; cursor: pointer; }
+  .check-row input { width: 22px; height: 22px; margin: 0; flex: none; accent-color: var(--accent); }
+  .flowline { display: flex; align-items: center; justify-content: space-between; gap: 6px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; }
+  .flowline .node { display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; flex: 1; }
+  .flowline .node small { font-size: 11px; color: var(--muted); }
+  .flowline .node b { font-size: 15px; font-weight: 900; }
+  .flowline .arrow { color: var(--faint); flex: none; }
+
+  .reveal-wrap { perspective: 900px; align-self: center; width: 260px; height: 330px; }
+  .flip { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+  .flip.on { transform: rotateY(180deg); }
+  .face-side { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 22px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 20px; text-align: center; }
+  .face-side.front { background: var(--accent); color: #fff; border: none; cursor: pointer; font: inherit; }
+  .face-side.front .q { width: 90px; height: 90px; border-radius: 50%; border: 3px dashed rgba(255,255,255,.6); display: flex; align-items: center; justify-content: center; font-size: 44px; font-weight: 900; }
+  .face-side.front span { font-size: 14px; color: #f6d7e1; }
+  .face-side.back { background: #fff; border: 1px solid var(--line); transform: rotateY(180deg); box-shadow: 0 16px 40px rgba(15,23,42,.12); }
+  .face-side.back .gift { width: 64px; height: 64px; border-radius: 18px; background: var(--gold-bg); border: 1px solid var(--gold-line); color: var(--gold-strong); display: flex; align-items: center; justify-content: center; }
+  .face-side.back small { font-size: 13px; color: var(--muted); }
+  .face-side.back b { font-size: 30px; font-weight: 900; line-height: 1.1; }
+  .face-side.back strong { font-size: 16px; }
+  .from-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+  .from-chips span { font-size: 11px; font-weight: 700; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); padding: 2px 8px; border-radius: 6px; }
+
+  .pf { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .pf .v small { font-size: 13px; color: var(--muted); }
+  .pf .v b { display: block; font-size: 30px; font-weight: 900; line-height: 1.15; }
+  .chg { font-size: 13px; font-weight: 700; }
+  .chg.up { color: var(--accent); } .chg.dn { color: #166534; }
+  .hold { margin: 0; padding: 0; list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .hold li { padding: 12px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; font-size: 13px; color: var(--muted); }
+  .hold li:last-child { border-bottom: none; }
+  .hold li .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .hold li .t strong { font-size: 14px; color: var(--ink); }
+  .hold li b { font-size: 14px; color: var(--ink); white-space: nowrap; }
+  .switch-row { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
+  .switch-row .t { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .switch-row .t strong { font-size: 15px; }
+  .switch-row .t span { font-size: 12px; color: var(--muted); line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-row">
+    <a class="back" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+    </a>
+    <span class="crumb">功能原型｜<strong>「碎銀投資」微型無痛理財</strong></span>
+    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="phone" aria-label="手機原型畫面">
+    <div class="screen" id="screen"></div>
+  </div>
+
+  <aside class="info" aria-label="功能說明">
+    <div class="info-card">
+      <div class="tags"><span class="tag-cat">旅遊備鈔</span><span class="platform">APP</span></div>
+      <h1>「碎銀投資」微型無痛理財</h1>
+      <div class="rating" aria-label="開發難易度 4 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★★</span><span class="off">★</span></span></div>
+      <p>存回的零錢自動免手續費轉投入特定美股零股，包裝成投資驚喜。</p>
+      <div>
+        <div class="label">功能特色</div>
+        <ul class="features">
+          <li>回國後盤點各幣別零碎餘額，一次合併</li>
+          <li>免換匯手續費轉成美元，投入所選 ETF 零股</li>
+          <li>以「驚喜卡」揭曉買到多少股，可設定回國自動投入</li>
+        </ul>
+      </div>
+      <div class="benefit"><strong>效益｜</strong>把帶不回家、用不掉的零碎外幣導入理財，讓客戶第一次輕鬆接觸投資，深化往來。</div>
+    </div>
+
+    <div class="info-card flow">
+      <h2>操作流程</h2>
+      <ol class="flow-list" id="flow-list"></ol>
+      <button class="reset" type="button" id="reset">重設原型</button>
+      <p class="note">投資標的、價格、匯率與市值皆為示意，並非投資建議。投資一定有風險，基金／ETF 投資有賺有賠，申購前應詳閱公開說明書；適合度依[本行 KYC 規定]。</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+  /* ================== 資料（示意） ================== */
+  const CCY = {
+    JPY: { name: '日圓', sym: '¥', toUSD: 0.0065, dec: 0 },
+    KRW: { name: '韓元', sym: '₩', toUSD: 0.000724, dec: 0 },
+    EUR: { name: '歐元', sym: '€', toUSD: 1.0825, dec: 2 },
+    USD: { name: '美元', sym: 'US$', toUSD: 1, dec: 2 }
+  };
+  const USDTWD = 32.15;
+  const BASKETS = [
+    { id: 'bal', name: '全球股債平衡 ETF', rr: 3, price: 95.4, desc: '股票與債券各半，波動較低，適合第一次投資。' },
+    { id: 'spx', name: '美股大盤 ETF', rr: 4, price: 520.8, desc: '追蹤美國大型企業指數，分散持有數百家公司。' },
+    { id: 'tech', name: '全球科技 ETF', rr: 5, price: 231.6, desc: '集中投資科技產業，報酬與波動都較大。' }
+  ];
+  const USER_RISK = { label: '穩健型', max: 4 }; // 示意：可投資 RR1–RR4
+  const TRIPS = [
+    [{ ccy: 'JPY', amt: 3450 }, { ccy: 'KRW', amt: 12800 }, { ccy: 'EUR', amt: 7.3 }, { ccy: 'USD', amt: 4.2 }],
+    [{ ccy: 'JPY', amt: 1280 }, { ccy: 'USD', amt: 3.6 }],
+    [{ ccy: 'KRW', amt: 8600 }, { ccy: 'JPY', amt: 2150 }]
+  ];
+  const STEPS = [
+    { id: 'home', title: '回國零錢盤點', desc: '各幣別零碎餘額合併計算' },
+    { id: 'basket', title: '選擇投資組合', desc: '依風險屬性挑選 ETF' },
+    { id: 'confirm', title: '確認與風險揭露', desc: '免手續費轉換，Face ID 確認' },
+    { id: 'reveal', title: '驚喜揭曉', desc: '翻開卡片看買到多少股' },
+    { id: 'portfolio', title: '我的碎銀投資', desc: '持股、市值與自動投入' }
+  ];
+  const ICON = {
+    back: '<path d="m15 18-6-6 6-6"/>',
+    face: '<path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.6 1.2 4.4 1.2 6 0"/>',
+    flask: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    gift: '<path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-1.5-3-5-3-5-1s3 1 5 1c2 0 5 1 5-1s-3.5-2-5 1"/>',
+    chart: '<path d="M4 19h16M7 15l4-4 3 3 5-6"/>'
+  };
+  const svg = (n, size = 20, sw = 2) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
+  const fmt = (n, d = 0) => Number(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+  /* ================== 狀態 ================== */
+  const coinsOf = i => TRIPS[i % TRIPS.length].map(c => ({ ...c, on: true }));
+  const fresh = () => ({ screen: 'home', trip: 0, coins: coinsOf(0), basket: 'spx', agree: false, sheet: null, flipped: false, last: null, holdings: [], auto: false, drift: 0.018 });
+  let S = fresh();
+  const usdOf = c => c.amt * CCY[c.ccy].toUSD;
+  const picked = () => S.coins.filter(c => c.on);
+  const totalUSD = () => picked().reduce((s, c) => s + usdOf(c), 0);
+  const allUSD = () => S.coins.reduce((s, c) => s + usdOf(c), 0);
+  const B = () => BASKETS.find(b => b.id === S.basket);
+  const coinTxt = c => `${CCY[c.ccy].sym}${fmt(c.amt, CCY[c.ccy].dec)}`;
+
+  /* ================== 畫面 ================== */
+  function appBar(title, back) {
+    return `<div class="app-bar">${back ? `<button class="icon-btn" type="button" data-go="${back}" aria-label="上一步">${svg('back', 22, 2.4)}</button>` : '<span class="ghost"></span>'}<h2>${title}</h2><span class="ghost"></span></div>`;
+  }
+
+  function viewHome() {
+    if (!S.coins.length) return appBar('碎銀投資') + `
+      <div class="content">
+        <div class="kyc" style="text-align:center;padding:24px 16px">目前外幣帳戶沒有零碎餘額。<br>下次出國回來，零錢就能變成投資。</div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-outline" type="button" data-go="portfolio">${svg('chart', 18)}查看我的碎銀投資</button></div>`;
+    const usd = totalUSD();
+    return appBar('碎銀投資') + `
+      <div class="content">
+        <div class="hero-sum"><small>歡迎回國！外幣帳戶還有零碎餘額</small><b>約 NT$${fmt(allUSD() * USDTWD)}</b><span>換回台幣不划算？把它們變成美股 ETF 零股吧</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="field-title">選擇要投入的零錢</span><span class="fine">點一下可排除</span></div>
+        <div class="coins">${S.coins.map((c, i) => `
+          <button class="coin-row" type="button" data-coin="${i}" aria-pressed="${c.on}">
+            <span class="chk">${c.on ? svg('check', 14, 3.5) : ''}</span>
+            <span class="cc">${c.ccy}</span>
+            <span class="t"><strong>${CCY[c.ccy].name} ${coinTxt(c)}</strong><span>${CCY[c.ccy].name}活存零碎餘額</span></span>
+            <span class="r"><b>US$${fmt(usdOf(c), 2)}</b><span>約 NT$${fmt(usdOf(c) * USDTWD)}</span></span>
+          </button>`).join('')}</div>
+        <div class="kyc">合計投入 <strong>US$${fmt(usd, 2)}</strong>（約 NT$${fmt(usd * USDTWD)}），外幣轉美元<strong>免換匯手續費</strong>。</div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-go="basket" ${usd > 0 ? '' : 'disabled'}>把零錢變成投資</button>
+        <button class="btn btn-ghost" type="button" data-go="portfolio">${svg('chart', 18)} 我的碎銀投資</button></div>`;
+  }
+
+  function viewBasket() {
+    return appBar('選擇投資組合', 'home') + `
+      <div class="content">
+        <div class="kyc">你的風險屬性：<strong>${USER_RISK.label}</strong>（示意），可選擇風險等級 RR1–RR${USER_RISK.max} 的商品。</div>
+        ${BASKETS.map(b => { const ok = b.rr <= USER_RISK.max; return `
+          <button class="basket" type="button" data-basket="${b.id}" aria-pressed="${S.basket === b.id}" ${ok ? '' : 'disabled'}>
+            <span class="b-top"><strong>${b.name}</strong><span class="rr">風險等級 RR${b.rr}</span></span>
+            <p>${b.desc}</p>
+            <span class="b-foot"><span>參考價格 <b>US$${fmt(b.price, 2)}</b>／股</span><span>${ok ? `這次約可買 <b>${fmt(totalUSD() / b.price, 4)}</b> 股` : '超出你的風險屬性'}</span></span>
+          </button>`; }).join('')}
+        <p class="fine">零股以金額申購、按比例持有，最小可買到 0.0001 股。標的為示意，實際上架商品依[本行規定]。</p>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-go="confirm">下一步</button></div>`;
+  }
+
+  function viewConfirm() {
+    const b = B(), usd = totalUSD();
+    return appBar('確認投資', 'basket') + `
+      <div class="content">
+        <div class="flowline">
+          <span class="node"><small>零碎外幣</small><b>${picked().length} 種</b></span><span class="arrow">${svg('arrow', 18)}</span>
+          <span class="node"><small>免手續費轉美元</small><b>US$${fmt(usd, 2)}</b></span><span class="arrow">${svg('arrow', 18)}</span>
+          <span class="node"><small>買入零股</small><b>約 ${fmt(usd / b.price, 4)} 股</b></span>
+        </div>
+        <div class="card">
+          <div class="row"><span>投資標的</span><strong>${b.name}</strong></div>
+          <div class="row"><span>風險等級</span><strong>RR${b.rr}・符合${USER_RISK.label}</strong></div>
+          <div class="row"><span>投入來源</span><strong>${picked().map(coinTxt).join('、')}</strong></div>
+          <div class="row"><span>換匯手續費</span><strong>NT$0（碎銀專案）</strong></div>
+          <div class="row"><span>申購手續費</span><strong>依[本行規定]</strong></div>
+          <div class="row"><span>成交方式</span><strong>下一個交易日以收盤價成交</strong></div>
+        </div>
+        <div class="risk"><strong>風險揭露｜</strong>本商品為 ETF 投資，非存款，不受存款保險保障。投資有賺有賠，價格會隨市場波動，可能損失本金；過去績效不代表未來表現。</div>
+        <label class="check-row"><input type="checkbox" id="agree" ${S.agree ? 'checked' : ''}><span>我已了解上述風險，並同意將所選外幣零碎餘額轉換為美元申購。</span></label>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" id="invest" data-action="invest" ${S.agree ? '' : 'disabled'}>${svg('face', 22)}以 Face ID 確認投資</button></div>`;
+  }
+
+  function viewReveal() {
+    const l = S.last;
+    return appBar('你的投資驚喜') + `
+      <div class="content" style="align-items:stretch">
+        <p class="fine center" style="font-size:14px;color:var(--muted)">${S.flipped ? '零錢變成股票了！' : '你的零錢已經出發，翻開看看換到了什麼'}</p>
+        <div class="reveal-wrap">
+          <div class="flip ${S.flipped ? 'on' : ''}">
+            <button class="face-side front" type="button" data-action="flip" aria-label="翻開驚喜卡"><span class="q">?</span><strong style="font-size:18px">碎銀驚喜卡</strong><span>點一下翻開</span></button>
+            <div class="face-side back" aria-live="polite">
+              <span class="gift">${svg('gift', 34, 1.8)}</span>
+              <small>你用這些零錢</small>
+              <div class="from-chips">${l.from.map(c => `<span>${coinTxt(c)}</span>`).join('')}</div>
+              <small>換到了</small>
+              <b>${fmt(l.shares, 4)} 股</b>
+              <strong>${l.name}</strong>
+              <small>投入 US$${fmt(l.usd, 2)}（約 NT$${fmt(l.usd * USDTWD)}）</small>
+            </div>
+          </div>
+        </div>
+        <p class="fine center">以下一個交易日收盤價成交後，實際股數可能略有差異。</p>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-go="portfolio" ${S.flipped ? '' : 'disabled'}>查看我的碎銀投資</button></div>`;
+  }
+
+  function viewPortfolio() {
+    const cost = S.holdings.reduce((s, h) => s + h.usd, 0);
+    const value = S.holdings.reduce((s, h) => s + h.shares * BASKETS.find(b => b.id === h.basket).price * (1 + S.drift), 0);
+    const pct = cost ? (value - cost) / cost * 100 : 0;
+    const by = BASKETS.map(b => ({ b, sh: S.holdings.filter(h => h.basket === b.id).reduce((s, h) => s + h.shares, 0) })).filter(x => x.sh > 0);
+    return appBar('我的碎銀投資', 'home') + `
+      <div class="content">
+        <div class="pf">
+          <div class="v"><small>目前市值（示意）</small><b>US$${fmt(value, 2)}</b></div>
+          <div class="row"><span>累計投入</span><strong>US$${fmt(cost, 2)}・約 NT$${fmt(cost * USDTWD)}</strong></div>
+          <div class="row"><span>損益（示意）</span><strong class="chg ${pct >= 0 ? 'up' : 'dn'}">${cost ? (pct >= 0 ? '+' : '') + fmt(pct, 2) + '%' : '—'}</strong></div>
+          <p class="fine">市值會隨市場價格波動，可能低於投入金額。</p>
+        </div>
+        <div class="sec-title"><h3>持有零股</h3><span>${S.holdings.length} 次投入</span></div>
+        <ul class="hold">${by.length ? by.map(x => `<li><span class="t"><strong>${x.b.name}</strong><span>RR${x.b.rr}・參考價 US$${fmt(x.b.price, 2)}</span></span><b>${fmt(x.sh, 4)} 股</b></li>`).join('')
+          : '<li>還沒有持股。回首頁把零錢變成投資吧！</li>'}</ul>
+        ${S.holdings.length ? `<div class="sec-title"><h3>投入紀錄</h3><span></span></div>
+        <ul class="hold">${S.holdings.slice().reverse().map(h => `<li><span class="t"><strong>第 ${h.trip} 趟旅程零錢</strong><span>${h.from.map(coinTxt).join('、')}</span></span><b>US$${fmt(h.usd, 2)}</b></li>`).join('')}</ul>` : ''}
+        <div class="switch-row"><span class="t"><strong>回國自動投入</strong><span>回國 7 天後，將低於等值 NT$500 的外幣餘額自動投入「${B().name}」</span></span>
+          <button class="switch" type="button" role="switch" data-action="auto" aria-checked="${S.auto}" aria-label="回國自動投入"></button></div>
+        <div class="demo"><span class="demo-label">${svg('flask', 14)}原型示範（實際上線不會出現）</span>
+          <button class="demo-btn" type="button" data-action="trip">模擬再出國一趟回來</button></div>
+      </div>`;
+  }
+
+  function sheetHTML() {
+    if (S.sheet === 'verify') return `<div class="sheet-wrap"><div class="sheet verify" role="status" aria-live="polite"><span class="face">${svg('face', 72, 1.6)}</span><h3>Face ID 驗證中…</h3><span class="fine">驗證後送出申購</span></div></div>`;
+    return '';
+  }
+
+  /* ================== 繪製 ================== */
+  const VIEWS = { home: viewHome, basket: viewBasket, confirm: viewConfirm, reveal: viewReveal, portfolio: viewPortfolio };
+  const screenEl = document.getElementById('screen');
+  function render(keep) {
+    const ct = screenEl.querySelector('.content'), top = keep && ct ? ct.scrollTop : 0;
+    screenEl.innerHTML = VIEWS[S.screen]() + sheetHTML() + '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
+    const nc = screenEl.querySelector('.content'); if (nc) nc.scrollTop = top;
+    document.getElementById('flow-list').innerHTML = STEPS.map((s, i) => `<li><button class="flow-btn" type="button" data-jump="${s.id}" ${S.screen === s.id ? 'aria-current="step"' : ''}><span class="no">${i + 1}</span><span><strong>${s.title}</strong>${s.desc}</span></button></li>`).join('');
+    const ag = document.getElementById('agree');
+    if (ag) ag.addEventListener('change', () => { S.agree = ag.checked; document.getElementById('invest').disabled = !S.agree; });
+  }
+  function toast(m) { const t = document.getElementById('toast'); if (!t) return; t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2200); }
+
+  let timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  function invest() {
+    const b = B(), from = picked().map(c => ({ ccy: c.ccy, amt: c.amt })), usd = totalUSD();
+    S.last = { from, usd, shares: usd / b.price, name: b.name };
+    S.holdings.push({ basket: b.id, from, usd, shares: usd / b.price, trip: S.trip + 1 });
+    S.coins = S.coins.filter(c => !c.on); S.agree = false; S.flipped = false;
+  }
+
+  document.addEventListener('click', e => {
+    const bt = e.target.closest('button'); if (!bt) return;
+    const d = bt.dataset;
+    if (d.go) { S.screen = d.go; S.sheet = null; render(); return; }
+    if (d.coin) { const c = S.coins[d.coin]; c.on = !c.on; render(true); return; }
+    if (d.basket) { S.basket = d.basket; render(true); return; }
+    if (d.jump) {
+      timers.forEach(clearTimeout); timers = []; S.sheet = null;
+      if (['basket', 'confirm'].includes(d.jump) && !picked().length) { S.coins = coinsOf(S.trip); }
+      if (d.jump === 'reveal' || (d.jump === 'portfolio' && !S.holdings.length)) { if (!picked().length) S.coins = coinsOf(S.trip); invest(); }
+      S.screen = d.jump; render(); return;
+    }
+    switch (d.action) {
+      case 'invest': S.sheet = 'verify'; render(true); later(() => { S.sheet = null; invest(); S.screen = 'reveal'; render(); }, 1200); break;
+      case 'flip': S.flipped = true; document.querySelector('.flip').classList.add('on'); later(() => render(), 850); break;
+      case 'auto': S.auto = !S.auto; render(true); toast(S.auto ? '已開啟回國自動投入' : '已關閉回國自動投入'); break;
+      case 'trip': {
+        S.trip++; { const left = S.coins.map(c => ({ ...c, on: true })); coinsOf(S.trip).forEach(n => { const o = left.find(c => c.ccy === n.ccy); if (o) o.amt = Math.round((o.amt + n.amt) * 100) / 100; else left.push(n); }); S.coins = left; } S.drift += 0.006;
+        if (S.auto) { invest(); S.screen = 'portfolio'; render(); toast(`回國 7 天後已自動投入 US$${fmt(S.last.usd, 2)}`); }
+        else { S.screen = 'home'; render(); toast('歡迎回國！又有新的零碎外幣'); }
+        break;
+      }
+    }
+  });
+  document.getElementById('reset').addEventListener('click', () => { timers.forEach(clearTimeout); timers = []; S = fresh(); render(); });
+  render();
+</script>
+
+</body>
+</html>

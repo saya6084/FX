@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>佛系旅遊基金｜互動原型</title>
+<style>
+  :root {
+    --accent: #9a0036;
+    --accent-dark: #7f002d;
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --gold-bg: #fdf6e3;
+    --gold-line: #f3e3b8;
+    --gold-text: #5c4205;
+    --gold-strong: #7a5300;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- 頁首 ---------- */
+  .topbar { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .topbar-row { max-width: 1440px; margin: 0 auto; padding: 12px 64px; display: flex; align-items: center; gap: 16px; }
+  .back { min-height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .back:hover { border-color: var(--ink); }
+  .topbar .crumb { font-size: 14px; color: var(--muted); }
+  .topbar .crumb strong { color: var(--ink); }
+  .brand { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 900; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- 版面 ---------- */
+  .stage { max-width: 1440px; margin: 0 auto; padding: 32px 64px 56px; display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: flex-start; }
+  .info { flex: 1 1 380px; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag-cat { font-size: 12px; font-weight: 700; color: var(--ink); background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .info h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+  .info p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .stars { font-size: 17px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); } .stars .off { color: var(--star-off); }
+  .label { font-size: 13px; font-weight: 700; color: var(--faint); }
+  .features { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .features li { font-size: 14px; color: var(--text); line-height: 1.6; display: flex; gap: 8px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 14px; line-height: 1.6; color: var(--gold-text); background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 12px; padding: 10px 12px; }
+  .benefit strong { color: var(--gold-strong); }
+  .flow h2 { margin: 0; font-size: 17px; font-weight: 900; }
+  .flow-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .flow-btn { width: 100%; min-height: 52px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+  .flow-btn:hover { border-color: var(--ink); }
+  .flow-btn .no { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .flow-btn strong { display: block; color: var(--ink); font-size: 15px; }
+  .flow-btn[aria-current="step"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .flow-btn[aria-current="step"] .no { background: var(--accent); color: #fff; }
+  .note { font-size: 12px; color: var(--faint); line-height: 1.7; margin: 0; }
+  .reset { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .reset:hover { border-color: var(--ink); }
+
+  /* ---------- 手機 ---------- */
+  .phone { width: 390px; height: 844px; flex: none; border-radius: 48px; background: #0f172a; padding: 12px; box-shadow: 0 24px 60px rgba(15,23,42,.22); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #f6f6f7; display: flex; flex-direction: column; }
+  .app-bar { flex: none; height: 92px; padding: 44px 12px 0; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 4px; }
+  .app-bar h2 { margin: 0; flex: 1; text-align: center; font-size: 17px; font-weight: 900; }
+  .app-bar .ghost { width: 44px; height: 44px; }
+  .icon-btn { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn:hover { background: var(--panel); }
+  .content { flex: 1; overflow-y: auto; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+  .content::-webkit-scrollbar { width: 0; }
+  .cta-bar { flex: none; padding: 12px 20px 28px; background: #fff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+  .btn { min-height: 52px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-primary { border: none; background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-ghost { border: none; background: transparent; color: var(--muted); min-height: 44px; font-size: 15px; }
+  .btn-outline { border: 1.5px solid var(--accent); background: #fff; color: var(--accent); }
+  .btn-outline:hover { background: var(--accent-soft); }
+
+  /* 介紹 */
+  .hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding-top: 8px; }
+  .hero-art { width: 148px; height: 148px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; position: relative; }
+  .hero-art .coin { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: var(--gold-bg); border: 2px solid var(--gold-line); color: var(--gold-strong); font-size: 15px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .hero h3 { margin: 0; font-size: 24px; font-weight: 900; line-height: 1.4; }
+  .hero p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .points { display: flex; flex-direction: column; gap: 10px; }
+  .point { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .point .ic { width: 40px; height: 40px; flex: none; border-radius: 12px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .point strong { display: block; font-size: 15px; }
+  .point span { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* 設定 */
+  .field { display: flex; flex-direction: column; gap: 10px; }
+  .field-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .field-title { font-size: 15px; font-weight: 700; }
+  .field-hint { font-size: 12px; color: var(--faint); }
+  .opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .opts.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .opt { min-height: 52px; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 15px; font-weight: 700; }
+  .opt small { font-size: 11px; font-weight: 500; color: var(--faint); }
+  .opt:hover { border-color: var(--ink); }
+  .opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .opt[aria-pressed="true"] small { color: var(--accent); }
+  .opt:disabled { opacity: .4; cursor: not-allowed; }
+  .opt:disabled:hover { border-color: var(--line-strong); }
+  .amount { display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 14px; background: #fff; }
+  .amount:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .amount .sym { font-size: 20px; font-weight: 900; color: var(--muted); }
+  .amount input { flex: 1; min-width: 0; border: none; outline: none; font-size: 22px; font-weight: 900; color: var(--ink); background: transparent; }
+  .amount .unit { font-size: 14px; color: var(--faint); }
+  .err { font-size: 13px; color: var(--accent); font-weight: 700; }
+  .estimate { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .estimate .big { font-size: 13px; color: var(--muted); }
+  .estimate .big strong { display: block; font-size: 26px; font-weight: 900; color: var(--ink); }
+  .row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); }
+  .row strong { color: var(--ink); text-align: right; }
+
+  /* 確認 */
+  .summary { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .rule { background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; color: var(--gold-text); font-size: 14px; line-height: 1.65; }
+  .rule strong { color: var(--gold-strong); font-size: 15px; }
+  .rule ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+  .switch-row { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .switch-row strong { display: block; font-size: 15px; }
+  .switch-row span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .switch { width: 52px; height: 32px; flex: none; border: none; border-radius: 999px; background: #94a3b8; position: relative; cursor: pointer; transition: background .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .switch[aria-checked="true"] { background: var(--accent); }
+  .switch[aria-checked="true"]::after { left: 23px; }
+  .fine { font-size: 12px; color: var(--faint); line-height: 1.6; margin: 0; }
+
+  /* 進度 */
+  .goal { background: var(--accent); color: #fff; border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .goal-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: #f6d7e1; }
+  .goal-top .pill { background: rgba(255,255,255,.18); color: #fff; padding: 3px 10px; border-radius: 999px; font-weight: 700; }
+  .goal-amt { font-size: 30px; font-weight: 900; line-height: 1.1; }
+  .goal-amt small { font-size: 15px; font-weight: 500; color: #f6d7e1; }
+  .bar { height: 10px; border-radius: 999px; background: rgba(255,255,255,.25); overflow: hidden; }
+  .bar span { display: block; height: 100%; background: #fff; border-radius: 999px; transition: width .5s cubic-bezier(.2,.8,.2,1); }
+  .goal-foot { display: flex; justify-content: space-between; font-size: 13px; color: #f6d7e1; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .stat { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 2px; }
+  .stat span { font-size: 11px; color: var(--muted); }
+  .stat strong { font-size: 16px; font-weight: 900; }
+  .next { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text); }
+  .next .ic { width: 36px; height: 36px; flex: none; border-radius: 10px; background: #f1f5f9; color: var(--muted); display: flex; align-items: center; justify-content: center; }
+  .next.paused .ic { background: var(--gold-bg); color: var(--gold-strong); }
+  .done-banner { background: var(--ok-bg); border: 1px solid #bbf7d0; color: var(--ok); border-radius: 14px; padding: 12px 14px; font-size: 14px; font-weight: 700; display: flex; gap: 8px; align-items: center; }
+  .remind { background: var(--gold-bg); border: 1px solid var(--gold-line); color: var(--gold-text); border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.6; }
+  .remind strong { color: var(--gold-strong); }
+  .actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .act { min-height: 64px; border: 1px solid var(--line); border-radius: 14px; background: #fff; color: var(--text); font-size: 13px; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; }
+  .act:hover { border-color: var(--ink); }
+  .act:disabled { opacity: .45; cursor: not-allowed; }
+  .act svg { color: var(--accent); }
+  .log-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .log-head h3 { margin: 0; font-size: 16px; font-weight: 900; }
+  .log { margin: 0; padding: 0; list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .log li { padding: 12px 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f1f5f9; }
+  .log li:last-child { border-bottom: none; }
+  .log .dot { width: 32px; height: 32px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .log .buy .dot { background: var(--accent-soft); color: var(--accent); }
+  .log .skip .dot { background: #f1f5f9; color: var(--faint); }
+  .log .top-up .dot { background: var(--gold-bg); color: var(--gold-strong); }
+  .log .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .log .txt strong { font-size: 14px; }
+  .log .txt span { font-size: 12px; color: var(--muted); }
+  .log .amt { font-size: 14px; font-weight: 900; white-space: nowrap; }
+  .log .skip .amt { color: var(--faint); font-weight: 500; }
+  .log-empty { padding: 18px 14px; text-align: center; font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .demo { border: 1.5px dashed var(--line-strong); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .demo-label { font-size: 12px; font-weight: 700; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .demo-btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .demo-btn { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .demo-btn:hover { border-color: var(--ink); }
+  .demo-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+  /* 底部面板與驗證 */
+  .sheet-wrap { position: absolute; inset: 0; background: rgba(2,6,23,.55); display: flex; flex-direction: column; justify-content: flex-end; z-index: 5; }
+  .sheet { background: #fff; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: up .25s cubic-bezier(.2,.8,.2,1); }
+  .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line-strong); align-self: center; }
+  .sheet h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .verify { align-items: center; text-align: center; padding: 44px 20px 64px; }
+  .verify .face { color: var(--accent); animation: pulse 1s ease-in-out infinite; }
+  @keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.94); } }
+  .toast { position: absolute; left: 50%; bottom: 112px; transform: translate(-50%, 12px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all .25s; z-index: 6; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 960px) { .topbar-row, .stage { padding-left: 24px; padding-right: 24px; } .brand { display: none; } }
+  @media (max-width: 440px) {
+    .stage { padding: 16px; gap: 24px; }
+    .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; }
+    .screen { border-radius: 30px; }
+    .topbar .crumb { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-row">
+    <a class="back" href="index.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+    </a>
+    <span class="crumb">功能原型｜<strong>「佛系旅遊基金」智能定投</strong></span>
+    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="phone" aria-label="手機原型畫面">
+    <div class="screen" id="screen"></div>
+  </div>
+
+  <aside class="info" aria-label="功能說明">
+    <div class="info-card">
+      <div class="tags"><span class="tag-cat">旅遊備鈔</span><span class="platform">APP</span><span class="platform">網銀</span></div>
+      <h1>「佛系旅遊基金」智能定投</h1>
+      <div class="rating" aria-label="開發難易度 3 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★</span><span class="off">★★</span></span></div>
+      <p>輸入預計出發月份與目標金額，系統運算均價，低於均價自動小額扣款買入。</p>
+      <div>
+        <div class="label">功能特色</div>
+        <ul class="features">
+          <li>設定出發月份與目標金額，自動算出每次買入金額</li>
+          <li>每週比較近 30 日均價，低於均價才買</li>
+          <li>隨時查看進度、平均成本，可暫停或一次補足</li>
+        </ul>
+      </div>
+      <div class="benefit"><strong>效益｜</strong>不用盯盤也能分批買在相對低點，把出國前的換匯焦慮變成可預期的存錢計畫。</div>
+    </div>
+
+    <div class="info-card flow">
+      <h2>操作流程</h2>
+      <ol class="flow-list" id="flow-list"></ol>
+      <button class="reset" type="button" id="reset">重設原型</button>
+      <p class="note">原型內的匯率、均價與交易紀錄皆為示意數字，實際規則與上限依[本行規定]。進度頁的「原型示範」區可模擬每週的自動買入。</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+  /* ================== 資料 ================== */
+  const TODAY = new Date(2026, 9, 27); // 2026/10/27
+  const CURRENCIES = {
+    JPY: { name: '日圓', sym: '¥', rate: 0.2091, avg: 0.2105, unit: 1000, presets: [100000, 150000, 200000], dec: 4, place: '日本' },
+    USD: { name: '美元', sym: 'US$', rate: 32.15, avg: 32.40, unit: 10, presets: [1000, 2000, 3000], dec: 2, place: '美國' },
+    EUR: { name: '歐元', sym: '€', rate: 34.80, avg: 35.02, unit: 10, presets: [1000, 2000, 3000], dec: 2, place: '歐洲' },
+    KRW: { name: '韓元', sym: '₩', rate: 0.0233, avg: 0.0235, unit: 10000, presets: [1000000, 2000000, 3000000], dec: 4, place: '韓國' }
+  };
+  // 每週觀察到的匯率相對近 30 日均價的比例（示意）
+  const WEEK_FACTORS = [0.993, 1.006, 0.988, 0.996, 1.011, 0.985, 0.998, 1.004, 0.991, 0.982, 1.008, 0.994, 0.989, 1.003, 0.986, 0.997, 1.007, 0.992, 0.984, 1.002, 0.995, 0.99, 1.005, 0.987, 0.999, 0.993];
+  const MONTHS = Array.from({ length: 6 }, (_, i) => new Date(2026, 11 + i, 1));
+  const STEPS = [
+    { id: 'intro', title: '功能介紹', desc: '說明佛系定投怎麼運作' },
+    { id: 'setup', title: '設定目標', desc: '選幣別、出發月份與目標金額' },
+    { id: 'confirm', title: '確認並啟用', desc: '檢查買入規則，Face ID 啟用' },
+    { id: 'progress', title: '存錢進度', desc: '查看進度、紀錄，模擬每週買入' }
+  ];
+
+  const ICON = {
+    back: '<path d="m15 18-6-6 6-6"/>',
+    suitcase: '<path d="M6 7h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zM9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M9 11v6M15 11v6"/>',
+    target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+    down: '<path d="M3 7l6 6 4-4 8 8M21 11v6h-6"/>',
+    pause: '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>',
+    play: '<path d="M7 5v14l11-7z"/>',
+    edit: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+    bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    minus: '<path d="M5 12h14"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    face: '<path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.6 1.2 4.4 1.2 6 0"/>',
+    flask: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/>',
+    party: '<path d="M4 20 9 7l8 8zM14 4l1 2M19 5l-2 2M20 10h-2"/>'
+  };
+  const svg = (name, size = 20, sw = 2) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[name]}</svg>`;
+
+  /* ================== 狀態 ================== */
+  const fresh = () => ({
+    screen: 'intro', ccy: 'JPY', month: 3, target: 150000, remindTopUp: true, notifyEach: true,
+    active: false, paused: false, week: 0, log: [], sheet: null
+  });
+  let S = fresh();
+
+  /* ================== 計算 ================== */
+  const C = () => CURRENCIES[S.ccy];
+  const fmt = (n, d = 0) => Number(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const money = (n) => C().sym + fmt(n);
+  const monthLabel = d => `${d.getFullYear()} 年 ${d.getMonth() + 1} 月`;
+  const weeksUntil = d => Math.max(1, Math.floor((d - TODAY) / (7 * 864e5)));
+  const totalWeeks = () => weeksUntil(MONTHS[S.month]);
+  const saved = () => S.log.reduce((s, e) => s + (e.fx || 0), 0);
+  const spent = () => S.log.reduce((s, e) => s + (e.twd || 0), 0);
+  const remaining = () => Math.max(0, S.target - saved());
+  const weeksLeft = () => Math.max(0, totalWeeks() - S.week);
+  const roundUnit = n => Math.ceil(n / C().unit) * C().unit;
+  const perBuy = () => weeksLeft() ? Math.min(remaining(), roundUnit(remaining() / weeksLeft())) : remaining();
+  const weekDate = i => { const d = new Date(2026, 10, 2); d.setDate(d.getDate() + i * 7); return `${d.getMonth() + 1}/${d.getDate()}`; };
+  const rateAt = i => C().avg * WEEK_FACTORS[i % WEEK_FACTORS.length];
+  const validTarget = () => S.target >= C().presets[0] / 10 && S.target <= C().presets[2] * 10;
+
+  /* ================== 畫面 ================== */
+  function appBar(title, back) {
+    return `<div class="app-bar">
+      ${back ? `<button class="icon-btn" type="button" data-go="${back}" aria-label="上一步">${svg('back', 22, 2.4)}</button>` : '<span class="ghost"></span>'}
+      <h2>${title}</h2><span class="ghost"></span></div>`;
+  }
+
+  function viewIntro() {
+    return appBar('佛系旅遊基金') + `
+      <div class="content">
+        <div class="hero">
+          <div class="hero-art">${svg('suitcase', 64, 1.6)}
+            <span class="coin" style="top: 6px; right: 0">¥</span>
+            <span class="coin" style="bottom: 10px; left: -6px">$</span>
+          </div>
+          <h3>出國前，讓系統<br>幫你佛系存外幣</h3>
+          <p>設定出發月份和目標金額，系統每週看一次匯率，低於近 30 日均價才自動買一份。</p>
+        </div>
+        <div class="points">
+          <div class="point"><span class="ic">${svg('target')}</span><div><strong>設定一次就好</strong><span>選好目的地幣別、出發月份與目標，系統算出每次要買多少。</span></div></div>
+          <div class="point"><span class="ic">${svg('down')}</span><div><strong>只在相對低點買</strong><span>匯率高於均價那週就不買，金額自動分攤到之後。</span></div></div>
+          <div class="point"><span class="ic">${svg('pause')}</span><div><strong>隨時暫停或一次補足</strong><span>行程有變也不怕，進度與平均成本一目了然。</span></div></div>
+        </div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" data-go="setup">開始設定</button></div>`;
+  }
+
+  function viewSetup() {
+    const c = C(), weeks = totalWeeks(), each = roundUnit(S.target / weeks);
+    return appBar('設定旅遊基金', S.active ? 'progress' : 'intro') + `
+      <div class="content">
+        <div class="field">
+          <div class="field-head"><span class="field-title">要存哪一種外幣？</span>${S.active ? '<span class="field-hint">啟用後不可更換幣別</span>' : ''}</div>
+          <div class="opts" role="group" aria-label="幣別">
+            ${Object.entries(CURRENCIES).map(([k, v]) => `<button class="opt" type="button" data-ccy="${k}" aria-pressed="${S.ccy === k}" ${S.active && S.ccy !== k ? 'disabled' : ''}>${v.name} ${k}<small>${v.place}・${fmt(v.rate, v.dec)}</small></button>`).join('')}
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-head"><span class="field-title">預計出發月份</span><span class="field-hint">越早設定，分越多次買</span></div>
+          <div class="opts three" role="group" aria-label="出發月份">
+            ${MONTHS.map((d, i) => `<button class="opt" type="button" data-month="${i}" aria-pressed="${S.month === i}">${d.getFullYear() % 100}/${String(d.getMonth() + 1).padStart(2, '0')}<small>還有 ${weeksUntil(d)} 週</small></button>`).join('')}
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-head"><span class="field-title">目標金額（${c.name}）</span></div>
+          <label class="amount"><span class="sym">${c.sym}</span>
+            <input id="target" type="text" inputmode="numeric" aria-label="目標金額" value="${fmt(S.target)}"><span class="unit">${S.ccy}</span></label>
+          <div class="opts three" role="group" aria-label="常用金額">
+            ${c.presets.map(p => `<button class="opt" type="button" data-preset="${p}" aria-pressed="${S.target === p}">${c.sym}${fmt(p)}</button>`).join('')}
+          </div>
+          <span class="err" id="target-err" ${validTarget() ? 'hidden' : ''}>請輸入 ${c.sym}${fmt(c.presets[0] / 10)} 到 ${c.sym}${fmt(c.presets[2] * 10)} 之間的金額</span>
+        </div>
+        <div class="estimate" aria-live="polite">
+          <div class="big">預估每次買入<strong id="est-each">${c.sym}${fmt(each)}</strong></div>
+          <div class="row"><span>約合台幣</span><strong id="est-twd">NT$${fmt(each * c.rate)}</strong></div>
+          <div class="row"><span>觀察次數</span><strong>每週一 10:00，共 ${weeks} 次</strong></div>
+          <div class="row"><span>扣款帳戶</span><strong>台幣活存 •• [末四碼]</strong></div>
+          <div class="row"><span>存入帳戶</span><strong>${c.name}活存 •• [末四碼]</strong></div>
+        </div>
+      </div>
+      <div class="cta-bar"><button class="btn btn-primary" type="button" id="to-confirm" data-go="confirm" ${validTarget() ? '' : 'disabled'}>下一步</button></div>`;
+  }
+
+  function viewConfirm() {
+    const c = C(), weeks = totalWeeks(), each = roundUnit(S.target / weeks);
+    return appBar('確認並啟用', 'setup') + `
+      <div class="content">
+        <div class="summary">
+          <div class="row"><span>旅遊基金</span><strong>${c.place}・${monthLabel(MONTHS[S.month])}出發</strong></div>
+          <div class="row"><span>目標金額</span><strong>${money(S.target)}</strong></div>
+          <div class="row"><span>每次買入（預估）</span><strong>${c.sym}${fmt(each)}・約 NT$${fmt(each * c.rate)}</strong></div>
+          <div class="row"><span>觀察時間</span><strong>每週一 10:00，共 ${weeks} 次</strong></div>
+          <div class="row"><span>近 30 日均價</span><strong>${fmt(c.avg, c.dec)}</strong></div>
+        </div>
+        <div class="rule">
+          <strong>佛系買入規則</strong>
+          <ol>
+            <li>每週一比較即期賣出匯率與近 30 日均價。</li>
+            <li>低於均價 → 自動買入一份。</li>
+            <li>高於均價 → 這週不買，剩餘金額平均分到之後的週次。</li>
+          </ol>
+        </div>
+        <div class="switch-row"><div><strong>出發前 14 天提醒補足</strong><span>若還沒達標，推播提醒可一次買足差額</span></div>
+          <button class="switch" type="button" role="switch" data-toggle="remindTopUp" aria-checked="${S.remindTopUp}" aria-label="出發前 14 天提醒補足"></button></div>
+        <div class="switch-row"><div><strong>每次買入後通知我</strong><span>推播成交匯率與目前進度</span></div>
+          <button class="switch" type="button" role="switch" data-toggle="notifyEach" aria-checked="${S.notifyEach}" aria-label="每次買入後通知我"></button></div>
+        <p class="fine">實際成交匯率以交易當下之牌告為準；單次與單日買入上限、約定事項依[本行規定]。</p>
+      </div>
+      <div class="cta-bar">
+        <button class="btn btn-primary" type="button" data-action="activate">${svg('face', 22)}${S.active ? '以 Face ID 確認修改' : '以 Face ID 確認啟用'}</button>
+        <button class="btn btn-ghost" type="button" data-go="setup">返回修改</button>
+      </div>`;
+  }
+
+  function viewProgress() {
+    const c = C(), sv = saved(), pct = Math.min(100, Math.round(sv / S.target * 100));
+    const avgCost = sv ? spent() / sv : 0, now = S.week ? rateAt(S.week - 1) : c.rate;
+    const done = remaining() === 0, wl = weeksLeft();
+    const nearEnd = !done && wl <= 2 && S.remindTopUp;
+    const nextTxt = done ? '已達成目標，自動買入已停止'
+      : S.paused ? '已暫停，恢復後才會繼續觀察'
+      : wl === 0 ? '已到出發月份，自動買入結束'
+      : `下次觀察：${weekDate(S.week)}（一）10:00・本次若觸發買入 ${c.sym}${fmt(perBuy())}`;
+    const log = S.log.slice().reverse().map(e => e.type === 'buy'
+      ? `<li class="buy"><span class="dot">${svg('check', 16, 2.6)}</span><span class="txt"><strong>自動買入</strong><span>${e.date}・匯率 ${fmt(e.rate, c.dec)}（低於均價）</span></span><span class="amt">+${c.sym}${fmt(e.fx)}</span></li>`
+      : e.type === 'topup'
+      ? `<li class="top-up"><span class="dot">${svg('bolt', 16)}</span><span class="txt"><strong>一次補足</strong><span>${e.date}・匯率 ${fmt(e.rate, c.dec)}</span></span><span class="amt">+${c.sym}${fmt(e.fx)}</span></li>`
+      : `<li class="skip"><span class="dot">${svg('minus', 16, 2.6)}</span><span class="txt"><strong>本週未買入</strong><span>${e.date}・匯率 ${fmt(e.rate, c.dec)}（高於均價）</span></span><span class="amt">—</span></li>`).join('');
+    return appBar('我的旅遊基金', null) + `
+      <div class="content">
+        <div class="goal">
+          <div class="goal-top"><span>${c.place}・${monthLabel(MONTHS[S.month])}出發</span><span class="pill">${done ? '已達標' : S.paused ? '已暫停' : `距出發 ${wl} 週`}</span></div>
+          <div class="goal-amt">${money(sv)} <small>/ ${money(S.target)}</small></div>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="存錢進度"><span style="width: ${pct}%"></span></div>
+          <div class="goal-foot"><span>已完成 ${pct}%</span><span>還差 ${money(remaining())}</span></div>
+        </div>
+        ${done ? `<div class="done-banner">${svg('party')}恭喜！旅遊基金已存滿，祝旅途愉快</div>` : ''}
+        ${nearEnd ? `<div class="remind"><strong>出發前提醒｜</strong>距出發只剩 ${wl} 週，還差 ${money(remaining())}。可以按「一次補足」用目前匯率買足。</div>` : ''}
+        <div class="stats">
+          <div class="stat"><span>平均成本</span><strong>${avgCost ? fmt(avgCost, c.dec) : '—'}</strong></div>
+          <div class="stat"><span>近 30 日均價</span><strong>${fmt(c.avg, c.dec)}</strong></div>
+          <div class="stat"><span>目前匯率</span><strong>${fmt(now, c.dec)}</strong></div>
+        </div>
+        <div class="next ${S.paused ? 'paused' : ''}"><span class="ic">${svg(S.paused ? 'pause' : 'clock', 18)}</span><span>${nextTxt}</span></div>
+        <div class="actions">
+          <button class="act" type="button" data-action="topup" ${done ? 'disabled' : ''}>${svg('bolt')}一次補足</button>
+          <button class="act" type="button" data-action="pause" ${done || wl === 0 ? 'disabled' : ''}>${svg(S.paused ? 'play' : 'pause')}${S.paused ? '恢復' : '暫停'}</button>
+          <button class="act" type="button" data-go="setup" ${done ? 'disabled' : ''}>${svg('edit')}修改設定</button>
+        </div>
+        <div class="demo">
+          <span class="demo-label">${svg('flask', 14)}原型示範（實際上線不會出現）</span>
+          <div class="demo-btns">
+            <button class="demo-btn" type="button" data-action="sim1" ${done || S.paused || wl === 0 ? 'disabled' : ''}>模擬經過 1 週</button>
+            <button class="demo-btn" type="button" data-action="sim4" ${done || S.paused || wl === 0 ? 'disabled' : ''}>快轉 4 週</button>
+          </div>
+        </div>
+        <div class="log-head"><h3>買入紀錄</h3><span class="field-hint">共 ${S.log.length} 週</span></div>
+        <ul class="log">${log || '<li class="log-empty">還沒有紀錄。第一次觀察在 ' + weekDate(0) + '（一）10:00。</li>'}</ul>
+      </div>`;
+  }
+
+  function sheetHTML() {
+    if (!S.sheet) return '';
+    const c = C();
+    if (S.sheet === 'verify') return `<div class="sheet-wrap"><div class="sheet verify" role="status" aria-live="polite"><span class="face">${svg('face', 72, 1.6)}</span><h3>Face ID 驗證中…</h3><span class="fine">驗證通過後即啟用旅遊基金</span></div></div>`;
+    if (S.sheet === 'topup') {
+      const r = remaining(), rate = S.week ? rateAt(S.week - 1) : c.rate;
+      return `<div class="sheet-wrap"><div class="sheet" role="dialog" aria-modal="true" aria-label="一次補足">
+        <span class="grab"></span><h3>一次補足 ${money(r)}</h3>
+        <div class="summary"><div class="row"><span>參考匯率</span><strong>${fmt(rate, c.dec)}</strong></div>
+          <div class="row"><span>預估扣款</span><strong>NT$${fmt(r * rate)}</strong></div>
+          <div class="row"><span>扣款帳戶</span><strong>台幣活存 •• [末四碼]</strong></div></div>
+        <p class="fine">一次補足不受均價規則限制，會以目前匯率立即成交。</p>
+        <button class="btn btn-primary" type="button" data-action="topup-confirm">${svg('face', 22)}以 Face ID 確認買入</button>
+        <button class="btn btn-ghost" type="button" data-action="close-sheet">取消</button></div></div>`;
+    }
+    if (S.sheet === 'pause') return `<div class="sheet-wrap"><div class="sheet" role="dialog" aria-modal="true" aria-label="暫停旅遊基金">
+        <span class="grab"></span><h3>暫停自動買入？</h3>
+        <p class="fine" style="font-size: 14px">暫停期間不會扣款，已買入的 ${money(saved())} 會留在${c.name}活存。之後隨時可以恢復，剩餘金額會重新分攤。</p>
+        <button class="btn btn-primary" type="button" data-action="pause-confirm">確認暫停</button>
+        <button class="btn btn-ghost" type="button" data-action="close-sheet">取消</button></div></div>`;
+    return '';
+  }
+
+  const VIEWS = { intro: viewIntro, setup: viewSetup, confirm: viewConfirm, progress: viewProgress };
+  const screenEl = document.getElementById('screen');
+
+  function render(keepScroll) {
+    const content = screenEl.querySelector('.content');
+    const top = keepScroll && content ? content.scrollTop : 0;
+    screenEl.innerHTML = VIEWS[S.screen]() + sheetHTML() + '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
+    const nc = screenEl.querySelector('.content'); if (nc) nc.scrollTop = top;
+    renderFlow();
+    const inp = document.getElementById('target');
+    if (inp) inp.addEventListener('input', onTargetInput);
+  }
+
+  function renderFlow() {
+    document.getElementById('flow-list').innerHTML = STEPS.map((s, i) => {
+      const locked = s.id === 'progress' && !S.active;
+      return `<li><button class="flow-btn" type="button" data-jump="${s.id}" ${S.screen === s.id ? 'aria-current="step"' : ''}>
+        <span class="no">${i + 1}</span><span><strong>${s.title}</strong>${locked ? '尚未啟用，按下會用示範設定直接啟用' : s.desc}</span></button></li>`;
+    }).join('');
+  }
+
+  function toast(msg) {
+    const t = document.getElementById('toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast.timer); toast.timer = setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  /* ================== 互動 ================== */
+  function onTargetInput(e) {
+    const raw = e.target.value.replace(/[^\d]/g, '');
+    S.target = Number(raw) || 0;
+    const pos = e.target.selectionStart, before = e.target.value.length;
+    e.target.value = raw ? fmt(S.target) : '';
+    const diff = e.target.value.length - before; e.target.setSelectionRange(pos + diff, pos + diff);
+    const c = C(), each = roundUnit(S.target / totalWeeks());
+    document.getElementById('est-each').textContent = c.sym + fmt(each);
+    document.getElementById('est-twd').textContent = 'NT$' + fmt(each * c.rate);
+    document.getElementById('target-err').hidden = validTarget();
+    document.getElementById('to-confirm').disabled = !validTarget();
+    document.querySelectorAll('[data-preset]').forEach(b => b.setAttribute('aria-pressed', Number(b.dataset.preset) === S.target));
+  }
+
+  function simulate(n) {
+    for (let k = 0; k < n; k++) {
+      if (remaining() === 0 || weeksLeft() === 0) break;
+      const rate = rateAt(S.week), date = weekDate(S.week);
+      if (rate < C().avg) { const fx = perBuy(); S.log.push({ type: 'buy', date, rate, fx, twd: fx * rate }); }
+      else S.log.push({ type: 'skip', date, rate });
+      S.week++;
+    }
+    const last = S.log[S.log.length - 1];
+    render(true);
+    if (remaining() === 0) toast('旅遊基金已達標！');
+    else if (last && S.notifyEach) toast(last.type === 'buy' ? `推播：已自動買入 ${C().sym}${fmt(last.fx)}` : '本週匯率高於均價，未買入');
+  }
+
+  function activateDemo() {
+    S.active = true; S.paused = false; S.week = 0; S.log = [];
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const d = b.dataset;
+    if (d.go) { S.screen = d.go; S.sheet = null; render(); return; }
+    if (d.jump) {
+      if (d.jump === 'progress' && !S.active) activateDemo();
+      S.screen = d.jump; S.sheet = null; render(); return;
+    }
+    if (d.ccy) { if (S.active) return; S.ccy = d.ccy; S.target = C().presets[1]; render(true); return; }
+    if (d.month) { S.month = Number(d.month); render(true); return; }
+    if (d.preset) { S.target = Number(d.preset); render(true); return; }
+    if (d.toggle) { S[d.toggle] = !S[d.toggle]; b.setAttribute('aria-checked', S[d.toggle]); return; }
+    switch (d.action) {
+      case 'activate':
+        S.sheet = 'verify'; render(true);
+        setTimeout(() => { const keep = S.active; if (!keep) activateDemo(); S.screen = 'progress'; S.sheet = null; render(); toast(keep ? '已更新設定' : '旅遊基金已啟用'); }, 1300);
+        break;
+      case 'sim1': simulate(1); break;
+      case 'sim4': simulate(4); break;
+      case 'topup': S.sheet = 'topup'; render(true); break;
+      case 'topup-confirm': {
+        const rate = S.week ? rateAt(S.week - 1) : C().rate, fx = remaining();
+        S.sheet = 'verify'; render(true);
+        setTimeout(() => { S.log.push({ type: 'topup', date: S.week ? weekDate(S.week - 1) : '10/27', rate, fx, twd: fx * rate }); S.sheet = null; render(true); toast(`已補足 ${C().sym}${fmt(fx)}`); }, 1200);
+        break;
+      }
+      case 'pause': if (S.paused) { S.paused = false; render(true); toast('已恢復自動買入'); } else { S.sheet = 'pause'; render(true); } break;
+      case 'pause-confirm': S.paused = true; S.sheet = null; render(true); toast('已暫停自動買入'); break;
+      case 'close-sheet': S.sheet = null; render(true); break;
+    }
+  });
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && S.sheet && S.sheet !== 'verify') { S.sheet = null; render(true); } });
+  document.getElementById('reset').addEventListener('click', () => { S = fresh(); render(); });
+
+  render();
+</script>
+</body>
+</html>
