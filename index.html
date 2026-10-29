@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>臺灣銀行｜外匯體驗點子商城</title>
+<style>
+  :root {
+    --accent: #9a0036;        /* CI 主色 */
+    --accent-soft: #f7e9ee;
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #475569;
+    --faint: #64748b;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --ground: #f6f6f7;
+    --panel: #f8fafc;
+    --star: #b45309;
+    --star-off: #d6d3d1;
+    --benefit-bg: #fdf6e3;    /* 效益框：淺金 */
+    --benefit-line: #f3e3b8;
+    --benefit-text: #5c4205;
+    --benefit-strong: #7a5300;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', 'Heiti TC', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+  body.drawer-open { overflow: hidden; }
+  a { color: var(--accent); }
+  button, input { font-family: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible, [role="option"]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .wrap { max-width: 1440px; margin: 0 auto; padding-left: 64px; padding-right: 64px; }
+
+  /* ---------- Header ---------- */
+  header { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 30; }
+  .header-row { display: flex; align-items: center; gap: 12px 20px; padding-top: 14px; padding-bottom: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); margin-right: auto; }
+  .brand-mark { width: 40px; height: 40px; border-radius: 10px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .brand-text small { font-size: 12px; color: var(--muted); }
+  .brand-text strong { font-size: 24px; font-weight: 900; letter-spacing: .02em; }
+  .search { width: 320px; min-width: 0; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--ground); }
+  .search:focus-within { border-color: var(--ink); background: #fff; }
+  .search input { flex: 1; min-width: 0; border: none; outline: none; font-size: 14px; background: transparent; color: var(--ink); }
+  .cart-btn { height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 999px; background: #fff; color: var(--ink); font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; flex: none; }
+  .cart-btn:hover { border-color: var(--ink); }
+  .badge { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+
+  /* ---------- 標題 ---------- */
+  .page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 28px; }
+  .page-head h1 { margin: 0; font-size: 28px; font-weight: 900; }
+  .count { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; font-size: 14px; color: var(--muted); }
+  .count strong { color: var(--ink); font-size: 18px; }
+  .search-chip { min-height: 32px; display: inline-flex; align-items: center; gap: 4px; padding: 0 4px 0 12px; border: 1px solid var(--line-strong); border-radius: 999px; background: #fff; font-size: 13px; color: var(--text); cursor: pointer; }
+  .search-chip:hover { border-color: var(--ink); }
+  .search-chip .x { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+
+  /* ---------- 篩選面板 ---------- */
+  .filters { margin-top: 20px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px 28px; display: flex; flex-direction: column; gap: 18px; }
+  .filter-row { display: flex; align-items: center; gap: 12px 20px; }
+  .filter-row + .filter-row { padding-top: 18px; border-top: 1px solid var(--line); }
+  .row-label { width: 88px; flex: none; font-size: 15px; font-weight: 700; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { min-height: 44px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; border: 1px solid var(--line-strong); background: #fff; color: var(--text); }
+  .chip:hover { border-color: var(--ink); }
+  .chip .n { font-size: 12px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: #f1f5f9; color: var(--muted); }
+  .chip[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); color: var(--accent); }
+  .chip[aria-pressed="true"] .n { background: var(--accent-soft); color: var(--accent); }
+
+  .tool-row { flex-wrap: wrap; }
+  .tool-group { display: flex; align-items: center; gap: 12px; }
+  .divider { width: 1px; height: 28px; background: var(--line); }
+  .stars-range { display: flex; touch-action: none; user-select: none; -webkit-user-select: none; }
+  .star-btn { width: 40px; height: 44px; border: none; background: transparent; padding: 0; cursor: pointer; color: var(--star-off); display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+  .star-btn svg { width: 26px; height: 26px; transition: transform .12s; }
+  .star-btn.on { color: var(--star); }
+  .star-btn.preview { color: #f59e0b; }
+  .star-btn:hover svg { transform: scale(1.12); }
+  .range-pill { font-size: 13px; font-weight: 700; color: var(--text); background: #f1f5f9; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .segmented { display: flex; padding: 3px; border-radius: 12px; background: #f1f5f9; }
+  .seg { min-height: 40px; padding: 0 16px; border: none; border-radius: 9px; background: transparent; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .seg:hover { color: var(--ink); }
+  .seg[aria-pressed="true"] { background: #fff; color: var(--accent); font-weight: 900; box-shadow: 0 1px 4px rgba(15,23,42,.15); }
+  .clear-link { border: none; background: none; padding: 0 4px; min-height: 44px; color: var(--muted); font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+  .clear-link:hover { color: var(--ink); }
+
+
+  /* ---------- 卡片 ---------- */
+  main { padding-top: 24px; padding-bottom: 56px; }
+  .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s; }
+  .card:hover { box-shadow: 0 12px 28px rgba(15,23,42,.10); transform: translateY(-2px); }
+  .card-img { display: block; position: relative; overflow: hidden; height: 150px; background: #eef0f3; color: #64748b; text-decoration: none; }
+  .card-img .icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transition: transform .25s, color .25s; }
+  .card:hover .card-img .icon { transform: scale(1.08); color: var(--ink); }
+  .card-img .thumb { position: absolute; left: 50%; bottom: 0; height: 134px; width: auto; transform: translateX(-50%); filter: drop-shadow(0 8px 16px rgba(15,23,42,.18)); transition: transform .25s; }
+  .card:hover .card-img .thumb { transform: translateX(-50%) translateY(-4px); }
+  .tag-cat { z-index: 1; position: absolute; top: 12px; left: 12px; font-size: 12px; font-weight: 700; color: var(--ink); background: #fff; padding: 5px 10px; border-radius: 999px; }
+  .tag-proto { position: absolute; top: 12px; right: 12px; font-size: 12px; font-weight: 700; color: #fff; background: var(--accent); padding: 5px 10px; border-radius: 999px; }
+  .tag-proto.plan { color: var(--muted); background: #fff; border: 1px dashed var(--line-strong); padding: 4px 9px; }
+  div.card-img .icon { color: #94a3b8; }
+  .card:hover div.card-img .icon { transform: none; color: #94a3b8; }
+  .tag-with { position: absolute; bottom: 12px; right: 12px; font-size: 12px; font-weight: 700; color: var(--ink); background: #fff; padding: 4px 10px; border-radius: 999px; }
+  .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .platform { font-size: 12px; font-weight: 700; color: var(--accent); background: #fff; border: 1px solid var(--accent); padding: 1px 8px; border-radius: 6px; }
+  .journey { font-size: 12px; color: var(--faint); margin-left: auto; }
+  .card h2 { margin: 0; font-size: 20px; font-weight: 900; line-height: 1.4; }
+  .card h2 a { color: var(--ink); text-decoration: none; }
+  .card h2 a:hover { color: var(--accent); }
+  .summary { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .label { font-size: 12px; font-weight: 700; color: var(--faint); }
+  .features { display: flex; flex-direction: column; gap: 4px; }
+  .features ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .features li { font-size: 13px; color: var(--text); line-height: 1.5; display: flex; gap: 6px; }
+  .features li::before { content: "✓"; color: var(--faint); font-weight: 900; }
+  .benefit { font-size: 13px; line-height: 1.55; color: var(--benefit-text); background: var(--benefit-bg); border: 1px solid var(--benefit-line); border-radius: 10px; padding: 9px 11px; }
+  .benefit strong { color: var(--benefit-strong); }
+  .card-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 10px; border-top: 1px solid #f1f5f9; }
+  .rating { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .rating .label { font-weight: 400; }
+  .stars { font-size: 15px; letter-spacing: 1px; }
+  .stars .on { color: var(--star); }
+  .stars .off { color: var(--star-off); }
+  .pick { min-height: 44px; padding: 0 14px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; border: 1.5px solid var(--accent); background: var(--accent); color: #fff; }
+  .pick:hover { background: #7f002d; border-color: #7f002d; }
+  .pick[aria-pressed="true"] { background: #fff; color: var(--accent); border-color: var(--accent); }
+  .pick[aria-pressed="true"]:hover { background: var(--accent-soft); }
+
+  .empty { background: #fff; border: 1px dashed var(--line-strong); border-radius: 16px; padding: 48px 24px; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .empty strong { font-size: 17px; }
+  .empty span { font-size: 14px; color: var(--muted); }
+  .btn-primary { min-height: 44px; padding: 0 20px; border: none; border-radius: 12px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; }
+  .btn-outline { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .btn-outline:hover { border-color: var(--ink); }
+
+  footer { border-top: 1px solid var(--line); background: #fff; }
+  footer .wrap { padding-top: 20px; padding-bottom: 20px; font-size: 13px; color: var(--muted); line-height: 1.7; text-align: center; }
+
+  /* ---------- 評估清單抽屜 ---------- */
+  .scrim { position: fixed; inset: 0; background: rgba(15,23,42,.45); z-index: 40; opacity: 0; pointer-events: none; transition: opacity .25s; }
+  .scrim.open { opacity: 1; pointer-events: auto; }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100vw); background: #fff; z-index: 50; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .28s cubic-bezier(.2,.8,.2,1), visibility 0s linear .28s; visibility: hidden; }
+  .drawer.open { transform: translateX(0); visibility: visible; transition: transform .28s cubic-bezier(.2,.8,.2,1); box-shadow: -12px 0 32px rgba(15,23,42,.12); }
+  .drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+  .drawer-head h2 { margin: 0; font-size: 20px; font-weight: 900; }
+  .icon-btn { width: 44px; height: 44px; border: none; border-radius: 10px; background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; flex: none; }
+  .icon-btn:hover { background: var(--panel); color: var(--ink); }
+  .drawer-body { flex: 1; overflow-y: auto; padding: 8px 20px; }
+  .drawer-item { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #f1f5f9; }
+  .drawer-item .thumb { width: 48px; height: 48px; flex: none; border-radius: 10px; background: #eef0f3; color: #64748b; display: flex; align-items: center; justify-content: center; }
+  .drawer-item .info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .drawer-item .info .name { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .drawer-item .info a { font-size: 15px; font-weight: 700; color: var(--ink); text-decoration: none; }
+  .drawer-item .info a:hover { color: var(--accent); }
+  .drawer-item .sub { font-size: 12px; color: var(--muted); }
+  .drawer-empty { padding: 48px 8px; text-align: center; color: var(--muted); font-size: 14px; line-height: 1.7; }
+  .drawer-foot { border-top: 1px solid var(--line); padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .summary-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--text); }
+  .summary-row strong { color: var(--ink); text-align: right; }
+  .drawer-actions { display: flex; gap: 10px; }
+  .drawer-actions > * { flex: 1; }
+
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 16px); background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 12px; font-size: 14px; opacity: 0; pointer-events: none; transition: all .25s; z-index: 60; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ---------- 結帳完成頁 ---------- */
+  body.on-checkout .search, body.on-checkout .cart-btn { display: none; }
+  .checkout { padding-top: 32px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 24px; }
+  .co-hero { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 32px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+  .co-check { width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; animation: co-pop .4s cubic-bezier(.2,.9,.3,1.3) both; }
+  @keyframes co-pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .co-hero h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.4; }
+  .co-hero h1:focus { outline: none; }
+  .co-hero p { margin: 0; font-size: 15px; color: var(--muted); }
+  .co-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; font-size: 14px; color: var(--muted); }
+  .co-meta strong { color: var(--ink); }
+  .co-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .co-stat { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .co-stat span { font-size: 13px; color: var(--muted); }
+  .co-stat strong { font-size: 22px; font-weight: 900; }
+  .co-list-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .co-list-head h2 { margin: 0; font-size: 20px; font-weight: 900; }
+  .co-list-head span { font-size: 14px; color: var(--muted); }
+  .co-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .co-item { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 16px; display: flex; gap: 18px; align-items: center; }
+  .co-no { width: 32px; height: 32px; flex: none; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .co-thumb { width: 120px; height: 96px; flex: none; border-radius: 12px; background: #eef0f3; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #94a3b8; }
+  .co-thumb img { position: absolute; left: 50%; bottom: 0; height: 88px; width: auto; transform: translateX(-50%); }
+  .co-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .co-body h3 { margin: 0; font-size: 18px; font-weight: 900; }
+  .co-body p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .co-body .meta { gap: 6px; }
+  .co-side { flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+  .co-link { min-height: 40px; padding: 0 14px; border: 1.5px solid var(--accent); border-radius: 10px; color: var(--accent); font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; white-space: nowrap; }
+  .co-link:hover { background: var(--accent-soft); }
+  .co-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .co-actions .btn-primary, .co-actions .btn-outline { min-width: 180px; min-height: 48px; font-size: 15px; }
+  @media (max-width: 960px) { .co-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 720px) {
+    .co-item { flex-wrap: wrap; }
+    .co-thumb { width: 96px; height: 80px; }
+    .co-body { flex: 1 1 100%; }
+    .co-thumb img { height: 72px; }
+    .co-side { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
+    .co-hero h1 { font-size: 22px; }
+  }
+
+  /* ---------- 代幣 ---------- */
+  .token-chip { height: 44px; padding: 0 14px; border-radius: 999px; background: var(--benefit-bg); border: 1px solid var(--benefit-line); color: var(--benefit-strong); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; white-space: nowrap; flex: none; }
+  .token-chip b { font-size: 16px; font-weight: 900; color: var(--benefit-text); }
+  .token-chip.is-zero { background: #ecfdf3; border-color: #bbf7d0; color: #166534; }
+  .token-chip.is-zero b { color: #166534; }
+  body.on-checkout .token-chip { display: none; }
+  .pick .tk { font-weight: 900; }
+  .modal-wrap { position: fixed; inset: 0; z-index: 70; background: rgba(15,23,42,.5); display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .modal { width: min(440px, 100%); background: #fff; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 24px 60px rgba(15,23,42,.25); animation: co-pop .25s cubic-bezier(.2,.8,.2,1); }
+  .modal h2 { margin: 0; font-size: 22px; font-weight: 900; line-height: 1.4; }
+  .modal p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .modal .coin-big { width: 64px; height: 64px; border-radius: 50%; background: var(--benefit-bg); border: 2px solid var(--benefit-line); color: var(--benefit-strong); display: flex; align-items: center; justify-content: center; align-self: center; }
+  .modal .welcome-amt { text-align: center; font-size: 40px; font-weight: 900; color: var(--benefit-strong); line-height: 1; }
+  .modal .welcome-amt small { font-size: 16px; font-weight: 700; color: var(--benefit-text); }
+  .modal .rules { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--text); line-height: 1.6; }
+  .tk-input { display: flex; align-items: center; gap: 8px; height: 60px; padding: 0 8px; border: 1px solid var(--line-strong); border-radius: 14px; }
+  .tk-input:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .tk-input input { flex: 1; min-width: 0; border: none; outline: none; text-align: center; font-size: 28px; font-weight: 900; color: var(--ink); background: transparent; -moz-appearance: textfield; }
+  .tk-input input::-webkit-outer-spin-button, .tk-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .tk-step { width: 44px; height: 44px; flex: none; border: none; border-radius: 12px; background: #f1f5f9; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer; }
+  .tk-step:hover:not(:disabled) { background: #e2e8f0; }
+  .tk-step:disabled { opacity: .35; cursor: not-allowed; }
+  .tk-quick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .tk-quick button { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .tk-quick button:hover:not(:disabled) { border-color: var(--ink); }
+  .tk-quick button:disabled { opacity: .4; cursor: not-allowed; }
+  .tk-note { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+  .tk-note strong { color: var(--ink); }
+  .tk-err { font-size: 13px; font-weight: 700; color: var(--accent); }
+  .modal-actions { display: flex; flex-direction: column; gap: 8px; }
+  .modal-actions .btn-primary { min-height: 52px; font-size: 16px; }
+  .modal-actions .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .modal .link-del { border: none; background: none; min-height: 40px; color: var(--accent); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .modal .link-cancel { border: none; background: none; min-height: 40px; color: var(--muted); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .drawer-item .tk-edit { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+  .drawer-item .tk-edit button { width: 34px; height: 34px; border: 1px solid var(--line-strong); border-radius: 9px; background: #fff; color: var(--ink); font-size: 18px; font-weight: 700; cursor: pointer; }
+  .drawer-item .tk-edit button:disabled { opacity: .35; cursor: not-allowed; }
+  .drawer-item .tk-edit input { width: 76px; height: 34px; border: 1px solid var(--line-strong); border-radius: 9px; text-align: center; font-size: 15px; font-weight: 900; color: var(--ink); -moz-appearance: textfield; }
+  .drawer-item .tk-edit input::-webkit-outer-spin-button, .drawer-item .tk-edit input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .drawer-item .tk-edit input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .drawer-item .tk-edit span { font-size: 13px; color: var(--muted); }
+  .tk-summary { display: flex; flex-direction: column; gap: 8px; }
+  .tk-bar { height: 10px; border-radius: 999px; background: #f1f5f9; overflow: hidden; }
+  .tk-bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width .3s; }
+  .tk-hint { font-size: 13px; color: var(--benefit-text); background: var(--benefit-bg); border: 1px solid var(--benefit-line); border-radius: 10px; padding: 8px 10px; }
+  .tk-hint.ok { color: #166534; background: #ecfdf3; border-color: #bbf7d0; }
+  #submit-picked:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .co-tokens { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .co-tokens b { font-size: 22px; font-weight: 900; color: var(--benefit-strong); }
+  .co-tokens span { font-size: 12px; color: var(--muted); }
+  .co-share { width: 120px; height: 6px; border-radius: 999px; background: #f1f5f9; overflow: hidden; }
+  .co-share i { display: block; height: 100%; background: var(--accent); }
+  @media (max-width: 720px) { .token-chip .tk-label { display: none; } }
+  @media (max-width: 560px) { .token-chip { padding: 0 10px; } .token-chip .tk-unit { display: none; } .brand-text strong { font-size: 19px; } .brand-mark { width: 36px; height: 36px; } .header-row { gap: 10px 8px; } }
+
+
+  /* ---------- 版本 A：類別頁籤＋篩選浮層（吸頂工具列） ---------- */
+  .toolbar { position: sticky; top: var(--hdr-h, 73px); z-index: 25; background: #fff; border-bottom: 1px solid var(--line); }
+  .toolbar-row { display: flex; align-items: center; gap: 12px 16px; }
+  .cat-tabs { flex: 1; min-width: 0; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+  .cat-tabs::-webkit-scrollbar { display: none; }
+  .cat-tab { flex: none; min-height: 52px; padding: 0 12px; border: none; border-bottom: 3px solid transparent; background: none; color: var(--muted); font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .cat-tab .n { font-size: 12px; font-weight: 700; color: var(--faint); }
+  .cat-tab:hover { color: var(--ink); }
+  .cat-tab[aria-pressed="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+  .cat-tab[aria-pressed="true"] .n { color: var(--accent); }
+  .cat-tab:disabled { color: #a1a1aa; cursor: default; }
+  .cat-tab:disabled .n { color: #a1a1aa; }
+  .tools { display: flex; align-items: center; gap: 10px; flex: none; }
+  .filter-wrap { position: relative; }
+  .filter-btn { min-height: 40px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .filter-btn:hover, .filter-btn[aria-expanded="true"] { border-color: var(--ink); }
+  .filter-btn.on { border-color: var(--accent); color: var(--accent); }
+  .filter-btn .chev { transition: transform .2s; }
+  .filter-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  .filter-btn .n { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; }
+  .filter-pop { position: absolute; top: calc(100% + 10px); right: 0; z-index: 40; width: 340px; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 18px 44px rgba(15,23,42,.18); padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .pop-head { display: flex; align-items: center; justify-content: space-between; }
+  .pop-head strong { font-size: 16px; font-weight: 900; }
+  .pop-close { width: 36px; height: 36px; border: none; background: none; border-radius: 50%; font-size: 16px; color: var(--muted); cursor: pointer; }
+  .pop-close:hover { background: var(--panel); color: var(--ink); }
+  .pop-sec { display: flex; flex-direction: column; gap: 8px; }
+  .pop-sec + .pop-sec { padding-top: 14px; border-top: 1px solid var(--line); }
+  .pop-label { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 700; }
+  .pop-label small { font-size: 12px; color: var(--faint); font-weight: 700; }
+  .pf-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pf-chip { min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-strong); background: #fff; color: var(--text); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .pf-chip:hover { border-color: var(--ink); }
+  .pf-chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark, #7f002d); }
+  .pop-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .pop-foot .clear-link { min-height: 40px; }
+  .pop-apply { min-height: 40px; padding: 0 18px; }
+  .toolbar.pop-open { z-index: 45; }
+  .filter-scrim { position: fixed; inset: 0; z-index: 35; background: rgba(15,23,42,.4); }
+  .active-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 16px; min-height: 32px; }
+  .count-text { font-size: 14px; color: var(--muted); margin-right: 4px; }
+  .count-text strong { color: var(--ink); font-size: 16px; }
+  .active-chips { display: contents; }
+  .a-chip { min-height: 32px; display: inline-flex; align-items: center; gap: 6px; padding: 0 6px 0 12px; border: none; border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark, #7f002d); font-size: 13px; font-weight: 700; cursor: pointer; }
+  .a-chip .x { width: 20px; height: 20px; border-radius: 50%; background: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; }
+  .a-chip:hover .x { background: var(--accent); color: #fff; }
+  .active-row .clear-link { min-height: 32px; }
+  main#list-main { padding-top: 16px; }
+  @media (max-width: 720px) {
+    .toolbar-row { gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+    .cat-tabs { gap: 8px; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent); padding-right: 16px; }
+    .cat-tab { min-height: 36px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; font-size: 14px; }
+    .cat-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .cat-tab[aria-pressed="true"] .n { color: #fff; }
+    .tools { gap: 8px; }
+    .filter-btn { min-height: 36px; padding: 0 12px; }
+    .header-row { flex-wrap: nowrap; }
+    .brand { min-width: 0; }
+    .brand-text strong { white-space: nowrap; }
+    .filter-pop { position: fixed; top: auto; left: 0; right: 0; bottom: 0; width: 100%; border-radius: 20px 20px 0 0; padding: 18px 16px calc(18px + env(safe-area-inset-bottom)); max-height: 85vh; overflow: auto; }
+  }
+
+  @media (max-width: 420px) {
+    .header-row { gap: 6px; }
+    .brand { gap: 8px; }
+    .brand-mark { width: 32px; height: 32px; border-radius: 9px; }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .brand-text { min-width: 0; }
+    .brand-text strong { font-size: 17px; overflow: hidden; text-overflow: ellipsis; }
+    .token-chip, .cart-btn { height: 38px; padding: 0 9px; gap: 5px; }
+  }
+  @media (max-width: 380px) { .token-chip > svg { display: none; } }
+  /* ---------- 響應式 ---------- */
+  @media (max-width: 1240px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 960px) {
+    .wrap { padding-left: 24px; padding-right: 24px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sort { margin-left: 0; }
+  }
+  @media (max-width: 720px) {
+    .header-row { flex-wrap: nowrap; }
+    .search { order: 3; width: 100%; }
+    .filters { padding: 18px 16px; }
+    .filter-row { flex-wrap: wrap; align-items: flex-start; }
+    .row-label { width: 100%; }
+    .divider { display: none; }
+    .tool-group { flex-wrap: wrap; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding-left: 16px; padding-right: 16px; }
+    .grid { grid-template-columns: 1fr; }
+    .cart-btn .cart-text { display: none; }
+    .page-head { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <a class="brand" href="#">
+      <span class="brand-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg>
+      </span>
+      <span class="brand-text"><strong>外匯體驗點子商城</strong></span>
+    </a>
+    <span class="token-chip" id="token-chip" aria-live="polite"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1.1 1.6 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5v1.5M12 16v1.5"/></svg><span class="tk-label">剩餘</span> <b id="token-left">1,000</b><span class="tk-unit"> 代幣</span></span>
+    <button class="cart-btn" type="button" id="open-drawer" aria-haspopup="dialog" aria-controls="drawer" aria-label="評估清單">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h11M9 12h11M9 19h11M4 5h.01M4 12h.01M4 19h.01"/></svg>
+      <span class="cart-text">評估清單</span> <span class="badge" id="picked-count">0</span>
+    </button>
+  </div>
+</header>
+
+<div class="toolbar" id="list-top">
+  <div class="wrap toolbar-row">
+    <h1 class="vh">外匯體驗點子列表</h1>
+    <nav class="cat-tabs" id="cat-filters" aria-label="類別"></nav>
+    <div class="tools">
+      <div class="filter-wrap">
+        <button class="filter-btn" type="button" id="filter-btn" aria-expanded="false" aria-controls="filter-pop"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg><span>篩選</span><span class="n" id="filter-n" hidden>0</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="filter-pop" id="filter-pop" role="dialog" aria-label="篩選與排序" hidden>
+          <div class="pop-head"><strong>篩選與排序</strong><button class="pop-close" type="button" id="filter-close" aria-label="關閉">✕</button></div>
+          <div class="pop-sec">
+            <div class="pop-label"><span>排序</span></div>
+            <div class="segmented sort-seg" id="sort-seg" role="group" aria-label="排序方式"></div>
+          </div>
+          <div class="pop-sec">
+            <div class="pop-label"><span>開發難易度</span><span class="range-pill" id="range-pill" aria-live="polite">全部</span></div>
+            <div class="stars-range" id="stars-range" role="group" aria-label="開發難易度，點第幾顆星就顯示 1 星到該星等的點子，再點一次取消"></div>
+          </div>
+          <div class="pop-sec">
+            <div class="pop-label"><span>平台</span><small>可複選</small></div>
+            <div class="pf-chips" id="platform-filters" role="group" aria-label="平台"></div>
+          </div>
+          <div class="pop-foot">
+            <button class="clear-link" type="button" data-clear="filters">全部清除</button>
+            <button class="btn-primary pop-apply" type="button" id="filter-done">顯示 <span id="pop-count">0</span> 項</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="filter-scrim" id="filter-scrim" hidden></div>
+
+<main class="wrap" id="list-main">
+  <div class="active-row" aria-live="polite">
+    <span class="count-text">顯示 <strong id="count">0</strong> 項</span>
+    <span class="active-chips" id="active-chips"></span>
+    <button class="clear-link" type="button" id="clear-filters" data-clear="all" hidden>清除全部</button>
+  </div>
+  <div class="empty" id="empty" hidden>
+    <strong>找不到符合條件的功能</strong>
+    <span>試著減少篩選條件或換個關鍵字。</span>
+    <button class="btn-primary" type="button" data-clear="all">清除篩選</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<section class="wrap checkout" id="checkout" aria-labelledby="co-title" hidden></section>
+
+<footer>
+  <div class="wrap">© 臺灣銀行外匯敏捷團隊</div>
+</footer>
+
+<!-- 評估清單抽屜 -->
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="drawer-title">評估清單（<span id="drawer-count">0</span>）</h2>
+    <button class="icon-btn" type="button" id="close-drawer" aria-label="關閉評估清單">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+  <div class="drawer-foot" id="drawer-foot">
+    <div class="tk-summary">
+      <div class="summary-row"><span>已分配代幣</span><strong id="tk-used">0 / 1,000</strong></div>
+      <div class="tk-bar" role="progressbar" aria-label="代幣分配進度" aria-valuemin="0" aria-valuemax="1000" id="tk-bar-wrap"><span id="tk-bar"></span></div>
+      <div class="tk-hint" id="tk-hint"></div>
+    </div>
+    <div class="drawer-actions">
+      <button class="btn-outline" type="button" id="clear-picked">清空清單</button>
+      <button class="btn-primary" type="button" id="submit-picked">送出清單</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="modal-root"></div>
+
+<script>
+  // 功能原型網頁：卡片圖片與標題連到對應原型；沒有原型的卡片標示「原型規劃中」
+  const PROTOTYPES = {
+    'f1-item-1': '旅遊備鈔-佛系旅遊基金.html',
+    'f1-item-2': '旅遊備鈔-相對低點預先授權.html',
+    'f1-item-4': '旅遊備鈔-匯率天氣報.html',
+    'f1-item-7': '旅遊備鈔-RichPush生物辨識一鍵買.html',
+    'f1-item-15': '旅遊備鈔-主題式虛擬行李箱帳戶.html',
+    'f1-item-18': '旅遊備鈔-階梯式通關獎勵機制.html',
+    'f4-item-1': '旅遊備鈔-App預約快取條碼.html',
+    'f5-item-5': '旅遊備鈔-碎銀投資微型無痛理財.html',
+    'f1-item-8': '旅遊備鈔-專屬外幣桌面Widget.html',
+    'fx-item-1': '外幣買賣-交易走勢圖輔助.html',
+    'fx-item-2': '外幣買賣-交易逾時保留設定.html',
+    'fx-item-3': '外幣買賣-官網外匯快捷服務.html',
+    'fx-item-4': '外幣買賣-換匯平均成本.html',
+    'fx-item-5': '外幣買賣-預約換匯.html',
+    'fd-item-1': '外匯定存-到期體驗旅程.html',
+    'fd-item-2': '外匯定存-外匯定存比較下單.html',
+    'fd-item-3': '外匯定存-餘裕管理旅程.html',
+    'rm-item-1': '匯出匯款-全額到匯.html',
+    'rm-item-2': '匯出匯款-進度與剩餘步驟提示.html',
+    'rm-item-3': '匯出匯款-七大海外匯款服務指南.html',
+    'ot-item-1': '其他-外匯匯入款申報查詢.html',
+    'ot-item-2': '其他-申請存款帳戶存摺封面.html'
+  };
+  // 已完成原型的示意圖（擷取自各原型的手機畫面）
+  const THUMBS = {
+    'f5-item-5': 'thumbs/f5-item-5.png',
+    'f4-item-1': 'thumbs/f4-item-1.png',
+    'f1-item-18': 'thumbs/f1-item-18.png',
+    'f1-item-15': 'thumbs/f1-item-15.png',
+    'f1-item-7': 'thumbs/f1-item-7.png',
+    'f1-item-1': 'thumbs/f1-item-1.png',
+    'f1-item-2': 'thumbs/f1-item-2.png',
+    'f1-item-4': 'thumbs/f1-item-4.png',
+    'f1-item-8': 'thumbs/f1-item-8.png',
+    'fx-item-1': 'thumbs/fx-item-1.png',
+    'fx-item-2': 'thumbs/fx-item-2.png',
+    'fx-item-3': 'thumbs/fx-item-3.png',
+    'fx-item-4': 'thumbs/fx-item-4.png',
+    'fx-item-5': 'thumbs/fx-item-5.png',
+    'fd-item-1': 'thumbs/fd-item-1.png',
+    'fd-item-2': 'thumbs/fd-item-2.png',
+    'fd-item-3': 'thumbs/fd-item-3.png',
+    'rm-item-1': 'thumbs/rm-item-1.png',
+    'rm-item-2': 'thumbs/rm-item-2.png',
+    'rm-item-3': 'thumbs/rm-item-3.png',
+    'ot-item-1': 'thumbs/ot-item-1.png',
+    'ot-item-2': 'thumbs/ot-item-2.png'
+  };
+
+  const CATEGORIES = ['旅遊備鈔', '外幣買賣', '外匯定存', '匯出匯款', '其他'];
+  const CAT_ICONS = {
+    '外幣買賣': 'M7 7h11l-3-3M17 17H6l3 3',
+    '外匯定存': 'M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4',
+    '匯出匯款': 'M12 21V9M7 14l5-5 5 5M4 3h16',
+    '旅遊備鈔': 'M3 7h18v10H3zM12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM6 10v4M18 10v4',
+    '其他': 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z'
+  };
+  const JOURNEYS = { f1: 'F1-1 隨手換匯', f2: 'F2-2 避免撲空跨行', f3: 'F3-1 極速隱形驗證', f4: 'F4-1 無卡極速取鈔', f5: 'F5-2 零碎外幣回收', fx: '外幣買賣', fd: '外匯定存', rm: '匯出匯款', ot: '其他' };
+  const JOURNEY_ORDER = ['f1', 'f2', 'f3', 'f4', 'f5', 'fx', 'fd', 'rm', 'ot'];
+
+  // cat：功能所屬類別（可自行調整）
+  const ITEMS = [
+    { id: 'f1-item-1', j: 'f1', cat: '旅遊備鈔', title: '「佛系旅遊基金」智能定投', summary: '輸入預計出發月份與目標金額，系統運算均價，低於均價自動小額扣款買入。', features: ['設定出發月份與目標金額', '低於均價時自動小額買入'], benefit: '不用盯盤也能分批買在相對低點', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'f1-item-2', j: 'f1', cat: '旅遊備鈔', title: '相對低點「預先授權」機制', summary: '提前設定「若跌破某匯率自動買入」，系統後台觸發即自動成交，免盯盤。', features: ['自訂觸發匯率與買入金額', '達標後台自動成交並通知'], benefit: '把「等低點」交給系統，不再錯過時機', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'f1-item-4', j: 'f1', cat: '旅遊備鈔', title: '「匯率天氣報」極簡指標', summary: '將複雜 K 線轉化為天氣圖示，晴天代表低點強烈建議買進，不需懂財經術語。', features: ['以晴雨圖示呈現買點強弱', '免懂 K 線與財經術語'], benefit: '降低換匯判斷門檻，新手也敢下手', diff: 2, platforms: ['APP', '網銀', '官網'], with: '' },
+    { id: 'f1-item-7', j: 'f1', cat: '旅遊備鈔', title: 'Rich Push 生物辨識一鍵買', summary: '匯率大跌發送推播時，長按通知並透過 Face ID 確認，3 秒內完成定額買入。', features: ['匯率大跌即時推播', '長按通知以 Face ID 確認定額買入'], benefit: '在通知裡完成交易，縮短決策到成交的距離', diff: 4, platforms: ['APP'], with: '' },
+    { id: 'f1-item-8', j: 'f1', cat: '旅遊備鈔', title: '專屬外幣桌面 Widget', summary: '極簡手機桌面小工具，顯示當前匯率與自訂快捷鍵，點擊驗證即可成交。', features: ['桌面常駐匯率與走勢', '自訂快捷鍵，驗證即成交'], benefit: '看到好匯率當下就能買，免開 App 登入', diff: 3, platforms: ['APP'], with: '' },
+    { id: 'f1-item-15', j: 'f1', cat: '旅遊備鈔', title: '主題式虛擬行李箱帳戶', summary: '包裝成「特定旅程行李箱」，買進時呈現投入動畫，增添專屬感與行前儀式感。', features: ['依旅程建立專屬外幣帳戶', '買進時呈現投入動畫'], benefit: '增加行前儀式感，提高持續存外幣意願', diff: 2, platforms: ['APP'], with: '' },
+    { id: 'f1-item-18', j: 'f1', cat: '旅遊備鈔', title: '階梯式通關獎勵機制', summary: '當線上買進累積達里程碑，解鎖實體特權（如貴賓室時數），疊加期待。', features: ['累積買進達里程碑解鎖權益', '提供貴賓室時數等實體特權'], benefit: '以獎勵疊加期待，帶動線上換匯量', diff: 3, platforms: ['APP'], with: '' },
+    { id: 'f4-item-1', j: 'f4', cat: '旅遊備鈔', title: 'App 預約快取條碼', summary: '在路上先選好幣別與面額，產生限時 QR Code，抵達機台直接掃碼。', features: ['在路上預選幣別與面額', '抵達機台掃碼即取鈔'], benefit: '機台前只剩核身，縮短等候時間', diff: 4, platforms: ['APP', 'ATM'], with: '' },
+    { id: 'f5-item-5', j: 'f5', cat: '旅遊備鈔', title: '「碎銀投資」微型無痛理財', summary: '存回的零錢自動免手續費轉投入特定美股零股，包裝成投資驚喜。', features: ['存回零錢免手續費轉投資', '包裝成投資驚喜'], benefit: '把零碎外幣導入理財，深化往來', diff: 4, platforms: ['APP'], with: '' },
+    { id: 'fx-item-1', j: 'fx', cat: '外幣買賣', title: '交易走勢圖輔助', summary: '在換匯畫面直接參考近期走勢與歷史匯率，查完資訊即可接續原本的換匯設定。', features: ['換匯畫面內查看近期走勢', '展開歷史匯率查詢，不離開交易'], benefit: '減少為了查資料而離開交易畫面', diff: 3, platforms: ['APP'], with: '' },
+    { id: 'fx-item-2', j: 'fx', cat: '外幣買賣', title: '交易逾時保留設定', summary: '交易確認頁倒數計時，返回時保留扣帳與入帳帳號；逾時後可從鈴鐺通知接續填寫並重新取得匯率。', features: ['確認頁倒數，返回保留帳號', '逾時後由通知接續未完成交易'], benefit: '減少逾時後重選帳號與重找交易入口的負擔', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'fx-item-3', j: 'fx', cat: '外幣買賣', title: '官網外匯快捷服務', summary: '將外幣走勢與需求導引直接放在官網外匯選單，查詢資訊與找服務都能在同一層開始。', features: ['選單內即看外幣走勢、可切換幣別', '用「我要做什麼」找到對應服務入口'], benefit: '減少逐層尋找與猜測功能名稱，容易取得外匯資訊及入口', diff: 3, platforms: ['官網'], with: '' },
+    { id: 'fx-item-4', j: 'fx', cat: '外幣買賣', title: '換匯平均成本', summary: '在外幣帳戶總覽查看各幣別餘額、平均成本與約當新臺幣，點選幣別即可進入交易明細。', features: ['各幣別餘額、平均成本與約當新臺幣', '點選幣別查看換匯、提存、利息明細'], benefit: '掌握外幣持有狀況，方便查閱資金進出', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'fx-item-5', j: 'fx', cat: '外幣買賣', title: '預約換匯', summary: '依需求選擇定期或指定日期換匯，設定幣別、金額及交易性質，並在預約清單管理尚未執行的交易。', features: ['定期或指定日期預約換匯', '預約清單可修改或刪除'], benefit: '提前安排外幣準備，需求變動也能調整', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'fd-item-1', j: 'fd', cat: '外匯定存', title: '定存到期體驗旅程', summary: '首頁顯示定存到期倒數，可一鍵切換大字版，並提供到期資金用途建議，銜接後續理財需求。', features: ['首頁到期倒數小工具', '一鍵切換大字版', '到期資金續存或轉投資建議'], benefit: '主動提醒並引導下一步，減少資金閒置、提升續存與轉投資', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'fd-item-2', j: 'fd', cat: '外匯定存', title: '外匯定存比較下單', summary: '依資金可運用的期間篩選專案，以相同本金比較各方案收益與匯率風險，再將選定條件帶入下單。', features: ['依天期篩選，勾選多個專案一起比較', '共用本金即時試算各天期收益', '選定方案自動帶入金額、天期與利率'], benefit: '從篩選、比較到承作，延續每一步的選擇，減少重複填寫', diff: 4, platforms: ['APP', '網銀'], with: '' },
+    { id: 'fd-item-3', j: 'fd', cat: '外匯定存', title: '外幣餘裕管理旅程', summary: '並列可用餘額與預扣金額試算資金缺口，顯示重大扣款目標進度，一鍵帶入換匯補足。', features: ['可用餘額與預扣金額並列試算', '重大扣款目標進度條', '缺口一鍵帶入換匯表單'], benefit: '降低餘額不足的焦慮，一站完成資金補足', diff: 4, platforms: ['APP', '網銀'], with: '' },
+    { id: 'rm-item-1', j: 'rm', cat: '匯出匯款', title: '全額到匯', summary: '已臨櫃約定並符合條件的受款人會標示「全額到匯」，交易中清楚說明中間銀行與受款行可能收取的費用。', features: ['已約定受款人標示「全額到匯」', '提示中間銀行與受款行費用', '確認頁核對受款人、金額與費用'], benefit: '匯款前看懂適用條件與費用，降低到帳金額的不確定感', diff: 3, platforms: ['網銀', 'APP'], with: '' },
+    { id: 'rm-item-2', j: 'rm', cat: '匯出匯款', title: '進度與剩餘步驟提示', summary: '以進度列呈現匯出匯款的四個階段，同步顯示目前步驟、待辦事項與剩餘步驟。', features: ['進度列標示目前階段與總步驟', '各階段同步顯示待辦事項', '受款人資料自動帶入後續步驟'], benefit: '隨時掌握交易進度，減少漏做與重複確認', diff: 3, platforms: ['網銀', 'APP'], with: '' },
+    { id: 'rm-item-3', j: 'rm', cat: '匯出匯款', title: '七大海外匯款服務指南', summary: '以七大海外匯款情境取代專業業務名稱，點選情境後由外匯小幫手 BUBI 引導，分流至臨櫃或網路銀行辦理。', features: ['七大匯款情境卡片，一眼找到用途', 'BUBI 互動提問，引導選擇辦理管道', '網銀路徑確認受款人是否已約定'], benefit: '不懂匯款業務名稱也能快速找到合適的辦理方式', diff: 3, platforms: ['網銀', '官網'], with: '' },
+    { id: 'ot-item-1', j: 'ot', cat: '其他', title: '外匯匯入款申報／查詢', summary: '收到匯入款通知後，登入行動銀行查詢款項，確認匯款資訊並選擇申報性質，完成線上申報與結果回查。', features: ['從到款通知或外匯選單進入查詢／申報', '依期間查詢，清楚辨識待申報款項', '常用申報性質快選，送出後隨時回查'], benefit: '串接到款通知、確認與申報結果，減少切換服務與重複確認', diff: 4, platforms: ['APP'], with: '' },
+    { id: 'ot-item-2', j: 'ot', cat: '其他', title: '申請存款帳戶存摺封面', summary: '選擇存款帳戶並設定文件開啟密碼，即可預覽並下載受密碼保護的存摺封面。', features: ['支援新臺幣與外幣存款帳戶', '整合銀行、分行、SWIFT CODE、帳號與戶名', '自訂文件密碼，預覽後再下載'], benefit: '需要提供收款帳戶資料時，快速取得清楚的存摺封面', diff: 2, platforms: ['APP'], with: '' }
+  ];
+
+  const PLATFORMS = ['APP', '網銀', '官網', 'ATM'];
+  const SORTS = [
+    { id: 'category', label: '依類別排序', short: '依類別' },
+    { id: 'easy', label: '難易度：低 → 高', short: '難易度 低→高', chip: '難易度 低→高' },
+    { id: 'hard', label: '難易度：高 → 低', short: '高→低', chip: '難易度 高→低' }
+  ];
+  const STAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>';
+  const CHECK_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+  // 評估清單存在瀏覽器暫存，重新整理後保留
+  const PICK_KEY = 'fx-idea-shop-tokens-v2';
+  const TOKEN_TOTAL = 1000, TOKEN_STEP = 50;
+  function loadPicked() {
+    try {
+      const v = JSON.parse(localStorage.getItem(PICK_KEY));
+      if (v && Array.isArray(v.picked)) {
+        const picked = v.picked.filter(id => ITEMS.some(it => it.id === id) && v.tokens[id] > 0);
+        const tokens = {}; picked.forEach(id => tokens[id] = Math.floor(v.tokens[id]));
+        if (picked.reduce((s, id) => s + tokens[id], 0) <= TOKEN_TOTAL) return { picked, tokens };
+      }
+    } catch (e) {}
+    return { picked: [], tokens: {} };
+  }
+  function savePicked() { try { localStorage.setItem(PICK_KEY, JSON.stringify({ picked: state.picked, tokens: state.tokens })); } catch (e) {} }
+
+  const saved = loadPicked();
+  const state = { cats: [], diffMin: 0, diffMax: 0, platforms: [], sort: 'category', q: '', picked: saved.picked, tokens: saved.tokens };
+  const usedTokens = () => state.picked.reduce((s, id) => s + (state.tokens[id] || 0), 0);
+  const leftTokens = () => TOKEN_TOTAL - usedTokens();
+  const byId = Object.fromEntries(ITEMS.map(it => [it.id, it]));
+  const $ = id => document.getElementById(id);
+  const COIN_SVG = document.querySelector('#token-chip svg').outerHTML;
+  const fmtN = n => Number(n).toLocaleString('en-US');
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const starsText = n => `<span class="on">${'★'.repeat(n)}</span><span class="off">${'★'.repeat(5 - n)}</span>`;
+  const iconSvg = (cat, size) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${CAT_ICONS[cat]}"/></svg>`;
+  const hasFilter = () => state.cats.length || state.diffMin || state.platforms.length || state.sort !== 'category' || state.q.trim();
+
+  /* ---------- 建立控制項 ---------- */
+  function buildControls() {
+    $('cat-filters').innerHTML = [`<button class="cat-tab" type="button" data-cat="__all" aria-pressed="false">全部<span class="n">${ITEMS.length}</span></button>`]
+      .concat(CATEGORIES.map(c => { const n = ITEMS.filter(it => it.cat === c).length; return `<button class="cat-tab" type="button" data-cat="${c}" aria-pressed="false" ${n ? '' : 'disabled'}>${c}<span class="n">${n}</span></button>`; }))
+      .join('');
+    $('stars-range').innerHTML = [1, 2, 3, 4, 5].map(n =>
+      `<button class="star-btn" type="button" data-star="${n}" aria-label="${n} 星" aria-pressed="false">${STAR_SVG}</button>`).join('');
+    $('platform-filters').innerHTML = PLATFORMS.map(p =>
+      `<button class="pf-chip" type="button" data-platform="${p}" aria-pressed="false">${p}</button>`).join('');
+    $('sort-seg').innerHTML = SORTS.map(o =>
+      `<button class="seg" type="button" data-sortopt="${o.id}" aria-label="${o.label}" aria-pressed="false">${o.short}</button>`).join('');
+  }
+
+  function rangeLabel() {
+    if (!state.diffMin) return '全部';
+    return state.diffMax === 1 ? '1 星' : `1–${state.diffMax} 星`;
+  }
+
+  function paintStars(min, max, preview) {
+    document.querySelectorAll('.star-btn').forEach(b => {
+      const n = +b.dataset.star;
+      const inRange = !!min && n >= min && n <= max;
+      b.classList.toggle('on', inRange && !preview);
+      b.classList.toggle('preview', inRange && preview);
+      b.setAttribute('aria-pressed', !!(state.diffMin && n >= state.diffMin && n <= state.diffMax));
+    });
+  }
+
+  function syncControls() {
+    document.querySelectorAll('[data-cat]').forEach(b => {
+      const on = b.dataset.cat === '__all' ? state.cats.length === 0 : state.cats.includes(b.dataset.cat);
+      b.setAttribute('aria-pressed', on);
+    });
+    document.querySelectorAll('[data-platform]').forEach(b => b.setAttribute('aria-pressed', state.platforms.includes(b.dataset.platform)));
+    paintStars(state.diffMin, state.diffMax, false);
+    $('range-pill').textContent = rangeLabel();
+    $('clear-filters').hidden = !hasFilter();
+    const nf = (state.diffMin ? 1 : 0) + state.platforms.length + (state.sort !== 'category' ? 1 : 0);
+    $('filter-n').hidden = !nf; $('filter-n').textContent = nf;
+    $('filter-btn').classList.toggle('on', nf > 0);
+    $('filter-btn').setAttribute('aria-label', nf ? `篩選與排序，已套用 ${nf} 個條件` : '篩選與排序');
+    const sortOpt = SORTS.find(o => o.id === state.sort);
+    $('active-chips').innerHTML = (state.sort !== 'category' ? [`<button class="a-chip" type="button" data-clear="sort" aria-label="移除排序：${sortOpt.label}，改回依類別排序">${sortOpt.chip}<span class="x" aria-hidden="true">✕</span></button>`] : []).concat(state.diffMin ? [`<button class="a-chip" type="button" data-clear="diff" aria-label="移除條件：難易度 ${rangeLabel()}">難易度 ${rangeLabel()}<span class="x" aria-hidden="true">✕</span></button>`] : [])
+      .concat(state.platforms.map(p => `<button class="a-chip" type="button" data-rmplat="${p}" aria-label="移除條件：${p}">${p}<span class="x" aria-hidden="true">✕</span></button>`)).join('');
+    document.querySelectorAll('[data-sortopt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sortopt === state.sort));
+  }
+
+  /* ---------- 星等點選／拖拉 ---------- */
+  (function setupStarRange() {
+    // 點第 n 顆星 = 篩選 1～n 星（前面的星一起亮起）；再點同一顆取消；可按住拖拉調整
+    const box = $('stars-range');
+    let dragging = false, end = 0;
+    const starAt = (x, y) => { const el = document.elementFromPoint(x, y); const b = el && el.closest('.star-btn'); return b && box.contains(b) ? +b.dataset.star : 0; };
+    const choose = n => {
+      if (state.diffMin === 1 && state.diffMax === n) state.diffMin = state.diffMax = 0;
+      else { state.diffMin = 1; state.diffMax = n; }
+      render();
+    };
+    box.addEventListener('pointerdown', e => {
+      const b = e.target.closest('.star-btn'); if (!b) return;
+      e.preventDefault();
+      dragging = true; end = +b.dataset.star;
+      box.setPointerCapture(e.pointerId);
+      paintStars(1, end, true);
+    });
+    box.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const n = starAt(e.clientX, e.clientY);
+      if (n && n !== end) { end = n; paintStars(1, end, true); }
+    });
+    const finish = () => { if (!dragging) return; dragging = false; choose(end); };
+    box.addEventListener('pointerup', finish);
+    box.addEventListener('pointercancel', () => { dragging = false; syncControls(); });
+    // 鍵盤：Enter／空白鍵
+    box.addEventListener('click', e => {
+      if (e.detail !== 0) return;
+      const b = e.target.closest('.star-btn'); if (b) choose(+b.dataset.star);
+    });
+  })();
+
+  /* ---------- 篩選與排序 ---------- */
+  function filtered() {
+    const q = state.q.trim().toLowerCase();
+    let list = ITEMS.filter(it => {
+      if (state.cats.length && !state.cats.includes(it.cat)) return false;
+      if (state.diffMin && (it.diff < state.diffMin || it.diff > state.diffMax)) return false;
+      if (state.platforms.length && !state.platforms.some(p => it.platforms.includes(p))) return false;
+      if (q && !(it.title + it.summary + it.features.join('') + it.benefit + it.cat).toLowerCase().includes(q)) return false;
+      return true;
+    });
+    const jIndex = it => JOURNEY_ORDER.indexOf(it.j);
+    const cIndex = it => CATEGORIES.indexOf(it.cat);
+    const byCat = (a, b) => cIndex(a) - cIndex(b) || jIndex(a) - jIndex(b);
+    if (state.sort === 'category') list.sort(byCat);
+    if (state.sort === 'easy') list.sort((a, b) => a.diff - b.diff || byCat(a, b));
+    if (state.sort === 'hard') list.sort((a, b) => b.diff - a.diff || byCat(a, b));
+    return list;
+  }
+
+  function cardHTML(it) {
+    const picked = state.picked.includes(it.id);
+    const url = PROTOTYPES[it.id];
+    return `
+      <article class="card">
+        ${url ? `<a class="card-img" href="${url}" aria-label="試玩「${esc(it.title)}」原型">` : '<div class="card-img">'}
+          <span class="tag-cat">${esc(it.cat)}</span>
+          ${url ? '' : '<span class="tag-proto plan">原型規劃中</span>'}
+          ${THUMBS[it.id] ? `<img class="thumb" src="${THUMBS[it.id]}" alt="「${esc(it.title)}」原型畫面示意">` : `<span class="icon">${iconSvg(it.cat, 60)}</span>`}
+        ${url ? '</a>' : '</div>'}
+        <div class="card-body">
+          <div class="meta">${it.platforms.map(p => `<span class="platform">${p}</span>`).join('')}</div>
+          <h2>${url ? `<a href="${url}">${esc(it.title)}</a>` : esc(it.title)}</h2>
+          <p class="summary">${esc(it.summary)}</p>
+          <div class="features">
+            <span class="label">功能特色</span>
+            <ul>${it.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+          </div>
+          <div class="benefit"><strong>效益｜</strong>${esc(it.benefit)}</div>
+          <div class="card-foot">
+            <span class="rating" aria-label="開發難易度 ${it.diff} / 5">
+              <span class="label">難易度</span><span class="stars" aria-hidden="true">${starsText(it.diff)}</span>
+            </span>
+            <button class="pick" type="button" data-pick="${it.id}" aria-pressed="${picked}" aria-label="${picked ? `已投入 ${state.tokens[it.id]} 代幣，點選可修改` : '加入評估並投入代幣'}">${picked ? `✓ 已投 <span class="tk">${fmtN(state.tokens[it.id])}</span>` : '＋ 加入評估'}</button>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function render() {
+    syncControls();
+    const list = filtered();
+    $('count').textContent = list.length;
+    $('pop-count').textContent = list.length;
+    $('empty').hidden = list.length !== 0;
+    $('grid').innerHTML = list.map(cardHTML).join('');
+    renderDrawer();
+  }
+
+  /* ---------- 評估清單抽屜 ---------- */
+  function renderDrawer() {
+    const items = state.picked.map(id => byId[id]).filter(Boolean);
+    const used = usedTokens(), left = TOKEN_TOTAL - used;
+    $('picked-count').textContent = items.length;
+    $('drawer-count').textContent = items.length;
+    $('token-left').textContent = fmtN(left);
+    $('token-chip').classList.toggle('is-zero', left === 0);
+    $('drawer-body').innerHTML = items.length
+      ? items.map(it => { const t = state.tokens[it.id] || 0, max = t + left; return `
+        <div class="drawer-item">
+          <span class="thumb">${iconSvg(it.cat, 26)}</span>
+          <div class="info">
+            ${PROTOTYPES[it.id] ? `<a href="${PROTOTYPES[it.id]}">${esc(it.title)}</a>` : `<span class="name">${esc(it.title)}</span>`}
+            <span class="stars" aria-label="開發難易度 ${it.diff} / 5">${starsText(it.diff)}</span>
+            <div class="tk-edit">
+              <button type="button" data-tk-step="-1" data-id="${it.id}" aria-label="減少「${esc(it.title)}」代幣" ${t <= TOKEN_STEP ? 'disabled' : ''}>−</button>
+              <input type="number" inputmode="numeric" min="1" max="${max}" step="${TOKEN_STEP}" value="${t}" data-tk-input="${it.id}" aria-label="「${esc(it.title)}」投入代幣">
+              <button type="button" data-tk-step="1" data-id="${it.id}" aria-label="增加「${esc(it.title)}」代幣" ${left <= 0 ? 'disabled' : ''}>＋</button>
+              <span>代幣</span>
+            </div>
+          </div>
+          <button class="icon-btn" type="button" data-unpick="${it.id}" aria-label="從評估清單移除「${esc(it.title)}」">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>
+          </button>
+        </div>`; }).join('')
+      : '<div class="drawer-empty">評估清單是空的。<br>在功能卡片按「加入評估」，輸入要投入的代幣。</div>';
+    $('drawer-foot').hidden = items.length === 0;
+    $('tk-used').textContent = `${fmtN(used)} / ${fmtN(TOKEN_TOTAL)}`;
+    $('tk-bar').style.width = (used / TOKEN_TOTAL * 100) + '%';
+    $('tk-bar-wrap').setAttribute('aria-valuenow', used);
+    const hint = $('tk-hint');
+    hint.classList.toggle('ok', left === 0);
+    hint.textContent = left === 0 ? '代幣已全部分配，可以送出清單了！' : `還有 ${fmtN(left)} 代幣未分配，全部分配完才能送出清單。`;
+    $('submit-picked').disabled = !(items.length && left === 0);
+  }
+
+  function setTokens(id, v) {
+    const others = usedTokens() - (state.tokens[id] || 0);
+    const n = Math.max(1, Math.min(TOKEN_TOTAL - others, Math.floor(Number(v) || 0)));
+    state.tokens[id] = n; savePicked();
+    return n;
+  }
+  function removePick(id) {
+    state.picked = state.picked.filter(x => x !== id); delete state.tokens[id]; savePicked();
+  }
+
+  /* ---------- 對話框：歡迎訊息、投入代幣 ---------- */
+  let modalReturn = null;
+  function openModal(html, focusSel) {
+    modalReturn = document.activeElement;
+    $('modal-root').innerHTML = `<div class="modal-wrap" id="modal-wrap">${html}</div>`;
+    const f = $('modal-root').querySelector(focusSel || 'button'); if (f) f.focus();
+  }
+  function closeModal() {
+    $('modal-root').innerHTML = '';
+    if (modalReturn && document.body.contains(modalReturn)) modalReturn.focus();
+  }
+
+  function showWelcome() {
+    const left = leftTokens();
+    openModal(`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+      <span class="coin-big">${COIN_SVG.replace('width="18" height="18"', 'width="34" height="34"')}</span>
+      <h2 id="welcome-title" style="text-align:center">${left === TOKEN_TOTAL ? '歡迎！您目前手上有' : '歡迎回來！您目前還剩'}</h2>
+      <div class="welcome-amt">${fmtN(left)} <small>代幣</small></div>
+      <ul class="rules">
+        <li>按功能卡片的「加入評估」，輸入要投給該點子的代幣。</li>
+        <li>可在「評估清單」隨時調整每個點子的代幣。</li>
+        <li>${fmtN(TOKEN_TOTAL)} 代幣全部分配完，才能送出清單。</li>
+      </ul>
+      <div class="modal-actions"><button class="btn-primary" type="button" data-modal="close">開始選擇</button></div>
+    </div>`);
+  }
+
+  function openTokenModal(id) {
+    const it = byId[id], cur = state.tokens[id] || 0, picked = state.picked.includes(id);
+    const max = cur + leftTokens();
+    if (max <= 0) {
+      openModal(`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="tk-title">
+        <h2 id="tk-title">代幣已全部分配</h2>
+        <p>要投給「${esc(it.title)}」，請先到評估清單調低其他點子的代幣。</p>
+        <div class="modal-actions"><button class="btn-primary" type="button" data-modal="open-drawer">打開評估清單</button>
+          <button class="link-cancel" type="button" data-modal="close">取消</button></div></div>`);
+      return;
+    }
+    const start = picked ? cur : Math.min(max, 100);
+    openModal(`<div class="modal" role="dialog" aria-modal="true" aria-labelledby="tk-title">
+      <h2 id="tk-title">${picked ? '修改投入代幣' : '要投入多少代幣？'}</h2>
+      <p>${esc(it.title)}</p>
+      <div class="tk-input">
+        <button class="tk-step" type="button" data-modal="dec" aria-label="減少 ${TOKEN_STEP} 代幣">−</button>
+        <input type="number" inputmode="numeric" id="tk-val" min="1" max="${max}" step="${TOKEN_STEP}" value="${start}" aria-label="投入代幣數量">
+        <button class="tk-step" type="button" data-modal="inc" aria-label="增加 ${TOKEN_STEP} 代幣">＋</button>
+      </div>
+      <div class="tk-quick" role="group" aria-label="快速選擇">
+        ${[100, 200, 300].map(v => `<button type="button" data-modal-set="${v}" ${v > max ? 'disabled' : ''}>${v}</button>`).join('')}
+        <button type="button" data-modal-set="${max}">全部 ${fmtN(max)}</button>
+      </div>
+      <div class="tk-note"><span>可投入上限</span><strong>${fmtN(max)} 代幣</strong></div>
+      <div class="tk-note"><span>投入後剩餘</span><strong id="tk-after">${fmtN(max - start)} 代幣</strong></div>
+      <span class="tk-err" id="tk-err" hidden></span>
+      <div class="modal-actions">
+        <button class="btn-primary" type="button" id="tk-ok" data-modal="confirm" data-id="${id}">${picked ? '確認修改' : '加入評估清單'}</button>
+        ${picked ? `<button class="link-del" type="button" data-modal="remove" data-id="${id}">從評估清單移除</button>` : ''}
+        <button class="link-cancel" type="button" data-modal="close">取消</button>
+      </div>
+    </div>`, '#tk-val');
+    const inp = $('tk-val'); inp.select();
+    const check = () => {
+      const v = Math.floor(Number(inp.value)), ok = v >= 1 && v <= max;
+      $('tk-err').hidden = ok || inp.value === '';
+      $('tk-err').textContent = v > max ? `最多只能投入 ${fmtN(max)} 代幣` : '請輸入 1 以上的整數';
+      $('tk-ok').disabled = !ok;
+      $('tk-after').textContent = fmtN(Math.max(0, max - (ok ? v : 0))) + ' 代幣';
+    };
+    inp.addEventListener('input', check);
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !$('tk-ok').disabled) $('tk-ok').click(); });
+    check();
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-modal], [data-modal-set]'); if (!b) { if (e.target.id === 'modal-wrap') closeModal(); return; }
+    const inp = $('tk-val');
+    if (b.dataset.modalSet) { inp.value = b.dataset.modalSet; inp.dispatchEvent(new Event('input')); return; }
+    const act = b.dataset.modal;
+    if (act === 'close') closeModal();
+    else if (act === 'inc' || act === 'dec') {
+      const max = Number(inp.max), v = Math.floor(Number(inp.value) || 0) + (act === 'inc' ? TOKEN_STEP : -TOKEN_STEP);
+      inp.value = Math.max(1, Math.min(max, v)); inp.dispatchEvent(new Event('input'));
+    }
+    else if (act === 'confirm') {
+      const id = b.dataset.id, isNew = !state.picked.includes(id);
+      if (isNew) { state.picked.push(id); state.tokens[id] = 0; }
+      const n = setTokens(id, inp.value);
+      closeModal(); render();
+      showToast(`${isNew ? '已加入評估清單' : '已更新'}，投入 ${fmtN(n)} 代幣・剩餘 ${fmtN(leftTokens())}`);
+    }
+    else if (act === 'remove') { removePick(b.dataset.id); closeModal(); render(); showToast('已從評估清單移除，代幣已退回'); }
+    else if (act === 'open-drawer') { closeModal(); openDrawer(); }
+  });
+
+  // 抽屜內調整代幣
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-tk-step]'); if (!b) return;
+    const id = b.dataset.id;
+    setTokens(id, (state.tokens[id] || 0) + Number(b.dataset.tkStep) * TOKEN_STEP);
+    render();
+    const nb = document.querySelector(`[data-tk-step="${b.dataset.tkStep}"][data-id="${id}"]`);
+    if (nb && !nb.disabled) nb.focus(); else { const inp = document.querySelector(`[data-tk-input="${id}"]`); if (inp) inp.focus(); }
+  });
+  document.addEventListener('change', e => {
+    const id = e.target.dataset && e.target.dataset.tkInput; if (!id) return;
+    const n = setTokens(id, e.target.value);
+    render();
+    const inp = document.querySelector(`[data-tk-input="${id}"]`); if (inp) inp.focus();
+    if (Number(e.target.value) !== n) showToast(`已調整為 ${fmtN(n)} 代幣（不可超過剩餘額度）`);
+  });
+
+  let lastFocus = null;
+  function openDrawer() {
+    lastFocus = document.activeElement;
+    $('drawer').classList.add('open'); $('scrim').classList.add('open');
+    $('drawer').setAttribute('aria-hidden', 'false');
+    document.body.classList.add('drawer-open');
+    $('close-drawer').focus();
+  }
+  function closeDrawer() {
+    $('drawer').classList.remove('open'); $('scrim').classList.remove('open');
+    $('drawer').setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('drawer-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  function showToast(msg) {
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(showToast.timer); showToast.timer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  /* ---------- 事件 ---------- */
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    const d = b.dataset;
+    if (d.cat) {
+      state.cats = d.cat === '__all' ? [] : [d.cat];
+    }
+    else if (d.platform) state.platforms = state.platforms.includes(d.platform) ? state.platforms.filter(x => x !== d.platform) : state.platforms.concat(d.platform);
+    else if (d.pick) { openTokenModal(d.pick); return; }
+    else if (d.unpick) { removePick(d.unpick); showToast('已移除，代幣已退回'); }
+    else if (d.sortopt) { state.sort = d.sortopt; }
+    else if (d.clear === 'all') { state.cats = []; state.diffMin = state.diffMax = 0; state.platforms = []; state.sort = 'category'; state.q = ''; }
+    else if (d.clear === 'filters') { state.diffMin = state.diffMax = 0; state.platforms = []; state.sort = 'category'; }
+    else if (d.clear === 'sort') { state.sort = 'category'; }
+    else if (d.clear === 'diff') { state.diffMin = state.diffMax = 0; }
+    else if (d.rmplat) { state.platforms = state.platforms.filter(x => x !== d.rmplat); }
+    else if (b.id === 'search-chip') { state.q = ''; }
+    else return;
+    render();
+  });
+
+  /* ---------- 篩選浮層 ---------- */
+  const mqSheet = window.matchMedia('(max-width: 720px)');
+  function setFilterPop(open, focusBack) {
+    $('filter-pop').hidden = !open;
+    $('filter-btn').setAttribute('aria-expanded', String(open));
+    $('filter-scrim').hidden = !(open && mqSheet.matches);
+    $('list-top').classList.toggle('pop-open', open);
+    if (open) { const f = $('filter-pop').querySelector('.star-btn'); if (f) f.focus(); }
+    else if (focusBack) $('filter-btn').focus();
+  }
+  $('filter-btn').addEventListener('click', () => setFilterPop($('filter-pop').hidden));
+  $('filter-done').addEventListener('click', () => setFilterPop(false, true));
+  $('filter-close').addEventListener('click', () => setFilterPop(false, true));
+  $('filter-scrim').addEventListener('click', () => setFilterPop(false, true));
+  document.addEventListener('click', e => { if (!$('filter-pop').hidden && !e.target.closest('.filter-wrap') && !e.target.closest('#filter-scrim')) setFilterPop(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('filter-pop').hidden) { e.stopImmediatePropagation(); setFilterPop(false, true); } }, true);
+  // 工具列吸頂位置跟著頁首高度
+  (function syncHeaderHeight() {
+    const h = document.querySelector('header');
+    const set = () => document.documentElement.style.setProperty('--hdr-h', h.offsetHeight + 'px');
+    set(); if ('ResizeObserver' in window) new ResizeObserver(set).observe(h); else window.addEventListener('resize', set);
+  })();
+
+  $('open-drawer').addEventListener('click', openDrawer);
+  $('close-drawer').addEventListener('click', closeDrawer);
+  $('scrim').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if ($('modal-root').innerHTML) { closeModal(); return; }
+    if ($('drawer').classList.contains('open')) closeDrawer();
+  });
+
+  $('clear-picked').addEventListener('click', () => {
+    if (!state.picked.length) return;
+    if (!confirm('確定要清空評估清單嗎？')) return;
+    state.picked = []; state.tokens = {}; savePicked(); render();
+  });
+  /* ---------- 送出購買 → 結帳完成頁 ---------- */
+  let lastOrder = null;
+  $('submit-picked').addEventListener('click', () => {
+    const items = state.picked.map(id => ({ ...byId[id], tokens: state.tokens[id] })).filter(it => it.id).sort((a, b) => b.tokens - a.tokens);
+    if (!items.length || leftTokens() !== 0) return;
+    const now = new Date(), pad = n => String(n).padStart(2, '0');
+    lastOrder = {
+      no: 'FX' + now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate()) + '-' + String(Math.floor(Math.random() * 9000) + 1000),
+      time: `${now.getFullYear()}/${pad(now.getMonth() + 1)}/${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`,
+      items
+    };
+    state.picked = []; state.tokens = {}; savePicked();
+    closeDrawer();
+    render();
+    showCheckout();
+  });
+
+  /* ---------- 以 Email 寄出方案 ---------- */
+  const VOTE_EMAIL = 'saya6084@gmail.com';
+  function planText(o) {
+    const lines = ['外匯體驗點子商城｜點子評估方案', '', `方案編號：${o.no}`, `送出時間：${o.time}`, '', '方案內容（依投入代幣排序）：'];
+    o.items.forEach((it, i) => lines.push(`${i + 1}. 【${it.cat}】${it.title}：${it.tokens} 代幣`));
+    lines.push('', `合計：${o.items.reduce((s, it) => s + it.tokens, 0)} 代幣`, '', '統計代碼（請勿修改）：', 'FXVOTE|' + o.no + '|' + o.items.map(it => it.id + '=' + it.tokens).join(';'));
+    return lines.join('\n');
+  }
+  function mailtoHref(o) {
+    return 'mailto:' + VOTE_EMAIL + '?subject=' + encodeURIComponent('【點子商城投票】方案 ' + o.no) + '&body=' + encodeURIComponent(planText(o));
+  }
+  document.addEventListener('click', async e => {
+    if (e.target.closest('#send-mail')) { $('send-status').textContent = '已開啟郵件軟體，寄出後即完成。若沒有出現，請改用「複製方案內容」。'; return; }
+    if (!e.target.closest('#copy-plan')) return;
+    const text = $('plan-text').value;
+    let ok = false;
+    try { await navigator.clipboard.writeText(text); ok = true; } catch (err) {}
+    if (!ok) { const d = e.target.closest('.co-send').querySelector('details'); d.open = true; const t = $('plan-text'); t.focus(); t.select(); try { ok = document.execCommand('copy'); } catch (err) {} }
+    $('send-status').textContent = ok ? `已複製，請貼到 Email 寄給 ${VOTE_EMAIL}。` : '無法自動複製，內容已選取，請按 Ctrl+C（Mac 為 ⌘+C）複製。';
+  });
+
+  function showCheckout() {
+    const o = lastOrder, items = o.items;
+    const avg = items.reduce((s, it) => s + it.diff, 0) / items.length;
+    const plats = PLATFORMS.filter(p => items.some(it => it.platforms.includes(p)));
+    const withProto = items.filter(it => PROTOTYPES[it.id]).length;
+    $('checkout').innerHTML = `
+      <div class="co-hero">
+        <span class="co-check"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h1 id="co-title" tabindex="-1">您的點子方案已完成</h1>
+        <p>共 ${items.length} 項功能點子。請用下方按鈕寄出方案，才會計入投票統計。</p>
+        <div class="co-meta"><span>方案編號 <strong>${o.no}</strong></span><span>送出時間 <strong>${o.time}</strong></span></div>
+      </div>
+      <div class="co-stats">
+        <div class="co-stat"><span>點子數量</span><strong>${items.length} 項</strong></div>
+        <div class="co-stat"><span>平均開發難易度</span><strong>${avg.toFixed(1)} 星</strong></div>
+        <div class="co-stat"><span>投入代幣</span><strong>${fmtN(TOKEN_TOTAL)}</strong></div>
+        <div class="co-stat"><span>可試玩原型</span><strong>${withProto} / ${items.length}</strong></div>
+      </div>
+      <div class="co-list-head"><h2>方案內容</h2><span>依投入代幣排序</span></div>
+      <ol class="co-list">${items.map((it, i) => `
+        <li class="co-item">
+          <span class="co-no">${i + 1}</span>
+          <span class="co-thumb">${THUMBS[it.id] ? `<img src="${THUMBS[it.id]}" alt="">` : iconSvg(it.cat, 40)}</span>
+          <div class="co-body">
+            <div class="meta"><span class="tag-cat" style="position:static">${esc(it.cat)}</span>${it.platforms.map(p => `<span class="platform">${p}</span>`).join('')}</div>
+            <h3>${esc(it.title)}</h3>
+            <p>${esc(it.summary)}</p>
+            <div class="benefit"><strong>效益｜</strong>${esc(it.benefit)}</div>
+          </div>
+          <div class="co-side">
+            <span class="co-tokens"><b>${fmtN(it.tokens)}</b><span>代幣・占 ${Math.round(it.tokens / TOKEN_TOTAL * 100)}%</span></span>
+            <span class="co-share" aria-hidden="true"><i style="width:${it.tokens / TOKEN_TOTAL * 100}%"></i></span>
+            <span class="rating" aria-label="開發難易度 ${it.diff} / 5"><span class="label">難易度</span><span class="stars" aria-hidden="true">${starsText(it.diff)}</span></span>
+          </div>
+        </li>`).join('')}
+      </ol>
+      <section class="co-send" aria-labelledby="send-title">
+        <h2 id="send-title">最後一步：寄出您的方案</h2>
+        <p>按「用 Email 寄出」會開啟您的郵件軟體，收件人與內容都已填好，直接寄出即可。<br>若無法開啟郵件軟體，請按「複製方案內容」，貼到 Email 寄給 ${VOTE_EMAIL}。</p>
+        <div class="send-btns">
+          <a class="btn-primary" id="send-mail" href="${mailtoHref(o)}" target="_blank" rel="noopener">用 Email 寄出</a>
+          <button class="btn-outline" type="button" id="copy-plan">複製方案內容</button>
+        </div>
+        <div class="send-status" id="send-status" role="status"></div>
+        <details><summary>查看要寄出的內容</summary><textarea id="plan-text" readonly aria-label="方案內容">${esc(planText(o))}</textarea></details>
+      </section>
+      <div class="co-actions">
+        <button class="btn-outline" type="button" data-action="back-list">返回功能列表</button>
+      </div>`;
+    $('toast').classList.remove('show');
+    document.body.classList.add('on-checkout');
+    $('list-top').hidden = true; $('list-main').hidden = true; $('checkout').hidden = false;
+    window.scrollTo(0, 0);
+    $('co-title').focus();
+  }
+
+  function backToList() {
+    document.body.classList.remove('on-checkout');
+    $('checkout').hidden = true; $('list-top').hidden = false; $('list-main').hidden = false;
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-action="back-list"], .brand');
+    if (!b) return;
+    if (b.classList.contains('brand')) { if (!$('checkout').hidden) { e.preventDefault(); backToList(); } return; }
+    backToList();
+  });
+
+  /* ---------- 記住篩選條件：從內頁返回時還原 ---------- */
+  const VIEW_KEY = 'fx-idea-shop-view';
+  let restoreY = 0;
+  try {
+    const v = JSON.parse(sessionStorage.getItem(VIEW_KEY) || 'null');
+    if (v) {
+      restoreY = +v.y || 0;
+      if (Array.isArray(v.cats)) state.cats = v.cats.filter(c => CATEGORIES.includes(c));
+      if (Array.isArray(v.platforms)) state.platforms = v.platforms.filter(p => PLATFORMS.includes(p));
+      if (SORTS.some(o => o.id === v.sort)) state.sort = v.sort;
+      if (v.diffMax >= 1 && v.diffMax <= 5) { state.diffMin = 1; state.diffMax = v.diffMax; }
+    }
+  } catch (e) {}
+  function saveView() {
+    try { sessionStorage.setItem(VIEW_KEY, JSON.stringify({ cats: state.cats, platforms: state.platforms, sort: state.sort, diffMax: state.diffMin ? state.diffMax : 0, y: Math.round(window.scrollY) })); } catch (e) {}
+  }
+  const _render = render;
+  render = function () { _render(); saveView(); };
+  window.addEventListener('pagehide', saveView);
+  document.addEventListener('click', e => { if (e.target.closest('#grid a[href]')) saveView(); }, true);
+
+  buildControls();
+  render();
+  if (restoreY) requestAnimationFrame(() => { window.scrollTo(0, restoreY); saveView(); });
+  // 代幣說明只在第一次進入時顯示；之後從原型頁返回首頁不再跳出
+  const WELCOME_KEY = 'fx-idea-shop-welcomed';
+  let welcomed = false;
+  try { welcomed = localStorage.getItem(WELCOME_KEY) === '1'; } catch (e) {}
+  if (!welcomed) {
+    showWelcome();
+    try { localStorage.setItem(WELCOME_KEY, '1'); } catch (e) {}
+  }
+</script>
+</body>
+</html>
