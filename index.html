@@ -100,7 +100,7 @@ html.pw-locked body{visibility:hidden}
   .vbar-btn { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 14px; border: 1.5px solid #fff; border-radius: 999px; background: transparent; color: #fff; font-size: 13px; font-weight: 900; cursor: pointer; transition: background .15s, color .15s; }
   .vbar-btn:hover { background: #fff; color: var(--accent); }
   .vbar-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
-  body.on-stats .vbar { display: none; }
+  body.on-stats .vbar, body.on-stats .cart-btn { display: none; }
   @media (max-width: 960px) { .vbar .in { padding-left: 24px; padding-right: 24px; } }
   @media (max-width: 560px) {
     .vbar .in { padding: 5px 12px; gap: 8px; min-height: 40px; }
@@ -329,6 +329,18 @@ html.pw-locked body{visibility:hidden}
     .vote-form { display: flex; align-items: stretch; }
     .vote-form .vc-btn { width: 100%; }
   }
+
+  /* ---------- 清除投票 ---------- */
+  .st-admin { display: flex; justify-content: center; margin-top: -8px; }
+  .st-reset { border: none; background: none; color: var(--muted); font-size: 13px; font-weight: 700; text-decoration: underline; min-height: 40px; padding: 0 8px; cursor: pointer; }
+  .st-reset:hover { color: #b42318; }
+  .reset-label { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .reset-input { height: 48px; border: 1px solid var(--line-strong); border-radius: 12px; padding: 0 14px; font-size: 16px; outline: none; margin-top: -6px; }
+  .reset-input:focus { border-color: var(--accent); }
+  .reset-msg { min-height: 20px; font-size: 14px; font-weight: 700; color: #b42318; margin-top: -6px; }
+  .btn-danger { background: #b42318; }
+  .btn-danger:hover { background: #912018; }
+  .btn-danger:disabled { background: #cbd5e1; cursor: wait; }
 
   /* ---------- 投票統計 ---------- */
   body.on-stats .token-chip, body.on-stats .stats-btn { display: none; }
@@ -1219,9 +1231,8 @@ html.pw-locked body{visibility:hidden}
     const bar = $('vbar');
     const items = d && d.ok ? (d.items || []).filter(it => it.tokens > 0) : [];
     if (!items.length || !d.voters) { bar.hidden = true; return; }
-    const top = items[0], title = esc((byId[top.id] || {}).title || top.title);
     bar.innerHTML = `<div class="in"><span class="live"><i aria-hidden="true"></i><span>投票進行中</span></span>
-      <span class="t"><span class="full">目前已有 <b>${fmtN(d.voters)}</b> 人投票，第一名是「<b>${title}</b>」</span><span class="short"><b>${fmtN(d.voters)}</b> 人已投票・第一名「<b>${title}</b>」</span></span>
+      <span class="t"><span class="full">目前已有 <b>${fmtN(d.voters)}</b> 人投票</span><span class="short"><b>${fmtN(d.voters)}</b> 人已投票</span></span>
       <button class="vbar-btn" type="button" data-action="open-stats">${CHART_SVG}查看投票</button></div>`;
     bar.hidden = false;
   }
@@ -1286,7 +1297,8 @@ html.pw-locked body{visibility:hidden}
         <div class="st-tools"><span id="st-updated"></span><button class="btn-outline" type="button" id="st-refresh" data-action="stats-refresh">↻ 重新整理</button></div>
       </div>
       <div id="st-body" style="display:flex;flex-direction:column;gap:20px" aria-live="polite"></div>
-      <div class="co-actions"><button class="btn-outline" type="button" data-action="back-list">返回功能列表</button></div>`;
+      <div class="co-actions"><button class="btn-outline" type="button" data-action="back-list">返回功能列表</button></div>
+      <div class="st-admin"><button class="st-reset" type="button" data-action="reset-votes">清除投票</button></div>`;
     $('toast').classList.remove('show');
     document.body.classList.add('on-stats'); document.body.classList.remove('on-checkout');
     $('list-top').hidden = true; $('list-main').hidden = true; $('checkout').hidden = true; $('stats-view').hidden = false;
@@ -1294,7 +1306,42 @@ html.pw-locked body{visibility:hidden}
     $('st-title').focus();
     loadStats(true);
   }
+  /* ---------- 清除投票（需管理密碼，舊資料封存於試算表） ---------- */
+  function openResetModal() {
+    openModal(`<form class="modal" id="reset-form" role="dialog" aria-modal="true" aria-labelledby="reset-title" novalidate>
+      <h2 id="reset-title">清除投票結果</h2>
+      <p>目前的投票會封存到試算表的另一個工作表（不會真的刪除），網站上的統計會從零開始。</p>
+      <label class="reset-label" for="reset-key">管理密碼</label>
+      <input class="reset-input" id="reset-key" type="password" autocomplete="off" aria-describedby="reset-msg">
+      <div class="reset-msg" id="reset-msg" role="alert"></div>
+      <div class="modal-actions">
+        <button class="btn-primary btn-danger" type="submit" id="reset-ok">確認清除</button>
+        <button class="link-cancel" type="button" data-modal="close">取消</button>
+      </div>
+    </form>`, '#reset-key');
+  }
+  document.addEventListener('submit', async e => {
+    if (e.target.id !== 'reset-form') return;
+    e.preventDefault();
+    const key = $('reset-key').value, msg = $('reset-msg'), ok = $('reset-ok');
+    if (!key) { msg.textContent = '請輸入管理密碼。'; $('reset-key').focus(); return; }
+    ok.disabled = true; ok.textContent = '清除中…'; msg.textContent = '';
+    try {
+      const res = await fetch(VOTE_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'reset', key }) });
+      const j = await res.json();
+      if (!j.ok) throw new Error(j.error || '清除失敗');
+      closeModal();
+      statsCache = j.stats || null; renderVoteBar(statsCache);
+      if (!$('stats-view').hidden && statsCache) $('st-body').innerHTML = statsBodyHTML(statsCache);
+      showToast(j.archived ? `投票已清除，舊資料封存在「${j.archived}」` : '目前沒有投票資料，不需清除');
+    } catch (err) {
+      ok.disabled = false; ok.textContent = '確認清除';
+      msg.textContent = err && err.message && !/fetch|network|JSON/i.test(err.message) ? err.message : '網路連線異常，請稍後再試。';
+      $('reset-key').select();
+    }
+  });
   document.addEventListener('click', e => {
+    if (e.target.closest('[data-action="reset-votes"]')) { openResetModal(); return; }
     if (e.target.closest('[data-action="open-stats"]')) { e.preventDefault(); showStats(); }
     else if (e.target.closest('[data-action="stats-refresh"]')) loadStats(true);
   });
