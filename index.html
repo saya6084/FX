@@ -85,7 +85,32 @@ html.pw-locked body{visibility:hidden}
   .wrap { max-width: 1440px; margin: 0 auto; padding-left: 64px; padding-right: 64px; }
 
   /* ---------- Header ---------- */
-  header { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 30; }
+  .vwrap { position: sticky; top: 0; z-index: 30; }
+  header { background: #fff; border-bottom: 1px solid var(--line); }
+  /* ---------- 置頂「投票進行中」長條 ---------- */
+  .vbar { background: var(--accent); color: #fff; font-size: 14px; }
+  .vbar .in { max-width: 1440px; margin: 0 auto; padding: 6px 64px; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 12px; box-sizing: border-box; }
+  .vbar .live { display: inline-flex; align-items: center; gap: 6px; flex: none; background: rgba(255,255,255,.18); border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 900; letter-spacing: .05em; }
+  .vbar .live i { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: vbarPulse 1.4s ease-in-out infinite; }
+  @keyframes vbarPulse { 50% { opacity: .3; } }
+  @media (prefers-reduced-motion: reduce) { .vbar .live i { animation: none; } }
+  .vbar .t { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .vbar .t b { font-weight: 900; }
+  .vbar .t .short { display: none; }
+  .vbar-btn { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 14px; border: 1.5px solid #fff; border-radius: 999px; background: transparent; color: #fff; font-size: 13px; font-weight: 900; cursor: pointer; transition: background .15s, color .15s; }
+  .vbar-btn:hover { background: #fff; color: var(--accent); }
+  .vbar-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+  body.on-stats .vbar { display: none; }
+  @media (max-width: 960px) { .vbar .in { padding-left: 24px; padding-right: 24px; } }
+  @media (max-width: 560px) {
+    .vbar .in { padding: 5px 12px; gap: 8px; min-height: 40px; }
+    .vbar .live { padding: 2px 8px; }
+    .vbar .live span { display: none; }
+    .vbar .t .full { display: none; }
+    .vbar .t .short { display: inline; }
+    .vbar-btn { padding: 0 10px; }
+    .vbar-btn svg { display: none; }
+  }
   .header-row { display: flex; align-items: center; gap: 12px 20px; padding-top: 14px; padding-bottom: 14px; }
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); margin-right: auto; }
   .brand-mark { width: 40px; height: 40px; border-radius: 10px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
@@ -259,11 +284,113 @@ html.pw-locked body{visibility:hidden}
     .co-hero h1 { font-size: 22px; }
   }
 
+  /* ---------- 送出投票 ---------- */
+  .co-send { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .co-send h2 { margin: 0; font-size: 20px; font-weight: 900; }
+  .co-send > p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .send-status { min-height: 22px; font-size: 14px; font-weight: 700; color: var(--text); }
+  .send-status.err { color: #b42318; }
+  .co-layout { display: grid; grid-template-columns: minmax(0, 3fr) minmax(280px, 1fr); gap: 24px; align-items: start; }
+  .co-plan { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  .co-list-head h1 { margin: 0; font-size: 24px; font-weight: 900; }
+  .co-list-head h1:focus { outline: none; }
+  .co-aside { position: sticky; top: calc(var(--hdr-h, 73px) + 16px); }
+  .co-item .benefit { background: #f8fafc; border-color: #e2e8f0; color: #475569; }
+  .co-item .benefit strong { color: #334155; }
+  .co-send-wrap { display: flex; flex-direction: column; gap: 14px; }
+  .co-list-head .co-send-title, .co-send-title { margin: 0; font-size: 24px; font-weight: 900; color: var(--accent); }
+  .vote-card { border: 2px solid var(--accent); box-shadow: 0 10px 30px rgba(154,0,54,.10); padding: 22px 20px; gap: 14px; }
+  .vc-ok { display: inline-flex; width: 22px; height: 22px; border-radius: 50%; background: #16a34a; color: #fff; font-size: 13px; font-weight: 900; align-items: center; justify-content: center; margin-right: 6px; vertical-align: -3px; }
+  .vote-card > p { font-size: 14px; }
+  .vote-card > p strong { color: var(--ink); }
+  .vf-note { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .vc-sum { display: flex; flex-wrap: wrap; gap: 6px; }
+  .vc-sum span { background: var(--accent-soft); color: #7f002d; border-radius: 999px; padding: 3px 11px; font-size: 13px; font-weight: 700; }
+  .vote-form { display: flex; flex-direction: column; gap: 12px; }
+  .vf-field { display: flex; flex-direction: column; gap: 6px; }
+  .vf-field label { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .vf-field label small { font-weight: 700; font-size: 12px; color: var(--muted); margin-left: 6px; }
+  .vf-field label small.req { color: var(--accent); }
+  .vote-form input { height: 48px; border: 1px solid var(--line-strong); border-radius: 12px; padding: 0 14px; font-size: 16px; color: var(--ink); background: #fff; box-sizing: border-box; width: 100%; outline: none; }
+  .vote-form input:focus { border-color: var(--accent); }
+  .vote-form input[aria-invalid] { border-color: #b42318; }
+  .vc-btn { width: 100%; min-height: 52px; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin-top: 4px; }
+  .vote-form .btn-primary:disabled { background: #cbd5e1; cursor: wait; }
+  .vote-card.done { border-color: #86efac; box-shadow: 0 10px 30px rgba(22,101,52,.08); }
+  .send-status:empty { display: none; }
+  @media (max-width: 1080px) {
+    .co-layout { grid-template-columns: 1fr; }
+    .co-aside { position: static; }
+    .vote-form { display: grid; grid-template-columns: 1fr 1fr auto; align-items: end; }
+    .vote-form .vc-btn { width: auto; padding: 0 28px; margin-top: 0; }
+    .vf-note { grid-column: 1 / -1; grid-row: 2; }
+  }
+  @media (max-width: 720px) {
+    .vote-form { display: flex; align-items: stretch; }
+    .vote-form .vc-btn { width: 100%; }
+  }
+
+  /* ---------- 投票統計 ---------- */
+  body.on-stats .token-chip, body.on-stats .stats-btn { display: none; }
+  .stats-btn { width: 44px; padding: 0; justify-content: center; }
+  .stats-inline { display: none; margin-left: auto; width: 36px; height: 36px; justify-content: center; min-height: 32px; padding: 0; border: 1px solid var(--line-strong); border-radius: 999px; background: #fff; color: var(--ink); font-size: 13px; font-weight: 700; align-items: center; gap: 4px; cursor: pointer; }
+  .stats-inline svg { width: 18px; height: 18px; }
+  .st-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 20px; }
+  .st-head h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.3; }
+  .st-head h1:focus { outline: none; }
+  .st-head p { margin: 6px 0 0; font-size: 14px; color: var(--muted); }
+  .st-tools { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+  .st-tools .btn-outline { min-height: 40px; padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; }
+  .st-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .st-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .st-item { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; display: grid; grid-template-columns: 36px 96px minmax(0, 1fr) auto; gap: 8px 16px; align-items: center; }
+  .st-rank { width: 36px; height: 36px; border-radius: 50%; background: #f1f5f9; color: var(--text); font-size: 15px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .st-item.top .st-rank { background: var(--accent); color: #fff; }
+  .st-thumb { width: 96px; height: 76px; border-radius: 12px; background: #eef0f3; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #94a3b8; }
+  .st-thumb img { position: absolute; left: 50%; bottom: 0; height: 70px; width: auto; transform: translateX(-50%); }
+  .st-main { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .st-main h3 { margin: 0; font-size: 17px; font-weight: 900; line-height: 1.4; }
+  .st-main h3 a { color: inherit; text-decoration: none; }
+  .st-main h3 a:hover { color: var(--accent); text-decoration: underline; }
+  .st-bar { height: 8px; border-radius: 999px; background: #f1f5f9; overflow: hidden; }
+  .st-bar i { display: block; height: 100%; border-radius: 999px; background: var(--accent); }
+  .st-voters { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .st-voters li { font-size: 12px; color: var(--text); background: #f8fafc; border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
+  .st-voters li b { color: var(--benefit-strong); margin-left: 4px; }
+  .st-side { text-align: right; display: flex; flex-direction: column; gap: 2px; }
+  .st-side b { font-size: 24px; font-weight: 900; color: var(--benefit-strong); line-height: 1.2; white-space: nowrap; }
+  .st-side span { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .st-empty { background: #fff; border: 1px dashed var(--line-strong); border-radius: 18px; padding: 40px 20px; text-align: center; color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 15px; }
+  .st-empty.err { color: #b42318; }
+  .st-rest { font-size: 13px; color: var(--muted); line-height: 1.8; margin: 0; }
+  .st-rest b { color: var(--text); }
+  .st-skel { height: 108px; border-radius: 18px; background: linear-gradient(90deg, #eef0f3, #f8fafc, #eef0f3); background-size: 200% 100%; animation: stShimmer 1.2s linear infinite; }
+  @keyframes stShimmer { to { background-position: -200% 0; } }
+  @media (max-width: 720px) {
+    .st-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .st-stats .co-stat { padding: 10px 12px; }
+    .st-stats .co-stat strong { font-size: 18px; }
+    .st-item { grid-template-columns: 32px minmax(0, 1fr) auto; padding: 14px; }
+    .st-thumb { display: none; }
+    .st-rank { width: 32px; height: 32px; font-size: 14px; }
+    .st-side b { font-size: 20px; }
+    .st-head h1 { font-size: 22px; }
+  }
+  @media (max-width: 560px) {
+    .stats-btn { display: none; }
+    .stats-inline { display: inline-flex; }
+    body.on-stats .stats-inline { display: none; }
+    .st-item { grid-template-columns: 28px minmax(0, 1fr); }
+    .st-side { grid-column: 2; flex-direction: row; align-items: baseline; gap: 8px; text-align: left; }
+    .st-main { grid-column: 2; grid-row: 1; }
+    .st-rank { grid-row: 1; align-self: start; margin-top: 22px; width: 28px; height: 28px; }
+  }
+
   /* ---------- 代幣 ---------- */
   .token-chip { height: 44px; padding: 0 14px; border-radius: 999px; background: var(--benefit-bg); border: 1px solid var(--benefit-line); color: var(--benefit-strong); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; white-space: nowrap; flex: none; }
   .token-chip b { font-size: 16px; font-weight: 900; color: var(--benefit-text); }
-  .token-chip.is-zero { background: #ecfdf3; border-color: #bbf7d0; color: #166534; }
-  .token-chip.is-zero b { color: #166534; }
+  .token-chip.is-zero { background: var(--accent-soft); border-color: #e7b9ca; color: var(--accent); }
+  .token-chip.is-zero b { color: var(--accent); }
   body.on-checkout .token-chip { display: none; }
   .pick .tk { font-weight: 900; }
   .modal-wrap { position: fixed; inset: 0; z-index: 70; background: rgba(15,23,42,.5); display: flex; align-items: center; justify-content: center; padding: 16px; }
@@ -304,7 +431,7 @@ html.pw-locked body{visibility:hidden}
   .tk-bar { height: 10px; border-radius: 999px; background: #f1f5f9; overflow: hidden; }
   .tk-bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width .3s; }
   .tk-hint { font-size: 13px; color: var(--benefit-text); background: var(--benefit-bg); border: 1px solid var(--benefit-line); border-radius: 10px; padding: 8px 10px; }
-  .tk-hint.ok { color: #166534; background: #ecfdf3; border-color: #bbf7d0; }
+  .tk-hint.ok { color: var(--accent); background: var(--accent-soft); border-color: #e7b9ca; }
   #submit-picked:disabled { background: #cbd5e1; cursor: not-allowed; }
   .co-tokens { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
   .co-tokens b { font-size: 22px; font-weight: 900; color: var(--benefit-strong); }
@@ -412,6 +539,8 @@ html.pw-locked body{visibility:hidden}
 </head>
 <body>
 
+<div class="vwrap" id="vwrap">
+<div class="vbar" id="vbar" hidden></div>
 <header>
   <div class="wrap header-row">
     <a class="brand" href="#">
@@ -427,6 +556,7 @@ html.pw-locked body{visibility:hidden}
     </button>
   </div>
 </header>
+</div>
 
 <div class="toolbar" id="list-top">
   <div class="wrap toolbar-row">
@@ -475,6 +605,7 @@ html.pw-locked body{visibility:hidden}
 </main>
 
 <section class="wrap checkout" id="checkout" aria-labelledby="co-title" hidden></section>
+<section class="wrap checkout stats-view" id="stats-view" aria-labelledby="st-title" hidden></section>
 
 <footer>
   <div class="wrap">© 臺灣銀行外匯敏捷團隊</div>
@@ -989,7 +1120,7 @@ html.pw-locked body{visibility:hidden}
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('filter-pop').hidden) { e.stopImmediatePropagation(); setFilterPop(false, true); } }, true);
   // 工具列吸頂位置跟著頁首高度
   (function syncHeaderHeight() {
-    const h = document.querySelector('header');
+    const h = $('vwrap');
     const set = () => document.documentElement.style.setProperty('--hdr-h', h.offsetHeight + 'px');
     set(); if ('ResizeObserver' in window) new ResizeObserver(set).observe(h); else window.addEventListener('resize', set);
   })();
@@ -1025,46 +1156,155 @@ html.pw-locked body{visibility:hidden}
     showCheckout();
   });
 
-  /* ---------- 以 Email 寄出方案 ---------- */
-  const VOTE_EMAIL = 'saya6084@gmail.com';
-  function planText(o) {
-    const lines = ['外匯體驗點子商城｜點子評估方案', '', `方案編號：${o.no}`, `送出時間：${o.time}`, '', '方案內容（依投入代幣排序）：'];
-    o.items.forEach((it, i) => lines.push(`${i + 1}. 【${it.cat}】${it.title}：${it.tokens} 代幣`));
-    lines.push('', `合計：${o.items.reduce((s, it) => s + it.tokens, 0)} 代幣`, '', '統計代碼（請勿修改）：', 'FXVOTE|' + o.no + '|' + o.items.map(it => it.id + '=' + it.tokens).join(';'));
-    return lines.join('\n');
+  /* ---------- 直接送出投票（Google Apps Script） ---------- */
+  // Google Apps Script「網頁應用程式」網址（結尾為 /exec）
+  const VOTE_API = 'https://script.google.com/macros/s/AKfycbwcdBrZ3EyKtGCpx6JNIuDOXnmySi6b5ngpz1ZeV20DAC8rB3Htoik1IdJY0b5bix80fw/exec';
+  const NAME_KEY = 'fx-idea-shop-voter';
+  const CHART_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M7 16v-5M12 16V6M17 16v-8"/></svg>';
+  function savedVoter() { try { return JSON.parse(localStorage.getItem(NAME_KEY)) || {}; } catch (e) { return {}; } }
+  function sendSectionHTML(o) {
+    if (o.sent) return `<div class="co-send-wrap" id="send-wrap">
+        <div class="co-list-head"><h2 class="co-send-title" id="send-title">投票已送出</h2></div>
+        <section class="co-send vote-card done" aria-labelledby="send-title">
+          <p><span class="vc-ok" aria-hidden="true">✓</span><strong>${esc(o.sent.name)}</strong> 的投票已計入統計。同一姓名再次送出時，會以最後一次為準。</p>
+          <button class="btn-primary vc-btn" type="button" data-action="open-stats">${CHART_SVG}查看投票統計</button>
+        </section></div>`;
+    const v = savedVoter();
+    return `<div class="co-send-wrap" id="send-wrap">
+        <div class="co-list-head"><h2 class="co-send-title" id="send-title">最後一步：送出投票</h2></div>
+        <section class="co-send vote-card" aria-labelledby="send-title">
+          <form class="vote-form" id="vote-form" novalidate>
+            <div class="vf-field"><label for="vote-name">姓名<small class="req">必填</small></label>
+              <input id="vote-name" name="name" autocomplete="name" maxlength="40" required value="${esc(v.name || '')}" aria-describedby="send-status"></div>
+            <div class="vf-field"><label for="vote-unit">單位<small class="req">必填</small></label>
+              <input id="vote-unit" name="unit" autocomplete="organization" maxlength="40" required value="${esc(v.unit || '')}" aria-describedby="send-status"></div>
+            <p class="vf-note">同一姓名重複送出時，以最後一次為準。</p>
+            <button class="btn-primary vc-btn" type="submit" id="vote-submit">送出投票</button>
+          </form>
+          <div class="send-status" id="send-status" role="status"></div>
+        </section></div>`;
   }
-  function mailtoHref(o) {
-    return 'mailto:' + VOTE_EMAIL + '?subject=' + encodeURIComponent('【點子商城投票】方案 ' + o.no) + '&body=' + encodeURIComponent(planText(o));
+  document.addEventListener('submit', async e => {
+    if (e.target.id !== 'vote-form') return;
+    e.preventDefault();
+    const o = lastOrder, st = $('send-status'), btn = $('vote-submit'), nameEl = $('vote-name'), unitEl = $('vote-unit');
+    const name = nameEl.value.trim(), unit = unitEl.value.trim();
+    st.classList.remove('err');
+    nameEl.toggleAttribute('aria-invalid', !name); unitEl.toggleAttribute('aria-invalid', !unit);
+    if (!name || !unit) {
+      st.textContent = !name && !unit ? '請填寫姓名與單位。' : !name ? '請填寫姓名。' : '請填寫單位。';
+      st.classList.add('err'); (!name ? nameEl : unitEl).focus(); return;
+    }
+    btn.disabled = true; btn.textContent = '送出中…'; st.textContent = '';
+    try {
+      const res = await fetch(VOTE_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ no: o.no, name, unit, items: o.items.map(it => ({ id: it.id, cat: it.cat, title: it.title, tokens: it.tokens })) }) });
+      const j = await res.json();
+      if (!j.ok) throw new Error(j.error || '送出失敗');
+      try { localStorage.setItem(NAME_KEY, JSON.stringify({ name, unit })); } catch (err) {}
+      o.sent = { name };
+      if (j.stats) { statsCache = j.stats; renderVoteBar(j.stats); }
+      $('send-wrap').outerHTML = sendSectionHTML(o);
+      const done = document.querySelector('.vote-card.done [data-action="open-stats"]'); if (done) done.focus();
+    } catch (err) {
+      btn.disabled = false; btn.textContent = '重新送出';
+      st.classList.add('err');
+      st.textContent = `送出失敗：${err && err.message && !/fetch|network|JSON/i.test(err.message) ? err.message : '網路連線異常'}。請稍後再按「重新送出」。`;
+    }
+  });
+
+  /* ---------- 投票統計頁 ---------- */
+  let statsCache = null;
+  function renderVoteBar(d) {
+    const bar = $('vbar');
+    const items = d && d.ok ? (d.items || []).filter(it => it.tokens > 0) : [];
+    if (!items.length || !d.voters) { bar.hidden = true; return; }
+    const top = items[0], title = esc((byId[top.id] || {}).title || top.title);
+    bar.innerHTML = `<div class="in"><span class="live"><i aria-hidden="true"></i><span>投票進行中</span></span>
+      <span class="t"><span class="full">目前已有 <b>${fmtN(d.voters)}</b> 人投票，第一名是「<b>${title}</b>」</span><span class="short"><b>${fmtN(d.voters)}</b> 人已投票・第一名「<b>${title}</b>」</span></span>
+      <button class="vbar-btn" type="button" data-action="open-stats">${CHART_SVG}查看投票</button></div>`;
+    bar.hidden = false;
   }
-  document.addEventListener('click', async e => {
-    if (e.target.closest('#send-mail')) { $('send-status').textContent = '已開啟郵件軟體，寄出後即完成。若沒有出現，請改用「複製方案內容」。'; return; }
-    if (!e.target.closest('#copy-plan')) return;
-    const text = $('plan-text').value;
-    let ok = false;
-    try { await navigator.clipboard.writeText(text); ok = true; } catch (err) {}
-    if (!ok) { const d = e.target.closest('.co-send').querySelector('details'); d.open = true; const t = $('plan-text'); t.focus(); t.select(); try { ok = document.execCommand('copy'); } catch (err) {} }
-    $('send-status').textContent = ok ? `已複製，請貼到 Email 寄給 ${VOTE_EMAIL}。` : '無法自動複製，內容已選取，請按 Ctrl+C（Mac 為 ⌘+C）複製。';
+  async function fetchVoteBar() {
+    if (!VOTE_API) return;
+    try { const res = await fetch(VOTE_API + (VOTE_API.includes('?') ? '&' : '?') + 't=' + Date.now()); const j = await res.json(); if (j.ok) { statsCache = j; renderVoteBar(j); } } catch (e) {}
+  }
+  function rankNo(list, i) { let r = i; while (r > 0 && list[r - 1].tokens === list[i].tokens) r--; return r + 1; }
+  function statsBodyHTML(d) {
+    const items = (d.items || []).filter(it => it.tokens > 0);
+    const max = items.length ? items[0].tokens : 1;
+    const t = new Date(d.updated || Date.now()), pad = n => String(n).padStart(2, '0');
+    const voted = new Set(items.map(it => it.id));
+    const rest = ITEMS.filter(it => !voted.has(it.id));
+    $('st-updated').textContent = `更新於 ${pad(t.getHours())}:${pad(t.getMinutes())}`;
+    if (!items.length) return `<div class="st-empty">${CHART_SVG.replace('18', '36').replace('18', '36')}<span>目前還沒有人送出投票。</span></div>`;
+    return `
+      <div class="st-stats">
+        <div class="co-stat"><span>投票人數</span><strong>${fmtN(d.voters || 0)} 人</strong></div>
+        <div class="co-stat"><span>累計代幣</span><strong>${fmtN(d.totalTokens || 0)}</strong></div>
+        <div class="co-stat"><span>已獲代幣點子</span><strong>${items.length} / ${ITEMS.length}</strong></div>
+      </div>
+      <div class="co-list-head"><h2>代幣排行</h2><span>同一姓名只計最後一次送出</span></div>
+      <ol class="st-list">${items.map((it, i) => {
+        const loc = byId[it.id] || {}, title = loc.title || it.title, cat = loc.cat || it.cat, href = PROTOTYPES[it.id], r = rankNo(items, i);
+        return `<li class="st-item${r <= 3 ? ' top' : ''}">
+          <span class="st-rank" aria-label="第 ${r} 名">${r}</span>
+          <span class="st-thumb">${THUMBS[it.id] ? `<img src="${THUMBS[it.id]}" alt="">` : iconSvg(cat, 32)}</span>
+          <div class="st-main">
+            <div class="meta"><span class="tag-cat" style="position:static">${esc(cat)}</span></div>
+            <h3>${href ? `<a href="${href}">${esc(title)}</a>` : esc(title)}</h3>
+            <div class="st-bar" aria-hidden="true"><i style="width:${Math.max(2, it.tokens / max * 100)}%"></i></div>
+            <ul class="st-voters" aria-label="投票者">${it.voters.map(v => `<li>${esc(v.name)}${v.unit ? `（${esc(v.unit)}）` : ''}<b>${fmtN(v.tokens)}</b></li>`).join('')}</ul>
+          </div>
+          <div class="st-side"><b>${fmtN(it.tokens)} 代幣</b><span>${it.voters.length} 人投票</span></div>
+        </li>`; }).join('')}
+      </ol>
+      ${rest.length ? `<p class="st-rest"><b>尚未獲得代幣（${rest.length}）：</b>${rest.map(it => esc(it.title)).join('、')}</p>` : ''}`;
+  }
+  async function loadStats(force) {
+    const box = $('st-body');
+    if (!VOTE_API) { box.innerHTML = '<div class="st-empty err">尚未設定投票服務網址（VOTE_API），目前無法顯示統計。</div>'; return; }
+    if (statsCache && !force) { box.innerHTML = statsBodyHTML(statsCache); }
+    else box.innerHTML = '<div class="st-skel"></div><div class="st-skel"></div><div class="st-skel"></div>';
+    const btn = $('st-refresh'); if (btn) { btn.disabled = true; }
+    try {
+      const res = await fetch(VOTE_API + (VOTE_API.includes('?') ? '&' : '?') + 't=' + Date.now());
+      const j = await res.json();
+      if (!j.ok) throw new Error();
+      statsCache = j; renderVoteBar(j);
+      if (!$('stats-view').hidden) box.innerHTML = statsBodyHTML(j);
+    } catch (err) {
+      if (!statsCache) box.innerHTML = '<div class="st-empty err"><span>無法取得統計，請檢查網路後再試一次。</span><button class="btn-outline" type="button" data-action="stats-refresh" style="padding:0 16px">重新載入</button></div>';
+      else showToast('更新失敗，顯示的是上次取得的統計');
+    } finally { if (btn) btn.disabled = false; }
+  }
+  function showStats() {
+    if ($('drawer').classList.contains('open')) closeDrawer();
+    $('stats-view').innerHTML = `
+      <div class="st-head">
+        <div><h1 id="st-title" tabindex="-1">投票統計</h1><p>依各點子累計獲得的代幣排序，並列出投票者。</p></div>
+        <div class="st-tools"><span id="st-updated"></span><button class="btn-outline" type="button" id="st-refresh" data-action="stats-refresh">↻ 重新整理</button></div>
+      </div>
+      <div id="st-body" style="display:flex;flex-direction:column;gap:20px" aria-live="polite"></div>
+      <div class="co-actions"><button class="btn-outline" type="button" data-action="back-list">返回功能列表</button></div>`;
+    $('toast').classList.remove('show');
+    document.body.classList.add('on-stats'); document.body.classList.remove('on-checkout');
+    $('list-top').hidden = true; $('list-main').hidden = true; $('checkout').hidden = true; $('stats-view').hidden = false;
+    window.scrollTo(0, 0);
+    $('st-title').focus();
+    loadStats(true);
+  }
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-action="open-stats"]')) { e.preventDefault(); showStats(); }
+    else if (e.target.closest('[data-action="stats-refresh"]')) loadStats(true);
   });
 
   function showCheckout() {
     const o = lastOrder, items = o.items;
-    const avg = items.reduce((s, it) => s + it.diff, 0) / items.length;
-    const plats = PLATFORMS.filter(p => items.some(it => it.platforms.includes(p)));
-    const withProto = items.filter(it => PROTOTYPES[it.id]).length;
     $('checkout').innerHTML = `
-      <div class="co-hero">
-        <span class="co-check"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-        <h1 id="co-title" tabindex="-1">您的點子方案已完成</h1>
-        <p>共 ${items.length} 項功能點子。請用下方按鈕寄出方案，才會計入投票統計。</p>
-        <div class="co-meta"><span>方案編號 <strong>${o.no}</strong></span><span>送出時間 <strong>${o.time}</strong></span></div>
-      </div>
-      <div class="co-stats">
-        <div class="co-stat"><span>點子數量</span><strong>${items.length} 項</strong></div>
-        <div class="co-stat"><span>平均開發難易度</span><strong>${avg.toFixed(1)} 星</strong></div>
-        <div class="co-stat"><span>投入代幣</span><strong>${fmtN(TOKEN_TOTAL)}</strong></div>
-        <div class="co-stat"><span>可試玩原型</span><strong>${withProto} / ${items.length}</strong></div>
-      </div>
-      <div class="co-list-head"><h2>方案內容</h2><span>依投入代幣排序</span></div>
+      <div class="co-layout">
+      <div class="co-plan">
+      <div class="co-list-head"><h1 id="co-title" tabindex="-1">方案內容</h1><span>共 ${items.length} 項・依投入代幣排序</span></div>
       <ol class="co-list">${items.map((it, i) => `
         <li class="co-item">
           <span class="co-no">${i + 1}</span>
@@ -1082,36 +1322,30 @@ html.pw-locked body{visibility:hidden}
           </div>
         </li>`).join('')}
       </ol>
-      <section class="co-send" aria-labelledby="send-title">
-        <h2 id="send-title">最後一步：寄出您的方案</h2>
-        <p>按「用 Email 寄出」會開啟您的郵件軟體，收件人與內容都已填好，直接寄出即可。<br>若無法開啟郵件軟體，請按「複製方案內容」，貼到 Email 寄給 ${VOTE_EMAIL}。</p>
-        <div class="send-btns">
-          <a class="btn-primary" id="send-mail" href="${mailtoHref(o)}" target="_blank" rel="noopener">用 Email 寄出</a>
-          <button class="btn-outline" type="button" id="copy-plan">複製方案內容</button>
-        </div>
-        <div class="send-status" id="send-status" role="status"></div>
-        <details><summary>查看要寄出的內容</summary><textarea id="plan-text" readonly aria-label="方案內容">${esc(planText(o))}</textarea></details>
-      </section>
+      </div>
+      <aside class="co-aside">${sendSectionHTML(o)}</aside>
+      </div>
       <div class="co-actions">
         <button class="btn-outline" type="button" data-action="back-list">返回功能列表</button>
       </div>`;
     $('toast').classList.remove('show');
     document.body.classList.add('on-checkout');
+    document.body.classList.remove('on-stats'); $('stats-view').hidden = true;
     $('list-top').hidden = true; $('list-main').hidden = true; $('checkout').hidden = false;
     window.scrollTo(0, 0);
     $('co-title').focus();
   }
 
   function backToList() {
-    document.body.classList.remove('on-checkout');
-    $('checkout').hidden = true; $('list-top').hidden = false; $('list-main').hidden = false;
+    document.body.classList.remove('on-checkout', 'on-stats');
+    $('checkout').hidden = true; $('stats-view').hidden = true; $('list-top').hidden = false; $('list-main').hidden = false;
     window.scrollTo(0, 0);
   }
 
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-action="back-list"], .brand');
     if (!b) return;
-    if (b.classList.contains('brand')) { if (!$('checkout').hidden) { e.preventDefault(); backToList(); } return; }
+    if (b.classList.contains('brand')) { if (!$('checkout').hidden || !$('stats-view').hidden) { e.preventDefault(); backToList(); } return; }
     backToList();
   });
 
@@ -1138,6 +1372,7 @@ html.pw-locked body{visibility:hidden}
 
   buildControls();
   render();
+  fetchVoteBar();
   if (restoreY) requestAnimationFrame(() => { window.scrollTo(0, restoreY); saveView(); });
   // 代幣說明只在第一次進入時顯示；之後從原型頁返回首頁不再跳出
   const WELCOME_KEY = 'fx-idea-shop-welcomed';
