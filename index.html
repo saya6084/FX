@@ -1178,8 +1178,7 @@ html.pw-locked body{visibility:hidden}
     if (o.sent) return `<div class="co-send-wrap" id="send-wrap">
         <div class="co-list-head"><h2 class="co-send-title" id="send-title">投票已送出</h2></div>
         <section class="co-send vote-card done" aria-labelledby="send-title">
-          <p><span class="vc-ok" aria-hidden="true">✓</span><strong>${esc(o.sent.name)}</strong> 的投票已計入統計。同一姓名再次送出時，會以最後一次為準。</p>
-          <button class="btn-primary vc-btn" type="button" data-action="open-stats">${CHART_SVG}查看投票統計</button>
+          <p><span class="vc-ok" aria-hidden="true">✓</span>感謝 <strong>${esc(o.sent.name)}</strong> 的參與，您的投票已計入。同一姓名再次送出時，會以最後一次為準。</p>
         </section></div>`;
     const v = savedVoter();
     return `<div class="co-send-wrap" id="send-wrap">
@@ -1215,9 +1214,9 @@ html.pw-locked body{visibility:hidden}
       if (!j.ok) throw new Error(j.error || '送出失敗');
       try { localStorage.setItem(NAME_KEY, JSON.stringify({ name, unit })); } catch (err) {}
       o.sent = { name };
-      if (j.stats) { statsCache = j.stats; renderVoteBar(j.stats); }
+      if (typeof j.voters === 'number') renderVoteBar(j);
       $('send-wrap').outerHTML = sendSectionHTML(o);
-      const done = document.querySelector('.vote-card.done [data-action="open-stats"]'); if (done) done.focus();
+      const t = $('send-title'); t.setAttribute('tabindex', '-1'); t.focus();
     } catch (err) {
       btn.disabled = false; btn.textContent = '重新送出';
       st.classList.add('err');
@@ -1229,8 +1228,7 @@ html.pw-locked body{visibility:hidden}
   let statsCache = null;
   function renderVoteBar(d) {
     const bar = $('vbar');
-    const items = d && d.ok ? (d.items || []).filter(it => it.tokens > 0) : [];
-    if (!items.length || !d.voters) { bar.hidden = true; return; }
+    if (!d || !d.ok || !d.voters) { bar.hidden = true; return; }
     bar.innerHTML = `<div class="in"><span class="live"><i aria-hidden="true"></i><span>投票進行中</span></span>
       <span class="t"><span class="full">目前已有 <b>${fmtN(d.voters)}</b> 人投票</span><span class="short"><b>${fmtN(d.voters)}</b> 人已投票</span></span>
       <button class="vbar-btn" type="button" data-action="open-stats">${CHART_SVG}查看投票</button></div>`;
@@ -1238,7 +1236,7 @@ html.pw-locked body{visibility:hidden}
   }
   async function fetchVoteBar() {
     if (!VOTE_API) return;
-    try { const res = await fetch(VOTE_API + (VOTE_API.includes('?') ? '&' : '?') + 't=' + Date.now()); const j = await res.json(); if (j.ok) { statsCache = j; renderVoteBar(j); } } catch (e) {}
+    try { const res = await fetch(VOTE_API + (VOTE_API.includes('?') ? '&' : '?') + 't=' + Date.now()); const j = await res.json(); if (j.ok) renderVoteBar(j); } catch (e) {}
   }
   function rankNo(list, i) { let r = i; while (r > 0 && list[r - 1].tokens === list[i].tokens) r--; return r + 1; }
   function statsBodyHTML(d) {
@@ -1272,15 +1270,52 @@ html.pw-locked body{visibility:hidden}
       </ol>
       ${rest.length ? `<p class="st-rest"><b>尚未獲得代幣（${rest.length}）：</b>${rest.map(it => esc(it.title)).join('、')}</p>` : ''}`;
   }
-  async function loadStats(force) {
+  /* ---------- 查看結果密碼 ---------- */
+  const VIEW_KEY_STORE = 'fx-idea-shop-viewkey';
+  const getViewKey = () => { try { return sessionStorage.getItem(VIEW_KEY_STORE) || ''; } catch (e) { return ''; } };
+  const setViewKey = k => { try { k ? sessionStorage.setItem(VIEW_KEY_STORE, k) : sessionStorage.removeItem(VIEW_KEY_STORE); } catch (e) {} };
+  async function fetchStats(key) {
+    const res = await fetch(VOTE_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'stats', key }) });
+    return res.json();
+  }
+  function openViewModal(note) {
+    openModal(`<form class="modal" id="view-form" role="dialog" aria-modal="true" aria-labelledby="view-title" novalidate>
+      <h2 id="view-title">查看投票結果</h2>
+      <p>為避免影響投票，結果只開放給知道密碼的人查看。</p>
+      <label class="reset-label" for="view-key">查看密碼</label>
+      <input class="reset-input" id="view-key" type="password" autocomplete="off" aria-describedby="view-msg">
+      <div class="reset-msg" id="view-msg" role="alert">${note ? esc(note) : ''}</div>
+      <div class="modal-actions">
+        <button class="btn-primary" type="submit" id="view-ok">查看結果</button>
+        <button class="link-cancel" type="button" data-modal="close">取消</button>
+      </div>
+    </form>`, '#view-key');
+  }
+  document.addEventListener('submit', async e => {
+    if (e.target.id !== 'view-form') return;
+    e.preventDefault();
+    const key = $('view-key').value, msg = $('view-msg'), ok = $('view-ok');
+    if (!key) { msg.textContent = '請輸入查看密碼。'; $('view-key').focus(); return; }
+    ok.disabled = true; ok.textContent = '確認中…'; msg.textContent = '';
+    try {
+      const j = await fetchStats(key);
+      if (!j.ok) throw new Error(j.error || '無法取得結果');
+      setViewKey(key); statsCache = j;
+      closeModal(); showStats(j);
+    } catch (err) {
+      ok.disabled = false; ok.textContent = '查看結果';
+      msg.textContent = err && err.message && !/fetch|network|JSON/i.test(err.message) ? err.message : '網路連線異常，請稍後再試。';
+      $('view-key').select();
+    }
+  });
+  async function loadStats() {
     const box = $('st-body');
     if (!VOTE_API) { box.innerHTML = '<div class="st-empty err">尚未設定投票服務網址（VOTE_API），目前無法顯示統計。</div>'; return; }
-    if (statsCache && !force) { box.innerHTML = statsBodyHTML(statsCache); }
-    else box.innerHTML = '<div class="st-skel"></div><div class="st-skel"></div><div class="st-skel"></div>';
+    if (!statsCache) box.innerHTML = '<div class="st-skel"></div><div class="st-skel"></div><div class="st-skel"></div>';
     const btn = $('st-refresh'); if (btn) { btn.disabled = true; }
     try {
-      const res = await fetch(VOTE_API + (VOTE_API.includes('?') ? '&' : '?') + 't=' + Date.now());
-      const j = await res.json();
+      const j = await fetchStats(getViewKey());
+      if (j.denied) { setViewKey(''); statsCache = null; backToList(); openViewModal('密碼已失效，請重新輸入。'); return; }
       if (!j.ok) throw new Error();
       statsCache = j; renderVoteBar(j);
       if (!$('stats-view').hidden) box.innerHTML = statsBodyHTML(j);
@@ -1289,7 +1324,7 @@ html.pw-locked body{visibility:hidden}
       else showToast('更新失敗，顯示的是上次取得的統計');
     } finally { if (btn) btn.disabled = false; }
   }
-  function showStats() {
+  function showStats(data) {
     if ($('drawer').classList.contains('open')) closeDrawer();
     $('stats-view').innerHTML = `
       <div class="st-head">
@@ -1304,7 +1339,7 @@ html.pw-locked body{visibility:hidden}
     $('list-top').hidden = true; $('list-main').hidden = true; $('checkout').hidden = true; $('stats-view').hidden = false;
     window.scrollTo(0, 0);
     $('st-title').focus();
-    loadStats(true);
+    if (data) $('st-body').innerHTML = statsBodyHTML(data); else loadStats();
   }
   /* ---------- 清除投票（需管理密碼，舊資料封存於試算表） ---------- */
   function openResetModal() {
@@ -1331,8 +1366,8 @@ html.pw-locked body{visibility:hidden}
       const j = await res.json();
       if (!j.ok) throw new Error(j.error || '清除失敗');
       closeModal();
-      statsCache = j.stats || null; renderVoteBar(statsCache);
-      if (!$('stats-view').hidden && statsCache) $('st-body').innerHTML = statsBodyHTML(statsCache);
+      renderVoteBar({ ok: true, voters: 0 });
+      if (!$('stats-view').hidden) loadStats();
       showToast(j.archived ? `投票已清除，舊資料封存在「${j.archived}」` : '目前沒有投票資料，不需清除');
     } catch (err) {
       ok.disabled = false; ok.textContent = '確認清除';
@@ -1342,8 +1377,8 @@ html.pw-locked body{visibility:hidden}
   });
   document.addEventListener('click', e => {
     if (e.target.closest('[data-action="reset-votes"]')) { openResetModal(); return; }
-    if (e.target.closest('[data-action="open-stats"]')) { e.preventDefault(); showStats(); }
-    else if (e.target.closest('[data-action="stats-refresh"]')) loadStats(true);
+    if (e.target.closest('[data-action="open-stats"]')) { e.preventDefault(); if (getViewKey()) { statsCache = null; showStats(); } else openViewModal(); }
+    else if (e.target.closest('[data-action="stats-refresh"]')) loadStats();
   });
 
   function showCheckout() {
