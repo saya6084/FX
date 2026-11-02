@@ -20,7 +20,7 @@ html.pw-locked body{visibility:hidden}
 </style>
 <script id="pw-gate-script">
 (function(){
-  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var KEY='fx-idea-shop-pass', HASH='ccb3e5c24e8e841cb63c9c7fc29d5287cf87e0440821b1027d0ae6e1d4bf3869';
   var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
   var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
   if(ok) return;
@@ -261,8 +261,64 @@ html.pw-locked body{visibility:hidden}
 @media (max-width:960px){.bot-topbar-row{padding-left:24px;padding-right:24px}.bot-brand{display:none}}
 @media (max-width:440px){.bot-crumb{display:none}}
 </style>
-</head><body><div class="bot-topbar"><div class="bot-topbar-row"><a class="bot-back" href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表</a><span class="bot-crumb">功能原型｜<strong>申請存款帳戶存摺封面</strong></span><span class="bot-brand"><span class="bot-brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span></div></div>
-<main class="stage"><div class="handset" aria-label="手機互動原型"><div class="handset-inner"><div id="bot-prototype" class="viz-dotted-background"><div class="phone"><div id="bot-screen"></div><div id="bot-overlay"></div></div></div>
+<style id="inner-nav-style">
+.topbar .brand, .bot-topbar .bot-brand { margin-left: 4px !important; text-decoration: none; color: #0f172a; font-size: 16px; font-weight: 900; white-space: nowrap; }
+.topbar .brand:hover, .bot-topbar .bot-brand:hover { color: #9a0036; }
+.topbar .brand:focus-visible, .bot-topbar .bot-brand:focus-visible { outline: 3px solid #9a0036; outline-offset: 3px; border-radius: 6px; }
+@media (min-width: 561px) { .topbar .brand, .bot-topbar .bot-brand { display: flex !important; } }
+@media (max-width: 560px) { .topbar .brand, .bot-topbar .bot-brand { display: none !important; } }
+.topbar .back, .bot-topbar .bot-back { flex: none; white-space: nowrap; }
+.nav-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; font-family: 'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif; }
+.nv-add, .nv-cart { min-height: 44px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; text-decoration: none; box-sizing: border-box; }
+.nv-add { border: 1.5px solid #9a0036; background: #9a0036; color: #fff; }
+.nv-add:hover { background: #7f002d; border-color: #7f002d; }
+.nv-add.on { background: #f7e9ee; color: #9a0036; }
+.nv-add.on:hover { background: #f0d5df; }
+.nv-cart { border: 1px solid #cbd5e1; background: #fff; color: #0f172a; }
+.nv-cart:hover { border-color: #0f172a; }
+.nv-cart .b { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #9a0036; color: #fff; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+.nv-add:focus-visible, .nv-cart:focus-visible { outline: 3px solid #9a0036; outline-offset: 2px; }
+@media (max-width: 560px) { .nv-cart .t { display: none; } .nv-cart { padding: 0 10px; } .nv-add { padding: 0 12px; } }
+.nv-wrap { position: fixed; inset: 0; z-index: 2147482000; background: rgba(15,23,42,.5); display: flex; align-items: center; justify-content: center; padding: 16px; font-family: 'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif; }
+.nv-modal { width: min(420px, 100%); background: #fff; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 24px 60px rgba(15,23,42,.25); color: #0f172a; box-sizing: border-box; }
+.nv-modal h2 { margin: 0; font-size: 22px; font-weight: 900; line-height: 1.4; }
+.nv-modal p { margin: 0; font-size: 15px; color: #475569; line-height: 1.7; }
+.nv-step { display: flex; align-items: center; gap: 10px; }
+.nv-step button { width: 48px; height: 48px; flex: none; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; font-size: 22px; cursor: pointer; color: #0f172a; }
+.nv-step input { flex: 1; min-width: 0; height: 48px; border: 1px solid #cbd5e1; border-radius: 12px; text-align: center; font: inherit; font-size: 22px; font-weight: 900; color: #0f172a; box-sizing: border-box; }
+.nv-quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.nv-quick button { min-height: 36px; padding: 0 12px; border: 1px solid #cbd5e1; border-radius: 999px; background: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; color: #334155; }
+.nv-quick button:disabled { opacity: .4; cursor: default; }
+.nv-note { display: flex; justify-content: space-between; font-size: 14px; color: #475569; }
+.nv-note strong { color: #0f172a; }
+.nv-err { font-size: 13px; font-weight: 700; color: #b42318; min-height: 18px; }
+.nv-actions { display: flex; flex-direction: column; gap: 8px; }
+.nv-ok { min-height: 52px; border: none; border-radius: 12px; background: #9a0036; color: #fff; font: inherit; font-size: 16px; font-weight: 800; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+.nv-ok:disabled { background: #cbd5e1; cursor: not-allowed; }
+.nv-link { border: none; background: none; min-height: 40px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; color: #64748b; }
+.nv-link.del { color: #9a0036; }
+.nv-toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 16px); background: #0f172a; color: #fff; padding: 10px 18px; border-radius: 12px; font-size: 14px; opacity: 0; pointer-events: none; transition: all .25s; z-index: 2147482001; font-family: 'Microsoft JhengHei','微軟正黑體',system-ui,sans-serif; max-width: calc(100vw - 32px); }
+.nv-toast.show { opacity: 1; transform: translate(-50%, 0); }
+</style>
+<style id="layout-v3">
+.more { border-top: 1px solid var(--line, #e2e8f0); padding-top: 12px; }
+.more > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 36px; font-size: 14px; font-weight: 700; color: var(--accent, #9a0036); }
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::after { content: ""; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s; }
+.more[open] > summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.more > summary:focus-visible { outline: 3px solid var(--accent, #9a0036); outline-offset: 2px; border-radius: 6px; }
+.more .more-body { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; }
+.more .more-body > ul { margin: 0; }
+:root { --tb-h: 69px; }
+@media (min-width: 961px) {
+  .lv2-stage { padding-bottom: 24px !important; }
+  .lv2-sticky { position: sticky; top: calc(var(--tb-h) + 24px); align-self: flex-start; }
+  .lv2-info { align-self: stretch; }
+  .lv2-flow { position: sticky; top: calc(var(--tb-h) + 24px); z-index: 2; }
+}
+</style>
+</head><body><div class="bot-topbar"><div class="bot-topbar-row"><a class="bot-back" href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回</a><a class="bot-brand" href="index.html">外匯體驗點子商城</a><span class="nav-actions" id="nav-actions"></span></div></div>
+<main class="stage lv2-stage"><div class="handset lv2-device" aria-label="手機互動原型"><div class="handset-inner"><div id="bot-prototype" class="viz-dotted-background"><div class="phone"><div id="bot-screen"></div><div id="bot-overlay"></div></div></div>
 <style>
 #bot-prototype{padding:12px 0;font-family:Arial,"Microsoft JhengHei",sans-serif;color:#262626}#bot-prototype *{box-sizing:border-box}#bot-prototype .phone{position:relative;width:100%;max-width:390px;margin:auto;background:#f2f2f2;border-radius:24px;overflow:hidden;box-shadow:0 8px 32px #0002;border:1px solid #ddd;min-height:780px;color-scheme:light}#bot-prototype button,#bot-prototype input{font:inherit}#bot-prototype button{cursor:pointer;border:0}#bot-prototype button:focus-visible,#bot-prototype input:focus-visible{outline:3px solid #eb971b;outline-offset:2px}#bot-prototype .top{background:linear-gradient(110deg,#961235,#d62e51);color:white}#bot-prototype .status{height:45px;padding:12px 22px;display:flex;justify-content:space-between;font-size:13px;font-weight:700}#bot-prototype .time{background:#28c650;border-radius:20px;padding:1px 9px}#bot-prototype .head{height:54px;display:flex;align-items:center;gap:10px;padding:0 12px;font-weight:700;font-size:18px}#bot-prototype .head .title{flex:1;text-align:center}#bot-prototype .icon{background:none;color:inherit;min-width:40px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}#bot-prototype .body{padding:22px 16px;min-height:588px}#bot-prototype .actions{display:flex;gap:16px;background:white;padding:12px 18px 24px;border-top:1px solid #ddd}#bot-prototype .actions button{flex:1;padding:12px 5px;background:#e5e5e5;color:#222;border-radius:9px;font-size:18px;font-weight:700}#bot-prototype .actions .primary,#bot-prototype .primary{background:#a00039;color:white}#bot-prototype .actions button:disabled{background:#aaa;color:#eee;cursor:default}#bot-prototype .field{margin-bottom:30px}#bot-prototype label.caption,#bot-prototype .caption{display:block;color:#555;font-weight:700;margin-bottom:12px;font-size:16px}#bot-prototype .radios{display:flex;gap:22px;margin-bottom:38px}#bot-prototype .radios label{display:flex;align-items:center;gap:10px;font-size:18px;min-height:44px}#bot-prototype input[type=radio]{width:25px;height:25px;accent-color:#c71b55;margin:0}#bot-prototype input:not([type=radio]),#bot-prototype .select{width:100%;height:45px;border:1px solid #ccc;background:white;border-radius:9px;padding:8px 10px;color:#222;font-size:17px}#bot-prototype .select{display:flex;justify-content:space-between;align-items:center;text-align:left}#bot-prototype .select span{color:#c91e54}#bot-prototype details{margin-top:20px}#bot-prototype summary{font-size:20px;cursor:pointer;list-style:none;padding:10px 0}#bot-prototype summary:before{content:'＋';color:#999;font-weight:700;margin-right:10px}#bot-prototype details[open] summary:before{content:'−'}#bot-prototype details p{font-size:14px;color:#666;line-height:1.7}#bot-prototype .error{font-size:14px;color:#b00032;margin:10px 0;min-height:20px}#bot-prototype .note{font-size:12px;line-height:1.6;color:#777}#bot-prototype .hero{height:214px;position:relative;background:linear-gradient(110deg,#961235,#c9455b);overflow:hidden;color:white}#bot-prototype .brand{text-align:center;font-family:serif;letter-spacing:4px;font-size:26px;font-weight:700;margin:6px 0}#bot-prototype .brand small{display:block;font-size:11px;letter-spacing:1px}#bot-prototype .whale{font-size:125px;position:absolute;right:14px;bottom:-27px;transform:rotate(-12deg)}#bot-prototype .greeting{position:absolute;left:80px;top:100px;border-radius:30px;background:white;color:black;padding:7px 18px}#bot-prototype .loginbuttons{display:flex;gap:12px;padding:36px 20px 20px}#bot-prototype .loginbuttons button{width:50%;border:1px solid #a00039;border-radius:9px;padding:13px 0;font-size:19px}#bot-prototype .loginbuttons button+button{background:white;color:#a00039}#bot-prototype .shortcuts{text-align:center;padding:12px 0 35px;font-size:16px}#bot-prototype .promo{padding:16px;background:#e6e6e6;display:flex;gap:12px}#bot-prototype .promo div{background:white;border-radius:12px;padding:16px 12px;flex:1;box-shadow:0 4px 10px #0001;font-weight:700}#bot-prototype .promo small{display:block;font-size:12px;margin-top:6px}#bot-prototype .banner{margin:20px;border-radius:16px;background:#dce7cf;padding:28px 20px;color:#476e31;font-size:28px;font-style:italic}#bot-prototype .banner small{display:block;font-size:15px;margin-top:12px;font-style:normal}#bot-prototype .quick{display:flex;justify-content:space-around;padding:32px 6px 65px;color:white;background:linear-gradient(110deg,#a00039,#d62e51)}#bot-prototype .quick div{text-align:center;font-size:17px}#bot-prototype .quick i{display:block;margin:auto auto 12px}#bot-prototype .balance{margin:-35px 30px 25px;background:white;padding:24px;border-radius:28px;box-shadow:0 6px 12px #0002;min-height:220px;position:relative}#bot-prototype .amount{font-size:36px;font-weight:700;margin:20px 0}#bot-prototype .balance hr{border:0;border-top:1px solid #ddd;margin:24px 0}#bot-prototype .navbottom{display:flex;justify-content:space-around;background:white;padding:18px 2px 25px;color:#999;font-size:13px}#bot-prototype .navbottom>span:first-child{color:#c71b55}#bot-prototype .shade{position:absolute;inset:0;background:#0009;z-index:5;display:flex;align-items:center;justify-content:center;padding:30px}#bot-prototype .modal{background:white;border-radius:14px;overflow:hidden;width:100%;text-align:center}#bot-prototype .modal h3{font-size:19px;margin:0;padding:22px 10px}#bot-prototype .modal .options{background:#f2f2f2;min-height:220px;padding:0 16px;text-align:left}#bot-prototype .options button{background:none;width:100%;padding:22px 0;border-bottom:1px solid #ccc;text-align:left;font-size:17px;font-weight:700}#bot-prototype .modal .cancel{background:white;color:#a00039;padding:20px;width:100%;font-size:18px;font-weight:700}#bot-prototype .drawer{position:absolute;inset:0 auto 0 0;width:71%;background:white;z-index:6;display:flex;flex-direction:column}#bot-prototype .menuscroll{height:650px;overflow-y:auto;padding:0 16px;scrollbar-width:thin}#bot-prototype .menurow{width:100%;min-height:60px;background:white;display:flex;align-items:center;gap:14px;border-bottom:1px solid #ddd;text-align:left;font-size:19px;font-weight:700;padding:14px 4px}#bot-prototype .menurow i,#bot-prototype .menurow svg,#bot-prototype .menurow .menu-symbol{color:#c71b55;flex-shrink:0}#bot-prototype .menurow span{flex:1}#bot-prototype .menurow b{color:#ccc;font-weight:400}#bot-prototype .submenu{background:#eee;margin:0 -16px;padding:0 16px}#bot-prototype .submenu button{font-size:16px;background:#eee;padding-left:43px;font-weight:500}#bot-prototype .drawerfoot{padding:20px;font-size:14px;display:flex;justify-content:space-between;align-items:center;margin-top:auto;box-shadow:0 -4px 16px #0001}#bot-prototype .drawerfoot b{color:#c71b55}#bot-prototype .paper{background:#fff;border:1px solid #ddd;padding:23px 20px;position:relative;border-top:6px solid #a00039;border-radius:3px;box-shadow:0 4px 16px #0001}#bot-prototype .paper .bank{font-family:serif;font-size:24px;letter-spacing:3px;color:#a00039;text-align:center;font-weight:700}#bot-prototype .paper .bank small{display:block;font-size:11px;letter-spacing:1px}#bot-prototype .paper h3{text-align:center;font-size:19px;margin:24px 0 4px}#bot-prototype .paper .en{text-align:center;color:#777;font-size:10px;margin-bottom:20px}#bot-prototype .paper dl{margin:0}#bot-prototype .paper dt{font-size:12px;color:#777;margin:17px 0 6px}#bot-prototype .paper dd{font-size:16px;margin:0;padding-bottom:10px;border-bottom:1px solid #eee;overflow-wrap:anywhere}#bot-prototype .paper dd small{display:block;font-size:12px;margin-top:5px;color:#555}#bot-prototype .stamp{text-align:center;color:#b0244c;border:1px solid #e5acbc;padding:8px;margin-top:22px;font-size:12px}#bot-prototype .success{text-align:center;padding:55px 15px}#bot-prototype .success .circle{width:66px;height:66px;border-radius:50%;background:#e9f3e9;color:#327c46;display:grid;place-items:center;margin:0 auto 20px;font-size:32px}#bot-prototype .file{display:flex;align-items:center;gap:12px;background:white;padding:22px 15px;border-radius:10px;width:100%;text-align:left;overflow-wrap:anywhere}#bot-prototype .file strong{font-size:15px}#bot-prototype .file small{display:block;color:#888;font-size:12px;margin-top:8px}#bot-prototype .lock{padding-top:170px;text-align:center}#bot-prototype .lock input{max-width:220px;text-align:center}#bot-prototype .lock button{display:block;margin:16px auto;padding:12px 32px;border-radius:9px}#bot-prototype .ios{background:#f2f2f7}#bot-prototype .ioshead{background:white;color:#1673d3}#bot-prototype .ioshead .title{color:#222;font-size:15px}#bot-prototype .tag{display:block;text-align:center;font-size:11px;color:#888;margin:12px}#bot-prototype .face{padding:30px 20px;background:#dedee3}#bot-prototype .face svg{width:72px;height:72px;color:white}#bot-prototype .face p{font-size:25px;font-weight:700}#bot-prototype .homehint{margin:18px;padding:16px;background:white;border-radius:14px;color:#a00039;font-size:16px}#bot-prototype .rate{background:white;padding:24px 18px;min-height:150px}#bot-prototype .rate div{margin:12px 0;display:flex;justify-content:space-between}#bot-prototype .link{background:none;color:#1673d3;padding:10px;font-size:16px}
 
@@ -384,8 +440,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')overlay.innerHTML=''
 const restore=s=>{const m=s?.modelContent;if(m){currency=['fx','twd'].includes(m.currency)?m.currency:'';account=accounts.includes(m.account)||m.account==='000111222333 新臺幣存款'?m.account:'';page=['login','home','form'].includes(m.page)?m.page:password&&['preview','downloaded','files','locked','cover'].includes(m.page)?m.page:'form';}render();};restore(window.openai?.widgetState);window.addEventListener('openai:set_globals',e=>{const s=e.detail?.globals?.widgetState;if(s&&JSON.stringify(s.modelContent)!==JSON.stringify({page,currency,account}))restore(s)});
 })();
 </script></div></div>
-<aside class="info" aria-label="功能說明"><section class="info-card"><div class="tags"><span class="tag-cat">其他</span><span class="platform">APP</span></div><h1>申請存款帳戶<br>存摺封面</h1><div class="rating" aria-label="開發難易度 2 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★</span><span class="off">★★★</span></span></div><p>選擇存款帳戶，設定文件開啟密碼，即可預覽存摺封面，並體驗下載後的密碼驗證流程。</p><div><div class="label">功能特色</div><ul class="features"><li>支援新臺幣與外幣存款帳戶選擇</li><li>整合銀行、分行、SWIFT CODE、帳號與戶名</li><li>自訂 4～12 位英數文件密碼，預覽後再下載</li></ul></div><div class="benefit"><strong>效益｜</strong>需要提供收款帳戶資料時，可快速取得清楚的存摺封面，減少手動整理與往返確認。</div></section>
-<section class="info-card flow"><h2>操作流程</h2><ol class="flow-list" id="flow-list"><li><button class="flow-btn" type="button" data-jump="login"><span class="no">1</span><span><strong>登入行動銀行</strong>體驗模擬登入，進入銀行首頁</span></button></li><li><button class="flow-btn" type="button" data-jump="menu"><span class="no">2</span><span><strong>開啟線上申請</strong>從功能選單找到存摺封面申請</span></button></li><li><button class="flow-btn" type="button" data-jump="form"><span class="no">3</span><span><strong>選擇帳戶與設定密碼</strong>選帳戶種類、帳號，設定文件密碼</span></button></li><li><button class="flow-btn" type="button" data-jump="preview"><span class="no">4</span><span><strong>預覽存摺封面</strong>確認銀行、分行、帳號與戶名</span></button></li><li><button class="flow-btn" type="button" data-jump="locked"><span class="no">5</span><span><strong>開啟受保護文件</strong>模擬下載後，輸入自設文件密碼</span></button></li><li><button class="flow-btn" type="button" data-jump="cover"><span class="no">6</span><span><strong>檢視存摺封面</strong>驗證通過，顯示完整帳戶資料</span></button></li></ol><div class="demo-password" id="demo-password" hidden><strong>快速展示設定</strong><br>直接跳至預覽或文件畫面時，會帶入示範帳戶；若尚未設定密碼，文件密碼為 <strong>Demo1234</strong>。</div><button class="reset" id="reset" type="button">重設原型</button><p class="note">點選步驟可直接展示對應畫面。帳戶、戶名與 SWIFT CODE 皆為示意資料；登入、下載及文件保護為互動模擬，不會產生真實 PDF 或辦理銀行申請。</p></section></aside></main><style>
+<aside class="info lv2-info" aria-label="功能說明"><section class="info-card"><div class="tags"><span class="tag-cat">其他</span><span class="platform">APP</span></div><h1>申請存款帳戶<br>存摺封面</h1><div class="rating" aria-label="開發難易度 2 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★</span><span class="off">★★★</span></span></div><p>選擇存款帳戶，設定文件開啟密碼，即可預覽存摺封面，並體驗下載後的密碼驗證流程。</p><details class="more"><summary>功能特色與效益</summary><div class="more-body"><div><ul class="features"><li>支援新臺幣與外幣存款帳戶選擇</li><li>整合銀行、分行、SWIFT CODE、帳號與戶名</li><li>自訂 4～12 位英數文件密碼，預覽後再下載</li></ul></div><div class="benefit"><strong>效益｜</strong>需要提供收款帳戶資料時，可快速取得清楚的存摺封面，減少手動整理與往返確認。</div></div></details></section>
+<section class="info-card flow lv2-flow"><h2>操作流程</h2><ol class="flow-list" id="flow-list"><li><button class="flow-btn" type="button" data-jump="login"><span class="no">1</span><span><strong>登入行動銀行</strong>體驗模擬登入，進入銀行首頁</span></button></li><li><button class="flow-btn" type="button" data-jump="menu"><span class="no">2</span><span><strong>開啟線上申請</strong>從功能選單找到存摺封面申請</span></button></li><li><button class="flow-btn" type="button" data-jump="form"><span class="no">3</span><span><strong>選擇帳戶與設定密碼</strong>選帳戶種類、帳號，設定文件密碼</span></button></li><li><button class="flow-btn" type="button" data-jump="preview"><span class="no">4</span><span><strong>預覽存摺封面</strong>確認銀行、分行、帳號與戶名</span></button></li><li><button class="flow-btn" type="button" data-jump="locked"><span class="no">5</span><span><strong>開啟受保護文件</strong>模擬下載後，輸入自設文件密碼</span></button></li><li><button class="flow-btn" type="button" data-jump="cover"><span class="no">6</span><span><strong>檢視存摺封面</strong>驗證通過，顯示完整帳戶資料</span></button></li></ol><div class="demo-password" id="demo-password" hidden><strong>快速展示設定</strong><br>直接跳至預覽或文件畫面時，會帶入示範帳戶；若尚未設定密碼，文件密碼為 <strong>Demo1234</strong>。</div><button class="reset" id="reset" type="button">重設原型</button><p class="note">點選步驟可直接展示對應畫面。帳戶、戶名與 SWIFT CODE 皆為示意資料；登入、下載及文件保護為互動模擬，不會產生真實 PDF 或辦理銀行申請。</p></section></aside></main><style>
 .handset{width:414px;height:auto;flex:none;border-radius:48px;background:#0f172a;padding:12px;box-shadow:0 24px 60px rgba(15,23,42,.22)}
 .handset-inner{width:100%;aspect-ratio:390 / 844;position:relative;border-radius:38px;overflow:hidden;background:#f2f2f2}
 #bot-prototype{position:absolute;inset:0;width:100%;height:100%;padding:0;overflow:hidden;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC','Microsoft JhengHei',sans-serif}
@@ -420,4 +476,98 @@ function syncFlow(p){const current={home:'menu',downloaded:'locked',files:'locke
 window.addEventListener('prototype-page',e=>syncFlow(e.detail));
 document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>window.passbookDemo.jump(b.dataset.jump)));
 document.getElementById('reset').addEventListener('click',()=>window.passbookDemo.reset());syncFlow('login');
-</script><script>(()=>{const root=document.getElementById('bot-prototype');const fit=()=>root.style.setProperty('--app-scale',root.clientWidth/390);new ResizeObserver(fit).observe(root);fit();})();</script><style id="original-menu-typography">#bot-prototype .drawer{font-family:Arial,"Microsoft JhengHei",sans-serif;font-size:16px;line-height:26px}#bot-prototype .drawerfoot b{font-weight:600}</style></body></html>
+</script><script>(()=>{const root=document.getElementById('bot-prototype');const fit=()=>root.style.setProperty('--app-scale',root.clientWidth/390);new ResizeObserver(fit).observe(root);fit();})();</script><style id="original-menu-typography">#bot-prototype .drawer{font-family:Arial,"Microsoft JhengHei",sans-serif;font-size:16px;line-height:26px}#bot-prototype .drawerfoot b{font-weight:600}</style><script id="inner-nav" data-idea="ot-item-2" data-title="申請存款帳戶存摺封面">
+(function(){
+  var me=document.currentScript, ID=me.dataset.idea, TITLE=me.dataset.title;
+  var KEY='fx-idea-shop-tokens-v2', TOTAL=1000, STEP=50;
+  var BAG='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h11M9 12h11M9 19h11M4 5h.01M4 12h.01M4 19h.01"/></svg>';
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function fmt(n){return Number(n).toLocaleString('en-US');}
+  function load(){
+    try{ var v=JSON.parse(localStorage.getItem(KEY));
+      if(v&&Array.isArray(v.picked)&&v.tokens){ var p=v.picked.filter(function(id){return v.tokens[id]>0;}), t={}; p.forEach(function(id){t[id]=Math.floor(v.tokens[id]);});
+        if(p.reduce(function(s,id){return s+t[id];},0)<=TOTAL) return {picked:p,tokens:t}; } }catch(e){}
+    return {picked:[],tokens:{}};
+  }
+  function save(st){ try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){} }
+  function used(st){ return st.picked.reduce(function(s,id){return s+(st.tokens[id]||0);},0); }
+  var box, ret=null;
+  function render(){
+    box=document.getElementById('nav-actions'); if(!box) return;
+    var st=load(), on=st.picked.indexOf(ID)>=0, n=st.picked.length;
+    box.innerHTML='<button type="button" class="nv-add'+(on?' on':'')+'" id="nv-add">'+(on?'✓ 已加入評估':'＋ 加入評估')+'</button>'+
+      (n?'<a class="nv-cart" href="index.html#list" aria-label="評估清單，共 '+n+' 項">'+BAG+'<span class="t">評估清單</span><span class="b">'+n+'</span></a>':'');
+    document.getElementById('nv-add').addEventListener('click',openModal);
+  }
+  function close(){ var w=document.getElementById('nv-wrap'); if(w) w.remove(); document.removeEventListener('keydown',onKey,true); if(ret&&document.body.contains(ret)) ret.focus(); }
+  function onKey(e){ if(e.key==='Escape'){ e.stopPropagation(); close(); } }
+  function toast(msg){ var t=document.getElementById('nv-toast'); if(!t){t=document.createElement('div');t.id='nv-toast';t.className='nv-toast';t.setAttribute('role','status');document.body.appendChild(t);} t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove('show');},2600); }
+  function openModal(){
+    ret=document.activeElement;
+    var st=load(), on=st.picked.indexOf(ID)>=0, cur=st.tokens[ID]||0, max=cur+(TOTAL-used(st));
+    var w=document.createElement('div'); w.className='nv-wrap'; w.id='nv-wrap';
+    if(max<=0){
+      w.innerHTML='<div class="nv-modal" role="dialog" aria-modal="true" aria-labelledby="nv-title"><h2 id="nv-title">代幣已全部分配</h2><p>要投給「'+esc(TITLE)+'」，請先到評估清單調低其他點子的代幣。</p><div class="nv-actions"><a class="nv-ok" href="index.html#list">打開評估清單</a><button class="nv-link" type="button" data-x="close">取消</button></div></div>';
+    } else {
+      var start=on?cur:Math.min(max,100);
+      w.innerHTML='<div class="nv-modal" role="dialog" aria-modal="true" aria-labelledby="nv-title"><h2 id="nv-title">'+(on?'修改投入代幣':'要投入多少代幣？')+'</h2><p>'+esc(TITLE)+'</p>'+
+        '<div class="nv-step"><button type="button" data-x="dec" aria-label="減少 '+STEP+' 代幣">−</button><input type="number" inputmode="numeric" id="nv-val" min="1" max="'+max+'" step="'+STEP+'" value="'+start+'" aria-label="投入代幣數量"><button type="button" data-x="inc" aria-label="增加 '+STEP+' 代幣">＋</button></div>'+
+        '<div class="nv-quick" role="group" aria-label="快速選擇">'+[100,200,300].map(function(v){return '<button type="button" data-set="'+v+'"'+(v>max?' disabled':'')+'>'+v+'</button>';}).join('')+'<button type="button" data-set="'+max+'">全部 '+fmt(max)+'</button></div>'+
+        '<div class="nv-note"><span>可投入上限</span><strong>'+fmt(max)+' 代幣</strong></div><div class="nv-note"><span>投入後剩餘</span><strong id="nv-after"></strong></div><div class="nv-err" id="nv-err"></div>'+
+        '<div class="nv-actions"><button class="nv-ok" type="button" id="nv-ok">'+(on?'確認修改':'加入評估清單')+'</button>'+(on?'<button class="nv-link del" type="button" data-x="remove">從評估清單移除</button>':'')+'<button class="nv-link" type="button" data-x="close">取消</button></div></div>';
+    }
+    document.body.appendChild(w); document.addEventListener('keydown',onKey,true);
+    w.addEventListener('click',function(e){ if(e.target===w){close();return;} var b=e.target.closest('[data-x],[data-set]'); if(!b) return; var inp=document.getElementById('nv-val');
+      if(b.dataset.set){ inp.value=b.dataset.set; check(); return; }
+      var x=b.dataset.x;
+      if(x==='close') close();
+      else if(x==='inc'||x==='dec'){ var v=Math.floor(Number(inp.value)||0)+(x==='inc'?STEP:-STEP); inp.value=Math.max(1,Math.min(max,v)); check(); }
+      else if(x==='remove'){ var s=load(); s.picked=s.picked.filter(function(i){return i!==ID;}); delete s.tokens[ID]; save(s); close(); render(); toast('已從評估清單移除，代幣已退回'); }
+    });
+    var inp=document.getElementById('nv-val');
+    function check(){ var v=Math.floor(Number(inp.value)), ok=v>=1&&v<=max; document.getElementById('nv-err').textContent=ok||inp.value===''?'':(v>max?'最多只能投入 '+fmt(max)+' 代幣':'請輸入 1 以上的整數'); document.getElementById('nv-ok').disabled=!ok; document.getElementById('nv-after').textContent=fmt(Math.max(0,max-(ok?v:0)))+' 代幣'; }
+    if(inp){ inp.addEventListener('input',check); inp.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!document.getElementById('nv-ok').disabled) document.getElementById('nv-ok').click(); }); check();
+      document.getElementById('nv-ok').addEventListener('click',function(){ var s=load(), isNew=s.picked.indexOf(ID)<0, others=used(s)-(s.tokens[ID]||0); var n=Math.max(1,Math.min(TOTAL-others,Math.floor(Number(inp.value)||0))); if(isNew) s.picked.push(ID); s.tokens[ID]=n; save(s); close(); render(); toast((isNew?'已加入評估清單':'已更新')+'，投入 '+fmt(n)+' 代幣・剩餘 '+fmt(TOTAL-used(s))); });
+      inp.focus(); inp.select(); }
+    else { var f=w.querySelector('.nv-ok'); if(f) f.focus(); }
+  }
+  window.addEventListener('storage',function(e){ if(e.key===KEY) render(); });
+  window.addEventListener('pageshow',render);
+  if(document.readyState!=='loading') render(); else document.addEventListener('DOMContentLoaded',render);
+})();
+</script>
+<script id="layout-v3-js">
+(function(){
+  var MIN_SCALE=0.75;
+  function sync(){
+    var tb=document.querySelector('.bot-topbar, body > .topbar');
+    var h=tb?tb.offsetHeight:69; document.documentElement.style.setProperty('--tb-h',h+'px');
+    var wide=window.matchMedia('(min-width: 961px)').matches;
+    var dev=document.querySelector('.lv2-device');
+    if(dev){
+      var nozoom=dev.hasAttribute('data-lv2-nozoom');
+      dev.style.zoom=''; dev.style.top=''; dev.classList.remove('lv2-sticky');
+      if(wide){
+        var avail=window.innerHeight-h-48, natural=dev.offsetHeight;
+        if(nozoom){ if(natural<=avail+1) dev.classList.add('lv2-sticky'); }
+        else { var s=Math.min(1, avail/natural);
+          if(s>=MIN_SCALE){ if(s<1) dev.style.zoom=s.toFixed(4); dev.classList.add('lv2-sticky'); dev.style.top=((h+24)/s).toFixed(2)+'px'; } }
+      }
+    }
+    var info=document.querySelector('.lv2-info'), flow=document.querySelector('.lv2-flow');
+    if(!info||!flow) return;
+    info.style.paddingBottom='';
+    if(!wide) return;
+    var flowTop=flow.getBoundingClientRect().top+window.scrollY;
+    var need=flowTop-(h+24)+window.innerHeight, pad=0;
+    for(var i=0;i<3;i++){ var d=need-document.documentElement.scrollHeight; if(d<=0) break; pad+=d; info.style.paddingBottom=pad+'px'; }
+  }
+  var raf=0; function later(){ cancelAnimationFrame(raf); raf=requestAnimationFrame(sync); }
+  window.addEventListener('resize', later);
+  window.addEventListener('load', later);
+  document.addEventListener('toggle', later, true);
+  function init(){ sync(); var f=document.querySelector('.lv2-flow'); if(f&&window.ResizeObserver) new ResizeObserver(later).observe(f); }
+  if (document.readyState !== 'loading') init(); else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+</body></html>

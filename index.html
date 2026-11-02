@@ -23,7 +23,7 @@ html.pw-locked body{visibility:hidden}
 </style>
 <script id="pw-gate-script">
 (function(){
-  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var KEY='fx-idea-shop-pass', HASH='ccb3e5c24e8e841cb63c9c7fc29d5287cf87e0440821b1027d0ae6e1d4bf3869';
   var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
   var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
   if(ok) return;
@@ -555,7 +555,7 @@ html.pw-locked body{visibility:hidden}
 <div class="vbar" id="vbar" hidden></div>
 <header>
   <div class="wrap header-row">
-    <a class="brand" href="#">
+    <a class="brand" href="index.html" aria-label="外匯體驗點子商城 首頁">
       <span class="brand-mark">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg>
       </span>
@@ -728,7 +728,7 @@ html.pw-locked body{visibility:hidden}
     { id: 'fx-item-3', j: 'fx', cat: '外幣買賣', title: '官網外匯快捷服務', summary: '將外幣走勢與需求導引直接放在官網外匯選單，查詢資訊與找服務都能在同一層開始。', features: ['選單內即看外幣走勢、可切換幣別', '用「我要做什麼」找到對應服務入口'], benefit: '減少逐層尋找與猜測功能名稱，容易取得外匯資訊及入口', diff: 3, platforms: ['官網'], with: '' },
     { id: 'fx-item-4', j: 'fx', cat: '外幣買賣', title: '換匯平均成本', summary: '在外幣帳戶總覽查看各幣別餘額、平均成本與約當新臺幣，點選幣別即可進入交易明細。', features: ['各幣別餘額、平均成本與約當新臺幣', '點選幣別查看換匯、提存、利息明細'], benefit: '掌握外幣持有狀況，方便查閱資金進出', diff: 3, platforms: ['APP', '網銀'], with: '' },
     { id: 'fx-item-5', j: 'fx', cat: '外幣買賣', title: '預約換匯', summary: '依需求選擇定期或指定日期換匯，設定幣別、金額及交易性質，並在預約清單管理尚未執行的交易。', features: ['定期或指定日期預約換匯', '預約清單可修改或刪除'], benefit: '提前安排外幣準備，需求變動也能調整', diff: 3, platforms: ['APP', '網銀'], with: '' },
-    { id: 'fd-item-1', j: 'fd', cat: '外匯定存', title: '定存到期體驗旅程', summary: '首頁顯示定存到期倒數，可一鍵切換大字版，並提供到期資金用途建議，銜接後續理財需求。', features: ['首頁到期倒數小工具', '一鍵切換大字版', '到期資金續存或轉投資建議'], benefit: '主動提醒並引導下一步，減少資金閒置、提升續存與轉投資', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'fd-item-1', j: 'fd', cat: '外匯定存', title: '定存到期體驗旅程', summary: '由登入後首頁的到期通知進入明細，掌握到期倒數與本息，切換大字版並規劃後續資金用途。', features: ['首頁到期通知，點選直達定存明細', '一鍵切換大字版，長者閱讀更清晰', '續存或轉投資建議，並提供理專通道'], benefit: '主動提醒並引導下一步，減少資金閒置、提升續存與轉投資', diff: 3, platforms: ['APP', '網銀'], with: '' },
     { id: 'fd-item-2', j: 'fd', cat: '外匯定存', title: '外匯定存比較下單', summary: '依資金可運用的期間篩選專案，以相同本金比較各方案收益與匯率風險，再將選定條件帶入下單。', features: ['依天期篩選，勾選多個專案一起比較', '共用本金即時試算各天期收益', '選定方案自動帶入金額、天期與利率'], benefit: '從篩選、比較到承作，延續每一步的選擇，減少重複填寫', diff: 4, platforms: ['APP', '網銀'], with: '' },
     { id: 'fd-item-3', j: 'fd', cat: '外匯定存', title: '外幣餘裕管理旅程', summary: '並列可用餘額與預扣金額試算資金缺口，顯示重大扣款目標進度，一鍵帶入換匯補足。', features: ['可用餘額與預扣金額並列試算', '重大扣款目標進度條', '缺口一鍵帶入換匯表單'], benefit: '降低餘額不足的焦慮，一站完成資金補足', diff: 4, platforms: ['APP', '網銀'], with: '' },
     { id: 'rm-item-1', j: 'rm', cat: '匯出匯款', title: '全額到匯', summary: '已臨櫃約定並符合條件的受款人會標示「全額到匯」，交易中清楚說明中間銀行與受款行可能收取的費用。', features: ['已約定受款人標示「全額到匯」', '提示中間銀行與受款行費用', '確認頁核對受款人、金額與費用'], benefit: '匯款前看懂適用條件與費用，降低到帳金額的不確定感', diff: 3, platforms: ['網銀', 'APP'], with: '' },
@@ -1455,6 +1455,8 @@ html.pw-locked body{visibility:hidden}
   buildControls();
   render();
   fetchVoteBar();
+  // 從內頁「評估清單」進來時直接打開評估清單
+  if (location.hash === '#list') { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} openDrawer(); }
   if (restoreY) requestAnimationFrame(() => { window.scrollTo(0, restoreY); saveView(); });
   // 代幣說明只在第一次進入時顯示；之後從原型頁返回首頁不再跳出
   const WELCOME_KEY = 'fx-idea-shop-welcomed';

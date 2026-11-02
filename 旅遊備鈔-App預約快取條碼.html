@@ -23,7 +23,7 @@ html.pw-locked body{visibility:hidden}
 </style>
 <script id="pw-gate-script">
 (function(){
-  var KEY='fx-idea-shop-pass', HASH='54430469488bb765a72b6229aec0378de6ba2cae4d80355d40a31dfa51e46522';
+  var KEY='fx-idea-shop-pass', HASH='ccb3e5c24e8e841cb63c9c7fc29d5287cf87e0440821b1027d0ae6e1d4bf3869';
   var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
   var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
   if(ok) return;
@@ -276,42 +276,96 @@ html.pw-locked body{visibility:hidden}
   .atm-scan .scan-box::after { content: ""; position: absolute; left: 8px; right: 8px; height: 3px; background: var(--accent); top: 10%; animation: scanline 1.2s ease-in-out infinite alternate; box-shadow: 0 0 12px rgba(154,0,54,.6); }
   @keyframes scanline { to { top: 88%; } }
 </style>
+<style id="inner-nav-style">
+.topbar .brand, .bot-topbar .bot-brand { margin-left: 4px !important; text-decoration: none; color: #0f172a; font-size: 16px; font-weight: 900; white-space: nowrap; }
+.topbar .brand:hover, .bot-topbar .bot-brand:hover { color: #9a0036; }
+.topbar .brand:focus-visible, .bot-topbar .bot-brand:focus-visible { outline: 3px solid #9a0036; outline-offset: 3px; border-radius: 6px; }
+@media (min-width: 561px) { .topbar .brand, .bot-topbar .bot-brand { display: flex !important; } }
+@media (max-width: 560px) { .topbar .brand, .bot-topbar .bot-brand { display: none !important; } }
+.topbar .back, .bot-topbar .bot-back { flex: none; white-space: nowrap; }
+.nav-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; font-family: 'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif; }
+.nv-add, .nv-cart { min-height: 44px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; text-decoration: none; box-sizing: border-box; }
+.nv-add { border: 1.5px solid #9a0036; background: #9a0036; color: #fff; }
+.nv-add:hover { background: #7f002d; border-color: #7f002d; }
+.nv-add.on { background: #f7e9ee; color: #9a0036; }
+.nv-add.on:hover { background: #f0d5df; }
+.nv-cart { border: 1px solid #cbd5e1; background: #fff; color: #0f172a; }
+.nv-cart:hover { border-color: #0f172a; }
+.nv-cart .b { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #9a0036; color: #fff; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+.nv-add:focus-visible, .nv-cart:focus-visible { outline: 3px solid #9a0036; outline-offset: 2px; }
+@media (max-width: 560px) { .nv-cart .t { display: none; } .nv-cart { padding: 0 10px; } .nv-add { padding: 0 12px; } }
+.nv-wrap { position: fixed; inset: 0; z-index: 2147482000; background: rgba(15,23,42,.5); display: flex; align-items: center; justify-content: center; padding: 16px; font-family: 'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif; }
+.nv-modal { width: min(420px, 100%); background: #fff; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 24px 60px rgba(15,23,42,.25); color: #0f172a; box-sizing: border-box; }
+.nv-modal h2 { margin: 0; font-size: 22px; font-weight: 900; line-height: 1.4; }
+.nv-modal p { margin: 0; font-size: 15px; color: #475569; line-height: 1.7; }
+.nv-step { display: flex; align-items: center; gap: 10px; }
+.nv-step button { width: 48px; height: 48px; flex: none; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; font-size: 22px; cursor: pointer; color: #0f172a; }
+.nv-step input { flex: 1; min-width: 0; height: 48px; border: 1px solid #cbd5e1; border-radius: 12px; text-align: center; font: inherit; font-size: 22px; font-weight: 900; color: #0f172a; box-sizing: border-box; }
+.nv-quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.nv-quick button { min-height: 36px; padding: 0 12px; border: 1px solid #cbd5e1; border-radius: 999px; background: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; color: #334155; }
+.nv-quick button:disabled { opacity: .4; cursor: default; }
+.nv-note { display: flex; justify-content: space-between; font-size: 14px; color: #475569; }
+.nv-note strong { color: #0f172a; }
+.nv-err { font-size: 13px; font-weight: 700; color: #b42318; min-height: 18px; }
+.nv-actions { display: flex; flex-direction: column; gap: 8px; }
+.nv-ok { min-height: 52px; border: none; border-radius: 12px; background: #9a0036; color: #fff; font: inherit; font-size: 16px; font-weight: 800; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+.nv-ok:disabled { background: #cbd5e1; cursor: not-allowed; }
+.nv-link { border: none; background: none; min-height: 40px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; color: #64748b; }
+.nv-link.del { color: #9a0036; }
+.nv-toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 16px); background: #0f172a; color: #fff; padding: 10px 18px; border-radius: 12px; font-size: 14px; opacity: 0; pointer-events: none; transition: all .25s; z-index: 2147482001; font-family: 'Microsoft JhengHei','微軟正黑體',system-ui,sans-serif; max-width: calc(100vw - 32px); }
+.nv-toast.show { opacity: 1; transform: translate(-50%, 0); }
+</style>
+<style id="layout-v3">
+.more { border-top: 1px solid var(--line, #e2e8f0); padding-top: 12px; }
+.more > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 36px; font-size: 14px; font-weight: 700; color: var(--accent, #9a0036); }
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::after { content: ""; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s; }
+.more[open] > summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.more > summary:focus-visible { outline: 3px solid var(--accent, #9a0036); outline-offset: 2px; border-radius: 6px; }
+.more .more-body { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; }
+.more .more-body > ul { margin: 0; }
+:root { --tb-h: 69px; }
+@media (min-width: 961px) {
+  .lv2-stage { padding-bottom: 24px !important; }
+  .lv2-sticky { position: sticky; top: calc(var(--tb-h) + 24px); align-self: flex-start; }
+  .lv2-info { align-self: stretch; }
+  .lv2-flow { position: sticky; top: calc(var(--tb-h) + 24px); z-index: 2; }
+}
+</style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-row">
     <a class="back" href="index.html">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回功能列表
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回
     </a>
-    <span class="crumb">功能原型｜<strong>App 預約快取條碼</strong></span>
-    <span class="brand"><span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8L4 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg></span>臺灣銀行 外匯體驗點子商城</span>
+    <a class="brand" href="index.html">外匯體驗點子商城</a><span class="nav-actions" id="nav-actions"></span>
   </div>
 </div>
 
-<div class="stage">
-  <div class="phone" aria-label="手機原型畫面">
+<div class="stage lv2-stage">
+  <div class="phone lv2-device" aria-label="手機原型畫面">
     <div class="screen" id="screen"></div>
   </div>
 
-  <aside class="info" aria-label="功能說明">
+  <aside class="info lv2-info" aria-label="功能說明">
     <div class="info-card">
       <div class="tags"><span class="tag-cat">旅遊備鈔</span><span class="platform">APP</span><span class="platform">ATM</span></div>
       <h1>App 預約快取條碼</h1>
       <div class="rating" aria-label="開發難易度 4 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★★</span><span class="off">★</span></span></div>
       <p>在路上先選好幣別與面額，產生限時 QR Code，抵達機台直接掃碼。</p>
-      <div>
-        <div class="label">功能特色</div>
+      <details class="more"><summary>功能特色與效益</summary><div class="more-body"><div>
         <ul class="features">
           <li>預先選幣別、金額與面額組合</li>
           <li>查看各外幣 ATM 即時庫存，選定取鈔地點</li>
           <li>產生 2 小時限時條碼，到 ATM 掃碼即取鈔</li>
         </ul>
       </div>
-      <div class="benefit"><strong>效益｜</strong>機台前只剩掃碼與核身，縮短排隊與操作時間；預先確認庫存，也避免到場撲空。</div>
+      <div class="benefit"><strong>效益｜</strong>機台前只剩掃碼與核身，縮短排隊與操作時間；預先確認庫存，也避免到場撲空。</div></div></details>
     </div>
 
-    <div class="info-card flow">
+    <div class="info-card flow lv2-flow">
       <h2>操作流程</h2>
       <ol class="flow-list" id="flow-list"></ol>
       <button class="reset" type="button" id="reset">重設原型</button>
@@ -570,5 +624,99 @@ html.pw-locked body{visibility:hidden}
   render();
 </script>
 
+<script id="inner-nav" data-idea="f4-item-1" data-title="App 預約快取條碼">
+(function(){
+  var me=document.currentScript, ID=me.dataset.idea, TITLE=me.dataset.title;
+  var KEY='fx-idea-shop-tokens-v2', TOTAL=1000, STEP=50;
+  var BAG='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h11M9 12h11M9 19h11M4 5h.01M4 12h.01M4 19h.01"/></svg>';
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function fmt(n){return Number(n).toLocaleString('en-US');}
+  function load(){
+    try{ var v=JSON.parse(localStorage.getItem(KEY));
+      if(v&&Array.isArray(v.picked)&&v.tokens){ var p=v.picked.filter(function(id){return v.tokens[id]>0;}), t={}; p.forEach(function(id){t[id]=Math.floor(v.tokens[id]);});
+        if(p.reduce(function(s,id){return s+t[id];},0)<=TOTAL) return {picked:p,tokens:t}; } }catch(e){}
+    return {picked:[],tokens:{}};
+  }
+  function save(st){ try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){} }
+  function used(st){ return st.picked.reduce(function(s,id){return s+(st.tokens[id]||0);},0); }
+  var box, ret=null;
+  function render(){
+    box=document.getElementById('nav-actions'); if(!box) return;
+    var st=load(), on=st.picked.indexOf(ID)>=0, n=st.picked.length;
+    box.innerHTML='<button type="button" class="nv-add'+(on?' on':'')+'" id="nv-add">'+(on?'✓ 已加入評估':'＋ 加入評估')+'</button>'+
+      (n?'<a class="nv-cart" href="index.html#list" aria-label="評估清單，共 '+n+' 項">'+BAG+'<span class="t">評估清單</span><span class="b">'+n+'</span></a>':'');
+    document.getElementById('nv-add').addEventListener('click',openModal);
+  }
+  function close(){ var w=document.getElementById('nv-wrap'); if(w) w.remove(); document.removeEventListener('keydown',onKey,true); if(ret&&document.body.contains(ret)) ret.focus(); }
+  function onKey(e){ if(e.key==='Escape'){ e.stopPropagation(); close(); } }
+  function toast(msg){ var t=document.getElementById('nv-toast'); if(!t){t=document.createElement('div');t.id='nv-toast';t.className='nv-toast';t.setAttribute('role','status');document.body.appendChild(t);} t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove('show');},2600); }
+  function openModal(){
+    ret=document.activeElement;
+    var st=load(), on=st.picked.indexOf(ID)>=0, cur=st.tokens[ID]||0, max=cur+(TOTAL-used(st));
+    var w=document.createElement('div'); w.className='nv-wrap'; w.id='nv-wrap';
+    if(max<=0){
+      w.innerHTML='<div class="nv-modal" role="dialog" aria-modal="true" aria-labelledby="nv-title"><h2 id="nv-title">代幣已全部分配</h2><p>要投給「'+esc(TITLE)+'」，請先到評估清單調低其他點子的代幣。</p><div class="nv-actions"><a class="nv-ok" href="index.html#list">打開評估清單</a><button class="nv-link" type="button" data-x="close">取消</button></div></div>';
+    } else {
+      var start=on?cur:Math.min(max,100);
+      w.innerHTML='<div class="nv-modal" role="dialog" aria-modal="true" aria-labelledby="nv-title"><h2 id="nv-title">'+(on?'修改投入代幣':'要投入多少代幣？')+'</h2><p>'+esc(TITLE)+'</p>'+
+        '<div class="nv-step"><button type="button" data-x="dec" aria-label="減少 '+STEP+' 代幣">−</button><input type="number" inputmode="numeric" id="nv-val" min="1" max="'+max+'" step="'+STEP+'" value="'+start+'" aria-label="投入代幣數量"><button type="button" data-x="inc" aria-label="增加 '+STEP+' 代幣">＋</button></div>'+
+        '<div class="nv-quick" role="group" aria-label="快速選擇">'+[100,200,300].map(function(v){return '<button type="button" data-set="'+v+'"'+(v>max?' disabled':'')+'>'+v+'</button>';}).join('')+'<button type="button" data-set="'+max+'">全部 '+fmt(max)+'</button></div>'+
+        '<div class="nv-note"><span>可投入上限</span><strong>'+fmt(max)+' 代幣</strong></div><div class="nv-note"><span>投入後剩餘</span><strong id="nv-after"></strong></div><div class="nv-err" id="nv-err"></div>'+
+        '<div class="nv-actions"><button class="nv-ok" type="button" id="nv-ok">'+(on?'確認修改':'加入評估清單')+'</button>'+(on?'<button class="nv-link del" type="button" data-x="remove">從評估清單移除</button>':'')+'<button class="nv-link" type="button" data-x="close">取消</button></div></div>';
+    }
+    document.body.appendChild(w); document.addEventListener('keydown',onKey,true);
+    w.addEventListener('click',function(e){ if(e.target===w){close();return;} var b=e.target.closest('[data-x],[data-set]'); if(!b) return; var inp=document.getElementById('nv-val');
+      if(b.dataset.set){ inp.value=b.dataset.set; check(); return; }
+      var x=b.dataset.x;
+      if(x==='close') close();
+      else if(x==='inc'||x==='dec'){ var v=Math.floor(Number(inp.value)||0)+(x==='inc'?STEP:-STEP); inp.value=Math.max(1,Math.min(max,v)); check(); }
+      else if(x==='remove'){ var s=load(); s.picked=s.picked.filter(function(i){return i!==ID;}); delete s.tokens[ID]; save(s); close(); render(); toast('已從評估清單移除，代幣已退回'); }
+    });
+    var inp=document.getElementById('nv-val');
+    function check(){ var v=Math.floor(Number(inp.value)), ok=v>=1&&v<=max; document.getElementById('nv-err').textContent=ok||inp.value===''?'':(v>max?'最多只能投入 '+fmt(max)+' 代幣':'請輸入 1 以上的整數'); document.getElementById('nv-ok').disabled=!ok; document.getElementById('nv-after').textContent=fmt(Math.max(0,max-(ok?v:0)))+' 代幣'; }
+    if(inp){ inp.addEventListener('input',check); inp.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!document.getElementById('nv-ok').disabled) document.getElementById('nv-ok').click(); }); check();
+      document.getElementById('nv-ok').addEventListener('click',function(){ var s=load(), isNew=s.picked.indexOf(ID)<0, others=used(s)-(s.tokens[ID]||0); var n=Math.max(1,Math.min(TOTAL-others,Math.floor(Number(inp.value)||0))); if(isNew) s.picked.push(ID); s.tokens[ID]=n; save(s); close(); render(); toast((isNew?'已加入評估清單':'已更新')+'，投入 '+fmt(n)+' 代幣・剩餘 '+fmt(TOTAL-used(s))); });
+      inp.focus(); inp.select(); }
+    else { var f=w.querySelector('.nv-ok'); if(f) f.focus(); }
+  }
+  window.addEventListener('storage',function(e){ if(e.key===KEY) render(); });
+  window.addEventListener('pageshow',render);
+  if(document.readyState!=='loading') render(); else document.addEventListener('DOMContentLoaded',render);
+})();
+</script>
+<script id="layout-v3-js">
+(function(){
+  var MIN_SCALE=0.75;
+  function sync(){
+    var tb=document.querySelector('.bot-topbar, body > .topbar');
+    var h=tb?tb.offsetHeight:69; document.documentElement.style.setProperty('--tb-h',h+'px');
+    var wide=window.matchMedia('(min-width: 961px)').matches;
+    var dev=document.querySelector('.lv2-device');
+    if(dev){
+      var nozoom=dev.hasAttribute('data-lv2-nozoom');
+      dev.style.zoom=''; dev.style.top=''; dev.classList.remove('lv2-sticky');
+      if(wide){
+        var avail=window.innerHeight-h-48, natural=dev.offsetHeight;
+        if(nozoom){ if(natural<=avail+1) dev.classList.add('lv2-sticky'); }
+        else { var s=Math.min(1, avail/natural);
+          if(s>=MIN_SCALE){ if(s<1) dev.style.zoom=s.toFixed(4); dev.classList.add('lv2-sticky'); dev.style.top=((h+24)/s).toFixed(2)+'px'; } }
+      }
+    }
+    var info=document.querySelector('.lv2-info'), flow=document.querySelector('.lv2-flow');
+    if(!info||!flow) return;
+    info.style.paddingBottom='';
+    if(!wide) return;
+    var flowTop=flow.getBoundingClientRect().top+window.scrollY;
+    var need=flowTop-(h+24)+window.innerHeight, pad=0;
+    for(var i=0;i<3;i++){ var d=need-document.documentElement.scrollHeight; if(d<=0) break; pad+=d; info.style.paddingBottom=pad+'px'; }
+  }
+  var raf=0; function later(){ cancelAnimationFrame(raf); raf=requestAnimationFrame(sync); }
+  window.addEventListener('resize', later);
+  window.addEventListener('load', later);
+  document.addEventListener('toggle', later, true);
+  function init(){ sync(); var f=document.querySelector('.lv2-flow'); if(f&&window.ResizeObserver) new ResizeObserver(later).observe(f); }
+  if (document.readyState !== 'loading') init(); else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
 </body>
 </html>
