@@ -525,6 +525,66 @@ html.pw-locked body{visibility:hidden}
     .token-chip, .cart-btn { height: 38px; padding: 0 9px; gap: 5px; }
   }
   @media (max-width: 380px) { .token-chip > svg { display: none; } }
+  /* ---------- 手機版：類別／篩選下拉＋橫式列表卡 ---------- */
+  .cat-dd { display: none; position: relative; }
+  .pk-l { display: inline; }
+  .m-cat { display: none; }
+  @media (max-width: 720px) {
+    .toolbar-row { flex-direction: row !important; align-items: center !important; gap: 8px !important; }
+    .cat-tabs { display: none !important; }
+    .cat-dd { display: block; flex: 1; min-width: 0; }
+    .tools { flex: 1; min-width: 0; }
+    .filter-wrap { width: 100%; }
+    .dd-btn, .tools .filter-btn { width: 100%; min-height: 42px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: space-between; gap: 6px; cursor: pointer; font-family: inherit; }
+    .tools .filter-btn > span:first-of-type { margin-right: auto; }
+    .tools .filter-btn .chev { margin-left: 2px; }
+    .dd-btn .v { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dd-btn small { margin-left: 4px; color: var(--muted); font-weight: 700; font-size: 12px; }
+    .dd-btn.on { border-color: var(--accent); color: var(--accent); }
+    .dd-btn.on small { color: var(--accent); }
+    .dd-btn .chev { flex: none; transition: transform .2s; }
+    .dd-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+    .dd-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    /* 兩個底部選單同樣高度 */
+    .filter-pop, .cat-pop { position: fixed; top: auto; left: 0; right: 0; bottom: 0; z-index: 40; width: 100%; height: min(520px, 82vh); max-height: none; box-sizing: border-box; overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 20px 20px 0 0; box-shadow: 0 -12px 32px rgba(15,23,42,.16); padding: 22px 16px calc(18px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 14px; }
+    .filter-pop[hidden], .cat-pop[hidden] { display: none; }
+    .filter-pop::before, .cat-pop::before { content: ""; position: absolute; top: 8px; left: 50%; width: 36px; height: 4px; margin-left: -18px; border-radius: 2px; background: #cbd5e1; }
+    .filter-pop .pop-foot { margin-top: auto; }
+    .cat-list { display: flex; flex-direction: column; gap: 4px; }
+    .cat-opt { min-height: 50px; padding: 0 14px; border: none; border-radius: 12px; background: none; display: flex; align-items: center; justify-content: space-between; font-family: inherit; font-size: 15px; font-weight: 700; color: var(--text); cursor: pointer; text-align: left; }
+    .cat-opt small { color: var(--faint); font-size: 13px; font-weight: 700; }
+    .cat-opt:hover { background: var(--panel); }
+    .cat-opt[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+    .cat-opt[aria-pressed="true"] small { color: var(--accent); }
+    .cat-opt[aria-pressed="true"] small::after { content: "　✓"; }
+    .cat-opt:disabled { color: #a1a1aa; cursor: default; }
+  }
+  @media (max-width: 560px) {
+    /* 橫式列表卡：縮圖在左，資訊在右，整張可點進原型 */
+    .grid { gap: 10px !important; }
+    .card { display: grid; grid-template-columns: 92px minmax(0, 1fr); column-gap: 12px; padding: 12px; border-radius: 16px; position: relative; }
+    .card:hover { transform: none; }
+    .card-img { width: 92px; height: auto; min-height: 112px; border-radius: 12px; align-self: stretch; }
+    .card-img .thumb { height: 128px; bottom: auto; top: 8px; filter: none; }
+    .card:hover .card-img .thumb { transform: translateX(-50%); }
+    .card-img .tag-cat, .card-img .tag-proto { display: none; }
+    .card-img .icon svg { width: 36px; height: 36px; }
+    .card-body { padding: 0; gap: 4px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "cat cat cat" "title title title" "sum sum sum" "meta rate pick"; align-items: center; }
+    .m-cat { display: block; grid-area: cat; font-size: 11px; font-weight: 800; color: var(--muted); }
+    .card h2 { grid-area: title; font-size: 16px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card h2 a::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
+    .card .summary { grid-area: sum; font-size: 12.5px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card .features, .card .benefit { display: none; }
+    .card .meta { grid-area: meta; flex-wrap: nowrap; gap: 4px; margin-top: 6px; }
+    .card .meta .platform { font-size: 10.5px; padding: 0 5px; white-space: nowrap; }
+    .card-foot { display: contents; }
+    .card .rating { grid-area: rate; margin: 6px 4px 0 6px; min-width: 0; overflow: hidden; }
+    .card .rating .label { display: none; }
+    .card .rating .stars { font-size: 11px; letter-spacing: -1px; }
+    .card .pick { grid-area: pick; position: relative; z-index: 1; min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: 13px; margin-top: 6px; }
+    .pk-l { display: none; }
+  }
+
   /* ---------- 響應式 ---------- */
   @media (max-width: 1240px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (max-width: 960px) {
@@ -574,6 +634,13 @@ html.pw-locked body{visibility:hidden}
   <div class="wrap toolbar-row">
     <h1 class="vh">外匯體驗點子列表</h1>
     <nav class="cat-tabs" id="cat-filters" aria-label="類別"></nav>
+    <div class="cat-dd">
+      <button class="dd-btn" type="button" id="cat-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cat-pop"><span class="v"><span id="cat-btn-label">類別：全部</span><small id="cat-btn-n"></small></span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="cat-pop" id="cat-pop" role="dialog" aria-label="選擇類別" hidden>
+        <div class="pop-head"><strong>選擇類別</strong><button class="pop-close" type="button" id="cat-close" aria-label="關閉">✕</button></div>
+        <div class="cat-list" id="cat-list" role="group" aria-label="類別"></div>
+      </div>
+    </div>
     <div class="tools">
       <div class="filter-wrap">
         <button class="filter-btn" type="button" id="filter-btn" aria-expanded="false" aria-controls="filter-pop"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg><span>篩選</span><span class="n" id="filter-n" hidden>0</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -778,6 +845,8 @@ html.pw-locked body{visibility:hidden}
 
   /* ---------- 建立控制項 ---------- */
   function buildControls() {
+    $('cat-list').innerHTML = [['__all', '全部', ITEMS.length]].concat(CATEGORIES.map(c => [c, c, ITEMS.filter(it => it.cat === c).length]))
+      .map(([v, l, n]) => `<button class="cat-opt" type="button" data-cat="${v}" aria-pressed="false" ${n ? '' : 'disabled'}><span>${l}</span><small>${n} 項</small></button>`).join('');
     $('cat-filters').innerHTML = [`<button class="cat-tab" type="button" data-cat="__all" aria-pressed="false">全部<span class="n">${ITEMS.length}</span></button>`]
       .concat(CATEGORIES.map(c => { const n = ITEMS.filter(it => it.cat === c).length; return `<button class="cat-tab" type="button" data-cat="${c}" aria-pressed="false" ${n ? '' : 'disabled'}>${c}<span class="n">${n}</span></button>`; }))
       .join('');
@@ -805,6 +874,10 @@ html.pw-locked body{visibility:hidden}
   }
 
   function syncControls() {
+    const curCat = state.cats[0] || '';
+    $('cat-btn-label').textContent = '類別：' + (curCat || '全部');
+    $('cat-btn-n').textContent = curCat ? ITEMS.filter(it => it.cat === curCat).length : ITEMS.length;
+    $('cat-btn').classList.toggle('on', !!curCat);
     document.querySelectorAll('[data-cat]').forEach(b => {
       const on = b.dataset.cat === '__all' ? state.cats.length === 0 : state.cats.includes(b.dataset.cat);
       b.setAttribute('aria-pressed', on);
@@ -886,6 +959,7 @@ html.pw-locked body{visibility:hidden}
           ${THUMBS[it.id] ? `<img class="thumb" src="${THUMBS[it.id]}" alt="「${esc(it.title)}」原型畫面示意">` : `<span class="icon">${iconSvg(it.cat, 60)}</span>`}
         ${url ? '</a>' : '</div>'}
         <div class="card-body">
+          <span class="m-cat">${esc(it.cat)}</span>
           <div class="meta">${it.platforms.map(p => `<span class="platform">${p}</span>`).join('')}</div>
           <h2>${url ? `<a href="${url}">${esc(it.title)}</a>` : esc(it.title)}</h2>
           <p class="summary">${esc(it.summary)}</p>
@@ -898,7 +972,7 @@ html.pw-locked body{visibility:hidden}
             <span class="rating" aria-label="開發難易度 ${it.diff} / 5">
               <span class="label">難易度</span><span class="stars" aria-hidden="true">${starsText(it.diff)}</span>
             </span>
-            <button class="pick" type="button" data-pick="${it.id}" aria-pressed="${picked}" aria-label="${picked ? `已投入 ${state.tokens[it.id]} 代幣，點選可修改` : '加入評估並投入代幣'}">${picked ? `✓ 已投 <span class="tk">${fmtN(state.tokens[it.id])}</span>` : '＋ 加入評估'}</button>
+            <button class="pick" type="button" data-pick="${it.id}" aria-pressed="${picked}" aria-label="${picked ? `已投入 ${state.tokens[it.id]} 代幣，點選可修改` : '加入評估並投入代幣'}">${picked ? `✓ <span class="pk-l">已投 </span><span class="tk">${fmtN(state.tokens[it.id])}</span>` : '＋ <span class="pk-l">加入</span>評估'}</button>
           </div>
         </div>
       </article>`;
@@ -1116,7 +1190,22 @@ html.pw-locked body{visibility:hidden}
 
   /* ---------- 篩選浮層 ---------- */
   const mqSheet = window.matchMedia('(max-width: 720px)');
+  function setCatPop(open, focusBack) {
+    if (open) setFilterPop(false);
+    $('cat-pop').hidden = !open;
+    $('cat-btn').setAttribute('aria-expanded', String(open));
+    $('filter-scrim').hidden = !(open && mqSheet.matches);
+    $('list-top').classList.toggle('pop-open', open);
+    if (open) { const f = $('cat-pop').querySelector('.cat-opt[aria-pressed="true"]') || $('cat-pop').querySelector('.cat-opt'); if (f) f.focus(); }
+    else if (focusBack) $('cat-btn').focus();
+  }
+  $('cat-btn').addEventListener('click', () => setCatPop($('cat-pop').hidden));
+  $('cat-close').addEventListener('click', () => setCatPop(false, true));
+  $('cat-list').addEventListener('click', e => { if (e.target.closest('.cat-opt')) setTimeout(() => setCatPop(false, true), 0); });
+  document.addEventListener('click', e => { if (!$('cat-pop').hidden && !e.target.closest('.cat-dd') && !e.target.closest('#filter-scrim')) setCatPop(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('cat-pop').hidden) { e.stopImmediatePropagation(); setCatPop(false, true); } }, true);
   function setFilterPop(open, focusBack) {
+    if (open && !$('cat-pop').hidden) { $('cat-pop').hidden = true; $('cat-btn').setAttribute('aria-expanded', 'false'); }
     $('filter-pop').hidden = !open;
     $('filter-btn').setAttribute('aria-expanded', String(open));
     $('filter-scrim').hidden = !(open && mqSheet.matches);
@@ -1127,7 +1216,7 @@ html.pw-locked body{visibility:hidden}
   $('filter-btn').addEventListener('click', () => setFilterPop($('filter-pop').hidden));
   $('filter-done').addEventListener('click', () => setFilterPop(false, true));
   $('filter-close').addEventListener('click', () => setFilterPop(false, true));
-  $('filter-scrim').addEventListener('click', () => setFilterPop(false, true));
+  $('filter-scrim').addEventListener('click', () => { if (!$('cat-pop').hidden) setCatPop(false, true); else setFilterPop(false, true); });
   document.addEventListener('click', e => { if (!$('filter-pop').hidden && !e.target.closest('.filter-wrap') && !e.target.closest('#filter-scrim')) setFilterPop(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('filter-pop').hidden) { e.stopImmediatePropagation(); setFilterPop(false, true); } }, true);
   // 工具列吸頂位置跟著頁首高度
