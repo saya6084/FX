@@ -242,7 +242,6 @@ main{max-width:1440px;margin:0 auto;padding:28px 40px 48px}
 <h2>您的匯款進度</h2><p class="intro">每完成一步，就會更新目前狀態與待辦事項。</p>
 <div class="progress" id="progress"></div>
 <div class="progress-label"><span id="currentTitle">目前進度：確認受款人</span><span id="counter">1 / 4</span></div>
-<div class="status-card"><h3 id="cardTitle">目前進度：確認受款人</h3><p id="cardText">請核對受款人名稱及帳戶識別資訊。</p></div>
 <ul class="checklist" id="checklist"></ul>
 <div class="action-row"><button class="btn secondary" id="prevBtn">上一步</button><button class="btn primary" id="nextBtn">繼續填寫匯款資料</button></div>
 <div id="toast" class="toast" style="display:none"></div>
@@ -250,8 +249,8 @@ main{max-width:1440px;margin:0 auto;padding:28px 40px 48px}
 </article></div><div class="note">互動交易畫面｜請依序操作左側手機畫面，右側步驟說明會同步標示目前階段。</div></div>
 <aside class="info lv2-info" aria-label="交易說明與操作流程">
   <section class="info-card">
-    <div class="tags"><span class="tag-cat">外匯匯出匯款</span><span class="platform">網銀</span><span class="platform">APP</span></div>
-    <h1>外匯匯出匯款-進度與剩餘步驟提示</h1>
+    <div class="tags"><span class="tag-cat">匯出匯款</span><span class="platform">網銀</span><span class="platform">APP</span></div>
+    <h1>匯出匯款-進度與剩餘步驟提示</h1>
     <div class="rating" aria-label="開發難易度 3 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★</span><span class="off">★★</span></span><span>中等</span></div>
     <div><div class="label">交易說明</div><p>在外匯匯出匯款流程中，清楚呈現目前所在階段、已完成項目及下一步待辦，讓使用者隨時掌握交易進度，降低不確定感與漏做程序的風險。</p></div>
     <details class="more"><summary>功能特色與效益</summary><div class="more-body"><div><ul class="features">
@@ -299,8 +298,6 @@ let amount = '';
 const progressEl = document.getElementById('progress');
 const currentTitle = document.getElementById('currentTitle');
 const counter = document.getElementById('counter');
-const cardTitle = document.getElementById('cardTitle');
-const cardText = document.getElementById('cardText');
 const checklist = document.getElementById('checklist');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -350,8 +347,6 @@ function render() {
   const step = steps[current];
   currentTitle.textContent = `目前進度：${step.title}`;
   counter.textContent = `${current+1} / ${steps.length}`;
-  cardTitle.textContent = step.title;
-  cardText.textContent = step.intro;
   checklist.innerHTML = '';
   const person = beneficiaries[selectedBeneficiary];
 
@@ -394,7 +389,7 @@ function render() {
   } else {
     checklist.innerHTML = `
       <li class="success-mark">✓</li>
-      <li class="success-title">匯款資料確認完成</li>
+      <li class="success-title">交易完成</li>
       <li class="helper">本互動情境已完成資料確認示意。</li>
       <li class="details-holder">${beneficiaryDetails(person, true)}</li>
       <li class="info-list"><div class="info-row"><span>匯款金額</span><strong>USD ${Number(amount).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div></li>`;
@@ -657,7 +652,7 @@ render();
     if(b.dataset.mbStep!==undefined){ go(Number(b.dataset.mbStep)); close(); return; }
     var a=b.dataset.mb; if(a==='close') close(); else if(a==='reset'){ var r=flow.querySelector('#reset, #travel-reset, .reset, .travel-reset'); if(r) r.click(); close(); setTimeout(renderBar,60); } });
   scrim.addEventListener('click',close);
-  if(flow&&window.MutationObserver) new MutationObserver(function(){ renderBar(); }).observe(flow,{subtree:true,attributes:true,attributeFilter:['aria-current','class']});
+  if(flow&&window.MutationObserver) new MutationObserver(function(){ renderBar(); }).observe(flow,{subtree:true,childList:true,attributes:true,attributeFilter:['aria-current','class']});
   function fit(){
     if(!dev) return;
     if(!mq.matches){ dev.classList.remove('mb-fit'); dev.style.width=''; return; }

@@ -141,6 +141,14 @@ html, body { margin: 0; background: var(--ground); color: var(--ink); font-famil
 }
 @media (max-width: 440px) { .stage { padding: 12px; } .qd-chrome { height: 32px; } }
 body.mb-on #bubiGuideFrame { height: calc(100svh - var(--tb-h, 61px) - 68px - 24px - 38px); min-height: 360px; }
+
+.flow-step-content{display:block;min-width:0;flex:1}
+.flow-choice-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.flow-choice{min-height:34px;padding:6px 12px;border:1px solid #9a0036;border-radius:8px;background:#fff;color:#9a0036;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.flow-choice:hover,.flow-choice:focus-visible{background:#9a0036;color:#fff;outline:none}
+.flow-choice:focus-visible{box-shadow:0 0 0 3px #9a003626}
+.flow-btn{align-items:flex-start!important}
+.flow-btn .no{margin-top:1px}
 </style>
 <style id="layout-v3">
 .more { border-top: 1px solid var(--line, #e2e8f0); padding-top: 12px; }
@@ -194,6 +202,10 @@ body.mb-on #bubiGuideFrame { height: calc(100svh - var(--tb-h, 61px) - 68px - 24
   .mb-s .n { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: #64748b; font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
   .mb-s b { display: block; font-size: 15px; }
   .mb-s small { display: block; font-size: 12.5px; color: #64748b; line-height: 1.5; }
+.mb-s:has(.mb-ch) { align-items: flex-start; }
+.mb-ch { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.mb-ch button { min-height: 36px; padding: 6px 12px; border: 1px solid #9a0036; border-radius: 8px; background: #fff; color: #9a0036; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+.mb-ch button:focus-visible { outline: 3px solid #9a0036; outline-offset: 2px; }
   .mb-s[aria-current="step"] { border-color: #9a0036; box-shadow: inset 0 0 0 1px #9a0036; }
   .mb-s[aria-current="step"] .n { background: #9a0036; color: #fff; }
   .mb-s.done .n { background: #dcfce7; color: #166534; }
@@ -334,6 +346,19 @@ main{max-width:1500px;margin:auto;padding:18px clamp(12px,3vw,36px) 16px}
 .right-step-list li:before{content:counter(steps);position:absolute;left:10px;top:10px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#f2e2e9;color:#9a0036;font-weight:800;font-size:12px}
 .right-step-list li.current{border-color:#9a0036;background:#fff7fa;color:#39252e}
 .right-step-list li.current:before{background:#9a0036;color:white}
+.right-step-list li{cursor:pointer;transition:border-color .18s,background .18s,transform .18s}
+.right-step-list li:hover,.right-step-list li:focus-visible{border-color:#9a0036;background:#fff7fa;outline:none;transform:translateY(-1px)}
+.right-step-list li:focus-visible{box-shadow:0 0 0 3px #9a003626}
+.right-step-title{display:block}
+.right-step-options{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.right-choice{min-height:34px;padding:6px 12px;border:1px solid #9a0036;border-radius:8px;background:#fff;color:#9a0036;font:inherit;font-size:12px;font-weight:800;cursor:pointer;transition:background .15s,color .15s,transform .15s}
+.right-choice:hover,.right-choice:focus-visible{background:#9a0036;color:#fff;outline:none}
+.right-choice:focus-visible{box-shadow:0 0 0 3px #9a003626}
+.right-choice:active{transform:scale(.98)}
+.right-step-list li:first-child .right-step-options{gap:6px}
+.right-step-list li:first-child .right-choice{font-size:11.5px;padding:6px 9px;min-height:32px}
+.right-step-list li:first-child .right-step-title{font-weight:800;color:#39252e}
+
 .desktop-info .reset{margin-top:14px}
 /* 修正位置：互動原型以桌機雙欄工作區為主，不再重複顯示舊版官網介紹頁 */
 .utility,.nav,.hero,.crumb,.layout,.footer{display:none!important}
@@ -482,25 +507,112 @@ const scenarioDetails={
   7:{name:&#x27;其他各種性質之匯款&#x27;,description:&#x27;若需求不屬於前述類型，可選擇其他匯款情境，再依提示確認合適管道。&#x27;,steps:[&#x27;選擇「其他各種性質之匯款」情境&#x27;,&#x27;選擇臨櫃或網銀辦理方式&#x27;,&#x27;依分流結果查看下一步指引&#x27;]}
 };
 function updateRightDetails(choice, stage){
- const d=scenarioDetails[choice]; if(!d)return;
- const desc=document.getElementById(&#x27;detailDescription&#x27;); if(desc)desc.textContent=d.description;
+ const d=choice?scenarioDetails[choice]:null;
+ const desc=document.getElementById(&#x27;detailDescription&#x27;); if(desc&amp;&amp;d)desc.textContent=d.description;
  const stageInfo={
-   channel:{index:0,label:&#x27;步驟 1／選擇辦理管道&#x27;,extra:&#x27;請選擇臨櫃或網路銀行，左側 BUBI 選擇後會同步更新此處。&#x27;},
+   channel:{index:1,label:&#x27;步驟 2／選擇辦理管道&#x27;,extra:&#x27;請選擇臨櫃或網路銀行，左側 BUBI 選擇後會同步更新此處。&#x27;},
    counterOnly:{index:1,label:&#x27;步驟 2／臨櫃辦理指引&#x27;,extra:&#x27;此情境請洽分行確認適用條件及應備文件。&#x27;},
-   branch:{index:1,label:&#x27;步驟 2／臨櫃辦理指引&#x27;,extra:&#x27;可查看申請書下載及分行據點資訊。&#x27;},
-   recipient:{index:1,label:&#x27;步驟 2／確認受款人約定狀態&#x27;,extra:&#x27;請依左側選擇「已約定」或「尚未約定」。&#x27;},
+   branch:{index:2,label:&#x27;步驟 3／臨櫃辦理指引&#x27;,extra:&#x27;可查看申請書下載及分行據點資訊。&#x27;},
+   recipient:{index:2,label:&#x27;步驟 3／確認受款人約定狀態&#x27;,extra:&#x27;請依左側選擇「已約定」或「尚未約定」。&#x27;},
    login:{index:3,label:&#x27;步驟 4／網路銀行登入&#x27;,extra:&#x27;已約定受款人：進入網銀登入示意，快速交易已預選。&#x27;},
    notAgreed:{index:2,label:&#x27;步驟 3／辦理受款人約定&#x27;,extra:&#x27;尚未約定受款人：請先至分行辦理約定手續。&#x27;}
  };
  const info=stageInfo[stage]||stageInfo.channel;
  const list=document.getElementById(&#x27;rightStepList&#x27;); if(list){
-   // 情境 2、4、6 為臨櫃業務：步驟說明只保留原第 1 與第 4 項內容
+   // 右側步驟依左側實際流程建立；每一步都帶有對應的 BUBI 畫面 stage。
    const counterOnly=[2,4,6].includes(Number(choice));
-   const items=counterOnly?[d.steps[0],info.extra]:[...d.steps,info.extra];
-   list.innerHTML=items.map((x,i)=&gt;&#x27;&lt;li class=&quot;&#x27;+(i===info.index?&#x27;current&#x27;:i&lt;info.index?&#x27;completed&#x27;:&#x27;&#x27;)+&#x27;&quot; aria-current=&quot;&#x27;+(i===info.index?&#x27;step&#x27;:&#x27;false&#x27;)+&#x27;&quot;&gt;&#x27;+x+&#x27;&lt;/li&gt;&#x27;).join(&#x27;&#x27;);
+   let items;
+   const actionSets={
+     channel:[{label:&#x27;臨櫃&#x27;,action:&#x27;branch&#x27;},{label:&#x27;網銀&#x27;,action:&#x27;online&#x27;}],
+     counterOnly:[{label:&#x27;申請書下載&#x27;,action:&#x27;download&#x27;},{label:&#x27;分行據點&#x27;,action:&#x27;branches&#x27;}],
+     branch:[{label:&#x27;預填臨櫃表單&#x27;,action:&#x27;prefill&#x27;},{label:&#x27;申請書下載&#x27;,action:&#x27;download&#x27;},{label:&#x27;分行據點&#x27;,action:&#x27;branches&#x27;}],
+     recipient:[{label:&#x27;已約定&#x27;,action:&#x27;agreed&#x27;},{label:&#x27;尚未約定&#x27;,action:&#x27;notAgreed&#x27;}],
+     notAgreed:[{label:&#x27;申請書下載&#x27;,action:&#x27;download&#x27;}],
+     login:[]
+   };
+   const serviceChoices=Object.keys(scenarioDetails).map(key=&gt;({
+     label:scenarioDetails[key].name,
+     choice:Number(key)
+   }));
+   // 尚未選擇情境時，右側第 1 點直接顯示七大服務選項，不要求使用者先點左側圖片。
+   if(!d){
+     list.innerHTML=&#x27;&lt;li tabindex=&quot;0&quot; data-stage=&quot;chooseService&quot; class=&quot;current&quot; aria-current=&quot;step&quot; title=&quot;請選擇一項海外匯款服務&quot;&gt;&lt;span class=&quot;right-step-title&quot;&gt;請選擇海外匯款服務&lt;/span&gt;&lt;div class=&quot;right-step-options&quot; role=&quot;group&quot; aria-label=&quot;七大海外匯款服務&quot;&gt;&#x27;+serviceChoices.map(a=&gt;&#x27;&lt;button type=&quot;button&quot; class=&quot;right-choice&quot; data-right-choice=&quot;&#x27;+a.choice+&#x27;&quot;&gt;&#x27;+a.label+&#x27;&lt;/button&gt;&#x27;).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/li&gt;&#x27;;
+     const cur=document.getElementById(&#x27;stepCurrent&#x27;); if(cur)cur.textContent=&#x27;尚未選擇情境&#x27;;
+     return;
+   }
+   if(counterOnly){
+     items=[
+       {text:&#x27;選擇海外匯款服務&#x27;,stage:&#x27;counterOnly&#x27;,actions:serviceChoices},
+       {text:info.extra,stage:stage===&#x27;branch&#x27;?&#x27;branch&#x27;:&#x27;counterOnly&#x27;,actions:actionSets[stage===&#x27;branch&#x27;?&#x27;branch&#x27;:&#x27;counterOnly&#x27;]}
+     ];
+   }else{
+     const thirdStage=stage===&#x27;branch&#x27;?&#x27;branch&#x27;:(stage===&#x27;notAgreed&#x27;?&#x27;notAgreed&#x27;:&#x27;recipient&#x27;);
+     items=[
+       {text:&#x27;選擇海外匯款服務&#x27;,stage:&#x27;channel&#x27;,actions:serviceChoices},
+       {text:d.steps[1],stage:&#x27;channel&#x27;,actions:actionSets.channel},
+       {text:stage===&#x27;branch&#x27;?&#x27;臨櫃辦理指引&#x27;:stage===&#x27;notAgreed&#x27;?&#x27;尚未約定：辦理受款人約定&#x27;:stage===&#x27;login&#x27;?&#x27;確認受款人約定狀態&#x27;:d.steps[2],stage:thirdStage,actions:actionSets[thirdStage]||[]},
+       ...(stage===&#x27;login&#x27;?[{text:info.extra,stage:&#x27;login&#x27;,actions:actionSets.login}]:[])
+     ];
+   }
+   list.innerHTML=items.map((item,i)=&gt;{
+     const current=i===info.index;
+     const options=(item.actions||[]).length
+       ? &#x27;&lt;div class=&quot;right-step-options&quot; role=&quot;group&quot; aria-label=&quot;互動選項&quot;&gt;&#x27;+item.actions.map(a=&gt;a.choice
+         ? &#x27;&lt;button type=&quot;button&quot; class=&quot;right-choice&quot; data-right-choice=&quot;&#x27;+a.choice+&#x27;&quot;&gt;&#x27;+a.label+&#x27;&lt;/button&gt;&#x27;
+         : &#x27;&lt;button type=&quot;button&quot; class=&quot;right-choice&quot; data-right-action=&quot;&#x27;+a.action+&#x27;&quot;&gt;&#x27;+a.label+&#x27;&lt;/button&gt;&#x27;).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;
+       : &#x27;&#x27;;
+     return &#x27;&lt;li tabindex=&quot;0&quot; data-stage=&quot;&#x27;+item.stage+&#x27;&quot; class=&quot;&#x27;+(current?&#x27;current&#x27;:i&lt;info.index?&#x27;completed&#x27;:&#x27;&#x27;)+&#x27;&quot; aria-current=&quot;&#x27;+(current?&#x27;step&#x27;:&#x27;false&#x27;)+&#x27;&quot; title=&quot;點選切換至此步驟&quot;&gt;&lt;span class=&quot;right-step-title&quot;&gt;&#x27;+item.text+&#x27;&lt;/span&gt;&#x27;+options+&#x27;&lt;/li&gt;&#x27;;
+   }).join(&#x27;&#x27;);
  }
  const cur=document.getElementById(&#x27;stepCurrent&#x27;); if(cur)cur.textContent=&#x27;目前情境：&#x27;+d.name+&#x27;｜&#x27;+info.label;
 }
+
+// 右側步驟說明可直接切換左側 BUBI 畫面，兩側共用同一個流程狀態。
+const rightStepList=document.getElementById(&#x27;rightStepList&#x27;);
+function activateRightStep(item){
+  if(!selectedChoice || !item) return;
+  const target=item.dataset.stage;
+  if(!target) return;
+  // 點選步驟時同步更新左側畫面、流程狀態及右側目前步驟。
+  historyStack=[];
+  step=target;
+  render();
+  updateRightDetails(selectedChoice,target);
+  showFlow();
+}
+rightStepList?.addEventListener(&#x27;click&#x27;,e=&gt;{
+  const serviceOption=e.target.closest(&#x27;[data-right-choice]&#x27;);
+  if(serviceOption){
+    e.preventDefault();
+    e.stopPropagation();
+    const choice=Number(serviceOption.dataset.rightChoice);
+    if(!scenarioDetails[choice]) return;
+    selectedChoice=choice;
+    historyStack=[];
+    step=[2,4,6].includes(choice)?&#x27;counterOnly&#x27;:&#x27;channel&#x27;;
+    render();
+    updateRightDetails(choice,step);
+    showFlow();
+    return;
+  }
+  const option=e.target.closest(&#x27;[data-right-action]&#x27;);
+  if(option){
+    e.preventDefault();
+    e.stopPropagation();
+    const action=option.dataset.rightAction;
+    const bubiChoice=content.querySelector(&#x27;[data-action=&quot;&#x27;+action+&#x27;&quot;]&#x27;);
+    if(bubiChoice) bubiChoice.click();
+    return;
+  }
+  const item=e.target.closest(&#x27;li[data-stage]&#x27;);
+  if(item) activateRightStep(item);
+});
+rightStepList?.addEventListener(&#x27;keydown&#x27;,e=&gt;{
+  if((e.key===&#x27;Enter&#x27;||e.key===&#x27; &#x27;) &amp;&amp; e.target.matches(&#x27;li[data-stage]&#x27;)){
+    e.preventDefault();
+    activateRightStep(e.target);
+  }
+});
 
 document.querySelectorAll(&#x27;.hotspot&#x27;).forEach(btn=&gt;{
   btn.addEventListener(&#x27;click&#x27;,()=&gt;{
@@ -519,6 +631,9 @@ document.querySelectorAll(&#x27;.hotspot&#x27;).forEach(btn=&gt;{
     showFlow();
   });
 });
+
+// 初始載入即在右側顯示七大服務選項，尚不預設任何服務。
+updateRightDetails(null,&#x27;chooseService&#x27;);
 
 // 網銀登入示意欄位互動（不連線、不儲存、不傳送資料）
 content.addEventListener(&#x27;click&#x27;,e=&gt;{
@@ -640,6 +755,7 @@ document.getElementById(&#x27;restartBtn&#x27;).addEventListener(&#x27;click&#x2
   selectedChoice=null;
   step=&#x27;channel&#x27;;
   historyStack=[];
+  updateRightDetails(null,&#x27;chooseService&#x27;);
   window.scrollTo({top:0,behavior:&#x27;smooth&#x27;});
 });
 document.getElementById(&#x27;rightReset&#x27;)?.addEventListener(&#x27;click&#x27;,()=&gt;document.getElementById(&#x27;restartBtn&#x27;)?.click());
@@ -686,7 +802,7 @@ document.getElementById(&#x27;rightReset&#x27;)?.addEventListener(&#x27;click&#x
       <p class="qd-now" id="qd-now">尚未選擇情境</p>
       <ol class="flow-list" id="flow-list"></ol>
       <button class="reset" type="button" id="reset">重新開始</button>
-      <p class="note">步驟會隨原型操作自動更新，請直接在左側畫面點選情境並依 BUBI 引導操作。</p>
+      <p class="note">可直接點選步驟中的選項，或在原型畫面點選情境並依 BUBI 引導操作；步驟會隨操作自動更新。</p>
     </section>
   </aside>
 </main>
@@ -759,8 +875,18 @@ document.getElementById(&#x27;rightReset&#x27;)?.addEventListener(&#x27;click&#x
     var src=d.getElementById('rightStepList'), cur=d.getElementById('stepCurrent');
     if(!src) return;
     var items=Array.prototype.slice.call(src.querySelectorAll('li'));
-    list.innerHTML=items.map(function(li,i){ var c=li.classList.contains('current'), done=li.classList.contains('completed')||li.classList.contains('done');
-      return '<li><div class="flow-btn'+(done?' done':'')+'"'+(c?' aria-current="step"':'')+'><span class="no">'+(done?'✓':(i+1))+'</span><span><strong>'+esc(li.textContent.trim())+'</strong></span></div></li>'; }).join('');
+    list.innerHTML=items.map(function(li,i){
+      var c=li.classList.contains('current'), done=li.classList.contains('completed')||li.classList.contains('done');
+      var title=li.querySelector('.right-step-title');
+      var options=Array.prototype.slice.call(li.querySelectorAll('[data-right-action],[data-right-choice]'));
+      var optionHtml=options.map(function(btn){
+        if(btn.hasAttribute('data-right-choice')){
+          return '<button type="button" class="flow-choice" data-flow-choice="'+esc(btn.getAttribute('data-right-choice'))+'">'+esc(btn.textContent.trim())+'</button>';
+        }
+        return '<button type="button" class="flow-choice" data-flow-action="'+esc(btn.getAttribute('data-right-action'))+'">'+esc(btn.textContent.trim())+'</button>';
+      }).join('');
+      return '<li><div class="flow-btn'+(done?' done':'')+'" data-flow-stage="'+esc(li.getAttribute('data-stage')||'')+'"'+(c?' aria-current="step"':'')+'><span class="no">'+(done?'✓':(i+1))+'</span><span class="flow-step-content"><strong>'+esc(title?title.textContent.trim():li.textContent.trim())+'</strong>'+(optionHtml?'<span class="flow-choice-list" role="group" aria-label="互動提問選項">'+optionHtml+'</span>':'')+'</span></div></li>';
+    }).join('');
     if(cur) now.textContent=cur.textContent.trim();
   }
   function hook(){
@@ -770,6 +896,28 @@ document.getElementById(&#x27;rightReset&#x27;)?.addEventListener(&#x27;click&#x
   }
   frame.addEventListener('load',hook);
   if(frame.contentDocument&&frame.contentDocument.readyState==='complete') hook();
+  list.addEventListener('click',function(e){
+    var service=e.target.closest('[data-flow-choice]');
+    var choice=e.target.closest('[data-flow-action]');
+    var d=frame.contentDocument;
+    if(service){
+      e.preventDefault();
+      var serviceTarget=d&&d.querySelector('[data-right-choice="'+service.getAttribute('data-flow-choice')+'"]');
+      if(serviceTarget) serviceTarget.click();
+      return;
+    }
+    if(choice){
+      e.preventDefault();
+      var target=d&&d.querySelector('[data-right-action="'+choice.getAttribute('data-flow-action')+'"]');
+      if(target) target.click();
+      return;
+    }
+    var row=e.target.closest('[data-flow-stage]');
+    if(row&&d){
+      var step=d.querySelector('#rightStepList li[data-stage="'+row.getAttribute('data-flow-stage')+'"]');
+      if(step) step.click();
+    }
+  });
   document.getElementById('reset').addEventListener('click',function(){ var d=frame.contentDocument; var r=d&&(d.getElementById('rightReset')||d.getElementById('restartBtn')); if(r) r.click(); setTimeout(sync,50); });
 })();
 </script>
@@ -851,7 +999,7 @@ document.getElementById(&#x27;rightReset&#x27;)?.addEventListener(&#x27;click&#x
       var reset=flow&&flow.querySelector('#reset, #travel-reset, .reset, .travel-reset');
       var note=flow&&flow.querySelector('.note, .travel-note');
       sheet.innerHTML='<div class="mb-hd"><b>操作流程</b><button type="button" class="mb-x" data-mb="close" aria-label="關閉">✕</button></div><div class="mb-steps">'+
-        s.map(function(b,k){ var d=stepDesc(b), ro=flow.hasAttribute('data-readonly'), tag=ro?'div':'button'; return '<'+tag+(ro?'':' type="button"')+' class="mb-s'+(b.classList.contains('done')?' done':'')+'"'+(ro?'':' data-mb-step="'+k+'"')+(k===i?' aria-current="step"':'')+'><span class="n">'+(b.classList.contains('done')?'✓':(k+1))+'</span><span><b>'+stepText(b)+'</b>'+(d?'<small>'+d+'</small>':'')+'</span></'+tag+'>'; }).join('')+'</div>'+
+        s.map(function(b,k){ var chs=b.querySelectorAll('.flow-choice'), d=chs.length?'':stepDesc(b), ro=flow.hasAttribute('data-readonly'), tag=ro?'div':'button'; var chHtml=chs.length?'<span class="mb-ch" role="group">'+Array.prototype.map.call(chs,function(c,j){return '<button type="button" data-mb-choice="'+k+':'+j+'">'+c.textContent.trim()+'</button>';}).join('')+'</span>':''; return '<'+tag+(ro?'':' type="button"')+' class="mb-s'+(b.classList.contains('done')?' done':'')+'"'+(ro?'':' data-mb-step="'+k+'"')+(k===i?' aria-current="step"':'')+'><span class="n">'+(b.classList.contains('done')?'✓':(k+1))+'</span><span><b>'+stepText(b)+'</b>'+(d?'<small>'+d+'</small>':'')+chHtml+'</span></'+tag+'>'; }).join('')+'</div>'+
         (reset?'<button type="button" class="mb-reset" data-mb="reset">'+reset.textContent.trim()+'</button>':'')+
         (note?'<p class="mb-note">'+note.textContent.trim()+'</p>':'');
     }
@@ -863,7 +1011,7 @@ document.getElementById(&#x27;rightReset&#x27;)?.addEventListener(&#x27;click&#x
     setTimeout(function(){ renderBar(); if(cur()===before&&k!==before) hint('這一步需要在原型畫面中操作後才會前進'); },500); }
   bar.addEventListener('click',function(e){ var b=e.target.closest('[data-mb]'); if(!b||b.disabled) return; var a=b.dataset.mb;
     if(a==='info'||a==='steps') open(a); else if(a==='prev') go(cur()-1); else if(a==='next') go(cur()+1); });
-  sheet.addEventListener('click',function(e){ var b=e.target.closest('[data-mb],[data-mb-step]'); if(!b) return;
+  sheet.addEventListener('click',function(e){ var ch=e.target.closest('[data-mb-choice]'); if(ch){ var kj=ch.dataset.mbChoice.split(':'), st=steps()[+kj[0]], c=st&&st.querySelectorAll('.flow-choice')[+kj[1]]; if(c) c.click(); close(); setTimeout(renderBar,120); return; } var b=e.target.closest('[data-mb],[data-mb-step]'); if(!b) return;
     if(b.dataset.mbStep!==undefined){ go(Number(b.dataset.mbStep)); close(); return; }
     var a=b.dataset.mb; if(a==='close') close(); else if(a==='reset'){ var r=flow.querySelector('#reset, #travel-reset, .reset, .travel-reset'); if(r) r.click(); close(); setTimeout(renderBar,60); } });
   scrim.addEventListener('click',close);
