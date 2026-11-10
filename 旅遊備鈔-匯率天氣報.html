@@ -373,12 +373,12 @@ html.pw-locked body{visibility:hidden}
       <div class="tags"><span class="tag-cat">旅遊備鈔</span><span class="platform">APP</span><span class="platform">網銀</span><span class="platform">官網</span></div>
       <h1>「匯率天氣報」極簡指標</h1>
       <div class="rating" aria-label="開發難易度 2 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★</span><span class="off">★★★</span></span></div>
-      <p>將複雜 K 線轉化為天氣圖示，晴天代表低點強烈建議買進，不需懂財經術語。</p>
+      <p>以晴雨氣象圖直觀呈現，方便使用者快速掌握匯率趨勢。</p>
       <details class="more"><summary>功能特色與效益</summary><div class="more-body"><div>
         <ul class="features">
-          <li>以晴、多雲、雨等 5 種天氣呈現買點強弱</li>
-          <li>一眼比較多種外幣，免看 K 線與財經術語</li>
-          <li>天氣轉晴時推播提醒，可直接換匯</li>
+          <li>以晴、多雲、雨等 5 種天氣呈現</li>
+          <li>一眼比較多種外幣</li>
+          <li>天氣轉晴時推播提醒</li>
         </ul>
       </div>
       <div class="benefit"><strong>效益｜</strong>降低換匯判斷門檻，新手也敢下手；也能作為官網、網銀的匯率入口，帶動線上換匯。</div></div></details>
@@ -396,11 +396,11 @@ html.pw-locked body{visibility:hidden}
 <script>
   /* ================== 天氣等級 ================== */
   const LEVELS = [
-    { id: 'sunny', name: '晴天', short: '晴', tag: '強烈建議買進', cls: 'lv-sunny', rule: '位於 30 日區間最低的 20%', advice: '目前接近近 30 日低點，<strong>是相對划算的買點</strong>，有出國計畫可以考慮先買。' },
+    { id: 'sunny', name: '晴天', short: '晴', tag: '相對划算', cls: 'lv-sunny', rule: '位於 30 日區間最低的 20%', advice: '目前接近近 30 日低點，<strong>是相對划算的買點</strong>，有出國計畫可以考慮先買。' },
     { id: 'fair', name: '晴時多雲', short: '晴時多雲', tag: '可以分批買', cls: 'lv-fair', rule: '位於 30 日區間 20%–40%', advice: '比平均便宜一些，<strong>可以先買一部分</strong>，其餘等更好的時機。' },
     { id: 'cloudy', name: '多雲', short: '多雲', tag: '普通，可觀望', cls: 'lv-cloudy', rule: '位於 30 日區間 40%–60%', advice: '接近近 30 日平均，<strong>不急的話可以再觀望</strong>，急用就照需求買。' },
     { id: 'overcast', name: '陰天', short: '陰', tag: '偏貴，建議等等', cls: 'lv-overcast', rule: '位於 30 日區間 60%–80%', advice: '比平均貴，<strong>建議先等等</strong>，或只買急需的金額。' },
-    { id: 'rain', name: '雨天', short: '雨', tag: '偏高，暫不建議', cls: 'lv-rain', rule: '位於 30 日區間最高的 20%', advice: '接近近 30 日高點，<strong>暫時不建議買</strong>，可以開啟晴天提醒等轉晴。' }
+    { id: 'rain', name: '雨天', short: '雨', tag: '相對不划算', cls: 'lv-rain', rule: '位於 30 日區間最高的 20%', advice: '接近近 30 日高點，<strong>相對不划算</strong>，可以開啟晴天提醒等轉晴。' }
   ];
   const WX_ICON = {
     sunny: '<circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/>',
@@ -415,16 +415,15 @@ html.pw-locked body{visibility:hidden}
   /* ================== 幣別資料（示意） ================== */
   const BASE = {
     JPY: { name: '日圓', place: '日本', sym: '¥', rate: 0.2081, low: 0.2072, high: 0.2138, avg: 0.2105, dec: 4, presets: [30000, 50000, 100000], week: [0.2112, 0.2104, 0.2098, 0.2101, 0.2090, 0.2086] },
-    KRW: { name: '韓元', place: '韓國', sym: '₩', rate: 0.0233, low: 0.0230, high: 0.0240, avg: 0.0235, dec: 4, presets: [300000, 500000, 1000000], week: [0.0236, 0.0235, 0.0236, 0.0234, 0.0234, 0.0233] },
     USD: { name: '美元', place: '美國', sym: 'US$', rate: 32.40, low: 31.98, high: 32.86, avg: 32.40, dec: 2, presets: [300, 500, 1000], week: [32.20, 32.25, 32.31, 32.36, 32.42, 32.38] },
     EUR: { name: '歐元', place: '歐洲', sym: '€', rate: 35.42, low: 34.55, high: 35.60, avg: 35.02, dec: 2, presets: [300, 500, 1000], week: [35.05, 35.12, 35.20, 35.31, 35.38, 35.45] }
   };
   // 原型示範：每按一次「隔天」各幣別的匯率（依序循環）
   const NEXT_DAYS = [
-    { JPY: 0.2096, KRW: 0.0231, USD: 32.66, EUR: 35.28 },
-    { JPY: 0.2118, KRW: 0.0236, USD: 32.18, EUR: 35.02 },
-    { JPY: 0.2077, KRW: 0.0232, USD: 31.99, EUR: 34.70 },
-    { JPY: 0.2081, KRW: 0.0233, USD: 32.40, EUR: 35.42 }
+    { JPY: 0.2096, USD: 32.66, EUR: 35.28 },
+    { JPY: 0.2118, USD: 32.18, EUR: 35.02 },
+    { JPY: 0.2077, USD: 31.99, EUR: 34.70 },
+    { JPY: 0.2081, USD: 32.40, EUR: 35.42 }
   ];
   const DAYS = ['10/21', '10/22', '10/23', '10/24', '10/25', '10/26'];
   const STEPS = [
@@ -449,7 +448,7 @@ html.pw-locked body{visibility:hidden}
   const fresh = () => {
     const rates = {}; Object.keys(BASE).forEach(k => rates[k] = BASE[k].rate);
     return { screen: 'home', back: 'home', ccy: 'JPY', rates, history: {}, day: 0, sheet: null, amount: 50000, push: null,
-      alerts: { JPY: true, KRW: false, USD: false, EUR: false }, alertLevel: 'sunny', alertTime: 'morning', lastBuy: null };
+      alerts: { JPY: true, USD: false, EUR: false }, alertLevel: 'sunny', alertTime: 'morning', lastBuy: null };
   };
   let S = fresh();
 
