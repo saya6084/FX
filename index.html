@@ -805,9 +805,11 @@ html.pw-locked body{visibility:hidden}
     { id: 'ot-item-2', j: 'ot', cat: '其他', title: '申請存款帳戶存摺封面', summary: '選擇存款帳戶並設定文件開啟密碼，即可預覽並下載受密碼保護的存摺封面。', features: ['支援新臺幣與外幣存款帳戶', '整合銀行、分行、SWIFT CODE、帳號與戶名', '自訂文件密碼，預覽後再下載'], benefit: '需要提供收款帳戶資料時，快速取得清楚的存摺封面', diff: 2, platforms: ['APP'], with: '' }
   ];
 
+  // 熱門點子排行（依投票結果）；未列入者依原順序排在後面
+  const RANK = ['ot-item-1', 'fd-item-2', 'fx-item-3', 'rm-item-3', 'fd-item-1', 'fx-item-5', 'fx-item-1', 'rm-item-2', 'ot-item-2', 'f1-item-8', 'rm-item-1', 'f1-item-15', 'fx-item-4', 'f1-item-4', 'f1-item-7', 'f4-item-1', 'f1-item-2', 'f5-item-5'];
   const PLATFORMS = ['APP', '網銀', '官網', 'ATM'];
   const SORTS = [
-    { id: 'category', label: '依類別排序', short: '依類別' },
+    { id: 'rank', label: '依熱門排名', short: '依熱門' },
     { id: 'easy', label: '難易度：低 → 高', short: '難易度 低→高', chip: '難易度 低→高' },
     { id: 'hard', label: '難易度：高 → 低', short: '高→低', chip: '難易度 高→低' }
   ];
@@ -831,7 +833,7 @@ html.pw-locked body{visibility:hidden}
   function savePicked() { try { localStorage.setItem(PICK_KEY, JSON.stringify({ picked: state.picked, tokens: state.tokens })); } catch (e) {} }
 
   const saved = loadPicked();
-  const state = { cats: [], diffMin: 0, diffMax: 0, platforms: [], sort: 'category', q: '', picked: saved.picked, tokens: saved.tokens };
+  const state = { cats: [], diffMin: 0, diffMax: 0, platforms: [], sort: 'rank', q: '', picked: saved.picked, tokens: saved.tokens };
   const usedTokens = () => state.picked.reduce((s, id) => s + (state.tokens[id] || 0), 0);
   const leftTokens = () => TOKEN_TOTAL - usedTokens();
   const byId = Object.fromEntries(ITEMS.map(it => [it.id, it]));
@@ -841,7 +843,7 @@ html.pw-locked body{visibility:hidden}
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const starsText = n => `<span class="on">${'★'.repeat(n)}</span><span class="off">${'★'.repeat(5 - n)}</span>`;
   const iconSvg = (cat, size) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${CAT_ICONS[cat]}"/></svg>`;
-  const hasFilter = () => state.cats.length || state.diffMin || state.platforms.length || state.sort !== 'category' || state.q.trim();
+  const hasFilter = () => state.cats.length || state.diffMin || state.platforms.length || state.sort !== 'rank' || state.q.trim();
 
   /* ---------- 建立控制項 ---------- */
   function buildControls() {
@@ -886,12 +888,12 @@ html.pw-locked body{visibility:hidden}
     paintStars(state.diffMin, state.diffMax, false);
     $('range-pill').textContent = rangeLabel();
     $('clear-filters').hidden = !hasFilter();
-    const nf = (state.diffMin ? 1 : 0) + state.platforms.length + (state.sort !== 'category' ? 1 : 0);
+    const nf = (state.diffMin ? 1 : 0) + state.platforms.length + (state.sort !== 'rank' ? 1 : 0);
     $('filter-n').hidden = !nf; $('filter-n').textContent = nf;
     $('filter-btn').classList.toggle('on', nf > 0);
     $('filter-btn').setAttribute('aria-label', nf ? `篩選與排序，已套用 ${nf} 個條件` : '篩選與排序');
     const sortOpt = SORTS.find(o => o.id === state.sort);
-    $('active-chips').innerHTML = (state.sort !== 'category' ? [`<button class="a-chip" type="button" data-clear="sort" aria-label="移除排序：${sortOpt.label}，改回依類別排序">${sortOpt.chip}<span class="x" aria-hidden="true">✕</span></button>`] : []).concat(state.diffMin ? [`<button class="a-chip" type="button" data-clear="diff" aria-label="移除條件：難易度 ${rangeLabel()}">難易度 ${rangeLabel()}<span class="x" aria-hidden="true">✕</span></button>`] : [])
+    $('active-chips').innerHTML = (state.sort !== 'rank' ? [`<button class="a-chip" type="button" data-clear="sort" aria-label="移除排序：${sortOpt.label}，改回依熱門排名">${sortOpt.chip}<span class="x" aria-hidden="true">✕</span></button>`] : []).concat(state.diffMin ? [`<button class="a-chip" type="button" data-clear="diff" aria-label="移除條件：難易度 ${rangeLabel()}">難易度 ${rangeLabel()}<span class="x" aria-hidden="true">✕</span></button>`] : [])
       .concat(state.platforms.map(p => `<button class="a-chip" type="button" data-rmplat="${p}" aria-label="移除條件：${p}">${p}<span class="x" aria-hidden="true">✕</span></button>`)).join('');
     document.querySelectorAll('[data-sortopt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sortopt === state.sort));
   }
@@ -941,10 +943,11 @@ html.pw-locked body{visibility:hidden}
     });
     const jIndex = it => JOURNEY_ORDER.indexOf(it.j);
     const cIndex = it => CATEGORIES.indexOf(it.cat);
-    const byCat = (a, b) => cIndex(a) - cIndex(b) || jIndex(a) - jIndex(b);
-    if (state.sort === 'category') list.sort(byCat);
-    if (state.sort === 'easy') list.sort((a, b) => a.diff - b.diff || byCat(a, b));
-    if (state.sort === 'hard') list.sort((a, b) => b.diff - a.diff || byCat(a, b));
+    const rIndex = it => { const i = RANK.indexOf(it.id); return i < 0 ? RANK.length + ITEMS.indexOf(it) : i; };
+    const byRank = (a, b) => rIndex(a) - rIndex(b);
+    if (state.sort === 'rank') list.sort(byRank);
+    if (state.sort === 'easy') list.sort((a, b) => a.diff - b.diff || byRank(a, b));
+    if (state.sort === 'hard') list.sort((a, b) => b.diff - a.diff || byRank(a, b));
     return list;
   }
 
@@ -1178,9 +1181,9 @@ html.pw-locked body{visibility:hidden}
     else if (d.pick) { openTokenModal(d.pick); return; }
     else if (d.unpick) { removePick(d.unpick); showToast('已移除，代幣已退回'); }
     else if (d.sortopt) { state.sort = d.sortopt; }
-    else if (d.clear === 'all') { state.cats = []; state.diffMin = state.diffMax = 0; state.platforms = []; state.sort = 'category'; state.q = ''; }
-    else if (d.clear === 'filters') { state.diffMin = state.diffMax = 0; state.platforms = []; state.sort = 'category'; }
-    else if (d.clear === 'sort') { state.sort = 'category'; }
+    else if (d.clear === 'all') { state.cats = []; state.diffMin = state.diffMax = 0; state.platforms = []; state.sort = 'rank'; state.q = ''; }
+    else if (d.clear === 'filters') { state.diffMin = state.diffMax = 0; state.platforms = []; state.sort = 'rank'; }
+    else if (d.clear === 'sort') { state.sort = 'rank'; }
     else if (d.clear === 'diff') { state.diffMin = state.diffMax = 0; }
     else if (d.rmplat) { state.platforms = state.platforms.filter(x => x !== d.rmplat); }
     else if (b.id === 'search-chip') { state.q = ''; }
