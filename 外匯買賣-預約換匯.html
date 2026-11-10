@@ -1,0 +1,1394 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<style id="pw-gate-style">
+html.pw-locked body{visibility:hidden}
+#pw-gate{visibility:visible;position:fixed;inset:0;z-index:2147483000;background:#f6f6f7;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif;color:#0f172a}
+#pw-gate form{width:min(420px,100%);background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:40px 36px 40px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+#pw-gate h1{margin:0 0 32px;text-align:center;font-size:26px;font-weight:900;line-height:1.4;color:#9a0036;letter-spacing:.02em}
+#pw-gate .pw-field{position:relative}
+#pw-gate input{display:block;height:50px;border:1px solid #cbd5e1;border-radius:12px;padding:0 54px 0 16px;font:inherit;font-size:16px;color:#0f172a;background:#fff;width:100%;box-sizing:border-box;outline:none;transition:border-color .15s}
+#pw-gate input::placeholder{color:#64748b}
+#pw-gate input:focus{border-color:#9a0036}
+#pw-gate .pw-eye{position:absolute;right:6px;top:5px;width:40px;height:40px;border:none;border-radius:10px;background:transparent;color:#64748b;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#pw-gate .pw-eye:hover{color:#0f172a;background:#f1f5f9}
+#pw-gate .pw-eye:focus-visible{outline:2px solid #9a0036;outline-offset:1px}
+#pw-gate .pw-err{min-height:26px;padding-top:6px;font-size:14px;font-weight:700;color:#b42318}
+#pw-gate .pw-submit{height:50px;border:none;border-radius:12px;background:#9a0036;color:#fff;font:inherit;font-size:17px;font-weight:700;letter-spacing:.1em;cursor:pointer;margin-top:4px}
+#pw-gate .pw-submit:hover{background:#7f002d}
+#pw-gate .pw-submit:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+@media (max-width:440px){#pw-gate form{padding:32px 22px}#pw-gate h1{font-size:23px;margin-bottom:26px}}
+</style>
+<script id="pw-gate-script">
+(function(){
+  var KEY='fx-idea-shop-pass', HASH='ccb3e5c24e8e841cb63c9c7fc29d5287cf87e0440821b1027d0ae6e1d4bf3869';
+  var EYE='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>', EYEOFF='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.73 5.08A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-1.67 2.68M6.61 6.61A18.4 18.4 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.39-1.61M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="m2 2 20 20"/></svg>';
+  var ok=false; try{ok=sessionStorage.getItem(KEY)===HASH}catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('pw-locked');
+  function sha(s){ if(!(window.crypto&&crypto.subtle)) return Promise.reject(); return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}) }
+  function build(){
+    var g=document.createElement('div'); g.id='pw-gate';
+    g.innerHTML='<form novalidate><h1>外匯體驗點子商城</h1><label for="pw-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">密碼</label><div class="pw-field"><input id="pw-input" type="password" autocomplete="current-password" placeholder="請輸入密碼"><button type="button" class="pw-eye" id="pw-eye" aria-label="顯示密碼" aria-pressed="false">'+EYEOFF+'</button></div><div class="pw-err" id="pw-err" role="alert"></div><button type="submit" class="pw-submit">登入</button></form>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), inp=g.querySelector('#pw-input'), err=g.querySelector('#pw-err'), eye=g.querySelector('#pw-eye');
+    eye.addEventListener('click',function(){ var show=inp.type==='password'; inp.type=show?'text':'password'; eye.setAttribute('aria-pressed',String(show)); eye.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼'); eye.innerHTML=show?EYE:EYEOFF; inp.focus(); });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); err.textContent='';
+      sha(inp.value).then(function(h){
+        if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} g.remove(); document.documentElement.classList.remove('pw-locked'); }
+        else { err.textContent='密碼錯誤，請再試一次。'; inp.focus(); inp.select(); }
+      },function(){ err.textContent='此瀏覽器無法驗證密碼，請改用其他瀏覽器。'; });
+    });
+  }
+  if(document.body) build(); else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>預約換匯｜互動原型</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Microsoft JhengHei", "微軟正黑體", "PingFang TC", "Heiti TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f6f7;
+      color: #1e293b;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* 頂部導航列 */
+    .bot-topbar {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .bot-topbar-row {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 12px 64px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-sizing: border-box;
+    }
+    .bot-back {
+      min-height: 40px;
+      padding: 0 14px 0 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      color: #0f172a;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #fff;
+      transition: border-color 0.15s;
+    }
+    .bot-back:hover { border-color: #0f172a; }
+    .bot-crumb { font-size: 14px; color: #475569; }
+    .bot-crumb strong { color: #0f172a; }
+    .bot-brand {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 900;
+      color: #0f172a;
+      text-decoration: none;
+    }
+    .bot-brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #9a0036;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    @media (max-width: 960px) {
+      .bot-topbar-row { padding-left: 20px; padding-right: 20px; }
+      .bot-brand { display: none; }
+    }
+
+    /* 主舞台佈局 */
+    .rx-stage {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 32px 64px 56px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      justify-content: center;
+      align-items: flex-start;
+      box-sizing: border-box;
+    }
+    @media (max-width: 960px) { .rx-stage { padding: 20px; gap: 24px; } }
+    @media (max-width: 440px) { .rx-stage { padding: 12px; gap: 20px; } }
+
+    /* 手機外殼 */
+    .phone-wrapper {
+      flex: none;
+      width: 100%;
+      max-width: 414px;
+      height: 860px;
+      background: #0f172a;
+      border-radius: 46px;
+      padding: 12px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: #f8fafc;
+      border-radius: 36px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* 頂部狀態列與 App 標題列 */
+    .status-bar {
+      height: 38px;
+      padding: 10px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .app-header {
+      background: #ffffff;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .header-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #0f172a;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .header-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* 頁籤切換 */
+    .tab-bar {
+      display: flex;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .tab-item {
+      flex: 1;
+      text-align: center;
+      padding: 14px 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      position: relative;
+      border: none;
+      background: transparent;
+    }
+    .tab-item.active {
+      color: #9a0036;
+      font-weight: 700;
+    }
+    .tab-item.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 15%;
+      width: 70%;
+      height: 3px;
+      background: #9a0036;
+      border-radius: 3px 3px 0 0;
+    }
+
+    /* 捲動內容區 */
+    .scroll-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .scroll-content::-webkit-scrollbar { width: 4px; }
+    .scroll-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+    /* 表單模組卡片 */
+    .form-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-title::before {
+      content: "";
+      width: 4px;
+      height: 14px;
+      background: #9a0036;
+      border-radius: 2px;
+    }
+    .form-group { margin-bottom: 12px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+    .form-select, .form-input {
+      width: 100%;
+      height: 44px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      padding: 0 12px;
+      font-size: 14px;
+      color: #0f172a;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-select:focus, .form-input:focus {
+      border-color: #9a0036;
+      box-shadow: 0 0 0 2px rgba(154, 0, 54, 0.1);
+    }
+    .form-row { display: flex; gap: 10px; }
+    .form-row > * { flex: 1; }
+
+    /* 週期選項與晶片式選擇器 */
+    .chips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .chip-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 9px 4px;
+      font-size: 13px;
+      color: #334155;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s;
+    }
+    .chip-item input { accent-color: #9a0036; cursor: pointer; }
+    .chip-item.active {
+      border-color: #9a0036;
+      background: #fff5f8;
+      color: #9a0036;
+      font-weight: 700;
+    }
+
+    /* 預估次數提示 */
+    .calc-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #1e40af;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .calc-box strong { color: #1d4ed8; font-size: 15px; }
+
+    /* 說明提示 */
+    .notice-box {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 12px;
+      color: #92400e;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    /* 確認按鈕 */
+    .btn-submit {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      background: #9a0036;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(154, 0, 54, 0.25);
+      transition: background 0.15s;
+    }
+    .btn-submit:active { background: #7a002b; }
+
+    /* 預約清單卡片 */
+    .reservation-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+    .res-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .res-id { font-size: 13px; font-weight: 700; color: #0f172a; }
+    .res-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: #047857;
+      background: #d1fae5;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .res-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #334155;
+    }
+    .res-row .label { color: #64748b; }
+    .res-amount { font-size: 16px; font-weight: 800; color: #9a0036; }
+    .res-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .res-btn {
+      flex: 1;
+      height: 36px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+    }
+    .res-btn.danger {
+      border-color: #fecaca;
+      color: #dc2626;
+      background: #fff5f5;
+    }
+
+    /* 底部 Home Bar */
+    .home-bar {
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+    }
+    .home-indicator {
+      width: 120px;
+      height: 4px;
+      background: #0f172a;
+      border-radius: 2px;
+    }
+
+    /* Toast 浮動提示 */
+    .toast-msg {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      color: #ffffff;
+      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 20px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 100;
+      white-space: nowrap;
+    }
+    .toast-msg.show { opacity: 1; }
+    .empty-state { text-align: center; padding: 40px 16px; color: #94a3b8; font-size: 14px; }
+
+    /* 右側功能資訊與操作步驟面板 */
+    .rx-info {
+      flex: 1 1 380px;
+      max-width: 520px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      color: #0f172a;
+    }
+    .rx-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .rx-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .rx-cat { font-size: 12px; font-weight: 700; color: #0f172a; background: #eef0f3; padding: 4px 10px; border-radius: 999px; }
+    .rx-pf { font-size: 12px; font-weight: 800; color: #9a0036; border: 1.5px solid #9a0036; border-radius: 6px; padding: 1px 7px; }
+    .rx-card h1 { margin: 0; font-size: 28px; font-weight: 900; line-height: 1.35; }
+    .rx-card h2 { margin: 0; font-size: 17px; font-weight: 900; color: #0f172a; }
+    .rx-rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #64748b; }
+    .rx-rating .on { color: #b45309; }
+    .rx-rating .off { color: #d6d3d1; }
+    .rx-stars { font-size: 17px; letter-spacing: 1px; }
+    .rx-card p { margin: 0; font-size: 15px; color: #475569; line-height: 1.75; }
+    .rx-label { font-size: 13px; font-weight: 700; color: #94a3b8; }
+    .rx-features { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .rx-features li { font-size: 14px; color: #334155; line-height: 1.6; display: flex; gap: 8px; }
+    .rx-features li::before { content: "✓"; color: #94a3b8; font-weight: 900; }
+    .rx-benefit { font-size: 14px; line-height: 1.6; color: #713f12; background: #fdf6e3; border: 1px solid #f1d9a0; border-radius: 12px; padding: 10px 12px; }
+    .rx-benefit strong { color: #854d0e; }
+
+    /* 操作步驟 (移植原版樣式與互動) */
+    .travel-flow {
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      gap: 12px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s;
+      width: 100%;
+    }
+    .travel-flow > span {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      font-size: 13px;
+      font-weight: 900;
+      color: #64748b;
+      flex: none;
+    }
+    .travel-flow strong { display: block; font-size: 15px; color: #0f172a; margin-bottom: 2px; }
+    .travel-flow small { display: block; font-size: 12px; color: #64748b; }
+    .travel-flow:hover { border-color: #cbd5e1; background: #f8fafc; }
+    .travel-flow[aria-current="step"] {
+      border-color: #9a0036;
+      box-shadow: inset 0 0 0 1px #9a0036;
+      background: #fff8fa;
+    }
+    .travel-flow[aria-current="step"] > span {
+      background: #9a0036;
+      color: white;
+    }
+    .travel-reset {
+      align-self: flex-start;
+      min-height: 40px;
+      padding: 0 16px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #334155;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .travel-reset:hover { border-color: #0f172a; }
+    .travel-note { font-size: 12px; line-height: 1.7; color: #64748b; margin-top: 4px; }
+
+    /* 收合功能細節 */
+    .more { border-top: 1px solid #e2e8f0; padding-top: 12px; }
+    .more > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 36px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #9a0036;
+    }
+    .more > summary::-webkit-details-marker { display: none; }
+    .more > summary::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg) translate(-2px, -2px);
+      transition: transform 0.2s;
+    }
+    .more[open] > summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+    .more .more-body { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; }
+
+    @media (min-width: 961px) {
+      .lv2-sticky { position: sticky; top: 88px; align-self: flex-start; }
+    }
+  </style>
+<style id="bot-topbar-style">
+.bot-topbar{background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:50;font-family:'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,-apple-system,'Segoe UI',sans-serif}
+.bot-topbar-row{max-width:1440px;margin:0 auto;padding:12px 64px;display:flex;align-items:center;gap:16px;box-sizing:border-box}
+.bot-back{min-height:44px;padding:0 14px 0 10px;border:1px solid #cbd5e1;border-radius:999px;color:#0f172a;text-decoration:none;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:4px;box-sizing:border-box;background:#fff;line-height:1.5}
+.bot-back:hover{border-color:#0f172a}
+.bot-back:focus-visible{outline:3px solid #9a0036;outline-offset:2px}
+.bot-crumb{font-size:14px;color:#475569;line-height:1.5}
+.bot-crumb strong{color:#0f172a}
+.bot-brand{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:900;color:#0f172a;line-height:1.5}
+.bot-brand-mark{width:32px;height:32px;border-radius:8px;background:#9a0036;color:#fff;display:flex;align-items:center;justify-content:center}
+@media (max-width:960px){.bot-topbar-row{padding-left:24px;padding-right:24px}.bot-brand{display:none}}
+@media (max-width:440px){.bot-crumb{display:none}}
+</style>
+<style id="inner-nav-style">
+.topbar .brand, .bot-topbar .bot-brand { margin-left: 4px !important; text-decoration: none; color: #0f172a; font-size: 16px; font-weight: 900; white-space: nowrap; }
+.topbar .brand:hover, .bot-topbar .bot-brand:hover { color: #9a0036; }
+.topbar .brand:focus-visible, .bot-topbar .bot-brand:focus-visible { outline: 3px solid #9a0036; outline-offset: 3px; border-radius: 6px; }
+@media (min-width: 561px) { .topbar .brand, .bot-topbar .bot-brand { display: flex !important; } }
+@media (max-width: 560px) { .topbar .brand, .bot-topbar .bot-brand { display: none !important; } }
+.topbar .back, .bot-topbar .bot-back { flex: none; white-space: nowrap; }
+.nav-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; font-family: 'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif; }
+.nv-add, .nv-cart { min-height: 44px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; text-decoration: none; box-sizing: border-box; }
+.nv-add { border: 1.5px solid #9a0036; background: #9a0036; color: #fff; }
+.nv-add:hover { background: #7f002d; border-color: #7f002d; }
+.nv-add.on { background: #f7e9ee; color: #9a0036; }
+.nv-add.on:hover { background: #f0d5df; }
+.nv-cart { border: 1px solid #cbd5e1; background: #fff; color: #0f172a; }
+.nv-cart:hover { border-color: #0f172a; }
+.nv-cart .b { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #9a0036; color: #fff; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+.nv-add:focus-visible, .nv-cart:focus-visible { outline: 3px solid #9a0036; outline-offset: 2px; }
+@media (max-width: 560px) { .nv-cart .t { display: none; } .nv-cart { padding: 0 10px; } .nv-add { padding: 0 12px; } }
+.nv-wrap { position: fixed; inset: 0; z-index: 2147482000; background: rgba(15,23,42,.5); display: flex; align-items: center; justify-content: center; padding: 16px; font-family: 'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif; }
+.nv-modal { width: min(420px, 100%); background: #fff; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 24px 60px rgba(15,23,42,.25); color: #0f172a; box-sizing: border-box; }
+.nv-modal h2 { margin: 0; font-size: 22px; font-weight: 900; line-height: 1.4; }
+.nv-modal p { margin: 0; font-size: 15px; color: #475569; line-height: 1.7; }
+.nv-step { display: flex; align-items: center; gap: 10px; }
+.nv-step button { width: 48px; height: 48px; flex: none; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; font-size: 22px; cursor: pointer; color: #0f172a; }
+.nv-step input { flex: 1; min-width: 0; height: 48px; border: 1px solid #cbd5e1; border-radius: 12px; text-align: center; font: inherit; font-size: 22px; font-weight: 900; color: #0f172a; box-sizing: border-box; }
+.nv-quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.nv-quick button { min-height: 36px; padding: 0 12px; border: 1px solid #cbd5e1; border-radius: 999px; background: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; color: #334155; }
+.nv-quick button:disabled { opacity: .4; cursor: default; }
+.nv-note { display: flex; justify-content: space-between; font-size: 14px; color: #475569; }
+.nv-note strong { color: #0f172a; }
+.nv-err { font-size: 13px; font-weight: 700; color: #b42318; min-height: 18px; }
+.nv-actions { display: flex; flex-direction: column; gap: 8px; }
+.nv-ok { min-height: 52px; border: none; border-radius: 12px; background: #9a0036; color: #fff; font: inherit; font-size: 16px; font-weight: 800; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+.nv-ok:disabled { background: #cbd5e1; cursor: not-allowed; }
+.nv-link { border: none; background: none; min-height: 40px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; color: #64748b; }
+.nv-link.del { color: #9a0036; }
+.nv-toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 16px); background: #0f172a; color: #fff; padding: 10px 18px; border-radius: 12px; font-size: 14px; opacity: 0; pointer-events: none; transition: all .25s; z-index: 2147482001; font-family: 'Microsoft JhengHei','微軟正黑體',system-ui,sans-serif; max-width: calc(100vw - 32px); }
+.nv-toast.show { opacity: 1; transform: translate(-50%, 0); }
+</style>
+<style id="layout-v3">
+.more { border-top: 1px solid var(--line, #e2e8f0); padding-top: 12px; }
+.more > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 36px; font-size: 14px; font-weight: 700; color: var(--accent, #9a0036); }
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::after { content: ""; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s; }
+.more[open] > summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.more > summary:focus-visible { outline: 3px solid var(--accent, #9a0036); outline-offset: 2px; border-radius: 6px; }
+.more .more-body { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; }
+.more .more-body > ul { margin: 0; }
+:root { --tb-h: 69px; }
+@media (min-width: 961px) {
+  .lv2-stage { padding-bottom: 24px !important; }
+  .lv2-sticky { position: sticky; top: calc(var(--tb-h) + 24px); align-self: flex-start; }
+  .lv2-info { align-self: stretch; }
+  .lv2-flow { position: sticky; top: calc(var(--tb-h) + 24px); z-index: 2; }
+}
+</style>
+<style id="mobile-bar-style">
+.mb-bar, .mb-sheet, .mb-scrim { display: none; }
+@media (max-width: 960px) {
+  body.mb-on { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  body.mb-on .lv2-info { display: none !important; }
+  body.mb-on .lv2-stage { display: flex !important; flex-direction: column; align-items: center; padding: 12px 12px 12px !important; gap: 12px !important; }
+  body.mb-on .lv2-device.mb-fit { width: 390px !important; height: 844px !important; padding: 12px !important; border-radius: 48px !important; flex: none; }
+  body.mb-on .lv2-device.mb-fit .screen { border-radius: 38px !important; }
+  .mb-bar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; min-height: 68px; box-sizing: border-box; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 8px; align-items: center; background: #fff; border-top: 1px solid #e2e8f0; box-shadow: 0 -6px 18px rgba(15,23,42,.06); font-family: 'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif; }
+  .mb-bar button { font-family: inherit; cursor: pointer; }
+  .mb-ic { width: 46px; height: 46px; flex: none; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; color: #0f172a; display: flex; align-items: center; justify-content: center; }
+  .mb-ic:disabled { opacity: .35; cursor: default; }
+  .mb-step { flex: 1; min-width: 0; height: 46px; border: 1.5px solid #9a0036; border-radius: 12px; background: #f7e9ee; color: #9a0036; display: flex; align-items: center; gap: 8px; padding: 0 12px; font-size: 14px; font-weight: 800; }
+  .mb-step .no { width: 24px; height: 24px; flex: none; border-radius: 50%; background: #9a0036; color: #fff; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .mb-step .t { flex: 1; min-width: 0; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mb-step small { font-weight: 700; opacity: .75; margin-left: 4px; }
+  .mb-step svg { flex: none; }
+  .mb-info-wide { flex: 1; height: 46px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; color: #0f172a; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .mb-ic:focus-visible, .mb-step:focus-visible, .mb-info-wide:focus-visible { outline: 3px solid #9a0036; outline-offset: 2px; }
+  .mb-scrim { display: block; position: fixed; inset: 0; z-index: 2147481000; background: rgba(15,23,42,.42); }
+  .mb-sheet { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 2147481001; height: min(520px, 82vh); box-sizing: border-box; flex-direction: column; gap: 12px; overflow: auto; background: #fff; border-radius: 20px 20px 0 0; padding: 22px 16px calc(18px + env(safe-area-inset-bottom)); font-family: 'Microsoft JhengHei','微軟正黑體','PingFang TC','Heiti TC',system-ui,sans-serif; color: #0f172a; box-shadow: 0 -12px 32px rgba(15,23,42,.16); }
+  .mb-sheet[hidden], .mb-scrim[hidden] { display: none; }
+  .mb-sheet::before { content: ""; position: absolute; top: 8px; left: 50%; width: 36px; height: 4px; margin-left: -18px; border-radius: 2px; background: #cbd5e1; }
+  .mb-hd { display: flex; align-items: center; justify-content: space-between; }
+  .mb-hd b { font-size: 17px; font-weight: 900; }
+  .mb-x { width: 36px; height: 36px; border: none; border-radius: 50%; background: #f1f5f9; color: #64748b; font-size: 15px; cursor: pointer; }
+  .mb-sheet .info-card, .mb-sheet .travel-card, .mb-sheet .card, .mb-sheet .rx-card { border: none !important; padding: 0 !important; box-shadow: none !important; background: none !important; }
+  .mb-sheet .more { border-top: none; padding-top: 0; }
+  .mb-sheet h1 { font-size: 21px !important; line-height: 1.4 !important; margin: 0 !important; }
+  .mb-sheet .more > summary { display: none; }
+  .mb-steps { display: flex; flex-direction: column; gap: 6px; }
+  .mb-s { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; font-family: inherit; text-align: left; cursor: pointer; color: #0f172a; }
+  .mb-s .n { width: 28px; height: 28px; flex: none; border-radius: 50%; background: #f1f5f9; color: #64748b; font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .mb-s b { display: block; font-size: 15px; }
+  .mb-s small { display: block; font-size: 12.5px; color: #64748b; line-height: 1.5; }
+  .mb-s[aria-current="step"] { border-color: #9a0036; box-shadow: inset 0 0 0 1px #9a0036; }
+  .mb-s[aria-current="step"] .n { background: #9a0036; color: #fff; }
+  .mb-reset { align-self: flex-start; min-height: 40px; padding: 0 14px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .mb-note { margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.7; }
+  .mb-hint { position: fixed; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom)); transform: translate(-50%, 12px); background: #0f172a; color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; opacity: 0; pointer-events: none; transition: all .25s; z-index: 2147481002; max-width: calc(100vw - 32px); font-family: 'Microsoft JhengHei','微軟正黑體',system-ui,sans-serif; }
+  .mb-hint.show { opacity: 1; transform: translate(-50%, 0); }
+}
+</style>
+</head>
+<body>
+
+  <div class="bot-topbar"><div class="bot-topbar-row"><a class="bot-back" href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回</a><a class="bot-brand" href="index.html">外匯體驗點子商城</a><span class="nav-actions" id="nav-actions"></span></div></div>
+
+  <!-- 主舞台 -->
+  <main class="rx-stage lv2-stage">
+    
+    <!-- 左側手機模擬器 -->
+    <div class="phone-wrapper lv2-device">
+      <div class="phone-screen">
+        <!-- 狀態列 -->
+        <div class="status-bar">
+          <span>09:41</span>
+          <span>5G 100%</span>
+        </div>
+
+        <!-- 標題列 -->
+        <div class="app-header">
+          <button class="header-btn" onclick="toast('返回首頁')">‹</button>
+          <span class="header-title">外匯買賣 - 預約換匯</span>
+          <button class="header-btn" onclick="toast('更多功能')">⋯</button>
+        </div>
+
+        <!-- 頁籤 -->
+        <div class="tab-bar">
+          <button class="tab-item active" id="tabSetup" onclick="bookingGuide('setup')">新增預約</button>
+          <button class="tab-item" id="tabList" onclick="bookingGuide('list')">預約清單 (<span id="listCount">2</span>)</button>
+        </div>
+
+        <!-- 內容捲動區 -->
+        <div class="scroll-content" id="contentArea">
+          
+          <!-- 【頁面一：新增預約】 -->
+          <div id="sectionSetup">
+            <!-- 帳戶與交易方向 -->
+            <div class="form-card">
+              <div class="card-title">帳號與交易方向</div>
+              <div class="form-group">
+                <label class="form-label">扣款／存入新臺幣帳號</label>
+                <select class="form-select" id="twdAccount">
+                  <option value="012-004-***-886">活儲 012-004-***-886 (NT$ 628,410)</option>
+                  <option value="012-001-***-123">活存 012-001-***-123 (NT$ 150,000)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">存入／扣款外幣帳號</label>
+                <select class="form-select" id="foreignAccount">
+                  <option value="012-007-***-482">外匯綜存 012-007-***-482 (USD)</option>
+                  <option value="012-001-***-936">外幣綜存 012-001-***-936 (JPY)</option>
+                  <option value="012-001-***-104">外幣活存 012-001-***-104 (EUR)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">交易方向</label>
+                <select class="form-select" id="tradeDirection">
+                  <option value="buy">結購（新臺幣買入外幣）</option>
+                  <option value="sell">結售（外幣賣出換臺幣）</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 預約週期與期間 -->
+            <div class="form-card">
+              <div class="card-title">預約週期設定</div>
+              <div class="form-group">
+                <label class="form-label">預約類型</label>
+                <select class="form-select" id="cycleType" onchange="onCycleTypeChange()">
+                  <option value="once">單次預約</option>
+                  <option value="daily">連續營業日預約（週一至週五）</option>
+                  <option value="weekly">週期性預約（每週）</option>
+                  <option value="monthly" selected>週期性預約（每月）</option>
+                </select>
+              </div>
+
+              <!-- 每週專用設定 -->
+              <div class="form-group" id="weeklyGroup" style="display: none;">
+                <label class="form-label">每週執行日</label>
+                <select class="form-select" id="weekDaySelect" onchange="calculateExecutions()">
+                  <option value="1">每週一</option>
+                  <option value="2">每週二</option>
+                  <option value="3">每週三</option>
+                  <option value="4">每週四</option>
+                  <option value="5">每週五</option>
+                </select>
+              </div>
+
+              <!-- 每月專用設定 -->
+              <div class="form-group" id="monthlyGroup">
+                <label class="form-label">每月換匯指定日（可複選）</label>
+                <div class="chips-grid">
+                  <label class="chip-item"><input type="checkbox" name="mday" value="1" onchange="toggleChip(this)"> 1 日</label>
+                  <label class="chip-item"><input type="checkbox" name="mday" value="5" onchange="toggleChip(this)"> 5 日</label>
+                  <label class="chip-item"><input type="checkbox" name="mday" value="10" onchange="toggleChip(this)"> 10 日</label>
+                  <label class="chip-item"><input type="checkbox" name="mday" value="15" onchange="toggleChip(this)"> 15 日</label>
+                  <label class="chip-item"><input type="checkbox" name="mday" value="20" onchange="toggleChip(this)"> 20 日</label>
+                  <label class="chip-item"><input type="checkbox" name="mday" value="25" onchange="toggleChip(this)"> 25 日</label>
+                </div>
+              </div>
+
+              <!-- 執行起訖區間 -->
+              <div class="form-row" style="margin-top: 12px;">
+                <div class="form-group">
+                  <label class="form-label">開始日期</label>
+                  <input type="date" class="form-input" id="startDate" value="2026-11-01" onchange="calculateExecutions()">
+                </div>
+                <div class="form-group" id="endDateWrap">
+                  <label class="form-label">結束日期</label>
+                  <input type="date" class="form-input" id="endDate" value="2026-12-31" onchange="calculateExecutions()">
+                </div>
+              </div>
+            </div>
+
+            <!-- 次數試算 -->
+            <div class="calc-box" id="calcBox">
+              預計執行次數：計算中...
+            </div>
+
+            <!-- 幣別、金額與性質 -->
+            <div class="form-card">
+              <div class="card-title">交易金額與性質</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">幣別</label>
+                  <select class="form-select" id="currency">
+                    <option value="USD">USD 美元</option>
+                    <option value="JPY">JPY 日圓</option>
+                    <option value="EUR">EUR 歐元</option>
+                    <option value="AUD">AUD 澳幣</option>
+                    <option value="GBP">GBP 英鎊</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">外幣金額</label>
+                  <input type="number" class="form-input" id="amount" min="1" step="any" value="500">
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 12px;">
+                <label class="form-label">外匯申報交易性質</label>
+                <select class="form-select" id="nature">
+                  <option value="結購外匯存款，不再匯出">結購外匯存款，不再匯出</option>
+                  <option value="結購外幣存款購買國內外幣保單、基金、債券">結購外幣存款購買國內外幣保單、基金、債券</option>
+                  <option value="觀光旅遊支出">觀光旅遊支出</option>
+                  <option value="結購外幣存款為國內外幣還款">結購外幣存款為國內外幣還款</option>
+                  <option value="服務支出或進口貨品價款">服務支出或進口貨品價款</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="notice-box">
+              <b>匯率說明：</b>預約換匯以各交易日營業時間牌告匯率執行。如遇非營業日，則交易不執行。
+            </div>
+
+            <button class="btn-submit" onclick="submitReservation()">確認建立預約</button>
+          </div>
+
+          <!-- 【頁面二：預約清單】 -->
+          <div id="sectionList" style="display: none;">
+            <div id="reservationContainer"></div>
+          </div>
+
+        </div>
+
+        <!-- 底部安全桿 -->
+        <div class="home-bar">
+          <div class="home-indicator"></div>
+        </div>
+
+        <!-- 浮動提示 -->
+        <div class="toast-msg" id="toastMsg"></div>
+      </div>
+    </div>
+
+    <!-- 右側資訊與操作步驟區 -->
+    <aside class="rx-info lv2-info" aria-label="功能說明">
+      <!-- 功能說明卡片 -->
+      <section class="rx-card">
+        <div class="rx-tags">
+          <span class="rx-cat">外匯買賣</span>
+          <b class="rx-pf">APP</b>
+          <b class="rx-pf">網銀</b>
+        </div>
+        <h1>預約換匯</h1>
+        <div class="rx-rating" aria-label="開發難易度 3 / 5（示意）">
+          <span>開發難易度</span>
+          <span class="rx-stars" aria-hidden="true"><span class="on">★★★</span><span class="off">★★</span></span>
+        </div>
+        <p>依需求選擇定期或指定日期換匯，設定幣別、金額及交易性質，並在預約清單查看與管理尚未執行的交易。</p>
+        
+        <details class="more">
+          <summary>功能特色與效益</summary>
+          <div class="more-body">
+            <div>
+              <ul class="rx-features">
+                <li>定期或指定日期預約換匯</li>
+                <li>查詢並管理預約清單</li>
+              </ul>
+            </div>
+            <div class="rx-benefit">
+              <strong>效益｜</strong>提前安排外幣準備，需求變動也能調整
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- 操作步驟卡片 (來自原版) -->
+      <section class="rx-card lv2-flow">
+        <h2>操作步驟</h2>
+        <button class="travel-flow" data-book-guide="setup" aria-current="step" onclick="bookingGuide('setup')">
+          <span>1</span>
+          <div>
+            <strong>設定並新增預約</strong>
+            <small>選擇日期週期、幣別、金額與交易性質</small>
+          </div>
+        </button>
+        <button class="travel-flow" data-book-guide="list" onclick="bookingGuide('list')">
+          <span>2</span>
+          <div>
+            <strong>查看與管理預約清單</strong>
+            <small>查詢預約狀態與明細，或取消未執行預約</small>
+          </div>
+        </button>
+        <button class="travel-reset" id="booking-reset" onclick="resetPrototype()">重設原型</button>
+        <p class="travel-note">
+          預約與操作均為本機示例，不會送出實際交易。匯率說明依各交易日營業時間牌告匯率執行；3／5 星為模板示意，未經工程評估。
+        </p>
+      </section>
+    </aside>
+
+  </main>
+
+  <script>
+    // 預設資料 (依照指示活儲 004 / 外匯綜存 007)
+    const initialBookings = [
+      {
+        id: "FX202611001",
+        direction: "結購",
+        currency: "USD",
+        amount: 500,
+        cycleType: "monthly",
+        cycleDesc: "每月 1、10 日",
+        start: "2026-11-01",
+        end: "2026-12-31",
+        twdAcc: "012-004-***-886",
+        forAcc: "012-007-***-482",
+        nature: "結購外匯存款，不再匯出",
+        status: "待執行 (預計 4 次)"
+      },
+      {
+        id: "FX202611002",
+        direction: "結購",
+        currency: "JPY",
+        amount: 30000,
+        cycleType: "once",
+        cycleDesc: "單次預約",
+        start: "2026-11-15",
+        end: "2026-11-15",
+        twdAcc: "012-001-***-123",
+        forAcc: "012-001-***-936",
+        nature: "觀光旅遊支出",
+        status: "待執行 (單次)"
+      }
+    ];
+
+    let bookings = JSON.parse(JSON.stringify(initialBookings));
+    let seqCounter = 3;
+
+    function toast(text) {
+      const el = document.getElementById("toastMsg");
+      el.textContent = text;
+      el.classList.add("show");
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        el.classList.remove("show");
+      }, 2000);
+    }
+
+    // 雙向導引與切換：連動左邊 Tab 與右邊步驟
+    function bookingGuide(tab) {
+      const isSetup = tab === 'setup';
+      
+      // 更新左邊手機 Tab
+      document.getElementById('tabSetup').classList.toggle('active', isSetup);
+      document.getElementById('tabList').classList.toggle('active', !isSetup);
+      document.getElementById('sectionSetup').style.display = isSetup ? 'block' : 'none';
+      document.getElementById('sectionList').style.display = isSetup ? 'none' : 'block';
+      
+      // 更新右邊步驟 active 狀態
+      document.querySelectorAll('[data-book-guide]').forEach(btn => {
+        if (btn.dataset.bookGuide === tab) {
+          btn.setAttribute('aria-current', 'step');
+        } else {
+          btn.removeAttribute('aria-current');
+        }
+      });
+
+      if (!isSetup) {
+        renderList();
+      }
+      document.getElementById('contentArea').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleChip(checkbox) {
+      checkbox.parentElement.classList.toggle('active', checkbox.checked);
+      calculateExecutions();
+    }
+
+    function onCycleTypeChange() {
+      const type = document.getElementById('cycleType').value;
+      document.getElementById('weeklyGroup').style.display = (type === 'weekly') ? 'block' : 'none';
+      document.getElementById('monthlyGroup').style.display = (type === 'monthly') ? 'block' : 'none';
+      document.getElementById('endDateWrap').style.display = (type === 'once') ? 'none' : 'block';
+      calculateExecutions();
+    }
+
+    function calculateExecutions() {
+      const type = document.getElementById('cycleType').value;
+      const sVal = document.getElementById('startDate').value;
+      const eVal = document.getElementById('endDate').value;
+      const calcBox = document.getElementById('calcBox');
+
+      if (!sVal) {
+        calcBox.innerHTML = '<span style="color:#dc2626;">請選擇開始日期</span>';
+        return;
+      }
+
+      const start = new Date(sVal + 'T00:00:00');
+      const end = (type === 'once') ? start : new Date(eVal + 'T00:00:00');
+
+      if (type !== 'once' && (!eVal || start > end)) {
+        calcBox.innerHTML = '<span style="color:#dc2626;">結束日期不得早於開始日期</span>';
+        return;
+      }
+
+      let count = 0;
+      if (type === 'once') {
+        count = 1;
+        calcBox.innerHTML = `預計於 <b>${sVal}</b> 執行單次換匯。`;
+        return;
+      } else if (type === 'daily') {
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+          if (d.getDay() !== 0 && d.getDay() !== 6) count++;
+        }
+      } else if (type === 'weekly') {
+        const targetDay = Number(document.getElementById('weekDaySelect').value);
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+          if (d.getDay() === targetDay) count++;
+        }
+      } else if (type === 'monthly') {
+        const checkedDays = [...document.querySelectorAll('input[name="mday"]:checked')].map(x => Number(x.value));
+        if (checkedDays.length === 0) {
+          calcBox.innerHTML = '<span style="color:#dc2626;">請至少勾選一個每月指定日</span>';
+          return;
+        }
+        for (let d = new Date(start.getFullYear(), start.getMonth(), 1); d <= end; d.setMonth(d.getMonth() + 1)) {
+          checkedDays.forEach(day => {
+            const cur = new Date(d.getFullYear(), d.getMonth(), day);
+            if (cur >= start && cur <= end) count++;
+          });
+        }
+      }
+
+      calcBox.innerHTML = `預計執行：<strong>${count} 次</strong>換匯交易<br><span style="font-size:11px;color:#3b82f6;">期間：${sVal} 至 ${eVal}</span>`;
+    }
+
+    function submitReservation() {
+      const type = document.getElementById('cycleType').value;
+      const amount = Number(document.getElementById('amount').value);
+      if (!amount || amount <= 0) {
+        toast('請輸入大於 0 的外幣金額');
+        return;
+      }
+
+      let desc = '';
+      if (type === 'once') {
+        desc = `單次：${document.getElementById('startDate').value}`;
+      } else if (type === 'daily') {
+        desc = '連續營業日預約';
+      } else if (type === 'weekly') {
+        const wTexts = ['日', '一', '二', '三', '四', '五', '六'];
+        desc = `每週${wTexts[document.getElementById('weekDaySelect').value]}`;
+      } else if (type === 'monthly') {
+        const checkedDays = [...document.querySelectorAll('input[name="mday"]:checked')].map(x => x.value);
+        if (checkedDays.length === 0) {
+          toast('請至少選擇一個每月指定日');
+          return;
+        }
+        desc = `每月 ${checkedDays.join('、')} 日`;
+      }
+
+      const newId = `FX202611${String(seqCounter++).padStart(3, '0')}`;
+      const newRecord = {
+        id: newId,
+        direction: document.getElementById('tradeDirection').value === 'buy' ? '結購' : '結售',
+        currency: document.getElementById('currency').value,
+        amount: amount,
+        cycleType: type,
+        cycleDesc: desc,
+        start: document.getElementById('startDate').value,
+        end: (type === 'once') ? document.getElementById('startDate').value : document.getElementById('endDate').value,
+        twdAcc: document.getElementById('twdAccount').value,
+        forAcc: document.getElementById('foreignAccount').value,
+        nature: document.getElementById('nature').value,
+        status: '待執行'
+      };
+
+      bookings.unshift(newRecord);
+      document.getElementById('listCount').textContent = bookings.length;
+      toast(`已成功建立預約 ${newId}`);
+      bookingGuide('list');
+    }
+
+    function renderList() {
+      const container = document.getElementById('reservationContainer');
+      document.getElementById('listCount').textContent = bookings.length;
+
+      if (bookings.length === 0) {
+        container.innerHTML = '<div class="empty-state">尚無預約換匯紀錄</div>';
+        return;
+      }
+
+      container.innerHTML = bookings.map(item => `
+        <div class="reservation-card" id="card-${item.id}">
+          <div class="res-top">
+            <span class="res-id">${item.id}</span>
+            <span class="res-badge">${item.status}</span>
+          </div>
+
+          <div class="res-row">
+            <span class="label">交易項目</span>
+            <strong>${item.direction} ${item.currency}</strong>
+          </div>
+
+          <div class="res-row" style="align-items: center;">
+            <span class="label">預約金額</span>
+            <span class="res-amount">${item.currency} ${Number(item.amount).toLocaleString()}</span>
+          </div>
+
+          <div class="res-row">
+            <span class="label">預約週期</span>
+            <span>${item.cycleDesc}</span>
+          </div>
+
+          <div class="res-row">
+            <span class="label">有效期間</span>
+            <span>${item.start} ~ ${item.end}</span>
+          </div>
+
+          <div class="res-row">
+            <span class="label">扣款帳號</span>
+            <span>${item.twdAcc}</span>
+          </div>
+
+          <div class="res-row">
+            <span class="label">存入帳號</span>
+            <span>${item.forAcc}</span>
+          </div>
+
+          <div class="res-row">
+            <span class="label">交易性質</span>
+            <span style="max-width: 170px; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.nature}</span>
+          </div>
+
+          <div class="res-actions">
+            <button class="res-btn danger" onclick="deleteBooking('${item.id}')">取消預約</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function deleteBooking(id) {
+      if (confirm(`確定要取消預約代號 ${id} 嗎？`)) {
+        bookings = bookings.filter(x => x.id !== id);
+        renderList();
+        toast('已取消該筆預約');
+      }
+    }
+
+    function resetPrototype() {
+      // 1. 還原預約清單資料陣列
+      bookings = JSON.parse(JSON.stringify(initialBookings));
+      seqCounter = 3;
+
+      // 2. 清空並還原表單所有輸入欄位為初始狀態
+      document.getElementById('twdAccount').selectedIndex = 0;
+      document.getElementById('foreignAccount').selectedIndex = 0;
+      document.getElementById('tradeDirection').selectedIndex = 0;
+      
+      document.getElementById('cycleType').value = 'monthly';
+      document.getElementById('weekDaySelect').selectedIndex = 0;
+      
+      document.getElementById('startDate').value = '2026-11-01';
+      document.getElementById('endDate').value = '2026-12-31';
+      
+      // 還原每月指定日的勾選狀態（預設皆為不勾選）
+      document.querySelectorAll('input[name="mday"]').forEach(checkbox => {
+        checkbox.checked = false;
+        // 同步移除外層晶片 (chip) 的 active 視覺樣式
+        checkbox.parentElement.classList.remove('active');
+      });
+
+      document.getElementById('currency').selectedIndex = 0;
+      document.getElementById('amount').value = '500';
+      document.getElementById('nature').selectedIndex = 0;
+
+      // 3. 觸發畫面與元件的連動更新
+      onCycleTypeChange();   // 確保 UI 正確切換回「每月」的顯示區塊
+      bookingGuide('setup'); // 將畫面切換回「新增預約」頁籤
+      calculateExecutions(); // 重新試算右下角的預計執行次數 (此時會顯示請至少勾選一個日期的提示)
+      
+      toast('已重設為初始示例');
+    }
+
+    // 初始化
+    calculateExecutions();
+    document.getElementById('listCount').textContent = bookings.length;
+  </script>
+<script id="inner-nav" data-idea="fx-item-5" data-title="預約換匯">
+(function(){
+  var me=document.currentScript, ID=me.dataset.idea, TITLE=me.dataset.title;
+  var KEY='fx-idea-shop-tokens-v2', TOTAL=1000, STEP=50;
+  var BAG='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h11M9 12h11M9 19h11M4 5h.01M4 12h.01M4 19h.01"/></svg>';
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function fmt(n){return Number(n).toLocaleString('en-US');}
+  function load(){
+    try{ var v=JSON.parse(localStorage.getItem(KEY));
+      if(v&&Array.isArray(v.picked)&&v.tokens){ var p=v.picked.filter(function(id){return v.tokens[id]>0;}), t={}; p.forEach(function(id){t[id]=Math.floor(v.tokens[id]);});
+        if(p.reduce(function(s,id){return s+t[id];},0)<=TOTAL) return {picked:p,tokens:t}; } }catch(e){}
+    return {picked:[],tokens:{}};
+  }
+  function save(st){ try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){} }
+  function used(st){ return st.picked.reduce(function(s,id){return s+(st.tokens[id]||0);},0); }
+  var box, ret=null;
+  function render(){
+    box=document.getElementById('nav-actions'); if(!box) return;
+    var st=load(), on=st.picked.indexOf(ID)>=0, n=st.picked.length;
+    box.innerHTML='<button type="button" class="nv-add'+(on?' on':'')+'" id="nv-add">'+(on?'✓ 已加入評估':'＋ 加入評估')+'</button>'+
+      (n?'<a class="nv-cart" href="index.html#list" aria-label="評估清單，共 '+n+' 項">'+BAG+'<span class="t">評估清單</span><span class="b">'+n+'</span></a>':'');
+    document.getElementById('nv-add').addEventListener('click',openModal);
+  }
+  function close(){ var w=document.getElementById('nv-wrap'); if(w) w.remove(); document.removeEventListener('keydown',onKey,true); if(ret&&document.body.contains(ret)) ret.focus(); }
+  function onKey(e){ if(e.key==='Escape'){ e.stopPropagation(); close(); } }
+  function toast(msg){ var t=document.getElementById('nv-toast'); if(!t){t=document.createElement('div');t.id='nv-toast';t.className='nv-toast';t.setAttribute('role','status');document.body.appendChild(t);} t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove('show');},2600); }
+  function openModal(){
+    ret=document.activeElement;
+    var st=load(), on=st.picked.indexOf(ID)>=0, cur=st.tokens[ID]||0, max=cur+(TOTAL-used(st));
+    var w=document.createElement('div'); w.className='nv-wrap'; w.id='nv-wrap';
+    if(max<=0){
+      w.innerHTML='<div class="nv-modal" role="dialog" aria-modal="true" aria-labelledby="nv-title"><h2 id="nv-title">代幣已全部分配</h2><p>要投給「'+esc(TITLE)+'」，請先到評估清單調低其他點子的代幣。</p><div class="nv-actions"><a class="nv-ok" href="index.html#list">打開評估清單</a><button class="nv-link" type="button" data-x="close">取消</button></div></div>';
+    } else {
+      var start=on?cur:Math.min(max,100);
+      w.innerHTML='<div class="nv-modal" role="dialog" aria-modal="true" aria-labelledby="nv-title"><h2 id="nv-title">'+(on?'修改投入代幣':'要投入多少代幣？')+'</h2><p>'+esc(TITLE)+'</p>'+
+        '<div class="nv-step"><button type="button" data-x="dec" aria-label="減少 '+STEP+' 代幣">−</button><input type="number" inputmode="numeric" id="nv-val" min="1" max="'+max+'" step="'+STEP+'" value="'+start+'" aria-label="投入代幣數量"><button type="button" data-x="inc" aria-label="增加 '+STEP+' 代幣">＋</button></div>'+
+        '<div class="nv-quick" role="group" aria-label="快速選擇">'+[100,200,300].map(function(v){return '<button type="button" data-set="'+v+'"'+(v>max?' disabled':'')+'>'+v+'</button>';}).join('')+'<button type="button" data-set="'+max+'">全部 '+fmt(max)+'</button></div>'+
+        '<div class="nv-note"><span>可投入上限</span><strong>'+fmt(max)+' 代幣</strong></div><div class="nv-note"><span>投入後剩餘</span><strong id="nv-after"></strong></div><div class="nv-err" id="nv-err"></div>'+
+        '<div class="nv-actions"><button class="nv-ok" type="button" id="nv-ok">'+(on?'確認修改':'加入評估清單')+'</button>'+(on?'<button class="nv-link del" type="button" data-x="remove">從評估清單移除</button>':'')+'<button class="nv-link" type="button" data-x="close">取消</button></div></div>';
+    }
+    document.body.appendChild(w); document.addEventListener('keydown',onKey,true);
+    w.addEventListener('click',function(e){ if(e.target===w){close();return;} var b=e.target.closest('[data-x],[data-set]'); if(!b) return; var inp=document.getElementById('nv-val');
+      if(b.dataset.set){ inp.value=b.dataset.set; check(); return; }
+      var x=b.dataset.x;
+      if(x==='close') close();
+      else if(x==='inc'||x==='dec'){ var v=Math.floor(Number(inp.value)||0)+(x==='inc'?STEP:-STEP); inp.value=Math.max(1,Math.min(max,v)); check(); }
+      else if(x==='remove'){ var s=load(); s.picked=s.picked.filter(function(i){return i!==ID;}); delete s.tokens[ID]; save(s); close(); render(); toast('已從評估清單移除，代幣已退回'); }
+    });
+    var inp=document.getElementById('nv-val');
+    function check(){ var v=Math.floor(Number(inp.value)), ok=v>=1&&v<=max; document.getElementById('nv-err').textContent=ok||inp.value===''?'':(v>max?'最多只能投入 '+fmt(max)+' 代幣':'請輸入 1 以上的整數'); document.getElementById('nv-ok').disabled=!ok; document.getElementById('nv-after').textContent=fmt(Math.max(0,max-(ok?v:0)))+' 代幣'; }
+    if(inp){ inp.addEventListener('input',check); inp.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!document.getElementById('nv-ok').disabled) document.getElementById('nv-ok').click(); }); check();
+      document.getElementById('nv-ok').addEventListener('click',function(){ var s=load(), isNew=s.picked.indexOf(ID)<0, others=used(s)-(s.tokens[ID]||0); var n=Math.max(1,Math.min(TOTAL-others,Math.floor(Number(inp.value)||0))); if(isNew) s.picked.push(ID); s.tokens[ID]=n; save(s); close(); render(); toast((isNew?'已加入評估清單':'已更新')+'，投入 '+fmt(n)+' 代幣・剩餘 '+fmt(TOTAL-used(s))); });
+      inp.focus(); inp.select(); }
+    else { var f=w.querySelector('.nv-ok'); if(f) f.focus(); }
+  }
+  window.addEventListener('storage',function(e){ if(e.key===KEY) render(); });
+  window.addEventListener('pageshow',render);
+  if(document.readyState!=='loading') render(); else document.addEventListener('DOMContentLoaded',render);
+})();
+</script>
+<script id="layout-v3-js">
+(function(){
+  var MIN_SCALE=0.75;
+  function sync(){
+    var tb=document.querySelector('.bot-topbar, body > .topbar');
+    var h=tb?tb.offsetHeight:69; document.documentElement.style.setProperty('--tb-h',h+'px');
+    var wide=window.matchMedia('(min-width: 961px)').matches;
+    var dev=document.querySelector('.lv2-device');
+    if(dev){
+      var nozoom=dev.hasAttribute('data-lv2-nozoom');
+      if(wide||!document.body.classList.contains('mb-on')) dev.style.zoom=''; dev.style.top=''; dev.classList.remove('lv2-sticky');
+      if(wide){
+        var avail=window.innerHeight-h-48, natural=dev.offsetHeight;
+        if(nozoom){ if(natural<=avail+1) dev.classList.add('lv2-sticky'); }
+        else { var s=Math.min(1, avail/natural);
+          if(s>=MIN_SCALE){ if(s<1) dev.style.zoom=s.toFixed(4); dev.classList.add('lv2-sticky'); dev.style.top=((h+24)/s).toFixed(2)+'px'; } }
+      }
+    }
+    var info=document.querySelector('.lv2-info'), flow=document.querySelector('.lv2-flow');
+    if(!info||!flow) return;
+    info.style.paddingBottom='';
+    if(!wide) return;
+    var flowTop=flow.getBoundingClientRect().top+window.scrollY;
+    var need=flowTop-(h+24)+window.innerHeight, pad=0;
+    for(var i=0;i<3;i++){ var d=need-document.documentElement.scrollHeight; if(d<=0) break; pad+=d; info.style.paddingBottom=pad+'px'; }
+  }
+  var raf=0; function later(){ cancelAnimationFrame(raf); raf=requestAnimationFrame(sync); }
+  window.addEventListener('resize', later);
+  window.addEventListener('load', later);
+  document.addEventListener('toggle', later, true);
+  function init(){ sync(); var f=document.querySelector('.lv2-flow'); if(f&&window.ResizeObserver) new ResizeObserver(later).observe(f); }
+  if (document.readyState !== 'loading') init(); else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+<script id="mobile-bar-js">
+(function(){
+  var mq=window.matchMedia('(max-width: 960px)');
+  var INFO='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>';
+  var L='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>';
+  var R='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
+  var UP='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>';
+  var info=document.querySelector('.lv2-info'), flow=document.querySelector('.lv2-flow');
+  var card=info&&info.querySelector('.info-card, .travel-card, .card, .rx-card');
+  var dev=document.querySelector('.lv2-device');
+  function steps(){ return flow?Array.prototype.slice.call(flow.querySelectorAll('.flow-btn, .travel-flow, button.flow')):[]; }
+  function cur(){ var s=steps(); for(var i=0;i<s.length;i++){ if(s[i].getAttribute('aria-current')==='step'||s[i].classList.contains('active')) return i; } return 0; }
+  function stepText(b){ var st=b.querySelector('strong'); return st?st.textContent.trim():b.textContent.trim(); }
+  function stepDesc(b){ var st=b.querySelector('strong'); if(!st) return ''; var t=b.textContent.replace(st.textContent,'').replace(/^\s*\d+\s*/,'').trim(); return t; }
+  var bar=document.createElement('div'); bar.className='mb-bar'; bar.setAttribute('role','toolbar'); bar.setAttribute('aria-label','原型操作');
+  var scrim=document.createElement('div'); scrim.className='mb-scrim'; scrim.hidden=true;
+  var sheet=document.createElement('div'); sheet.className='mb-sheet'; sheet.hidden=true; sheet.setAttribute('role','dialog'); sheet.setAttribute('aria-modal','true');
+  var ret=null;
+  function renderBar(){
+    var s=steps();
+    if(!s.length){ bar.innerHTML='<button type="button" class="mb-info-wide" data-mb="info">'+INFO+'功能說明</button>'; return; }
+    var i=cur();
+    bar.innerHTML='<button type="button" class="mb-ic" data-mb="info" aria-label="功能說明">'+INFO+'</button>'+
+      '<button type="button" class="mb-ic" data-mb="prev" aria-label="上一步"'+(i<=0?' disabled':'')+'>'+L+'</button>'+
+      '<button type="button" class="mb-step" data-mb="steps" aria-label="操作流程，目前第 '+(i+1)+' 步，共 '+s.length+' 步"><span class="no">'+(i+1)+'</span><span class="t">'+stepText(s[i])+'<small>'+(i+1)+' / '+s.length+'</small></span>'+UP+'</button>'+
+      '<button type="button" class="mb-ic" data-mb="next" aria-label="下一步"'+(i>=s.length-1?' disabled':'')+'>'+R+'</button>';
+  }
+  function close(){ sheet.hidden=true; scrim.hidden=true; document.removeEventListener('keydown',onKey,true); if(ret&&document.body.contains(ret)) ret.focus(); }
+  function onKey(e){ if(e.key==='Escape'){ e.stopPropagation(); close(); } }
+  function open(kind){
+    ret=document.activeElement;
+    if(kind==='info'){
+      sheet.setAttribute('aria-label','功能說明');
+      sheet.innerHTML='<div class="mb-hd"><b>功能說明</b><button type="button" class="mb-x" data-mb="close" aria-label="關閉">✕</button></div>';
+      if(card){ var c=card.cloneNode(true); c.removeAttribute('id'); Array.prototype.forEach.call(c.querySelectorAll('[id]'),function(e){e.removeAttribute('id');}); Array.prototype.forEach.call(c.querySelectorAll('details'),function(d){d.open=true;}); sheet.appendChild(c); }
+    } else {
+      var s=steps(), i=cur();
+      sheet.setAttribute('aria-label','操作流程');
+      var reset=flow&&flow.querySelector('#reset, #travel-reset, .reset, .travel-reset');
+      var note=flow&&flow.querySelector('.note, .travel-note');
+      sheet.innerHTML='<div class="mb-hd"><b>操作流程</b><button type="button" class="mb-x" data-mb="close" aria-label="關閉">✕</button></div><div class="mb-steps">'+
+        s.map(function(b,k){ var d=stepDesc(b); return '<button type="button" class="mb-s" data-mb-step="'+k+'"'+(k===i?' aria-current="step"':'')+'><span class="n">'+(k+1)+'</span><span><b>'+stepText(b)+'</b>'+(d?'<small>'+d+'</small>':'')+'</span></button>'; }).join('')+'</div>'+
+        (reset?'<button type="button" class="mb-reset" data-mb="reset">'+reset.textContent.trim()+'</button>':'')+
+        (note?'<p class="mb-note">'+note.textContent.trim()+'</p>':'');
+    }
+    sheet.hidden=false; scrim.hidden=false; document.addEventListener('keydown',onKey,true);
+    var f=sheet.querySelector('[aria-current="step"]')||sheet.querySelector('.mb-x'); if(f) f.focus();
+  }
+  function hint(msg){ var t=document.getElementById('mb-hint'); if(!t){ t=document.createElement('div'); t.id='mb-hint'; t.className='mb-hint'; t.setAttribute('role','status'); document.body.appendChild(t);} t.textContent=msg; t.classList.add('show'); clearTimeout(hint._t); hint._t=setTimeout(function(){t.classList.remove('show');},2600); }
+  function go(k){ var s=steps(), before=cur(); if(s[k]) s[k].click(); setTimeout(renderBar,60);
+    setTimeout(function(){ renderBar(); if(cur()===before&&k!==before) hint('這一步需要在原型畫面中操作後才會前進'); },500); }
+  bar.addEventListener('click',function(e){ var b=e.target.closest('[data-mb]'); if(!b||b.disabled) return; var a=b.dataset.mb;
+    if(a==='info'||a==='steps') open(a); else if(a==='prev') go(cur()-1); else if(a==='next') go(cur()+1); });
+  sheet.addEventListener('click',function(e){ var b=e.target.closest('[data-mb],[data-mb-step]'); if(!b) return;
+    if(b.dataset.mbStep!==undefined){ go(Number(b.dataset.mbStep)); close(); return; }
+    var a=b.dataset.mb; if(a==='close') close(); else if(a==='reset'){ var r=flow.querySelector('#reset, #travel-reset, .reset, .travel-reset'); if(r) r.click(); close(); setTimeout(renderBar,60); } });
+  scrim.addEventListener('click',close);
+  if(flow&&window.MutationObserver) new MutationObserver(function(){ renderBar(); }).observe(flow,{subtree:true,childList:true,attributes:true,attributeFilter:['aria-current','class']});
+  function fit(){
+    if(!dev) return;
+    if(!mq.matches){ dev.classList.remove('mb-fit'); dev.style.width=''; return; }
+    var isPhone=dev.classList.contains('phone');
+    if(isPhone) dev.classList.add('mb-fit');
+    dev.style.zoom=''; dev.style.width='';
+    // 鎖定寬度，避免縮放後寬度 100% 重新撐開而改變比例
+    if(!isPhone) dev.style.width=dev.offsetWidth+'px';
+    var tb=document.querySelector('.bot-topbar, body > .topbar'), h=tb?tb.offsetHeight:61;
+    var top=dev.getBoundingClientRect().top+window.scrollY;
+    var availH=window.innerHeight-Math.max(top,h+12)-68-12, availW=document.documentElement.clientWidth-24;
+    var s=Math.min(1, availH/dev.offsetHeight, availW/dev.offsetWidth);
+    if(s<1) dev.style.zoom=s.toFixed(4);
+  }
+  function apply(){
+    document.body.classList.toggle('mb-on', mq.matches);
+    if(!mq.matches) close();
+    renderBar(); fit();
+  }
+  function init(){
+    document.body.appendChild(bar); document.body.appendChild(scrim); document.body.appendChild(sheet);
+    apply();
+    if(mq.addEventListener) mq.addEventListener('change',apply); else mq.addListener(apply);
+    window.addEventListener('resize',function(){ if(mq.matches) fit(); });
+    window.addEventListener('load',function(){ if(mq.matches){ fit(); setTimeout(fit,600); } });
+  }
+  if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

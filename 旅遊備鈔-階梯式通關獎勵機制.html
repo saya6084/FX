@@ -815,7 +815,7 @@ html.pw-locked body{visibility:hidden}
     if(b.dataset.mbStep!==undefined){ go(Number(b.dataset.mbStep)); close(); return; }
     var a=b.dataset.mb; if(a==='close') close(); else if(a==='reset'){ var r=flow.querySelector('#reset, #travel-reset, .reset, .travel-reset'); if(r) r.click(); close(); setTimeout(renderBar,60); } });
   scrim.addEventListener('click',close);
-  if(flow&&window.MutationObserver) new MutationObserver(function(){ renderBar(); }).observe(flow,{subtree:true,attributes:true,attributeFilter:['aria-current','class']});
+  if(flow&&window.MutationObserver) new MutationObserver(function(){ renderBar(); }).observe(flow,{subtree:true,childList:true,attributes:true,attributeFilter:['aria-current','class']});
   function fit(){
     if(!dev) return;
     if(!mq.matches){ dev.classList.remove('mb-fit'); dev.style.width=''; return; }
