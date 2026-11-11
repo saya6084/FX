@@ -466,6 +466,10 @@ html.pw-locked body{visibility:hidden}
   .cat-tab[aria-pressed="true"] .n { color: var(--accent); }
   .cat-tab:disabled { color: #a1a1aa; cursor: default; }
   .cat-tab:disabled .n { color: #a1a1aa; }
+  .tab-sep { flex: none; align-self: center; width: 1px; height: 22px; background: var(--line-strong); margin: 0 6px; }
+  .hold-ic { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; flex: none; border-radius: 50%; background: #f1f5f9; color: #64748b; }
+  .cat-tab[aria-pressed="true"] .hold-ic { background: var(--accent-soft); color: var(--accent); }
+  .cat-opt[aria-pressed="true"] .hold-ic { background: #fff; color: var(--accent); }
   .tools { display: flex; align-items: center; gap: 10px; flex: none; }
   .filter-wrap { position: relative; }
   .filter-btn { min-height: 40px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; white-space: nowrap; }
@@ -558,6 +562,8 @@ html.pw-locked body{visibility:hidden}
     .cat-opt[aria-pressed="true"] small { color: var(--accent); }
     .cat-opt[aria-pressed="true"] small::after { content: "　✓"; }
     .cat-opt:disabled { color: #a1a1aa; cursor: default; }
+    .cat-sep { display: block; height: 1px; background: var(--line); margin: 6px 14px; }
+    .hold-l { display: inline-flex; align-items: center; gap: 8px; }
   }
   @media (max-width: 560px) {
     /* 橫式列表卡：縮圖在左，資訊在右，整張可點進原型 */
@@ -768,30 +774,31 @@ html.pw-locked body{visibility:hidden}
     'ot-item-2': 'thumbs/ot-item-2.png'
   };
 
-  const CATEGORIES = ['旅遊備鈔', '外匯買賣', '外匯定存', '匯出匯款', '其他'];
+  const CATEGORIES = ['旅遊備鈔', '外匯買賣', '外匯定存', '匯出匯款', '其他', '暫緩開發'];
   const CAT_ICONS = {
     '外匯買賣': 'M7 7h11l-3-3M17 17H6l3 3',
     '外匯定存': 'M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4',
     '匯出匯款': 'M12 21V9M7 14l5-5 5 5M4 3h16',
     '旅遊備鈔': 'M3 7h18v10H3zM12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM6 10v4M18 10v4',
-    '其他': 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z'
+    '其他': 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
+    '暫緩開發': 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM10 9v6M14 9v6'
   };
   const JOURNEYS = { f1: 'F1-1 隨手換匯', f2: 'F2-2 避免撲空跨行', f3: 'F3-1 極速隱形驗證', f4: 'F4-1 無卡極速取鈔', f5: 'F5-2 零碎外幣回收', fx: '外匯買賣', fd: '外匯定存', rm: '匯出匯款', ot: '其他' };
   const JOURNEY_ORDER = ['f1', 'f2', 'f3', 'f4', 'f5', 'fx', 'fd', 'rm', 'ot'];
 
   // cat：功能所屬類別（可自行調整）
   const ITEMS = [
-    { id: 'f1-item-1', j: 'f1', cat: '旅遊備鈔', title: '「佛系旅遊基金」智能定投', summary: '輸入預計出發月份與目標金額，系統運算均價，低於均價自動小額扣款買入。', features: ['設定出發月份與目標金額', '低於均價時自動小額買入'], benefit: '不用盯盤也能分批買在相對低點', diff: 3, platforms: ['APP', '網銀'], with: '' },
-    { id: 'f1-item-2', j: 'f1', cat: '旅遊備鈔', title: '相對低點「預先授權」機制', summary: '提前設定「若跌破某匯率自動買入」，系統後台觸發即自動成交，免盯盤。', features: ['自訂觸發匯率與買入金額', '達標後台自動成交並通知'], benefit: '把「等低點」交給系統，不再錯過時機', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'f1-item-1', j: 'f1', cat: '暫緩開發', title: '「佛系旅遊基金」智能定投', summary: '輸入預計出發月份與目標金額，系統運算均價，低於均價自動小額扣款買入。', features: ['設定出發月份與目標金額', '低於均價時自動小額買入'], benefit: '不用盯盤也能分批買在相對低點', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'f1-item-2', j: 'f1', cat: '暫緩開發', title: '相對低點「預先授權」機制', summary: '提前設定「若跌破某匯率自動買入」，系統後台觸發即自動成交，免盯盤。', features: ['自訂觸發匯率與買入金額', '達標後台自動成交並通知'], benefit: '把「等低點」交給系統，不再錯過時機', diff: 3, platforms: ['APP', '網銀'], with: '' },
     { id: 'f1-item-4', j: 'f1', cat: '旅遊備鈔', title: '「匯率天氣報」極簡指標', summary: '以晴雨氣象圖直觀呈現，方便使用者快速掌握匯率趨勢。', features: ['以晴、多雲、雨等 5 種天氣呈現', '一眼比較多種外幣，轉晴時推播提醒'], benefit: '降低換匯判斷門檻，新手也敢下手', diff: 2, platforms: ['APP', '網銀', '官網'], with: '' },
     { id: 'f1-item-7', j: 'f1', cat: '旅遊備鈔', title: 'BUBI GO 快速買賣', summary: '匯率大跌發送推播時，長按通知並透過 Face ID 快速登入APP，3 秒內完成結匯交易。', features: ['匯率大跌即時推播', '長按通知以 Face ID 快速登入APP'], benefit: '縮短從看到好匯率到成交的距離，不再錯過好匯率時機', diff: 4, platforms: ['APP'], with: '' },
     { id: 'f1-item-8', j: 'f1', cat: '旅遊備鈔', title: '專屬外幣桌面 Widget', summary: '極簡手機桌面小工具，顯示當前匯率與自訂快捷鍵，點擊快速下單，驗證後進入 App 確認交易。', features: ['桌面常駐匯率、走勢與接近低點提示', '自訂快捷金額，Face ID 後接續 App 下單'], benefit: '從桌面快速開啟 App，縮短查價到下單的操作', diff: 3, platforms: ['APP'], with: '' },
     { id: 'f1-item-15', j: 'f1', cat: '旅遊備鈔', title: '主題式虛擬行李箱帳戶', summary: '包裝成「特定旅程行李箱」，買進時呈現投入動畫，增添專屬感與行前儀式感。', features: ['依旅程建立專屬外幣帳戶', '買進時呈現投入動畫'], benefit: '增加行前儀式感，提高持續存外幣意願', diff: 2, platforms: ['APP'], with: '' },
-    { id: 'f1-item-18', j: 'f1', cat: '旅遊備鈔', title: '階梯式通關獎勵機制', summary: '當線上買進累積達里程碑，解鎖實體特權（如貴賓室時數），疊加期待。', features: ['累積買進達里程碑解鎖權益', '提供貴賓室時數等實體特權'], benefit: '以獎勵疊加期待，帶動線上換匯量', diff: 3, platforms: ['APP'], with: '' },
-    { id: 'f4-item-1', j: 'f4', cat: '旅遊備鈔', title: 'App 預約快取條碼', summary: '在路上先選好幣別與面額，產生限時 QR Code，抵達機台直接掃碼。', features: ['在路上預選幣別與面額', '抵達機台掃碼即取鈔'], benefit: '機台前只剩核身，縮短等候時間', diff: 4, platforms: ['APP', 'ATM'], with: '' },
-    { id: 'f5-item-5', j: 'f5', cat: '旅遊備鈔', title: '「碎銀投資」微型無痛理財', summary: '存回的零錢自動免手續費轉投入特定美股零股，包裝成投資驚喜。', features: ['存回零錢免手續費轉投資', '包裝成投資驚喜'], benefit: '把零碎外幣導入理財，深化往來', diff: 4, platforms: ['APP'], with: '' },
+    { id: 'f1-item-18', j: 'f1', cat: '暫緩開發', title: '階梯式通關獎勵機制', summary: '當線上買進累積達里程碑，解鎖實體特權（如貴賓室時數），疊加期待。', features: ['累積買進達里程碑解鎖權益', '提供貴賓室時數等實體特權'], benefit: '以獎勵疊加期待，帶動線上換匯量', diff: 3, platforms: ['APP'], with: '' },
+    { id: 'f4-item-1', j: 'f4', cat: '暫緩開發', title: 'App 預約快取條碼', summary: '在路上先選好幣別與面額，產生限時 QR Code，抵達機台直接掃碼。', features: ['在路上預選幣別與面額', '抵達機台掃碼即取鈔'], benefit: '機台前只剩核身，縮短等候時間', diff: 4, platforms: ['APP', 'ATM'], with: '' },
+    { id: 'f5-item-5', j: 'f5', cat: '暫緩開發', title: '「碎銀投資」微型無痛理財', summary: '存回的零錢自動免手續費轉投入特定美股零股，包裝成投資驚喜。', features: ['存回零錢免手續費轉投資', '包裝成投資驚喜'], benefit: '把零碎外幣導入理財，深化往來', diff: 4, platforms: ['APP'], with: '' },
     { id: 'fx-item-1', j: 'fx', cat: '外匯買賣', title: '即期外匯走勢圖輔助', summary: '在換匯畫面直接參考近期走勢與歷史匯率，查完資訊即可接續原本的設定。', features: ['換匯畫面內查看近期走勢', '展開歷史匯率查詢，不離開交易'], benefit: '減少為了查資料而離開交易畫面', diff: 3, platforms: ['APP'], with: '' },
-    { id: 'fx-item-2', j: 'fx', cat: '外匯買賣', title: '交易逾時保留設定', summary: '交易確認頁倒數計時，返回時保留扣帳與入帳帳號；逾時後可從鈴鐺通知接續填寫並重新取得匯率。', features: ['確認頁倒數，返回保留帳號', '逾時後由通知接續未完成交易'], benefit: '減少逾時後重選帳號與重找交易入口的負擔', diff: 3, platforms: ['APP', '網銀'], with: '' },
+    { id: 'fx-item-2', j: 'fx', cat: '暫緩開發', title: '交易逾時保留設定', summary: '交易確認頁倒數計時，返回時保留扣帳與入帳帳號；逾時後可從鈴鐺通知接續填寫並重新取得匯率。', features: ['確認頁倒數，返回保留帳號', '逾時後由通知接續未完成交易'], benefit: '減少逾時後重選帳號與重找交易入口的負擔', diff: 3, platforms: ['APP', '網銀'], with: '' },
     { id: 'fx-item-3', j: 'fx', cat: '外匯買賣', title: '官網外匯快捷服務', summary: '將即期外匯走勢與需求導引直接放在官網外匯選單，查詢資訊與找服務都能在同一層開始。', features: ['選單內即看即期外匯走勢、可切換幣別', '用「我要做什麼」找到對應服務入口'], benefit: '減少逐層尋找與猜測功能名稱，容易取得外匯資訊及入口', diff: 3, platforms: ['官網'], with: '' },
     { id: 'fx-item-4', j: 'fx', cat: '外匯買賣', title: '換匯平均成本', summary: '在外幣帳戶總覽查看各幣別餘額、換匯平均成本與等值新臺幣參考餘額，點選幣別即可進入交易明細。', features: ['各幣別餘額、換匯平均成本與等值新臺幣參考餘額', '點選幣別查看交易明細'], benefit: '掌握外幣持有狀況，方便查閱資金進出', diff: 3, platforms: ['APP', '網銀'], with: '' },
     { id: 'fx-item-5', j: 'fx', cat: '外匯買賣', title: '預約換匯', summary: '依需求選擇定期或指定日期換匯，設定幣別、金額及交易性質，並在預約清單查看與管理尚未執行的交易。', features: ['定期或指定日期預約換匯', '查詢並管理預約清單'], benefit: '提前安排外幣準備，需求變動也能調整', diff: 3, platforms: ['APP', '網銀'], with: '' },
@@ -805,7 +812,7 @@ html.pw-locked body{visibility:hidden}
     { id: 'ot-item-2', j: 'ot', cat: '其他', title: '申請存款帳戶存摺封面', summary: '選擇存款帳戶並設定文件開啟密碼，即可預覽並下載受密碼保護的存摺封面。', features: ['支援新臺幣與外幣存款帳戶', '整合銀行、分行、SWIFT CODE、帳號與戶名', '自訂文件密碼，預覽後再下載'], benefit: '需要提供收款帳戶資料時，快速取得清楚的存摺封面', diff: 2, platforms: ['APP'], with: '' }
   ];
 
-  // 熱門點子排行（依投票結果）；未列入者依原順序排在後面
+  // 熱門點子排行（依投票結果）；未列入者依原順序排在後面；「暫緩開發」一律排最後
   const RANK = ['ot-item-1', 'fd-item-2', 'fx-item-3', 'rm-item-3', 'fd-item-1', 'fx-item-5', 'fx-item-1', 'rm-item-2', 'ot-item-2', 'f1-item-8', 'rm-item-1', 'f1-item-15', 'fx-item-4', 'f1-item-4', 'f1-item-7', 'f4-item-1', 'f1-item-2', 'f5-item-5'];
   const PLATFORMS = ['APP', '網銀', '官網', 'ATM'];
   const SORTS = [
@@ -846,11 +853,13 @@ html.pw-locked body{visibility:hidden}
   const hasFilter = () => state.cats.length || state.diffMin || state.platforms.length || state.sort !== 'rank' || state.q.trim();
 
   /* ---------- 建立控制項 ---------- */
+  const HOLD_CAT = '暫緩開發';
+  const HOLD_ICON = '<span class="hold-ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M7 3c0 4 5 5 5 9s-5 5-5 9M17 3c0 4-5 5-5 9s5 5 5 9"/></svg></span>';
   function buildControls() {
     $('cat-list').innerHTML = [['__all', '全部', ITEMS.length]].concat(CATEGORIES.map(c => [c, c, ITEMS.filter(it => it.cat === c).length]))
-      .map(([v, l, n]) => `<button class="cat-opt" type="button" data-cat="${v}" aria-pressed="false" ${n ? '' : 'disabled'}><span>${l}</span><small>${n} 項</small></button>`).join('');
+      .map(([v, l, n]) => (v === HOLD_CAT ? '<span class="cat-sep" aria-hidden="true"></span>' : '') + `<button class="cat-opt" type="button" data-cat="${v}" aria-pressed="false" ${n ? '' : 'disabled'}>${v === HOLD_CAT ? `<span class="hold-l">${HOLD_ICON}${l}</span>` : `<span>${l}</span>`}<small>${n} 項</small></button>`).join('');
     $('cat-filters').innerHTML = [`<button class="cat-tab" type="button" data-cat="__all" aria-pressed="false">全部<span class="n">${ITEMS.length}</span></button>`]
-      .concat(CATEGORIES.map(c => { const n = ITEMS.filter(it => it.cat === c).length; return `<button class="cat-tab" type="button" data-cat="${c}" aria-pressed="false" ${n ? '' : 'disabled'}>${c}<span class="n">${n}</span></button>`; }))
+      .concat(CATEGORIES.map(c => { const n = ITEMS.filter(it => it.cat === c).length; return (c === HOLD_CAT ? '<span class="tab-sep" aria-hidden="true"></span>' : '') + `<button class="cat-tab" type="button" data-cat="${c}" aria-pressed="false" ${n ? '' : 'disabled'}>${c === HOLD_CAT ? HOLD_ICON : ''}${c}<span class="n">${n}</span></button>`; }))
       .join('');
     $('stars-range').innerHTML = [1, 2, 3, 4, 5].map(n =>
       `<button class="star-btn" type="button" data-star="${n}" aria-label="${n} 星" aria-pressed="false">${STAR_SVG}</button>`).join('');
@@ -943,7 +952,7 @@ html.pw-locked body{visibility:hidden}
     });
     const jIndex = it => JOURNEY_ORDER.indexOf(it.j);
     const cIndex = it => CATEGORIES.indexOf(it.cat);
-    const rIndex = it => { const i = RANK.indexOf(it.id); return i < 0 ? RANK.length + ITEMS.indexOf(it) : i; };
+    const rIndex = it => { const i = RANK.indexOf(it.id); return (i < 0 ? RANK.length + ITEMS.indexOf(it) : i) + (it.cat === '暫緩開發' ? 1000 : 0); };
     const byRank = (a, b) => rIndex(a) - rIndex(b);
     if (state.sort === 'rank') list.sort(byRank);
     if (state.sort === 'easy') list.sort((a, b) => a.diff - b.diff || byRank(a, b));
