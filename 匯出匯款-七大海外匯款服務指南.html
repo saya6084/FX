@@ -216,12 +216,22 @@ body.mb-on #bubiGuideFrame { height: calc(100svh - var(--tb-h, 61px) - 68px - 24
   .mb-hint.show { opacity: 1; transform: translate(-50%, 0); }
 }
 </style>
-</head>
+<style id="qd-expand-style">
+.qd-chrome .qd-expand{flex:none;min-height:28px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:#334155;font-family:inherit;font-size:12px;font-weight:700;padding:4px 10px;cursor:pointer}
+.qd-chrome .qd-expand:hover,.qd-chrome .qd-expand:focus-visible{border-color:#9a0036;color:#9a0036;outline:none;box-shadow:0 0 0 3px #9a003626}
+.qd-chrome .qd-expand[aria-pressed=true]{background:#f8fafc}
+@media (min-width:961px){
+.stage.wide{flex-direction:column;align-items:stretch}
+.stage.wide .qd-browser{flex:none;width:100%;position:relative!important;top:auto!important}
+.stage.wide .info{flex:none;display:grid;grid-template-columns:1fr 1fr;align-items:start;position:static!important;padding-bottom:0!important}
+}
+@media (max-width:960px){.qd-chrome .qd-expand{display:none}}
+</style></head>
 <body>
  <div class="bot-topbar"><div class="bot-topbar-row"><a class="bot-back" href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>返回</a><a class="bot-brand" href="index.html">外匯體驗點子商城</a><span class="nav-actions" id="nav-actions"></span></div></div>
 <main class="stage lv2-stage">
   <div class="qd-browser lv2-device" data-lv2-nozoom>
-    <div class="qd-chrome"><i aria-hidden="true">●●●</i><span>臺灣銀行官網 ／ 個人金融 ／ 外匯 ／ 國際匯款業務（示意）</span></div>
+    <div class="qd-chrome"><i aria-hidden="true">●●●</i><span>臺灣銀行官網 ／ 個人金融 ／ 外匯 ／ 國際匯款業務（示意）</span><button type="button" class="qd-expand" id="expand" aria-pressed="false">放大原型</button></div>
     <iframe id="bubiGuideFrame" title="七大海外匯款服務指南互動原型" srcdoc="&lt;!DOCTYPE html&gt;
 
 &lt;html lang=&quot;zh-Hant&quot;&gt;
@@ -1210,5 +1220,5 @@ enhance();
   if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded',init);
 })();
 </script>
-</body>
+<script id="qd-expand-js">(function(){var b=document.getElementById('expand'),st=document.querySelector('main.stage');if(!b||!st)return;b.addEventListener('click',function(){var on=st.classList.toggle('wide');b.textContent=on?'還原版面':'放大原型';b.setAttribute('aria-pressed',String(on));window.dispatchEvent(new Event('resize'));window.scrollTo(0,0)});})();</script></body>
 </html>
