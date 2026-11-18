@@ -502,7 +502,7 @@ function render(){
   if(step===&#x27;counterOnly&#x27;){
     title.textContent=&#x27;臨櫃辦理指引&#x27;;
     content.innerHTML=`&lt;div class=&quot;bubble&quot;&gt;您好！我是外匯小幫手BUBI。您選擇的是「${labels[selectedChoice]}」。好的！本匯款業務須洽本行分行臨櫃辦理。為了讓行員協助確認應備文件，建議先備妥相關匯款資料；實際應備文件請依您的交易情況向分行確認。&lt;/div&gt;
-      &lt;div class=&quot;buttons&quot;&gt;&lt;button class=&quot;btn primary&quot; data-action=&quot;download&quot; type=&quot;button&quot;&gt;申請書下載&lt;/button&gt;&lt;button class=&quot;btn primary&quot; data-action=&quot;branches&quot; type=&quot;button&quot;&gt;服務據點&lt;/button&gt;&lt;/div&gt;`;
+      &lt;div class=&quot;buttons&quot;&gt;&lt;button class=&quot;btn primary&quot; data-action=&quot;branches&quot; type=&quot;button&quot;&gt;服務據點&lt;/button&gt;&lt;/div&gt;`;
   }else if(step===&#x27;channel&#x27;){
     title.textContent=&#x27;您好！請問您預計在臨櫃或是網銀進行匯款呢？&#x27;;
     content.innerHTML=`&lt;div class=&quot;bubble&quot;&gt;您好！我是外匯小幫手BUBI。您選擇的是「${labels[selectedChoice]}」。請問您預計在臨櫃或是網銀進行匯款呢？&lt;/div&gt;
@@ -510,7 +510,7 @@ function render(){
   }else if(step===&#x27;branch&#x27;){
     title.textContent=&#x27;臨櫃辦理指引&#x27;;
     content.innerHTML=`&lt;div class=&quot;bubble&quot;&gt;好的！您可以選擇至本行分行洽辦。為了讓行員協助確認適用的匯款性質與應備文件，建議先備妥相關匯款資料；實際應備文件請依您的交易情況向分行確認。&lt;/div&gt;
-      &lt;div class=&quot;buttons&quot;&gt;&lt;button class=&quot;btn primary&quot; data-action=&quot;prefill&quot; type=&quot;button&quot;&gt;預填臨櫃表單&lt;/button&gt;&lt;button class=&quot;btn primary&quot; data-action=&quot;download&quot; type=&quot;button&quot;&gt;申請書下載&lt;/button&gt;&lt;button class=&quot;btn primary&quot; data-action=&quot;branches&quot; type=&quot;button&quot;&gt;服務據點&lt;/button&gt;&lt;/div&gt;
+      &lt;div class=&quot;buttons&quot;&gt;&lt;button class=&quot;btn primary&quot; data-action=&quot;prefill&quot; type=&quot;button&quot;&gt;預填臨櫃表單&lt;/button&gt;&lt;button class=&quot;btn primary&quot; data-action=&quot;branches&quot; type=&quot;button&quot;&gt;服務據點&lt;/button&gt;&lt;/div&gt;
       &lt;div class=&quot;notice&quot;&gt;點選「預填臨櫃表單」可直接開啟完整表單，所有欄位可在此頁填寫；資料僅供原型示意，不會傳送至臺灣銀行。&lt;/div&gt;`;
   }else if(step===&#x27;recipient&#x27;){
     title.textContent=&#x27;確認受款人約定狀態&#x27;;
@@ -543,9 +543,7 @@ function render(){
     title.textContent=&#x27;辦理約定手續&#x27;;
     content.innerHTML=`&lt;div class=&quot;bubble&quot;&gt;若尚未約定受款人資料，請先至本行分行辦理約定手續。&lt;/div&gt;
       &lt;div class=&quot;official-text&quot;&gt;從網路銀行辦理外匯匯出匯款，須先至本行辦理約定手續，請帳戶持有人本人攜帶身分證件、存摺及約定印鑑、國外匯款資料（須為英文）親洽分行辦理。
-網路銀行辦理外匯匯出匯款較臨櫃辦理優惠，優惠內容請見本行電子銀行業務各項費用收費標準。&lt;/div&gt;
-      &lt;button class=&quot;btn primary&quot; data-action=&quot;download&quot;&gt;申請書下載&lt;/button&gt;
-      &lt;p class=&quot;step-note&quot;&gt;原型提示：正式版請將此按鈕連結至本行官方申請書下載網址。&lt;/p&gt;`;
+網路銀行辦理外匯匯出匯款較臨櫃辦理優惠，優惠內容請見本行電子銀行業務各項費用收費標準。&lt;/div&gt;`;
   }
 }
 
@@ -564,7 +562,7 @@ function updateRightDetails(choice, stage){
  const stageInfo={
    channel:{index:1,label:&#x27;步驟 2／選擇辦理管道&#x27;,extra:&#x27;請選擇臨櫃或網路銀行，左側 BUBI 選擇後會同步更新此處。&#x27;},
    counterOnly:{index:1,label:&#x27;步驟 2／臨櫃辦理指引&#x27;,extra:&#x27;此情境請洽分行確認適用條件及應備文件。&#x27;},
-   branch:{index:2,label:&#x27;步驟 3／臨櫃辦理指引&#x27;,extra:&#x27;可查看申請書下載及服務據點資訊。&#x27;},
+   branch:{index:2,label:&#x27;步驟 3／臨櫃辦理指引&#x27;,extra:&#x27;可預填臨櫃表單或查看服務據點資訊。&#x27;},
    recipient:{index:2,label:&#x27;步驟 3／確認受款人約定狀態&#x27;,extra:&#x27;請依左側選擇「已約定」或「尚未約定」。&#x27;},
    login:{index:3,label:&#x27;步驟 4／網路銀行登入&#x27;,extra:&#x27;已約定受款人：進入網銀登入示意，快速交易已預選。&#x27;},
    notAgreed:{index:2,label:&#x27;步驟 3／辦理受款人約定&#x27;,extra:&#x27;尚未約定受款人：請先至分行辦理約定手續。&#x27;}
@@ -576,10 +574,10 @@ function updateRightDetails(choice, stage){
    let items;
    const actionSets={
      channel:[{label:&#x27;臨櫃&#x27;,action:&#x27;branch&#x27;},{label:&#x27;網銀&#x27;,action:&#x27;online&#x27;}],
-     counterOnly:[{label:&#x27;申請書下載&#x27;,action:&#x27;download&#x27;},{label:&#x27;服務據點&#x27;,action:&#x27;branches&#x27;}],
-     branch:[{label:&#x27;預填臨櫃表單&#x27;,action:&#x27;prefill&#x27;},{label:&#x27;申請書下載&#x27;,action:&#x27;download&#x27;},{label:&#x27;服務據點&#x27;,action:&#x27;branches&#x27;}],
+     counterOnly:[{label:&#x27;服務據點&#x27;,action:&#x27;branches&#x27;}],
+     branch:[{label:&#x27;預填臨櫃表單&#x27;,action:&#x27;prefill&#x27;},{label:&#x27;服務據點&#x27;,action:&#x27;branches&#x27;}],
      recipient:[{label:&#x27;已約定&#x27;,action:&#x27;agreed&#x27;},{label:&#x27;尚未約定&#x27;,action:&#x27;notAgreed&#x27;}],
-     notAgreed:[{label:&#x27;申請書下載&#x27;,action:&#x27;download&#x27;}],
+     notAgreed:[],
      login:[]
    };
    const serviceChoices=Object.keys(scenarioDetails).map(key=&gt;({
@@ -786,9 +784,6 @@ form.addEventListener(&amp;#x27;submit&amp;#x27;,e=&amp;gt;{e.preventDefault();i
 &amp;lt;/script&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;
 &quot;&gt;&lt;/iframe&gt;
       &lt;/div&gt;`;
-  }
-  if(action===&#x27;download&#x27;){
-    alert(&#x27;此原型尚未連結官方申請書。請將按鈕連結替換為本行核定的申請書下載網址。&#x27;);
   }
   if(action===&#x27;branches&#x27;){
     const locator=window.parent.document.getElementById(&#x27;serviceLocatorPanel&#x27;);
