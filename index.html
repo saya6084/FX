@@ -856,9 +856,9 @@ html.pw-locked body{visibility:hidden}
   const HOLD_CAT = '暫緩開發';
   const HOLD_ICON = '<span class="hold-ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M7 3c0 4 5 5 5 9s-5 5-5 9M17 3c0 4-5 5-5 9s5 5 5 9"/></svg></span>';
   function buildControls() {
-    $('cat-list').innerHTML = [['__all', '全部', ITEMS.length]].concat(CATEGORIES.map(c => [c, c, ITEMS.filter(it => it.cat === c).length]))
+    $('cat-list').innerHTML = [['__all', '全部', ITEMS.filter(it => it.cat !== HOLD_CAT).length]].concat(CATEGORIES.map(c => [c, c, ITEMS.filter(it => it.cat === c).length]))
       .map(([v, l, n]) => (v === HOLD_CAT ? '<span class="cat-sep" aria-hidden="true"></span>' : '') + `<button class="cat-opt" type="button" data-cat="${v}" aria-pressed="false" ${n ? '' : 'disabled'}>${v === HOLD_CAT ? `<span class="hold-l">${HOLD_ICON}${l}</span>` : `<span>${l}</span>`}<small>${n} 項</small></button>`).join('');
-    $('cat-filters').innerHTML = [`<button class="cat-tab" type="button" data-cat="__all" aria-pressed="false">全部<span class="n">${ITEMS.length}</span></button>`]
+    $('cat-filters').innerHTML = [`<button class="cat-tab" type="button" data-cat="__all" aria-pressed="false">全部<span class="n">${ITEMS.filter(it => it.cat !== HOLD_CAT).length}</span></button>`]
       .concat(CATEGORIES.map(c => { const n = ITEMS.filter(it => it.cat === c).length; return (c === HOLD_CAT ? '<span class="tab-sep" aria-hidden="true"></span>' : '') + `<button class="cat-tab" type="button" data-cat="${c}" aria-pressed="false" ${n ? '' : 'disabled'}>${c === HOLD_CAT ? HOLD_ICON : ''}${c}<span class="n">${n}</span></button>`; }))
       .join('');
     $('stars-range').innerHTML = [1, 2, 3, 4, 5].map(n =>
@@ -887,7 +887,7 @@ html.pw-locked body{visibility:hidden}
   function syncControls() {
     const curCat = state.cats[0] || '';
     $('cat-btn-label').textContent = '類別：' + (curCat || '全部');
-    $('cat-btn-n').textContent = curCat ? ITEMS.filter(it => it.cat === curCat).length : ITEMS.length;
+    $('cat-btn-n').textContent = curCat ? ITEMS.filter(it => it.cat === curCat).length : ITEMS.filter(it => it.cat !== HOLD_CAT).length;
     $('cat-btn').classList.toggle('on', !!curCat);
     document.querySelectorAll('[data-cat]').forEach(b => {
       const on = b.dataset.cat === '__all' ? state.cats.length === 0 : state.cats.includes(b.dataset.cat);
@@ -945,6 +945,7 @@ html.pw-locked body{visibility:hidden}
     const q = state.q.trim().toLowerCase();
     let list = ITEMS.filter(it => {
       if (state.cats.length && !state.cats.includes(it.cat)) return false;
+      if (!state.cats.length && it.cat === HOLD_CAT) return false;
       if (state.diffMin && (it.diff < state.diffMin || it.diff > state.diffMax)) return false;
       if (state.platforms.length && !state.platforms.some(p => it.platforms.includes(p))) return false;
       if (q && !(it.title + it.summary + it.features.join('') + it.benefit + it.cat).toLowerCase().includes(q)) return false;
