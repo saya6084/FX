@@ -435,6 +435,7 @@ h1{margin:0;font-size:clamp(21px,2.6vw,28px);font-weight:900;text-wrap:balance}
 .sum dd small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-3)}
 .edit{border:0;background:none;color:var(--ci);font-size:12.5px;font-weight:700;cursor:pointer;padding:0}
 .sum .noedit{width:28px}
+@media (max-width:359px){.sum&gt;div{grid-template-columns:1fr auto;gap:2px 10px}.sum dt{grid-column:1/-1}.sum dd{text-align:left;white-space:normal}.sum .edit,.sum .noedit{grid-column:2;grid-row:2}}
 .fld{display:grid;gap:6px}
 .fld select{width:100%;min-width:0;height:44px;border:1px solid var(--line-2);border-radius:10px;padding:0 10px;background:var(--paper)}
 .radios{display:grid;gap:6px}
@@ -535,6 +536,13 @@ h1{margin:0;font-size:clamp(21px,2.6vw,28px);font-weight:900;text-wrap:balance}
 .cdet dt{font-size:11.5px;color:var(--ink-3)}.cdet dd{margin:0;font-weight:800;font-size:13.5px;font-variant-numeric:tabular-nums}
 .cdet .up{color:var(--ok)}.cdet .dn{color:var(--ink-2)}
 .cta.two{display:grid;gap:1px;line-height:1.25}.cta.two small{font-size:11.5px;font-weight:600;opacity:.92}
+.aline{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 12px;margin-top:10px;font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.aline b{color:var(--ink)}
+.limb{position:relative;display:inline-flex;align-items:center;gap:4px;margin-left:auto;border:0;background:none;padding:4px 0;font:inherit;font-size:12.5px;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.ii{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;border:1.3px solid currentColor;font-size:9.5px;font-weight:800;font-style:normal}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.limtip{margin-top:8px;background:#1f2328;color:#fff;border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.6}
+.amt input{min-width:0}
 .banner{border-radius:12px;padding:10px 12px;font-size:12.5px;line-height:1.5;display:grid;gap:2px}
 .banner b{font-size:13.5px}
 .banner.warn{background:var(--warn-tint);color:var(--warn);border:1px solid #f1d9a8}
@@ -543,7 +551,13 @@ h1{margin:0;font-size:clamp(21px,2.6vw,28px);font-weight:900;text-wrap:balance}
 .hl{font-size:17px;color:var(--ci)}
 .req{font-size:11px;color:var(--err);font-weight:700;margin-left:4px}
 .box.bad{border-color:var(--err);box-shadow:0 0 0 3px rgba(180,35,24,.1)}
-.bad-a .agree{color:var(--err)}
+.agw{padding:0}
+.bad-a .agree input{outline:2px solid var(--ci);outline-offset:2px;border-radius:3px}
+.aghint{display:flex;justify-content:center;margin:16px 0 0}
+.aghint&gt;span.agp{display:inline-flex;align-items:center;gap:6px;background:rgba(160,0,57,.1);color:var(--ci);font-size:13px;font-weight:700;border-radius:99px;padding:5px 14px}
+.agi{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--ci);color:#fff;font-size:11px;font-weight:900;flex:none}
+.cta[aria-disabled=&quot;true&quot;]{background:#c8ccd3;cursor:pointer}
+.cta[aria-disabled=&quot;true&quot;]:hover{background:#bcc1c9}
 .radios label span{display:grid;gap:1px}
 .radios label span small{margin:0;font-weight:500;color:var(--ink-3);font-size:12px}
 .sum.mini&gt;div{padding:6px 0}.sum.mini dt,.sum.mini dd{font-size:13px}
@@ -631,6 +645,7 @@ body{background:var(--wash)}
   function money(n,d){return Number(n).toLocaleString(&#x27;en-US&#x27;,{minimumFractionDigits:d==null?2:d,maximumFractionDigits:d==null?2:d})}
   function addM(d0,m){var d=new Date(d0);d.setMonth(d.getMonth()+m);return d}
   function fmtD(d){return d.getFullYear()+&#x27;/&#x27;+String(d.getMonth()+1).padStart(2,&#x27;0&#x27;)+&#x27;/&#x27;+String(d.getDate()).padStart(2,&#x27;0&#x27;)}
+  function mask(n){var d=n.replace(/\D/g,&#x27;&#x27;);return d.slice(0,3)+&#x27;-****&#x27;+d.slice(-4)}
   function interest(p){return S.amt*p.rate/100*p.m/12}
   function rate(){return +(H().pref+S.q).toFixed(3)}
   function bal(){return ACCTS[S.acct].bal}
@@ -711,8 +726,9 @@ body{background:var(--wash)}
         &#x27;&lt;p class=&quot;hint&quot; style=&quot;margin:0&quot;&gt;新臺幣可用餘額 TWD &#x27;+money(bal(),0)+&#x27;&lt;/p&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;box&quot; id=&quot;amtBox&quot;&gt;&lt;label class=&quot;cap&quot; for=&quot;amt&quot;&gt;定存金額&lt;/label&gt;&lt;div class=&quot;amt&quot;&gt;&lt;span&gt;USD&lt;/span&gt;&lt;input id=&quot;amt&quot; inputmode=&quot;numeric&quot; autocomplete=&quot;off&quot; value=&quot;&#x27;+(S.amt?money(S.amt,0):&#x27;&#x27;)+&#x27;&quot; aria-invalid=&quot;&#x27;+(!!e)+&#x27;&quot; aria-describedby=&quot;amtHint&quot;&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;quick&quot;&gt;&#x27;+[3000,5000,10000].map(function(v){return &#x27;&lt;button type=&quot;button&quot; data-amt=&quot;&#x27;+v+&#x27;&quot;&#x27;+(v&gt;MAX()?&#x27; disabled&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+money(v,0)+&#x27;&lt;/button&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;button type=&quot;button&quot; data-amt=&quot;&#x27;+MAX()+&#x27;&quot;&#x27;+(MAX()&lt;MIN?&#x27; disabled&#x27;:&#x27;&#x27;)+&#x27;&gt;可用上限&lt;/button&gt;&lt;/div&gt;&#x27;+
-      (e?&#x27;&lt;p class=&quot;err&quot; role=&quot;alert&quot;&gt;&#x27;+e+&#x27;&lt;/p&gt;&#x27;:(S.amt?&#x27;&lt;p class=&quot;debit&quot;&gt;約扣新臺幣 &lt;b&gt;TWD &#x27;+money(twd,0)+&#x27;&lt;/b&gt;&lt;/p&gt;&#x27;:&#x27;&#x27;))+
-      &#x27;&lt;p class=&quot;hint&quot; id=&quot;amtHint&quot;&gt;可用上限 USD &#x27;+money(MAX(),0)+&#x27;（帳戶餘額與每日結匯未達 TWD 50 萬，取較小者）&lt;/p&gt;&lt;/div&gt;&#x27;+
+      (e?&#x27;&lt;p class=&quot;err&quot; role=&quot;alert&quot; id=&quot;amtHint&quot;&gt;&#x27;+e+&#x27;&lt;/p&gt;&#x27;:
+        &#x27;&lt;div class=&quot;aline&quot; id=&quot;amtHint&quot;&gt;&lt;span&gt;&#x27;+(S.amt?&#x27;約扣 &lt;b&gt;TWD &#x27;+money(twd,0)+&#x27;&lt;/b&gt;&#x27;:&#x27;最低 USD 3,000&#x27;)+&#x27;&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;limb&quot; data-limtip aria-expanded=&quot;&#x27;+!!S.limTip+&#x27;&quot; aria-controls=&quot;limTip&quot;&gt;上限 USD &#x27;+money(MAX(),0)+&#x27;&lt;i class=&quot;ii&quot; aria-hidden=&quot;true&quot;&gt;i&lt;/i&gt;&lt;span class=&quot;sr&quot;&gt;，查看上限怎麼計算&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;&#x27;)+
+      (S.limTip?&#x27;&lt;div class=&quot;limtip&quot; id=&quot;limTip&quot;&gt;可用上限取下列兩者較小者：&lt;br&gt;・扣款帳戶可用餘額 TWD &#x27;+money(bal(),0)+&#x27;&lt;br&gt;・今日剩餘結匯額度 TWD &#x27;+money(room(),0)+&#x27;（每日累計需未達新臺幣 50 萬元）&lt;br&gt;再以優惠匯率 &#x27;+rate().toFixed(3)+&#x27; 換算為美元。&lt;/div&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;meta&quot;&gt;&lt;span id=&quot;cmpT&quot;&gt;比較 &#x27;+ps.length+&#x27; 項方案，選一個承作&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;lnk&quot; data-go=&quot;1&quot;&gt;調整方案 ›&lt;/button&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;clist&quot; role=&quot;radiogroup&quot; aria-labelledby=&quot;cmpT&quot;&gt;&#x27;+ps.map(function(p){var it=interest(p),on=cp===p;
         return &#x27;&lt;label class=&quot;crow&#x27;+(on?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;cmp&quot; value=&quot;&#x27;+p.id+&#x27;&quot;&#x27;+(on?&#x27; checked&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+
@@ -733,10 +749,10 @@ body{background:var(--wash)}
       &#x27;&lt;div class=&quot;int-hero&quot;&gt;&lt;span&gt;預估到期利息&lt;/span&gt;&lt;strong&gt;USD &#x27;+money(it)+&#x27;&lt;/strong&gt;&lt;small&gt;≈ TWD &#x27;+money(it*r,0)+&#x27;・到期本息 USD &#x27;+money(S.amt+it)+&#x27;&lt;/small&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;box&quot;&gt;&lt;dl class=&quot;sum&quot;&gt;&#x27;+
         row(&#x27;新臺幣扣款金額&#x27;,&#x27;&lt;span class=&quot;hl&quot;&gt;TWD &#x27;+money(twd,0)+&#x27;&lt;/span&gt;&#x27;,&#x27;&#x27;)+
-        row(&#x27;優惠匯率&#x27;,r.toFixed(3)+&#x27;&lt;small&gt;即期賣出匯率 &#x27;+H().spot+(exp?&#x27;・報價已逾時&#x27;:&#x27;・報價已鎖定&#x27;)+&#x27;&lt;/small&gt;&#x27;,&#x27;&#x27;)+
+        row(&#x27;優惠匯率&#x27;,r.toFixed(3)+&#x27;&lt;small&gt;即期賣出 &#x27;+H().spot+(exp?&#x27;・已逾時&#x27;:&#x27;・已鎖定&#x27;)+&#x27;&lt;/small&gt;&#x27;,&#x27;&#x27;)+
         row(&#x27;定存外幣金額&#x27;,&#x27;USD &#x27;+money(S.amt),&#x27;2&#x27;)+
-        row(&#x27;新臺幣扣款帳戶&#x27;,ACCTS[S.acct].no+&#x27;&lt;small&gt;可用餘額 TWD &#x27;+money(bal(),0)+&#x27;&lt;/small&gt;&#x27;,&#x27;2&#x27;)+
-        row(&#x27;轉入外匯綜合存款帳戶&#x27;,FX_ACCT,&#x27;&#x27;)+
+        row(&#x27;新臺幣扣款帳戶&#x27;,mask(ACCTS[S.acct].no)+&#x27;&lt;small&gt;可用餘額 TWD &#x27;+money(bal(),0)+&#x27;&lt;/small&gt;&#x27;,&#x27;2&#x27;)+
+        row(&#x27;轉入外匯綜合存款帳戶&#x27;,mask(FX_ACCT),&#x27;&#x27;)+
         row(&#x27;定存期別&#x27;,p.name,&#x27;2&#x27;)+
         row(&#x27;定存優惠利率&#x27;,p.rate.toFixed(3)+&#x27;%&lt;small&gt;目前牌告利率 &#x27;+p.board.toFixed(3)+&#x27;%・固定利率&lt;/small&gt;&#x27;,&#x27;&#x27;)+
         row(&#x27;付息方式&#x27;,&#x27;到期付息&lt;small&gt;本方案僅提供到期付息&lt;/small&gt;&#x27;,&#x27;&#x27;)+
@@ -750,10 +766,10 @@ body{background:var(--wash)}
         row(&#x27;申報義務人&#x27;,&#x27;王＊明（A12＊＊＊＊789）&#x27;,&#x27;&#x27;)+row(&#x27;結匯性質&#x27;,&#x27;存入外匯存款（結購）&#x27;,&#x27;&#x27;)+row(&#x27;結匯金額&#x27;,&#x27;TWD &#x27;+money(twd,0),&#x27;&#x27;)+
       &#x27;&lt;/dl&gt;&lt;button type=&quot;button&quot; class=&quot;more&quot; data-decl aria-expanded=&quot;&#x27;+S.decl+&#x27;&quot;&gt;&#x27;+(S.decl?&#x27;收合法規說明&#x27;:&#x27;查看法規說明&#x27;)+CHEV+&#x27;&lt;/button&gt;&#x27;+
       (S.decl?&#x27;&lt;ul class=&quot;law&quot;&gt;&lt;li&gt;依管理外匯條例，新臺幣 50 萬元以上之等值外匯收支或交易，應經由銀行向中央銀行申報；申報不實者，中央銀行得查詢。&lt;/li&gt;&lt;li&gt;故意不為申報或申報不實者，處新臺幣 3 萬元以上 60 萬元以下罰鍰。&lt;/li&gt;&lt;li&gt;行動銀行僅承作每日累計未達等值新臺幣 50 萬元之結匯交易；每筆結匯皆顯示本申報書，累計達 50 萬元時始向中央銀行申報。&lt;/li&gt;&lt;li&gt;網路外匯交易不提供交易水單，如需水單請洽臨櫃辦理。&lt;/li&gt;&lt;/ul&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;&#x27;+(S.errs.agree?&#x27;bad-a&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;label class=&quot;agree&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;agree&quot;&#x27;+(S.agree?&#x27; checked&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span&gt;我確認申報書內容無誤，並同意 &lt;a href=&quot;#&quot; data-noop&gt;外匯定期存款約定事項&lt;/a&gt; 及 &lt;a href=&quot;#&quot; data-noop&gt;匯率風險說明&lt;/a&gt;，了解中途解約將依規定計息。&lt;/span&gt;&lt;/label&gt;&#x27;+(S.errs.agree?&#x27;&lt;p class=&quot;err&quot; role=&quot;alert&quot;&gt;請勾選同意後再承作&lt;/p&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;agw&#x27;+(S.errs.agree?&#x27; bad-a&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;label class=&quot;agree&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;agree&quot;&#x27;+(S.agree?&#x27; checked&#x27;:&#x27;&#x27;)+(S.errs.agree?&#x27; aria-invalid=&quot;true&quot; aria-describedby=&quot;agE&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span&gt;我確認申報書內容無誤，並同意 &lt;a href=&quot;#&quot; data-noop&gt;外匯定期存款約定事項&lt;/a&gt; 及 &lt;a href=&quot;#&quot; data-noop&gt;匯率風險說明&lt;/a&gt;，了解中途解約將依規定計息。&lt;/span&gt;&lt;/label&gt;&#x27;+(S.errs.agree?&#x27;&lt;p class=&quot;aghint&quot; id=&quot;agE&quot; role=&quot;alert&quot;&gt;&lt;span class=&quot;agp&quot;&gt;&lt;span class=&quot;agi&quot; aria-hidden=&quot;true&quot;&gt;!&lt;/span&gt;請勾選同意事項&lt;/span&gt;&lt;/p&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;foot&quot;&gt;&#x27;+(exp?&#x27;&lt;div class=&quot;cd exp&quot; role=&quot;alert&quot;&gt;報價已逾時，已填寫的內容都保留&lt;button type=&quot;button&quot; class=&quot;requote&quot; data-requote&gt;重新取得匯率&lt;/button&gt;&lt;/div&gt;&#x27;:&#x27;&lt;div class=&quot;cd&quot; aria-live=&quot;off&quot;&gt;匯率報價保留 &lt;b id=&quot;cd&quot;&gt;&#x27;+S.left+&#x27;&lt;/b&gt; 秒，逾時可重新取得&lt;/div&gt;&#x27;)+
-      &#x27;&lt;button type=&quot;button&quot; class=&quot;cta&quot; data-confirm&#x27;+(exp?&#x27; disabled&#x27;:&#x27;&#x27;)+&#x27;&gt;確認承作&lt;/button&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;button type=&quot;button&quot; class=&quot;cta&quot; data-confirm&#x27;+(exp?&#x27; disabled&#x27;:(S.mat&amp;&amp;S.agree?&#x27;&#x27;:&#x27; aria-disabled=&quot;true&quot;&#x27;))+&#x27;&gt;確認承作&lt;/button&gt;&lt;/div&gt;&#x27;+
     (S.otp?&#x27;&lt;div class=&quot;scrim&quot; data-scrim&gt;&lt;div class=&quot;sheet&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;fidoT&quot;&gt;&#x27;+
       &#x27;&lt;div class=&quot;fido&#x27;+(S.otp===&#x27;scan&#x27;?&#x27; scan&#x27;:&#x27;&#x27;)+&#x27;&quot; aria-hidden=&quot;true&quot;&gt;&lt;svg viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;&gt;&lt;path d=&quot;M7 16V11a4 4 0 0 1 4-4h5M32 7h5a4 4 0 0 1 4 4v5M41 32v5a4 4 0 0 1-4 4h-5M16 41h-5a4 4 0 0 1-4-4v-5&quot;/&gt;&lt;path d=&quot;M17 18v3M31 18v3&quot;/&gt;&lt;path d=&quot;M24 18v8h-2.5&quot;/&gt;&lt;path d=&quot;M18 31.5c3.5 3 8.5 3 12 0&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;h3 id=&quot;fidoT&quot; style=&quot;text-align:center&quot;&gt;&#x27;+(S.otp===&#x27;scan&#x27;?&#x27;驗證中…&#x27;:&#x27;金融 FIDO 驗證&#x27;)+&#x27;&lt;/h3&gt;&#x27;+
@@ -807,13 +823,14 @@ body{background:var(--wash)}
     if(t.hasAttribute(&#x27;data-requote&#x27;)){S.q=S.q?0:0.004;S.left=60;toast(&#x27;已重新取得匯率 &#x27;+rate().toFixed(3)+&#x27;，請確認新臺幣扣款金額&#x27;);render(&#x27;[data-confirm]&#x27;);return}
     if(t.hasAttribute(&#x27;data-confirm&#x27;)){
       S.errs={mat:!S.mat,agree:!S.agree};
-      if(S.errs.mat||S.errs.agree){render();var tgt=S.errs.mat?&#x27;#matBox input&#x27;:&#x27;#agree&#x27;;var el=app.querySelector(tgt);el.scrollIntoView({block:&#x27;center&#x27;});el.focus({preventScroll:true});return}
+      if(S.errs.mat||S.errs.agree){render();var tgt=S.errs.mat?&#x27;#matBox input&#x27;:&#x27;#agree&#x27;;var el=app.querySelector(tgt);el.scrollIntoView({block:&#x27;center&#x27;,behavior:&#x27;smooth&#x27;});el.focus({preventScroll:true});return}
       S.otp=&#x27;ask&#x27;;render(&#x27;[data-verify]&#x27;);return}
     if(t.hasAttribute(&#x27;data-cancel&#x27;)){S.otp=false;render(&#x27;[data-confirm]&#x27;);return}
     if(t.hasAttribute(&#x27;data-verify&#x27;)){S.otp=&#x27;scan&#x27;;render();setTimeout(function(){if(S.otp!==&#x27;scan&#x27;)return;S.otp=false;commit();go(4)},1400);return}
     if(t.hasAttribute(&#x27;data-remind&#x27;)){S.remind=!S.remind;if(S.remind)toast(&#x27;將於 &#x27;+fmtD(new Date(addM(TODAY,P.find(function(x){return x.id===S.pick}).m).getTime()-7*864e5))+&#x27; 推播提醒&#x27;);render();return}
     if(t.hasAttribute(&#x27;data-detail&#x27;)){toast(&#x27;原型示意：將前往「定期存款查詢/變更/解約」&#x27;);render();return}
-    if(t.hasAttribute(&#x27;data-again&#x27;)){var keep=S.sel.slice(),h=S.holdings;init();S.sel=keep;S.holdings=h;S.home=false;S.heldOpen=true;go(1);return}
+    if(t.hasAttribute(&#x27;data-again&#x27;)){var h=S.holdings,hr=S.hours;init();S.holdings=h;S.hours=hr;S.home=false;S.heldOpen=true;go(1);return}
+    if(t.hasAttribute(&#x27;data-limtip&#x27;)){S.limTip=!S.limTip;render(&#x27;[data-limtip]&#x27;);return}
     if(t.hasAttribute(&#x27;data-held&#x27;)){S.heldOpen=!S.heldOpen;render(&#x27;[data-held]&#x27;);return}
   });
   app.addEventListener(&#x27;change&#x27;,function(e){
@@ -821,7 +838,7 @@ body{background:var(--wash)}
     if(t.dataset.sel){var id=t.dataset.sel;S.sel=t.checked?S.sel.concat(id):S.sel.filter(function(x){return x!==id});render(&#x27;[data-sel=&quot;&#x27;+id+&#x27;&quot;]&#x27;);return}
     if(t.id===&#x27;acct&#x27;){S.acct=Number(t.value);render(&#x27;#acct&#x27;);return}
     if(t.name===&#x27;cmp&#x27;){S.cmpPick=t.value;render(&#x27;input[name=cmp][value=&#x27;+t.value+&#x27;]&#x27;);return}
-    if(t.name===&#x27;mat&#x27;){S.mat=t.value;if(S.errs.mat){S.errs.mat=false;render(&#x27;input[name=mat][value=&#x27;+t.value+&#x27;]&#x27;)}return}
+    if(t.name===&#x27;mat&#x27;){S.mat=t.value;S.errs.mat=false;render(&#x27;input[name=mat][value=&#x27;+t.value+&#x27;]&#x27;);return}
     if(t.id===&#x27;agree&#x27;){S.agree=t.checked;if(S.errs.agree)S.errs.agree=false;render(&#x27;#agree&#x27;);return}
   });
   app.addEventListener(&#x27;input&#x27;,function(e){
