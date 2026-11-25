@@ -730,25 +730,23 @@ html.pw-locked body{visibility:hidden}
             <div class="form-card">
               <div class="card-title">帳號與交易方向</div>
               <div class="form-group">
-                <label class="form-label">扣款／存入新臺幣帳號</label>
+                <label class="form-label">外匯綜合存款帳號</label>
+                <select class="form-select" id="foreignAccount">
+                  <option value="012-007-***-482">外匯綜存 012-007-***-482 (USD)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">新臺幣帳號</label>
                 <select class="form-select" id="twdAccount">
                   <option value="012-004-***-886">活儲 012-004-***-886 (NT$ 628,410)</option>
                   <option value="012-001-***-123">活存 012-001-***-123 (NT$ 150,000)</option>
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">存入／扣款外幣帳號</label>
-                <select class="form-select" id="foreignAccount">
-                  <option value="012-007-***-482">外匯綜存 012-007-***-482 (USD)</option>
-                  <option value="012-001-***-936">外幣綜存 012-001-***-936 (JPY)</option>
-                  <option value="012-001-***-104">外幣活存 012-001-***-104 (EUR)</option>
-                </select>
-              </div>
-              <div class="form-group">
                 <label class="form-label">交易方向</label>
                 <select class="form-select" id="tradeDirection">
-                  <option value="buy">結購（新臺幣買入外幣）</option>
-                  <option value="sell">結售（外幣賣出換臺幣）</option>
+                  <option value="buy" selected>結購（扣新臺幣買外匯）</option>
+                  <option value="sell">結售（賣外匯換臺幣）</option>
                 </select>
               </div>
             </div>
@@ -768,14 +766,14 @@ html.pw-locked body{visibility:hidden}
 
               <!-- 每週專用設定 -->
               <div class="form-group" id="weeklyGroup" style="display: none;">
-                <label class="form-label">每週執行日</label>
-                <select class="form-select" id="weekDaySelect" onchange="calculateExecutions()">
-                  <option value="1">每週一</option>
-                  <option value="2">每週二</option>
-                  <option value="3">每週三</option>
-                  <option value="4">每週四</option>
-                  <option value="5">每週五</option>
-                </select>
+                <label class="form-label">每週執行日（可複選）</label>
+                <div class="chips-grid">
+                  <label class="chip-item"><input type="checkbox" name="wday" value="1" onchange="toggleChip(this)"> 週一</label>
+                  <label class="chip-item"><input type="checkbox" name="wday" value="2" onchange="toggleChip(this)"> 週二</label>
+                  <label class="chip-item"><input type="checkbox" name="wday" value="3" onchange="toggleChip(this)"> 週三</label>
+                  <label class="chip-item"><input type="checkbox" name="wday" value="4" onchange="toggleChip(this)"> 週四</label>
+                  <label class="chip-item"><input type="checkbox" name="wday" value="5" onchange="toggleChip(this)"> 週五</label>
+                </div>
               </div>
 
               <!-- 每月專用設定 -->
@@ -842,7 +840,10 @@ html.pw-locked body{visibility:hidden}
             </div>
 
             <div class="notice-box">
-              <b>匯率說明：</b>預約換匯以各交易日營業時間牌告匯率執行。如遇非營業日，則交易不執行。
+              <b>說明：</b><br>
+              1.預約換匯以各交易日營業時間牌告匯率執行。如遇非營業日，則交易不執行。<br>
+              2.每一幣別僅能預約一筆交易。<br>
+              3.本功能不開放修改，若需修改，則請取消交易後再重新預約。
             </div>
 
             <button class="btn-submit" onclick="submitReservation()">確認建立預約</button>
@@ -1036,9 +1037,13 @@ html.pw-locked body{visibility:hidden}
           if (d.getDay() !== 0 && d.getDay() !== 6) count++;
         }
       } else if (type === 'weekly') {
-        const targetDay = Number(document.getElementById('weekDaySelect').value);
+        const checkedWDays = [...document.querySelectorAll('input[name="wday"]:checked')].map(x => Number(x.value));
+        if (checkedWDays.length === 0) {
+          calcBox.innerHTML = '<span style="color:#dc2626;">請至少勾選一個每週執行日</span>';
+          return;
+        }
         for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-          if (d.getDay() === targetDay) count++;
+          if (checkedWDays.includes(d.getDay())) count++;
         }
       } else if (type === 'monthly') {
         const checkedDays = [...document.querySelectorAll('input[name="mday"]:checked')].map(x => Number(x.value));
@@ -1060,8 +1065,21 @@ html.pw-locked body{visibility:hidden}
     function submitReservation() {
       const type = document.getElementById('cycleType').value;
       const amount = Number(document.getElementById('amount').value);
+      const currency = document.getElementById('currency').value;
+
       if (!amount || amount <= 0) {
         toast('請輸入大於 0 的外幣金額');
+        return;
+      }
+
+      if (amount * 32 < 1000) {
+        toast('交易金額需大於等於等值新臺幣1000元');
+        return;
+      }
+
+      const exists = bookings.some(b => b.currency === currency);
+      if (exists) {
+        toast(`每一幣別僅能預約一筆交易，目前已有 ${currency} 的預約`);
         return;
       }
 
@@ -1072,7 +1090,12 @@ html.pw-locked body{visibility:hidden}
         desc = '連續營業日預約';
       } else if (type === 'weekly') {
         const wTexts = ['日', '一', '二', '三', '四', '五', '六'];
-        desc = `每週${wTexts[document.getElementById('weekDaySelect').value]}`;
+        const checkedWDays = [...document.querySelectorAll('input[name="wday"]:checked')].map(x => Number(x.value));
+        if (checkedWDays.length === 0) {
+          toast('請至少選擇一個每週執行日');
+          return;
+        }
+        desc = `每週${checkedWDays.map(d => wTexts[d]).join('、')}`;
       } else if (type === 'monthly') {
         const checkedDays = [...document.querySelectorAll('input[name="mday"]:checked')].map(x => x.value);
         if (checkedDays.length === 0) {
@@ -1086,7 +1109,7 @@ html.pw-locked body{visibility:hidden}
       const newRecord = {
         id: newId,
         direction: document.getElementById('tradeDirection').value === 'buy' ? '結購' : '結售',
-        currency: document.getElementById('currency').value,
+        currency: currency,
         amount: amount,
         cycleType: type,
         cycleDesc: desc,
@@ -1181,11 +1204,16 @@ html.pw-locked body{visibility:hidden}
       document.getElementById('tradeDirection').selectedIndex = 0;
       
       document.getElementById('cycleType').value = 'monthly';
-      document.getElementById('weekDaySelect').selectedIndex = 0;
       
       document.getElementById('startDate').value = '2026-11-01';
       document.getElementById('endDate').value = '2026-12-31';
       
+      // 還原每週指定日的勾選狀態
+      document.querySelectorAll('input[name="wday"]').forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.parentElement.classList.remove('active');
+      });
+
       // 還原每月指定日的勾選狀態（預設皆為不勾選）
       document.querySelectorAll('input[name="mday"]').forEach(checkbox => {
         checkbox.checked = false;
@@ -1388,6 +1416,54 @@ html.pw-locked body{visibility:hidden}
     window.addEventListener('load',function(){ if(mq.matches){ fit(); setTimeout(fit,600); } });
   }
   if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+<style id="booking-home-flow-style">
+/* 模擬登入後首頁與功能入口（保留原預約換匯內容） */
+.phone-screen{position:relative}.booking-home{position:absolute;inset:0;z-index:30;background:#f1f1f2;color:#29282c;overflow:auto;font-family:"Microsoft JhengHei","PingFang TC",system-ui,sans-serif}.booking-home[hidden]{display:none!important}.bh-hero{background:linear-gradient(112deg,#a5003a,#d7184d 62%,#ee3c5f);color:#fff;padding-bottom:22px}.bh-status{height:45px;padding:11px 18px 0;box-sizing:border-box;display:flex;justify-content:space-between;font-size:13px;font-weight:900}.bh-nav{display:flex;align-items:center;gap:12px;padding:8px 15px 12px}.bh-menu{width:45px;height:45px;border:2px solid #fff;background:#fff;color:#be0c44;border-radius:12px;font-size:28px;font-weight:900;line-height:1;cursor:pointer}.bh-greeting{flex:1;font-size:20px;font-weight:900}.bh-logout{border:0;background:#990c38;color:#fff;border-radius:22px;padding:10px 14px;font-weight:800}.bh-short{display:flex;justify-content:space-around;text-align:center;font-size:12px;font-weight:800;padding:17px 4px 23px}.bh-short i{display:block;font-size:35px;font-style:normal;line-height:1;margin-bottom:9px}.bh-carousel{display:flex;gap:15px;padding:0 15px 18px;overflow:hidden}.bh-card{flex:0 0 88%;min-height:205px;background:#fff;border-radius:25px;padding:19px;box-shadow:0 6px 14px #5b293422}.bh-card h2{font-size:19px;margin:0 0 19px}.bh-card h2 b{float:right;color:#d12054;font-size:16px}.bh-amount{font-size:31px;font-weight:900;margin:4px 0 20px}.bh-line{height:1px;background:#ddd;margin:8px 0 17px}.bh-dots{text-align:center;font-size:20px;letter-spacing:5px;color:#b9b9b9;margin:-11px 0 17px}.bh-dots b{color:#555}.bh-notice{margin:0 15px 19px;background:#fff;border-radius:15px;padding:14px;font-size:13px;font-weight:800}.bh-notice span{color:#d12255;font-size:20px}.bh-tabs{margin:0 15px;background:#ddd;border-radius:22px;padding:6px;display:flex;text-align:center;font-weight:900}.bh-tabs span,.bh-tabs b{flex:1;padding:8px 2px}.bh-tabs b{background:#fff;color:#bf1145;border-radius:18px}.bh-rate{margin:14px 15px 0;background:#fff}.bh-rate-head,.bh-rate-row{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:4px;padding:10px}.bh-rate-head{background:#f1f1f2;font-weight:900}.bh-rate-row{border-bottom:1px solid #ddd;font-weight:800;padding:16px 10px}.bh-rate-row span:nth-child(n+2){text-align:center;font-size:16px}.bh-rate-row small{display:block;color:#888}.bh-bottom{position:sticky;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:10px 4px 13px;font-size:11px;text-align:center;color:#999;font-weight:800}.bh-bottom button{border:0;background:transparent;color:inherit;font:inherit;font-weight:800;cursor:pointer}.bh-bottom b{display:block;font-size:22px;line-height:1.2}.bh-bottom .active{color:#c91248}.bh-drawer{position:absolute;inset:0;z-index:40;background:#0008}.bh-panel{width:86%;height:100%;background:#fff;overflow:auto}.bh-panel-head{padding:20px;border-bottom:1px solid #ddd;font-size:21px;font-weight:900}.bh-panel-head span{color:#c91f51;margin-right:12px}.bh-row,.bh-choice{width:100%;border:0;border-bottom:1px solid #ddd;background:#fff;padding:20px;text-align:left;color:#29282c;font-size:18px;font-weight:800;cursor:pointer}.bh-row span{color:#c91f51;margin-right:13px}.bh-row b{float:right;color:#bbb}.bh-foreign{background:#f5f5f5}.bh-foreign-title{padding:18px 20px 12px;color:#c91f51;font-weight:900;display:flex;justify-content:space-between}.bh-choice{padding-left:55px;font-size:17px}.bh-choice.primary{color:#a40037}.bh-choice-screen{position:absolute;inset:0;background:#f4f5f6;z-index:41;padding:17px}.bh-choice-screen h2{font-size:21px;margin:16px 0 7px}.bh-choice-screen p{font-size:13px;color:#68707b;margin:0 0 18px}.bh-back{border:0;background:none;color:#9a0036;font-size:16px;font-weight:800;padding:6px 0;cursor:pointer}.bh-choice-card{width:100%;padding:18px;border:1px solid #e1d8dc;border-radius:14px;background:#fff;text-align:left;margin:10px 0;cursor:pointer;font:inherit}.bh-choice-card b{display:block;font-size:17px;color:#8f1439}.bh-choice-card small{display:block;color:#69707a;margin-top:4px}
+</style>
+<script id="booking-home-flow-js">
+(function(){
+ function init(){
+  var phone=document.querySelector('.phone-screen');if(!phone)return;
+  var home=document.createElement('section');home.className='booking-home';home.id='booking-home';
+  home.innerHTML='<div class="bh-hero"><div class="bh-status"><span>9:14 ◢</span><span>▮▮▮ 4G　82%</span></div><div class="bh-nav"><button class="bh-menu" data-menu aria-label="開啟服務選單">☰</button><span style="font-size:25px">✉️</span><span class="bh-greeting">早安</span><button class="bh-logout">登出</button></div><div class="bh-short"><span><i>↪</i>轉帳</span><span><i>▣</i>無卡提款</span><span><i>⌁</i>臺銀支付</span></div></div><div class="bh-carousel"><section class="bh-card"><h2>新臺幣總額　◉ <b>看更多　›</b></h2><div class="bh-amount">***　<small>元</small></div><div class="bh-line"></div><strong>│ 新臺幣存款　　　　　　　　　***</strong></section><section class="bh-card"><h2>外幣總額</h2><div class="bh-amount">***</div></section></div><div class="bh-dots">● <b>●</b> ●</div><div class="bh-notice"><span>✦</span> 首次開通臺銀支付送臺灣Pay紅利500點　›</div><div class="bh-tabs"><b>即期匯率</b><span>現金匯率</span><span>黃金存摺</span></div><div class="bh-rate"><div class="bh-rate-head"><span>幣別</span><span>本行買入</span><span>本行賣出</span></div><div class="bh-rate-row"><span>🇺🇸　美金<small>　　USD</small></span><span>32.88</span><span>32.98　⌁</span></div><div class="bh-rate-row"><span>🇯🇵　日圓<small>　　JPY</small></span><span>0.2051</span><span>0.2091　⌁</span></div></div><div class="bh-bottom"><span class="active"><b>⌂</b>首頁</span><span><b>▥</b>投資理財</span><button type="button" data-trade><b>◎</b>買賣外幣</button><span><b>↔</b>轉帳／繳費稅</span></div>';
+  phone.appendChild(home);
+  function openChoices(){var c=document.createElement('div');c.className='bh-choice-screen';c.innerHTML='<button class="bh-back" data-close>‹ 回首頁</button><h2>外幣交易</h2><p>請選擇欲使用的外匯服務。</p><button class="bh-choice-card"><b>即期外匯</b><small>立即以目前牌告匯率買賣外幣</small></button><button class="bh-choice-card primary" data-booking><b>預約換匯</b><small>設定指定日期或週期性換匯</small></button>';phone.appendChild(c);c.addEventListener('click',function(e){if(e.target.closest('[data-close]'))c.remove();if(e.target.closest('[data-booking]')){c.remove();home.hidden=true;}})}
+  function openMenu(){var d=document.createElement('div');d.className='bh-drawer';d.innerHTML='<div class="bh-panel"><div class="bh-panel-head"><span>￥</span>服務選單</div><button class="bh-row"><span>＄</span>新臺幣 <b>⌄</b></button><button class="bh-row"><span>▣</span>行動繳費稅</button><div class="bh-foreign"><div class="bh-foreign-title"><span>¥ 外匯</span><span>⌃</span></div><button class="bh-choice" data-trade>外幣交易</button><button class="bh-choice primary" data-booking-direct>外匯買賣-預約換匯</button><button class="bh-choice">外匯轉帳（限本行帳戶）</button><button class="bh-choice">外匯存款餘額查詢</button></div><button class="bh-row"><span>▰</span>基金理財 <b>⌄</b></button><button class="bh-row"><span>◆</span>黃金理財 <b>⌄</b></button></div>';phone.appendChild(d);d.addEventListener('click',function(e){if(e.target===d)d.remove();if(e.target.closest('[data-trade]')){d.remove();openChoices();}if(e.target.closest('[data-booking-direct]')){d.remove();home.hidden=true;}})}
+  home.addEventListener('click',function(e){if(e.target.closest('[data-menu]'))openMenu();if(e.target.closest('[data-trade]'))openChoices();});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script id="booking-back-navigation-js">
+(function(){
+  function phone(){return document.querySelector('.phone-screen')}
+  function home(){return document.getElementById('booking-home')}
+  function openChoice(){
+    var p=phone(),h=home();if(!p||!h)return;
+    document.querySelectorAll('.bh-choice-screen').forEach(function(x){x.remove()});
+    h.hidden=true;
+    var c=document.createElement('div');c.className='bh-choice-screen';
+    c.innerHTML='<button class="bh-back" type="button" data-back-home>‹ 回首頁</button><h2>外幣交易</h2><p>請選擇欲使用的外匯服務。</p><button class="bh-choice-card" type="button"><b>即期外匯</b><small>立即以目前牌告匯率買賣外幣</small></button><button class="bh-choice-card primary" type="button" data-return-booking><b>預約換匯</b><small>設定指定日期或週期性換匯</small></button>';
+    p.appendChild(c);
+    c.addEventListener('click',function(e){
+      if(e.target.closest('[data-back-home]')){c.remove();h.hidden=false;}
+      if(e.target.closest('[data-return-booking]')){c.remove();h.hidden=true;}
+    });
+  }
+  function init(){
+    var p=phone();if(!p)return;
+    /* 預約換匯頁 → 直接回首頁。 */
+    document.addEventListener('click',function(e){
+      var back=e.target.closest('.app-header .header-btn');
+      if(!back||!p.contains(back)||back.textContent.indexOf('‹')===-1)return;
+      var h=home();
+      e.preventDefault();e.stopImmediatePropagation();
+      if(h) h.hidden=false;
+    },true);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
 </body>
