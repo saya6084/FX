@@ -565,6 +565,55 @@ h1{margin:0;font-size:clamp(21px,2.6vw,28px);font-weight:900;text-wrap:balance}
 .nsl b{font-weight:800}
 .radios input:focus-visible{outline:none}
 .radios label:has(input:focus-visible){outline:3px solid rgba(160,0,57,.35);outline-offset:2px}
+.ap{background:#f2f2f2;gap:6px;padding-top:16px}
+.af{display:grid;gap:8px;margin-bottom:10px}
+.af&gt;label{font-size:15px;font-weight:700;color:#333}
+.asel{position:relative;color:var(--ci)}
+.asel select{appearance:none;-webkit-appearance:none;width:100%;height:46px;border:1px solid #d6d6d6;border-radius:10px;background:#fff;padding:0 40px 0 14px;font:inherit;font-size:16px;color:#222}
+.asel svg{position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none}
+.abal{margin:0;font-size:14px;color:#777;display:flex;align-items:center;gap:6px}
+.ai{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--ci);color:#fff;font-size:11px;font-weight:900;font-style:normal}
+.ainp{display:flex;height:46px;border:1px solid #d6d6d6;border-radius:10px;background:#fff;overflow:hidden}
+.ainp input{flex:1;min-width:0;border:0;padding:0 14px;font:inherit;font-size:16px;color:#222;outline:none}
+.ainp span{flex:none;width:54px;display:grid;place-items:center;background:#f0f0f0;border-left:1px solid #d6d6d6;color:#555}
+.ainp:focus-within{border-color:var(--ci)}
+.ainp.bad{border-color:var(--err)}
+.aerr{margin:0;font-size:13px;color:var(--err);font-weight:700;grid-column:1/-1}
+.abtns{display:flex;gap:8px;flex-wrap:wrap}
+.agb{border:0;border-radius:8px;background:#7c919e;color:#fff;font:inherit;font-size:14.5px;font-weight:700;padding:9px 14px;cursor:pointer}
+.agb:hover{background:#6e8390}
+.afoot{background:#fff}
+.afoot.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.adark,.agray{min-height:48px;border:0;border-radius:10px;font:inherit;font-size:17px;font-weight:800;cursor:pointer;width:100%}
+.adark{background:#3d3d3d;color:#fff}.adark:hover{background:#2b2b2b}
+.agray{background:#e6e6e6;color:#222}
+.atab{background:#fff;border:1px solid #ddd}
+.arow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;padding:11px 12px;border-bottom:1px solid #ddd;font-size:14px;align-items:start}
+.arow:last-child{border-bottom:0}
+.ak{color:#777;font-weight:700;white-space:nowrap}
+.av{text-align:right;color:#222;line-height:1.5}
+.alnk{color:#222;text-decoration:underline}
+.arad{display:grid;justify-items:end;gap:10px}
+.arad label{display:flex;align-items:center;gap:10px;font-size:15px;color:#222;cursor:pointer}
+.arad input{width:22px;height:22px;margin:0;accent-color:var(--ci)}
+.arow.rad.bad{background:#fff5f5}
+.arad label.dis{color:#b5b5b5;cursor:default}
+.arad input:focus-visible{outline:none}
+.arad label:has(input:focus-visible){outline:3px solid rgba(160,0,57,.35);outline-offset:3px;border-radius:6px}
+.arow.rad .aerr{justify-self:end}
+.aflab{font-size:15px;font-weight:700;color:#333}
+.aselb{width:100%;height:46px;border:1px solid #d6d6d6;border-radius:10px;background:#fff;padding:0 40px 0 14px;font:inherit;font-size:16px;color:#222;text-align:left;cursor:pointer}
+.aselb:focus-visible{outline:3px solid rgba(160,0,57,.35);outline-offset:1px}
+.apick-scrim{position:absolute;inset:0;z-index:20;background:rgba(0,0,0,.6);display:grid;place-items:center;padding:24px}
+.apick{width:100%;max-width:340px;background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;max-height:70%}
+.apick h3{margin:0;padding:20px 16px 18px;text-align:center;font-size:19px;font-weight:700;color:#222}
+.apl{background:#f1f1f1;overflow-y:auto;padding-left:20px}
+.apl button{display:block;width:100%;border:0;border-bottom:1px solid #cfcfcf;background:none;padding:15px 16px 15px 0;text-align:left;font:inherit;font-size:18px;color:#222;cursor:pointer}
+.apl button:last-child{border-bottom:0}
+.apl button[aria-selected=&quot;true&quot;]{color:var(--ci);font-weight:700}
+.apl button:hover{background:#e8e8e8}
+.apl button:focus-visible{outline:none;background:#e6e6e6}
+.apc{border:0;background:#fff;padding:16px;font:inherit;font-size:18px;font-weight:700;color:var(--ci);cursor:pointer}
 .banner{border-radius:12px;padding:10px 12px;font-size:12.5px;line-height:1.5;display:grid;gap:2px}
 .banner b{font-size:13.5px}
 .banner.warn{background:var(--warn-tint);color:var(--warn);border:1px solid #f1d9a8}
@@ -636,10 +685,14 @@ body{background:var(--wash)}
   var FX_ACCT=&#x27;004-6688-1024-55&#x27;;
   var TODAY=new Date(2026,10,20), NEXTBD=new Date(2026,10,23);
   var P=[
-    {id:&#x27;m1&#x27;,m:1,name:&#x27;1 個月期&#x27;,rate:3.728,board:2.0},
-    {id:&#x27;m3&#x27;,m:3,name:&#x27;3 個月期&#x27;,rate:3.968,board:2.0},
-    {id:&#x27;m6&#x27;,m:6,name:&#x27;6 個月期&#x27;,rate:4.028,board:2.0},
-    {id:&#x27;m12&#x27;,m:12,name:&#x27;1 年期&#x27;,rate:4.128,board:2.0}
+    {id:&#x27;d7&#x27;,d:7,m:0,name:&#x27;7 天期&#x27;,rate:3.308,board:2.0},
+    {id:&#x27;d14&#x27;,d:14,m:0,name:&#x27;14 天期&#x27;,rate:3.408,board:2.0},
+    {id:&#x27;d21&#x27;,d:21,m:0,name:&#x27;21 天期&#x27;,rate:3.508,board:2.0},
+    {id:&#x27;m1&#x27;,m:1,core:1,name:&#x27;1 個月期&#x27;,rate:3.728,board:2.0},
+    {id:&#x27;m3&#x27;,m:3,core:1,name:&#x27;3 個月期&#x27;,rate:3.968,board:2.0},
+    {id:&#x27;m6&#x27;,m:6,core:1,name:&#x27;6 個月期&#x27;,rate:4.028,board:2.0},
+    {id:&#x27;m9&#x27;,m:9,name:&#x27;9 個月期&#x27;,rate:4.078,board:2.0},
+    {id:&#x27;m12&#x27;,m:12,core:1,name:&#x27;1 年期&#x27;,rate:4.128,board:2.0}
   ];
   var MAT={all:[&#x27;本息續存&#x27;,&#x27;到期本金與利息一起續存&#x27;],principal:[&#x27;本金續存&#x27;,&#x27;本金續存，利息轉入外匯綜合存款&#x27;],none:[&#x27;不續存&#x27;,&#x27;到期本息轉入外匯綜合存款&#x27;]};
   var PAY={end:[&#x27;到期付息&#x27;,&#x27;到期時一次領取利息&#x27;],month:[&#x27;按月付息&#x27;,&#x27;每月將利息轉入外匯綜合存款&#x27;]};
@@ -657,6 +710,7 @@ body{background:var(--wash)}
     {s:3,l:&#x27;h&#x27;,t:&#x27;顯示優惠匯率與新臺幣扣款金額&#x27;,d:&#x27;優惠匯率對照即期賣出匯率，優惠利率對照目前牌告利率。&#x27;},
     {s:3,l:&#x27;h&#x27;,t:&#x27;續存方式不預選、改用原功能名稱&#x27;,d:&#x27;本息續存／本金續存／不續存，未選時於按鈕送出後提示。&#x27;},
     {s:3,l:&#x27;m&#x27;,t:&#x27;付息方式可選&#x27;,d:&#x27;到期付息／按月付息，樣式與續存方式一致、同樣不預選，未選時於按鈕送出後提示。&#x27;},
+    {s:3,l:&#x27;h&#x27;,t:&#x27;填寫資料／確認送出沿用現行畫面&#x27;,d:&#x27;選定方案後，帶入現行「新臺幣存款轉外匯定期存款」的填寫頁（帳戶、金額、期別已預填，可修改）與確認頁表格；按「下一步」送出後才到交易完成。&#x27;},
     {s:3,l:&#x27;h&#x27;,t:&#x27;外匯收支或交易申報書與注意事項&#x27;,d:&#x27;摘要顯示申報內容；下方「注意事項」可展開收合，內容沿用現行「新臺幣存款轉外匯定期存款」。確認後即完成承作，與現行轉定存一樣不另做驗證。&#x27;},
     {s:3,l:&#x27;m&#x27;,t:&#x27;帳務日、起息日依交易時段顯示&#x27;,d:&#x27;非營業時間交易以次一營業日為帳務日，交易當日起息。&#x27;},
     {s:4,l:&#x27;l&#x27;,t:&#x27;完成頁列出成交匯率與扣款金額&#x27;,d:&#x27;交易序號、起息日、到期日、續存與付息方式，可查看明細或設定到期提醒。&#x27;}
@@ -693,9 +747,10 @@ body{background:var(--wash)}
       &#x27;&lt;li&gt;本行(含行動銀行)網路結匯交易，僅承作無須檢附相關證明文件之交易，需檢附相關證明文件之交易請逕洽臨櫃辦理。&lt;/li&gt;&#x27;+
       &#x27;&lt;li class=&quot;red&quot;&gt;本行(含行動銀行)網路外匯交易無提供交易水單證明，若需交易水單證明請洽臨櫃辦理外匯交易。&lt;/li&gt;&#x27;+
       &#x27;&lt;li&gt;本項交易有可能因匯率、利率變動致生風險，於進行交易時，請依個人投資目標、財務狀況及風險承受度，決定是否進行交易。&lt;/li&gt;&#x27;;}
-  function commit(){var p=P.find(function(x){return x.id===S.pick});S.holdings.push({id:p.id,amt:S.amt,mat:S.mat,pay:S.pay,int:interest(p),end:addM(TODAY,p.m),no:&#x27;FXTD-20261120-&#x27;+String(4217+S.holdings.length).padStart(6,&#x27;0&#x27;)})}
+  function commit(){var p=P.find(function(x){return x.id===S.pick});S.holdings.push({id:p.id,amt:S.amt,mat:S.mat,pay:S.pay,int:interest(p),end:due(p),no:&#x27;FXTD-20261120-&#x27;+String(4217+S.holdings.length).padStart(6,&#x27;0&#x27;)})}
   function fx(r){return String(+r.toFixed(3))}
-  function interest(p){return S.amt*p.rate/100*p.m/12}
+  function interest(p){return p.d?S.amt*p.rate/100*p.d/365:S.amt*p.rate/100*p.m/12}
+  function due(p){return p.d?new Date(TODAY.getTime()+p.d*864e5):addM(TODAY,p.m)}
   function rate(){return +(H().pref+S.q).toFixed(3)}
   function bal(){return ACCTS[S.acct].bal}
   function room(){return LIM-USED}
@@ -709,15 +764,15 @@ body{background:var(--wash)}
     }
     return &#x27;&#x27;;
   }
-  function visible(){return P.filter(function(p){return S.limit===&#x27;all&#x27;||p.m&lt;=Number(S.limit)})}
+  function visible(){return P.filter(function(p){return p.core&amp;&amp;(S.limit===&#x27;all&#x27;||p.m&lt;=Number(S.limit))})}
   function banner(){
     if(S.hours===&#x27;closed&#x27;)return &#x27;&lt;div class=&quot;banner warn&quot; role=&quot;status&quot;&gt;&lt;b&gt;目前非交易時段，暫停下單&lt;/b&gt;可先比較方案。下單時段：營業日 9:00–15:30、16:30–23:00。&lt;/div&gt;&#x27;;
     if(S.hours===&#x27;after&#x27;)return &#x27;&lt;div class=&quot;banner info&quot;&gt;&lt;b&gt;非營業時間交易（16:30–23:00）&lt;/b&gt;以次一營業日為帳務日、交易當日起息，適用非營業時間匯率。&lt;/div&gt;&#x27;;
     return &#x27;&#x27;;
   }
   function bar(title,back){
-    var st=[&#x27;選擇方案&#x27;,&#x27;比較收益&#x27;,&#x27;確認下單&#x27;];
-    var steps=(S.step&gt;=1&amp;&amp;S.step&lt;=3&amp;&amp;!S.gate)?&#x27;&lt;ol class=&quot;steps&quot;&gt;&#x27;+st.map(function(t,i){var c=i+1===S.step?&#x27;on&#x27;:i+1&lt;S.step?&#x27;done&#x27;:&#x27;&#x27;;return &#x27;&lt;li class=&quot;&#x27;+c+&#x27;&quot;&#x27;+(i+1===S.step?&#x27; aria-current=&quot;step&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;b&gt;&#x27;+(i+1&lt;S.step?&#x27;✓&#x27;:i+1)+&#x27;&lt;/b&gt;&#x27;+t+&#x27;&lt;/li&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;/ol&gt;&#x27;:&#x27;&lt;div style=&quot;height:12px&quot;&gt;&lt;/div&gt;&#x27;;
+    var st=[&#x27;選擇方案&#x27;,&#x27;比較收益&#x27;,&#x27;填寫資料&#x27;,&#x27;確認送出&#x27;];
+    var steps=(S.step&gt;=1&amp;&amp;S.step&lt;=4&amp;&amp;!S.gate)?&#x27;&lt;ol class=&quot;steps&quot;&gt;&#x27;+st.map(function(t,i){var c=i+1===S.step?&#x27;on&#x27;:i+1&lt;S.step?&#x27;done&#x27;:&#x27;&#x27;;return &#x27;&lt;li class=&quot;&#x27;+c+&#x27;&quot;&#x27;+(i+1===S.step?&#x27; aria-current=&quot;step&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;b&gt;&#x27;+(i+1&lt;S.step?&#x27;✓&#x27;:i+1)+&#x27;&lt;/b&gt;&#x27;+t+&#x27;&lt;/li&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;/ol&gt;&#x27;:&#x27;&lt;div style=&quot;height:12px&quot;&gt;&lt;/div&gt;&#x27;;
     return &#x27;&lt;div class=&quot;bar&quot;&gt;&lt;div class=&quot;bar-row&quot;&gt;&#x27;+(back!=null?&#x27;&lt;button type=&quot;button&quot; class=&quot;icon-btn&quot; data-go=&quot;&#x27;+back+&#x27;&quot; aria-label=&quot;&#x27;+(back===&#x27;0&#x27;?&#x27;回選單&#x27;:&#x27;上一步&#x27;)+&#x27;&quot;&gt;‹&lt;/button&gt;&#x27;:&#x27;&lt;span&gt;&lt;/span&gt;&#x27;)+&#x27;&lt;h2&gt;&#x27;+title+&#x27;&lt;/h2&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&#x27;+steps+&#x27;&lt;/div&gt;&#x27;;
   }
   function vHome(){
@@ -784,45 +839,55 @@ body{background:var(--wash)}
         return &#x27;&lt;label class=&quot;crow&#x27;+(on?&#x27; on&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;cmp&quot; value=&quot;&#x27;+p.id+&#x27;&quot;&#x27;+(on?&#x27; checked&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+
           &#x27;&lt;span class=&quot;cn&quot;&gt;&#x27;+p.name+(ps.length&gt;1&amp;&amp;p===top?&#x27;&lt;span class=&quot;badge&quot;&gt;年利率最高&lt;/span&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/span&gt;&#x27;+
           &#x27;&lt;span class=&quot;cv&quot;&gt;&lt;small&gt;到期利息&lt;/small&gt;&#x27;+(e?&#x27;—&#x27;:&#x27;USD &#x27;+money(it))+&#x27;&lt;/span&gt;&#x27;+
-          &#x27;&lt;span class=&quot;cs&quot;&gt;年利率 &#x27;+p.rate.toFixed(3)+&#x27;%・&#x27;+fmtD(addM(TODAY,p.m))+&#x27; 到期&lt;/span&gt;&lt;/label&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+          &#x27;&lt;span class=&quot;cs&quot;&gt;年利率 &#x27;+p.rate.toFixed(3)+&#x27;%・&#x27;+fmtD(due(p))+&#x27; 到期&lt;/span&gt;&lt;/label&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
       (cp&amp;&amp;!e?&#x27;&lt;dl class=&quot;cdet&quot; aria-live=&quot;polite&quot;&gt;&lt;div&gt;&lt;dt&gt;到期本息&lt;/dt&gt;&lt;dd&gt;USD &#x27;+money(S.amt+interest(cp))+&#x27;&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;利息約合新臺幣&lt;/dt&gt;&lt;dd&gt;TWD &#x27;+money(interest(cp)*rate(),0)+&#x27;&lt;/dd&gt;&lt;/div&gt;&#x27;+
         ps.filter(function(p){return p!==cp}).map(function(p){var d=interest(cp)-interest(p);return &#x27;&lt;div&gt;&lt;dt&gt;比 &#x27;+p.name+&#x27;&lt;/dt&gt;&lt;dd class=&quot;&#x27;+(d&gt;=0?&#x27;up&#x27;:&#x27;dn&#x27;)+&#x27;&quot;&gt;&#x27;+(d&gt;=0?&#x27;+&#x27;:&#x27;−&#x27;)+&#x27; USD &#x27;+money(Math.abs(d))+&#x27;&lt;/dd&gt;&lt;/div&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;/dl&gt;&#x27;:&#x27;&#x27;)+
       &#x27;&lt;p class=&quot;note&quot;&gt;新臺幣扣款以目前&#x27;+(S.hours===&#x27;after&#x27;?&#x27;非營業時間&#x27;:&#x27;&#x27;)+&#x27;優惠匯率估算。到期若換回新臺幣，實際金額依當時匯率而定，可能有匯差損失。&lt;/p&gt;&#x27;+
     &#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;foot&quot;&gt;&#x27;+cta+&#x27;&lt;/div&gt;&#x27;;
   }
+  var CHEVD=&#x27;&lt;svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 20 20&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M5 7.5l5 5 5-5&quot;/&gt;&lt;/svg&gt;&#x27;;
   function v3(){
-    var p=P.find(function(x){return x.id===S.pick}),it=interest(p),r=rate(),twd=Math.round(S.amt*r);
-    var acctD=S.hours===&#x27;after&#x27;?NEXTBD:TODAY;
-    return bar(&#x27;確認下單&#x27;,&#x27;2&#x27;)+
-    &#x27;&lt;div class=&quot;body&quot; id=&quot;b3&quot;&gt;&#x27;+
-      &#x27;&lt;div class=&quot;int-hero&quot;&gt;&lt;span&gt;預估到期利息&lt;/span&gt;&lt;strong&gt;USD &#x27;+money(it)+&#x27;&lt;/strong&gt;&lt;small&gt;≈ TWD &#x27;+money(it*r,0)+&#x27;・到期本息 USD &#x27;+money(S.amt+it)+&#x27;&lt;/small&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;box&quot;&gt;&lt;dl class=&quot;sum&quot;&gt;&#x27;+
-        row(&#x27;新臺幣扣款金額&#x27;,&#x27;&lt;span class=&quot;hl&quot;&gt;TWD &#x27;+money(twd,0)+&#x27;&lt;/span&gt;&#x27;,&#x27;&#x27;)+
-        row(&#x27;優惠匯率&#x27;,fx(r)+&#x27;&lt;small&gt;即期賣出 &#x27;+H().spot+&#x27;&lt;/small&gt;&#x27;,&#x27;&#x27;)+
-        row(&#x27;定存外幣金額&#x27;,&#x27;USD &#x27;+money(S.amt),&#x27;2&#x27;)+
-        row(&#x27;新臺幣扣款帳戶&#x27;,mask(ACCTS[S.acct].no)+&#x27;&lt;small&gt;可用餘額 TWD &#x27;+money(bal(),0)+&#x27;&lt;/small&gt;&#x27;,&#x27;2&#x27;)+
-        row(&#x27;轉入外匯綜合存款帳戶&#x27;,mask(FX_ACCT),&#x27;&#x27;)+
-        row(&#x27;定存期別&#x27;,p.name,&#x27;2&#x27;)+
-        row(&#x27;定存優惠利率&#x27;,p.rate.toFixed(3)+&#x27;%&lt;small&gt;目前牌告利率 &#x27;+p.board.toFixed(1)+&#x27;%&lt;/small&gt;&#x27;,&#x27;&#x27;)+
-        row(&#x27;帳務日／起息日&#x27;,fmtD(acctD)+&#x27;／&#x27;+fmtD(TODAY)+(S.hours===&#x27;after&#x27;?&#x27;&lt;small&gt;非營業時間交易，帳務日為次一營業日&lt;/small&gt;&#x27;:&#x27;&#x27;),&#x27;&#x27;)+
-        row(&#x27;到期日&#x27;,fmtD(addM(TODAY,p.m)),&#x27;&#x27;)+
-      &#x27;&lt;/dl&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;box&#x27;+(S.errs.mat?&#x27; bad&#x27;:&#x27;&#x27;)+&#x27;&quot; id=&quot;matBox&quot;&gt;&lt;p class=&quot;cap&quot; id=&quot;matT&quot;&gt;續存方式 &lt;span class=&quot;req&quot;&gt;必選&lt;/span&gt;&lt;/p&gt;&lt;div class=&quot;radios&quot; role=&quot;radiogroup&quot; aria-labelledby=&quot;matT&quot;&#x27;+(S.errs.mat?&#x27; aria-describedby=&quot;matE&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+
-        [&#x27;all&#x27;,&#x27;principal&#x27;,&#x27;none&#x27;].map(function(k){return &#x27;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mat&quot; value=&quot;&#x27;+k+&#x27;&quot;&#x27;+(S.mat===k?&#x27; checked&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span&gt;&#x27;+MAT[k][0]+&#x27;&lt;small&gt;&#x27;+MAT[k][1]+&#x27;&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;&#x27;}).join(&#x27;&#x27;)+
-      &#x27;&lt;/div&gt;&#x27;+(S.errs.mat?&#x27;&lt;p class=&quot;err&quot; id=&quot;matE&quot; role=&quot;alert&quot;&gt;請選擇續存方式&lt;/p&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;box&#x27;+(S.errs.pay?&#x27; bad&#x27;:&#x27;&#x27;)+&#x27;&quot; id=&quot;payBox&quot;&gt;&lt;p class=&quot;cap&quot; id=&quot;payT&quot;&gt;付息方式 &lt;span class=&quot;req&quot;&gt;必選&lt;/span&gt;&lt;/p&gt;&lt;div class=&quot;radios&quot; role=&quot;radiogroup&quot; aria-labelledby=&quot;payT&quot;&#x27;+(S.errs.pay?&#x27; aria-describedby=&quot;payE&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+
-        [&#x27;end&#x27;,&#x27;month&#x27;].map(function(k){return &#x27;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;pay&quot; value=&quot;&#x27;+k+&#x27;&quot;&#x27;+(S.pay===k?&#x27; checked&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span&gt;&#x27;+PAY[k][0]+&#x27;&lt;small&gt;&#x27;+(k===&#x27;end&#x27;?&#x27;到期一次領取利息 USD &#x27;+money(it):&#x27;每月約 USD &#x27;+money(it/p.m)+&#x27;，轉入外匯綜合存款&#x27;)+&#x27;&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;&#x27;}).join(&#x27;&#x27;)+
-      &#x27;&lt;/div&gt;&#x27;+(S.errs.pay?&#x27;&lt;p class=&quot;err&quot; id=&quot;payE&quot; role=&quot;alert&quot;&gt;請選擇付息方式&lt;/p&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;box decl&quot;&gt;&lt;p class=&quot;cap&quot;&gt;外匯收支或交易申報書&lt;/p&gt;&lt;dl class=&quot;sum mini&quot;&gt;&#x27;+
-        row(&#x27;申報義務人&#x27;,&#x27;王＊明（A12＊＊＊＊789）&#x27;,&#x27;&#x27;)+row(&#x27;結匯性質&#x27;,&#x27;存入外匯存款（結購）&#x27;,&#x27;&#x27;)+row(&#x27;結匯金額&#x27;,&#x27;TWD &#x27;+money(twd,0),&#x27;&#x27;)+
-      &#x27;&lt;/dl&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;section class=&quot;nsec&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;nsh&quot; data-nsec aria-expanded=&quot;&#x27;+!!S.nsec+&#x27;&quot; aria-controls=&quot;nsl&quot;&gt;&lt;span class=&quot;nico&quot; aria-hidden=&quot;true&quot;&gt;&#x27;+(S.nsec?&#x27;−&#x27;:&#x27;+&#x27;)+&#x27;&lt;/span&gt;注意事項&lt;/button&gt;&#x27;+(S.nsec?&#x27;&lt;ul class=&quot;nsl&quot; id=&quot;nsl&quot;&gt;&#x27;+NOTES.map(function(x){return &#x27;&lt;li&gt;&#x27;+x+&#x27;&lt;/li&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;/ul&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/section&gt;&#x27;+
-      &#x27;&lt;div class=&quot;agw&#x27;+(S.errs.agree?&#x27; bad-a&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;label class=&quot;agree&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;agree&quot;&#x27;+(S.agree?&#x27; checked&#x27;:&#x27;&#x27;)+(S.errs.agree?&#x27; aria-invalid=&quot;true&quot; aria-describedby=&quot;agE&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span&gt;我確認申報書內容無誤，並同意 &lt;a href=&quot;#&quot; data-noop&gt;外匯定期存款約定事項&lt;/a&gt; 及 &lt;a href=&quot;#&quot; data-noop&gt;匯率風險說明&lt;/a&gt;，了解中途解約將依規定計息。&lt;/span&gt;&lt;/label&gt;&#x27;+(S.errs.agree?&#x27;&lt;p class=&quot;aghint&quot; id=&quot;agE&quot; role=&quot;alert&quot;&gt;&lt;span class=&quot;agp&quot;&gt;&lt;span class=&quot;agi&quot; aria-hidden=&quot;true&quot;&gt;!&lt;/span&gt;請勾選同意事項&lt;/span&gt;&lt;/p&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&#x27;+
+    var p=P.find(function(x){return x.id===S.pick}),e=amtErr();
+    return bar(&#x27;美元高利定存方案&#x27;,&#x27;2&#x27;)+
+    &#x27;&lt;div class=&quot;body ap&quot; id=&quot;b3&quot;&gt;&#x27;+
+      &#x27;&lt;div class=&quot;af&quot;&gt;&lt;label for=&quot;fAcct&quot;&gt;新臺幣轉出帳戶&lt;/label&gt;&lt;div class=&quot;asel&quot;&gt;&lt;select id=&quot;fAcct&quot;&gt;&#x27;+ACCTS.map(function(a,i){return &#x27;&lt;option value=&quot;&#x27;+i+&#x27;&quot;&#x27;+(S.acct===i?&#x27; selected&#x27;:&#x27;&#x27;)+&#x27;&gt;&#x27;+mask(a.no)+&#x27;&lt;/option&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;/select&gt;&#x27;+CHEVD+&#x27;&lt;/div&gt;&#x27;+
+        &#x27;&lt;p class=&quot;abal&quot;&gt;帳戶餘額： &#x27;+money(bal(),0)+&#x27; &lt;span class=&quot;ai&quot; aria-hidden=&quot;true&quot;&gt;i&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;af&quot;&gt;&lt;label for=&quot;fFx&quot;&gt;外匯綜合存款帳戶&lt;/label&gt;&lt;div class=&quot;asel&quot;&gt;&lt;select id=&quot;fFx&quot;&gt;&lt;option&gt;&#x27;+mask(FX_ACCT)+&#x27;&lt;/option&gt;&lt;/select&gt;&#x27;+CHEVD+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;af&quot;&gt;&lt;label for=&quot;fCcy&quot;&gt;定存幣別&lt;/label&gt;&lt;div class=&quot;asel&quot;&gt;&lt;select id=&quot;fCcy&quot;&gt;&lt;option&gt;USD-美金&lt;/option&gt;&lt;/select&gt;&#x27;+CHEVD+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;af&quot;&gt;&lt;label for=&quot;fAmt&quot;&gt;定存外幣金額&lt;/label&gt;&lt;div class=&quot;ainp&#x27;+(S.ferr&amp;&amp;e?&#x27; bad&#x27;:&#x27;&#x27;)+&#x27;&quot;&gt;&lt;input id=&quot;fAmt&quot; inputmode=&quot;numeric&quot; autocomplete=&quot;off&quot; value=&quot;&#x27;+(S.amt||&#x27;&#x27;)+&#x27;&quot;&#x27;+(S.ferr&amp;&amp;e?&#x27; aria-invalid=&quot;true&quot; aria-describedby=&quot;fAmtE&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span&gt;元&lt;/span&gt;&lt;/div&gt;&#x27;+
+        (S.ferr&amp;&amp;e?&#x27;&lt;p class=&quot;aerr&quot; id=&quot;fAmtE&quot; role=&quot;alert&quot;&gt;&#x27;+e+&#x27;&lt;/p&gt;&#x27;:&#x27;&#x27;)+
+        &#x27;&lt;div class=&quot;abtns&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;agb&quot; data-proto=&quot;最低存額資料&quot;&gt;轉存定期存款最低存額資料&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;agb&quot; data-proto=&quot;定存試算&quot;&gt;定存試算&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;af&quot;&gt;&lt;span class=&quot;aflab&quot; id=&quot;fTermL&quot;&gt;定存期別&lt;/span&gt;&lt;div class=&quot;asel&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;aselb&quot; data-termpick aria-haspopup=&quot;dialog&quot; aria-labelledby=&quot;fTermL fTermV&quot;&gt;&lt;span id=&quot;fTermV&quot;&gt;&#x27;+tl(p)+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;+CHEVD+&#x27;&lt;/div&gt;&#x27;+
+        &#x27;&lt;div class=&quot;abtns&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;agb&quot; data-proto=&quot;外匯存款牌告利率&quot;&gt;外匯存款牌告利率&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;section class=&quot;nsec&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;nsh&quot; data-nsec aria-expanded=&quot;&#x27;+!S.nsecC+&#x27;&quot; aria-controls=&quot;nsl&quot;&gt;&lt;span class=&quot;nico&quot; aria-hidden=&quot;true&quot;&gt;&#x27;+(S.nsecC?&#x27;+&#x27;:&#x27;−&#x27;)+&#x27;&lt;/span&gt;注意事項&lt;/button&gt;&#x27;+(S.nsecC?&#x27;&#x27;:&#x27;&lt;ul class=&quot;nsl&quot; id=&quot;nsl&quot;&gt;&#x27;+NOTES.map(function(x){return &#x27;&lt;li&gt;&#x27;+x+&#x27;&lt;/li&gt;&#x27;}).join(&#x27;&#x27;)+&#x27;&lt;/ul&gt;&#x27;)+&#x27;&lt;/section&gt;&#x27;+
     &#x27;&lt;/div&gt;&#x27;+
-    &#x27;&lt;div class=&quot;foot&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;cta&quot; data-confirm&#x27;+(S.mat&amp;&amp;S.pay&amp;&amp;S.agree?&#x27;&#x27;:&#x27; aria-disabled=&quot;true&quot;&#x27;)+&#x27;&gt;確認承作&lt;/button&gt;&lt;/div&gt;&#x27;+
-    &#x27;&#x27;;
-    function row(k,v,go){return &#x27;&lt;div&gt;&lt;dt&gt;&#x27;+k+&#x27;&lt;/dt&gt;&lt;dd&gt;&#x27;+v+&#x27;&lt;/dd&gt;&#x27;+(go?&#x27;&lt;button type=&quot;button&quot; class=&quot;edit&quot; data-go=&quot;&#x27;+go+&#x27;&quot;&gt;修改&lt;/button&gt;&#x27;:&#x27;&lt;span class=&quot;noedit&quot;&gt;&lt;/span&gt;&#x27;)+&#x27;&lt;/div&gt;&#x27;}
+    &#x27;&lt;div class=&quot;foot afoot&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;adark&quot; data-fnext&gt;下一步&lt;/button&gt;&lt;/div&gt;&#x27;+
+    (S.termPick?&#x27;&lt;div class=&quot;apick-scrim&quot; data-pickclose&gt;&lt;div class=&quot;apick&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;apT&quot;&gt;&lt;h3 id=&quot;apT&quot;&gt;請選擇定存期別&lt;/h3&gt;&lt;div class=&quot;apl&quot; role=&quot;listbox&quot; aria-labelledby=&quot;apT&quot;&gt;&#x27;+
+      P.map(function(x){return &#x27;&lt;button type=&quot;button&quot; role=&quot;option&quot; aria-selected=&quot;&#x27;+(x===p)+&#x27;&quot; data-term=&quot;&#x27;+x.id+&#x27;&quot;&gt;&#x27;+tl(x)+&#x27;&lt;/button&gt;&#x27;}).join(&#x27;&#x27;)+
+    &#x27;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;apc&quot; data-pickcancel&gt;取消&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;:&#x27;&#x27;);
+  }
+  function tl(x){return x.d?x.d+&#x27;天&#x27;:x.m+&#x27;個月&#x27;}
+  function v3b(){
+    var p=P.find(function(x){return x.id===S.pick}),r=rate(),twd=Math.round(S.amt*r);
+    return bar(&#x27;美元高利定存方案&#x27;,&#x27;3&#x27;)+
+    &#x27;&lt;div class=&quot;body ap&quot; id=&quot;b4&quot;&gt;&lt;div class=&quot;atab&quot;&gt;&#x27;+
+      tr(&#x27;新臺幣轉出帳戶&#x27;,mask(ACCTS[S.acct].no))+
+      tr(&#x27;外匯綜合存款帳戶&#x27;,mask(FX_ACCT))+
+      tr(&#x27;新臺幣轉出金額&#x27;,&#x27;新臺幣 &#x27;+money(twd,0)+&#x27; 元&#x27;)+
+      tr(&#x27;優惠匯率&#x27;,fx(r)+&#x27; (即期賣出匯率：&#x27;+H().spot+&#x27;)&#x27;)+
+      tr(&#x27;定存外幣金額&#x27;,&#x27;美金 &#x27;+money(S.amt)+&#x27; &lt;a href=&quot;#&quot; class=&quot;alnk&quot; data-proto=&quot;最低存額資料&quot;&gt;轉存定期存款最低存額資料&lt;/a&gt;&#x27;)+
+      tr(&#x27;定存期別&#x27;,tl(p)+&#x27; &lt;a href=&quot;#&quot; class=&quot;alnk&quot; data-proto=&quot;外匯存款牌告利率&quot;&gt;外匯存款牌告利率&lt;/a&gt;&#x27;)+
+      tr(&#x27;定存優惠利率&#x27;,p.rate.toFixed(3)+&#x27; (目前牌告利率：&#x27;+p.board.toFixed(1)+&#x27;)&#x27;)+
+      &#x27;&lt;div class=&quot;arow rad&#x27;+(S.errs.mat?&#x27; bad&#x27;:&#x27;&#x27;)+&#x27;&quot; id=&quot;matBox&quot;&gt;&lt;span class=&quot;ak&quot; id=&quot;matT&quot;&gt;續存方式：&lt;/span&gt;&lt;div class=&quot;arad&quot; role=&quot;radiogroup&quot; aria-labelledby=&quot;matT&quot;&gt;&#x27;+
+        [&#x27;all&#x27;,&#x27;principal&#x27;,&#x27;none&#x27;].map(function(k){return &#x27;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mat&quot; value=&quot;&#x27;+k+&#x27;&quot;&#x27;+(S.mat===k?&#x27; checked&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span&gt;&#x27;+MAT[k][0]+&#x27;&lt;/span&gt;&lt;/label&gt;&#x27;}).join(&#x27;&#x27;)+
+        (S.errs.mat?&#x27;&lt;p class=&quot;aerr&quot; role=&quot;alert&quot;&gt;請選擇續存方式&lt;/p&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;arow rad&#x27;+(S.errs.pay?&#x27; bad&#x27;:&#x27;&#x27;)+&#x27;&quot; id=&quot;payBox&quot;&gt;&lt;span class=&quot;ak&quot; id=&quot;payT&quot;&gt;付息方式：&lt;/span&gt;&lt;div class=&quot;arad&quot; role=&quot;radiogroup&quot; aria-labelledby=&quot;payT&quot;&gt;&#x27;+
+        [&#x27;end&#x27;,&#x27;month&#x27;].map(function(k){var dis=k===&#x27;month&#x27;&amp;&amp;!!p.d;return &#x27;&lt;label&#x27;+(dis?&#x27; class=&quot;dis&quot;&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;input type=&quot;radio&quot; name=&quot;pay&quot; value=&quot;&#x27;+k+&#x27;&quot;&#x27;+(S.pay===k?&#x27; checked&#x27;:&#x27;&#x27;)+(dis?&#x27; disabled&#x27;:&#x27;&#x27;)+&#x27;&gt;&lt;span&gt;&#x27;+PAY[k][0]+&#x27;&lt;/span&gt;&lt;/label&gt;&#x27;}).join(&#x27;&#x27;)+
+        (S.errs.pay?&#x27;&lt;p class=&quot;aerr&quot; role=&quot;alert&quot;&gt;請選擇付息方式&lt;/p&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;foot afoot two&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;agray&quot; data-go=&quot;3&quot;&gt;取消&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;adark&quot; data-confirm&gt;下一步&lt;/button&gt;&lt;/div&gt;&#x27;;
+    function tr(k,v){return &#x27;&lt;div class=&quot;arow&quot;&gt;&lt;span class=&quot;ak&quot;&gt;&#x27;+k+&#x27;：&lt;/span&gt;&lt;span class=&quot;av&quot;&gt;&#x27;+v+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;}
   }
   function v4(){
     var p=P.find(function(x){return x.id===S.pick}),it=interest(p),r=rate();
@@ -830,9 +895,9 @@ body{background:var(--wash)}
     return bar(&#x27;交易完成&#x27;)+
     &#x27;&lt;div class=&quot;body&quot;&gt;&#x27;+
       &#x27;&lt;div class=&quot;done-hero&quot;&gt;&lt;div class=&quot;ck&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/div&gt;&lt;h3&gt;定存承作成功&lt;/h3&gt;&lt;p&gt;交易序號 &#x27;+S.holdings[S.holdings.length-1].no+&#x27;&lt;/p&gt;&lt;/div&gt;&#x27;+
-      &#x27;&lt;div class=&quot;int-hero&quot;&gt;&lt;span&gt;&#x27;+fmtD(addM(TODAY,p.m))+&#x27; 到期，預估可領利息&lt;/span&gt;&lt;strong&gt;USD &#x27;+money(it)+&#x27;&lt;/strong&gt;&lt;small&gt;≈ TWD &#x27;+money(it*r,0)+&#x27;&lt;/small&gt;&lt;/div&gt;&#x27;+
+      &#x27;&lt;div class=&quot;int-hero&quot;&gt;&lt;span&gt;&#x27;+fmtD(due(p))+&#x27; 到期，預估可領利息&lt;/span&gt;&lt;strong&gt;USD &#x27;+money(it)+&#x27;&lt;/strong&gt;&lt;small&gt;≈ TWD &#x27;+money(it*r,0)+&#x27;&lt;/small&gt;&lt;/div&gt;&#x27;+
       &#x27;&lt;div class=&quot;box&quot;&gt;&lt;dl class=&quot;sum&quot;&gt;&#x27;+
-        q(&#x27;新臺幣扣款金額&#x27;,&#x27;TWD &#x27;+money(Math.round(S.amt*r),0))+q(&#x27;成交匯率&#x27;,fx(r))+q(&#x27;定存外幣金額&#x27;,&#x27;USD &#x27;+money(S.amt))+q(&#x27;定存期別&#x27;,p.name+&#x27;・&#x27;+p.rate.toFixed(3)+&#x27;%&#x27;)+q(&#x27;帳務日／起息日&#x27;,fmtD(acctD)+&#x27;／&#x27;+fmtD(TODAY))+q(&#x27;到期日&#x27;,fmtD(addM(TODAY,p.m)))+q(&#x27;預估到期本息&#x27;,&#x27;USD &#x27;+money(S.amt+it))+q(&#x27;續存方式&#x27;,MAT[S.mat][0])+q(&#x27;付息方式&#x27;,PAY[S.pay][0])+
+        q(&#x27;新臺幣扣款金額&#x27;,&#x27;TWD &#x27;+money(Math.round(S.amt*r),0))+q(&#x27;成交匯率&#x27;,fx(r))+q(&#x27;定存外幣金額&#x27;,&#x27;USD &#x27;+money(S.amt))+q(&#x27;定存期別&#x27;,p.name+&#x27;・&#x27;+p.rate.toFixed(3)+&#x27;%&#x27;)+q(&#x27;帳務日／起息日&#x27;,fmtD(acctD)+&#x27;／&#x27;+fmtD(TODAY))+q(&#x27;到期日&#x27;,fmtD(due(p)))+q(&#x27;預估到期本息&#x27;,&#x27;USD &#x27;+money(S.amt+it))+q(&#x27;續存方式&#x27;,MAT[S.mat][0])+q(&#x27;付息方式&#x27;,PAY[S.pay][0])+
       &#x27;&lt;/dl&gt;&lt;/div&gt;&#x27;+
     &#x27;&lt;/div&gt;&#x27;+
     &#x27;&lt;div class=&quot;foot&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;cta&quot; data-detail&gt;查看定存明細&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;btn2&quot; data-remind aria-pressed=&quot;&#x27;+S.remind+&#x27;&quot;&gt;&#x27;+(S.remind?&#x27;✓ 已設定到期前 7 天提醒&#x27;:&#x27;設定到期提醒&#x27;)+&#x27;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;ghost&quot; data-again&gt;回到美元高利定存方案&lt;/button&gt;&lt;/div&gt;&#x27;;
@@ -840,7 +905,7 @@ body{background:var(--wash)}
   }
   function render(focusSel){
     var b=app.querySelector(&#x27;.body&#x27;),st=b?b.scrollTop:0,same=app.dataset.step==String(S.step);
-    app.innerHTML=[v0,v1,v2,v3,v4][S.step]()+(S.toast?&#x27;&lt;div class=&quot;toast&quot; role=&quot;status&quot;&gt;&#x27;+esc(S.toast)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;);
+    app.innerHTML=[v0,v1,v2,v3,v3b,v4][S.step]()+(S.toast?&#x27;&lt;div class=&quot;toast&quot; role=&quot;status&quot;&gt;&#x27;+esc(S.toast)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;);
     app.dataset.step=S.step;
     var nb=app.querySelector(&#x27;.body&#x27;);if(nb&amp;&amp;same)nb.scrollTop=st;
     try{if(parent!==window&amp;&amp;parent.FD_onRender)parent.FD_onRender({step:S.step,hours:S.hours,home:S.home})}catch(e){}
@@ -850,6 +915,7 @@ body{background:var(--wash)}
   function go(n){S.step=n;S.otp=false;render();var b=app.querySelector(&#x27;.body&#x27;);if(b)b.scrollTop=0}
   var tt;function toast(m){S.toast=m;clearTimeout(tt);tt=setTimeout(function(){S.toast=&#x27;&#x27;;var t=app.querySelector(&#x27;.toast&#x27;);if(t)t.remove()},2400)}
   app.addEventListener(&#x27;click&#x27;,function(e){
+    if(e.target.hasAttribute&amp;&amp;e.target.hasAttribute(&#x27;data-pickclose&#x27;)){S.termPick=false;render(&#x27;[data-termpick]&#x27;);return}
     var t=e.target.closest(&#x27;button,a&#x27;);
     if(!t){if(e.target.closest(&#x27;[data-homebg]&#x27;)){toast(&#x27;原型示意：此區不提供操作&#x27;);render()}return}
     if(t.hasAttribute(&#x27;data-noop&#x27;)){e.preventDefault();return}
@@ -861,13 +927,18 @@ body{background:var(--wash)}
     if(t.dataset.go){go(Number(t.dataset.go));return}
     if(t.dataset.limit){S.limit=t.dataset.limit;var ids=visible().map(function(p){return p.id}),before=S.sel.length;S.sel=S.sel.filter(function(id){return ids.indexOf(id)&gt;-1});var rm=before-S.sel.length;if(rm)toast(&#x27;已移除不在範圍內的 &#x27;+rm+&#x27; 項方案&#x27;);render(&#x27;[data-limit=&quot;&#x27;+S.limit+&#x27;&quot;]&#x27;);return}
     if(t.dataset.amt){S.amt=Number(t.dataset.amt);render();return}
-    if(t.dataset.pick){S.pick=t.dataset.pick;S.agree=false;S.mat=null;S.pay=null;S.errs={};S.nsec=false;go(3);return}
-    if(t.hasAttribute(&#x27;data-nsec&#x27;)){S.nsec=!S.nsec;render(&#x27;[data-nsec]&#x27;);return}
+    if(t.dataset.pick){S.pick=t.dataset.pick;S.mat=null;S.pay=null;S.errs={};S.ferr=false;S.nsecC=false;S.termPick=false;go(3);return}
+    if(t.hasAttribute(&#x27;data-nsec&#x27;)){S.nsecC=!S.nsecC;render(&#x27;[data-nsec]&#x27;);return}
+    if(t.hasAttribute(&#x27;data-termpick&#x27;)){S.termPick=true;render(&#x27;.apl [aria-selected=true]&#x27;);return}
+    if(t.dataset.term){S.pick=t.dataset.term;if(S.pay===&#x27;month&#x27;&amp;&amp;P.find(function(x){return x.id===S.pick}).d)S.pay=null;S.termPick=false;render(&#x27;[data-termpick]&#x27;);return}
+    if(t.hasAttribute(&#x27;data-pickcancel&#x27;)){S.termPick=false;render(&#x27;[data-termpick]&#x27;);return}
+    if(t.hasAttribute(&#x27;data-fnext&#x27;)){if(amtErr()){S.ferr=true;render(&#x27;#fAmt&#x27;);return}S.ferr=false;S.mat=S.mat||null;S.errs={};go(4);return}
+    if(t.hasAttribute(&#x27;data-proto&#x27;)){e.preventDefault();toast(&#x27;原型示意：「&#x27;+t.dataset.proto+&#x27;」沿用現行功能&#x27;);render();return}
     if(t.hasAttribute(&#x27;data-confirm&#x27;)){
-      S.errs={mat:!S.mat,pay:!S.pay,agree:!S.agree};
-      if(S.errs.mat||S.errs.pay||S.errs.agree){render();var tgt=S.errs.mat?&#x27;#matBox input&#x27;:S.errs.pay?&#x27;#payBox input&#x27;:&#x27;#agree&#x27;;var el=app.querySelector(tgt);el.scrollIntoView({block:&#x27;center&#x27;,behavior:&#x27;smooth&#x27;});el.focus({preventScroll:true});return}
-      commit();go(4);return}
-    if(t.hasAttribute(&#x27;data-remind&#x27;)){S.remind=!S.remind;if(S.remind)toast(&#x27;將於 &#x27;+fmtD(new Date(addM(TODAY,P.find(function(x){return x.id===S.pick}).m).getTime()-7*864e5))+&#x27; 推播提醒&#x27;);render();return}
+      S.errs={mat:!S.mat,pay:!S.pay};
+      if(S.errs.mat||S.errs.pay){render();var el=app.querySelector(S.errs.mat?&#x27;#matBox input&#x27;:&#x27;#payBox input&#x27;);el.scrollIntoView({block:&#x27;center&#x27;,behavior:&#x27;smooth&#x27;});el.focus({preventScroll:true});return}
+      commit();go(5);return}
+    if(t.hasAttribute(&#x27;data-remind&#x27;)){S.remind=!S.remind;if(S.remind)toast(&#x27;將於 &#x27;+fmtD(new Date(due(P.find(function(x){return x.id===S.pick})).getTime()-7*864e5))+&#x27; 推播提醒&#x27;);render();return}
     if(t.hasAttribute(&#x27;data-detail&#x27;)){toast(&#x27;原型示意：將前往「定期存款查詢/變更/解約」&#x27;);render();return}
     if(t.hasAttribute(&#x27;data-again&#x27;)){var h=S.holdings,hr=S.hours;init();S.holdings=h;S.hours=hr;S.home=false;S.heldOpen=false;go(1);return}
     if(t.hasAttribute(&#x27;data-limtip&#x27;)){S.limTip=!S.limTip;render(&#x27;[data-limtip]&#x27;);return}
@@ -878,12 +949,15 @@ body{background:var(--wash)}
     if(t.dataset.sel){var id=t.dataset.sel;S.sel=t.checked?S.sel.concat(id):S.sel.filter(function(x){return x!==id});render(&#x27;[data-sel=&quot;&#x27;+id+&#x27;&quot;]&#x27;);return}
     if(t.id===&#x27;acct&#x27;){S.acct=Number(t.value);render(&#x27;#acct&#x27;);return}
     if(t.name===&#x27;cmp&#x27;){S.cmpPick=t.value;render(&#x27;input[name=cmp][value=&#x27;+t.value+&#x27;]&#x27;);return}
+    if(t.id===&#x27;fAcct&#x27;){S.acct=Number(t.value);render(&#x27;#fAcct&#x27;);return}
     if(t.name===&#x27;pay&#x27;){S.pay=t.value;S.errs.pay=false;render(&#x27;input[name=pay][value=&#x27;+t.value+&#x27;]&#x27;);return}
     if(t.name===&#x27;mat&#x27;){S.mat=t.value;S.errs.mat=false;render(&#x27;input[name=mat][value=&#x27;+t.value+&#x27;]&#x27;);return}
     if(t.id===&#x27;agree&#x27;){S.agree=t.checked;if(S.errs.agree)S.errs.agree=false;render(&#x27;#agree&#x27;);return}
   });
+  app.addEventListener(&#x27;keydown&#x27;,function(e){if(e.key===&#x27;Escape&#x27;&amp;&amp;S.termPick){S.termPick=false;render(&#x27;[data-termpick]&#x27;)}});
   app.addEventListener(&#x27;input&#x27;,function(e){
     var t=e.target;
+    if(t.id===&#x27;fAmt&#x27;){var rw=t.value.replace(/[^\d]/g,&#x27;&#x27;).slice(0,9);S.amt=rw?Number(rw):0;if(S.ferr&amp;&amp;!amtErr())S.ferr=false;render(&#x27;#fAmt&#x27;);return}
     if(t.id===&#x27;amt&#x27;){var raw=t.value.replace(/[^\d]/g,&#x27;&#x27;).slice(0,9);S.amt=raw?Number(raw):0;render(&#x27;#amt&#x27;);return}
   });
   
@@ -901,16 +975,17 @@ body{background:var(--wash)}
       if(i===2)return go(2);
       if(S.hours===&#x27;closed&#x27;)S.hours=&#x27;open&#x27;;
       if(!S.pick||S.sel.indexOf(S.pick)&lt;0)S.pick=S.sel[S.sel.length-1];
-      if(i===3){S.agree=false;S.mat=null;S.errs={};S.left=60;S.decl=false;return go(3)}
-      if(!S.mat)S.mat=&#x27;principal&#x27;;if(!S.pay)S.pay=&#x27;end&#x27;;S.agree=true;commit();go(4);
+      if(i===3){S.mat=null;S.pay=null;S.errs={};S.ferr=false;return go(3)}
+      if(i===4){S.errs={};return go(4)}
+      if(!S.mat)S.mat=&#x27;principal&#x27;;if(!S.pay)S.pay=&#x27;end&#x27;;commit();go(5);
     }
   };
   init();render();
 })();
 &lt;/script&gt;
-&lt;/body&gt;&lt;/html&gt;"></iframe></div></div></div><aside class="info lv2-info" aria-label="功能說明"><section class="info-card"><div class="tags"><span class="tag-cat">外匯定存</span><span class="platform">APP</span><span class="platform">網銀</span></div><h1>美元高利定存方案</h1><div class="rating" aria-label="開發難易度 4 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★★</span><span class="off">★</span></span></div><p>在「新臺幣存款轉外匯定期存款」之下新增的美元專屬入口：依資金可運用期間比較各天期的到期利息，選定後一次完成結匯與定存。</p><details class="more"><summary>功能特色與效益</summary><div class="more-body"><div><ul class="features"><li>以「到期利息」比較各天期，標示利息最多的方案</li><li>扣款帳戶、每日結匯未達新臺幣 50 萬元上限即時檢查</li><li>確認頁可選續存與付息方式，並整合外匯收支申報書</li><li>確認後即完成承作，回到方案頁可看到已承作的定存</li></ul></div><div class="benefit"><strong>效益｜</strong>把「試算」和「下單」合為一條流程，讓客戶先看懂能拿多少利息再承作，降低比價與重複填寫的成本。</div></div></details></section><section class="info-card flow lv2-flow"><h2>操作流程</h2><ol class="flow-list" id="flow-list"></ol><div class="fd-hours"><span class="fd-hl" id="fd-hl">模擬交易時段</span><div class="fd-seg" role="group" aria-labelledby="fd-hl"><button type="button" data-hours="open" aria-pressed="true">營業時間</button><button type="button" data-hours="after" aria-pressed="false">16:30–23:00</button><button type="button" data-hours="closed" aria-pressed="false">非交易時段</button></div></div><button class="reset" id="reset" type="button">重設</button><p class="note">利率、匯率、帳戶餘額與申報資料皆為示意數字，實際承作條件依銀行公告及交易時資訊為準。行動銀行每日結匯累計需未達新臺幣 50 萬元。</p></section></aside></main><script>
+&lt;/body&gt;&lt;/html&gt;"></iframe></div></div></div><aside class="info lv2-info" aria-label="功能說明"><section class="info-card"><div class="tags"><span class="tag-cat">外匯定存</span><span class="platform">APP</span><span class="platform">網銀</span></div><h1>美元高利定存方案</h1><div class="rating" aria-label="開發難易度 4 / 5"><span>開發難易度</span><span class="stars" aria-hidden="true"><span class="on">★★★★</span><span class="off">★</span></span></div><p>在「新臺幣存款轉外匯定期存款」之下新增的美元專屬入口：依資金可運用期間比較各天期的到期利息，選定後一次完成結匯與定存。</p><details class="more"><summary>功能特色與效益</summary><div class="more-body"><div><ul class="features"><li>以「到期利息」比較各天期，標示利息最多的方案</li><li>扣款帳戶、每日結匯未達新臺幣 50 萬元上限即時檢查</li><li>選定方案後沿用現行填寫與確認畫面，金額、期別自動帶入</li><li>確認後即完成承作，回到方案頁可看到已承作的定存</li></ul></div><div class="benefit"><strong>效益｜</strong>把「試算」和「下單」合為一條流程，讓客戶先看懂能拿多少利息再承作，降低比價與重複填寫的成本。</div></div></details></section><section class="info-card flow lv2-flow"><h2>操作流程</h2><ol class="flow-list" id="flow-list"></ol><div class="fd-hours"><span class="fd-hl" id="fd-hl">模擬交易時段</span><div class="fd-seg" role="group" aria-labelledby="fd-hl"><button type="button" data-hours="open" aria-pressed="true">營業時間</button><button type="button" data-hours="after" aria-pressed="false">16:30–23:00</button><button type="button" data-hours="closed" aria-pressed="false">非交易時段</button></div></div><button class="reset" id="reset" type="button">重設</button><p class="note">利率、匯率、帳戶餘額與申報資料皆為示意數字，實際承作條件依銀行公告及交易時資訊為準。行動銀行每日結匯累計需未達新臺幣 50 萬元。</p></section></aside></main><script>
 (function(){
-  var STEPS=[['App 首頁','點左上角選單（☰）展開功能清單'],['外匯選單','從「新臺幣存款轉外匯定期存款」下方進入'],['選擇方案','依資金可運用期間勾選天期'],['比較收益','選扣款帳戶與金額，比較到期利息'],['確認下單','選續存、付息方式並同意申報書'],['交易完成','查看結果，回方案頁可看到已承作']];
+  var STEPS=[['App 首頁','點左上角選單（☰）展開功能清單'],['外匯選單','從「新臺幣存款轉外匯定期存款」下方進入'],['選擇方案','依資金可運用期間勾選天期'],['比較收益','選扣款帳戶與金額，比較到期利息'],['填寫資料','確認扣款帳戶、金額與定存期別'],['確認送出','選擇續存、付息方式後送出'],['交易完成','查看結果，回方案頁可看到已承作']];
   var fr=document.getElementById('fd-frame'),cur=0,hours='open';
   function api(){try{return fr.contentWindow.FD}catch(e){return null}}
   function flow(){document.getElementById('flow-list').innerHTML=STEPS.map(function(x,i){return '<li><button type="button" class="flow-btn" data-step="'+i+'"'+(i===cur?' aria-current="step"':'')+'><span class="no">'+(i+1)+'</span><span><strong>'+x[0]+'</strong>'+x[1]+'</span></button></li>'}).join('')}
@@ -1107,14 +1182,14 @@ body{background:var(--wash)}
 (function(){
   function st(){try{return document.getElementById('fd-frame').contentWindow.FD.state()}catch(e){return null}}
   window.UXK_CONFIG={proto:'美元高利定存方案',app:'#app',
-    screen:function(){var s=st();if(!s)return '';return (s.step===0&&s.home?'App 首頁':s.step===1&&s.gate?'注意事項':['外匯選單','選擇方案','比較收益','確認下單','交易完成'][s.step])},
+    screen:function(){var s=st();if(!s)return '';return (s.step===0&&s.home?'App 首頁':s.step===1&&s.gate?'注意事項':['外匯選單','選擇方案','比較收益','填寫資料','確認送出','交易完成'][s.step])},
     reset:function(){document.getElementById('reset').click()},
     isBack:function(el){return !!el.closest('[aria-label="上一步"],[aria-label="回選單"],.edit,.ghost[data-go]')},
     isReset:function(el){return !!el.closest('#reset')},
     tasks:[
       {id:'T1',say:'你有一筆新臺幣想轉成美元定存，半年內不會用到。請從選單找到適合的功能，找出這段期間內利息最多的方案。',goal:'從首頁選單（☰）進入「美元高利定存方案」，比較的方案包含 6 個月期',check:function(){var s=st();return s&&s.step>=2&&s.sel.indexOf('m6')>-1}},
       {id:'T2',say:'如果存 USD 10,000，這個方案到期可以拿到多少利息？',goal:'比較收益頁本金為 10,000，說出 USD 201.40',reset:false,check:function(){var s=st();return s&&s.step===2&&s.amt===10000&&s.sel.indexOf('m6')>-1}},
-      {id:'T3',say:'用這個方案完成定存，到期後不要自動續存。',goal:'看到「交易完成」，續存方式為「不續存」',reset:false,check:function(){var s=st();return s&&s.step===4&&s.mat==='none'}},
+      {id:'T3',say:'用這個方案完成定存，到期後不要自動續存。',goal:'看到「交易完成」，續存方式為「不續存」',reset:false,check:function(){var s=st();return s&&s.step===5&&s.mat==='none'}},
       {id:'T4',say:'請確認剛剛承作的定存，現在可以在哪裡看到。',goal:'回到選擇方案頁，看到「已承作方案」',reset:false,check:function(){var s=st();return s&&s.step===1&&s.holdings.length>0}}
     ]};
 })();
